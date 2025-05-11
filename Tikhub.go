@@ -15,6 +15,7 @@ type Tikhub struct {
 	room_id        string
 	user_unique_id string
 	XBogus         string
+	browser_name   string
 }
 
 func NewGithubClient(key string, ua string) *Tikhub {
@@ -27,7 +28,10 @@ func NewGithubClient(key string, ua string) *Tikhub {
 }
 func (t *Tikhub) Generate_wss_xb_signature() (string, error) {
 	//api/v1/douyin/web/generate_wss_xb_signature
-	get, err := t.r.R().SetQueryParam("user_agent", t.ua).SetQueryParam("room_id", t.room_id).SetQueryParam("user_unique_id", t.user_unique_id).Get("/api/v1/douyin/web/generate_wss_xb_signature")
+	get, err := t.r.R().SetQueryParam("user_agent", t.ua).
+		SetQueryParam("room_id", t.room_id).
+		SetQueryParam("user_unique_id", t.user_unique_id).
+		Get("/api/v1/douyin/web/generate_wss_xb_signature")
 	if err != nil {
 		return "", err
 	}
@@ -53,6 +57,7 @@ func (t *Tikhub) Fetch_query_user(ttwid string) (string, error) {
 		return "", err
 	}
 	t.ua = f.Data.UserAgent
+	t.browser_name = f.Data.BrowserName
 	t.user_unique_id = f.Data.UserUID
 	return f.Data.UserUID, nil
 }
@@ -71,7 +76,9 @@ func (t *Tikhub) Generate_ttwid() (string, error) {
 }
 func (t *Tikhub) Fetch_live_im_fetch(room_id string) error {
 	///api/v1/douyin/web/fetch_live_im_fetch
-	get, err := t.r.R().SetQueryParam("room_id", room_id).SetQueryParam("user_unique_id", t.user_unique_id).Get("api/v1/douyin/web/fetch_live_im_fetch")
+	get, err := t.r.R().SetQueryParam("room_id", room_id).
+		SetQueryParam("user_unique_id", t.user_unique_id).
+		Get("api/v1/douyin/web/fetch_live_im_fetch")
 	if err != nil {
 		return err
 	}
@@ -90,15 +97,32 @@ func (t *Tikhub) Fetch_live_im_fetch(room_id string) error {
 	// 处理 l.Data
 	return nil
 }
+func (t *Tikhub) webcast_id_2_room_id(room string) (string, error) {
+	get, err := t.r.R().SetQueryParam("webcast_id", room).Get("/api/v1/douyin/web/webcast_id_2_room_id")
+	if err != nil {
+		return "", err
+	}
+	ri := &roomidjson{}
+	err = get.UnmarshalJson(ri)
+	if err != nil {
+		return "", err
+	}
+	t.room_id = ri.Data.RoomID
+	return t.room_id, nil
+}
 func (t *Tikhub) SprintUrl() string {
+	roomid, err := t.webcast_id_2_room_id(t.room_id)
+	if err != nil {
+		return ""
+	}
 	sprint := fmt.Sprintf("wss://webcast5-ws-web-lf.douyin.com/webcast/im/push/v2/?aid=6383&app_name="+
-		"douyin_web&browser_language=zh-CN&browser_name=Mozilla&browser_online=true&browser_platform=Win32"+
+		"douyin_web&browser_language=zh-CN&browser_name=%s&browser_online=true&browser_platform=Win32"+
 		"&browser_version=%s&compress=gzip&cookie_enabled=true&device_platform=web&did_rule=3"+
 		"&endpoint=live_pc&heartbeatDuration=0&host=https://live.douyin.com&identity=audience"+
 		"&im_path=/webcast/im/fetch/&insert_task_id=&live_id=1&live_reason="+
 		"&need_persist_msg_count=15&screen_height=1080&screen_width=1920"+
 		"&support_wrds=1&tz_name=Asia/Shanghai&update_version_code=1.0.14-beta.0"+
 		"&version_code=180800&webcast_sdk_version=1.0.14-beta.0&room_id=%s&user_unique_id=%s"+
-		"&cursor=%s&internal_ext=%s&signature=%s", t.ua, t.room_id, t.user_unique_id, t.Cursor, t.Internal_ext, t.XBogus)
+		"&cursor=%s&internal_ext=%s&signature=%s", t.browser_name, t.ua, roomid, t.user_unique_id, t.Cursor, t.Internal_ext, t.XBogus)
 	return sprint
 }

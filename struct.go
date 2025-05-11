@@ -67,3 +67,13 @@ type livejson struct {
 		StatusCode  int    `json:"status_code"`
 	} `json:"data"`
 }
+type roomidjson struct {
+	Code   int    `json:"code"`
+	Router string `json:"router"`
+	Params struct {
+		WebcastID string `json:"webcast_id"`
+	} `json:"params"`
+	Data struct {
+		RoomID string `json:"room_id"`
+	} `json:"data"`
+}
