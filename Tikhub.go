@@ -15,7 +15,7 @@ type xbjson struct {
 	} `json:"data"`
 }
 type Tikhub struct {
-	*req.Client
+	r              *req.Client
 	ApiKey         string
 	ua             string
 	room_id        string
@@ -81,12 +81,13 @@ func NewGithubClient(key string, ua string) *Tikhub {
 	var tikhub = &Tikhub{}
 	tikhub.ua = ua
 	tikhub.ApiKey = key
-	tikhub.Client = req.C().SetCommonBearerAuthToken(key).SetBaseURL("https://api.tikhub.io")
+
+	tikhub.r = req.C().SetCommonBearerAuthToken(key).SetBaseURL("https://api.tikhub.io")
 	return tikhub
 }
 func (t Tikhub) Generate_wss_xb_signature() (string, error) {
 	//api/v1/douyin/web/generate_wss_xb_signature
-	get, err := t.R().Get("/api/v1/douyin/web/generate_wss_xb_signature")
+	get, err := t.r.R().Get("/api/v1/douyin/web/generate_wss_xb_signature")
 	if err != nil {
 		return "", err
 	}
@@ -100,7 +101,7 @@ func (t Tikhub) Generate_wss_xb_signature() (string, error) {
 }
 func (t *Tikhub) Fetch_query_user(ttwid string) (string, error) {
 	///api/v1/douyin/web/fetch_query_user
-	post, err := t.R().SetBodyString(ttwid).Post("/api/v1/douyin/web/fetch_query_user")
+	post, err := t.r.R().SetBodyString(ttwid).Post("/api/v1/douyin/web/fetch_query_user")
 	if err != nil {
 		return "", err
 	}
@@ -114,7 +115,7 @@ func (t *Tikhub) Fetch_query_user(ttwid string) (string, error) {
 	return f.Data.UserUID, nil
 }
 func (t *Tikhub) Generate_ttwid() (string, error) {
-	get, err := t.R().SetQueryParam("user_agent", t.ua).Get("/api/v1/douyin/web/generate_ttwid")
+	get, err := t.r.R().SetQueryParam("user_agent", t.ua).Get("/api/v1/douyin/web/generate_ttwid")
 	if err != nil {
 		return "", err
 	}
@@ -128,7 +129,7 @@ func (t *Tikhub) Generate_ttwid() (string, error) {
 }
 func (t Tikhub) Fetch_live_im_fetch() error {
 	///api/v1/douyin/web/fetch_live_im_fetch
-	get, err := t.R().Get("api/v1/douyin/web/fetch_live_im_fetch")
+	get, err := t.r.R().Get("api/v1/douyin/web/fetch_live_im_fetch")
 	if err != nil {
 		return err
 	}
