@@ -77,8 +77,9 @@ type livejson struct {
 	} `json:"data"`
 }
 
-func NewGithubClient(key string) *Tikhub {
+func NewGithubClient(key string, ua string) *Tikhub {
 	var tikhub = &Tikhub{}
+	tikhub.ua = ua
 	tikhub.ApiKey = key
 	tikhub.Client = req.C().SetCommonBearerAuthToken(key).SetBaseURL("https://api.tikhub.io")
 	return tikhub
@@ -113,7 +114,7 @@ func (t *Tikhub) Fetch_query_user(ttwid string) (string, error) {
 	return f.Data.UserUID, nil
 }
 func (t *Tikhub) Generate_ttwid() (string, error) {
-	get, err := t.R().Get("/api/v1/douyin/web/generate_ttwid")
+	get, err := t.R().SetQueryParam("user_agent", t.ua).Get("/api/v1/douyin/web/generate_ttwid")
 	if err != nil {
 		return "", err
 	}
