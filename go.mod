@@ -2,7 +2,10 @@ module github.com/jwwsjlm/Tikhub
 
 go 1.24.2
 
-require github.com/imroc/req/v3 v3.51.0
+require (
+	github.com/brianvoe/gofakeit/v7 v7.2.1
+	github.com/imroc/req/v3 v3.51.0
+)
 
 require (
 	github.com/andybalholm/brotli v1.1.1 // indirect

@@ -2,6 +2,7 @@ package Tikhub
 
 import (
 	"fmt"
+	"github.com/brianvoe/gofakeit/v7"
 	"github.com/imroc/req/v3"
 )
 
@@ -18,6 +19,12 @@ type Tikhub struct {
 	browser_name   string
 }
 
+// RandUserAgent 随机UA
+func RandUserAgent() string {
+	ua := gofakeit.UserAgent()
+	return ua
+	//fmt.Println("随机UA:", ua)
+}
 func NewGithubClient(key string, ua string) *Tikhub {
 	var tikhub = &Tikhub{}
 	tikhub.ua = ua
@@ -26,40 +33,39 @@ func NewGithubClient(key string, ua string) *Tikhub {
 	tikhub.r = req.C().SetCommonBearerAuthToken(key).SetBaseURL("https://api.tikhub.io")
 	return tikhub
 }
-func GenerateWsLink(key, userAgent, webcastId string) (string, error) {
+
+// GenerateWsLink 生成ws链接
+func GenerateWsLink(key, userAgent, webcastId string) (WsLink, error) {
+	var wslink WsLink
 	t := NewGithubClient(key, userAgent)
 	ttwid, err := t.GenerateTtwid(userAgent)
+	wslink.Ttwid = ttwid.Data.Ttwid
 	if err != nil {
-		return "", err
+		return WsLink{}, err
 	}
 	roomId, err := t.WebcastId2RoomId(webcastId)
 	if err != nil {
-		return "", err
+		return WsLink{}, err
 	}
 	User, err := t.FetchQueryUser(ttwid.Data.Ttwid)
 
 	if err != nil {
-		return "", err
+		return WsLink{}, err
 	}
-	fetch, err := t.FetchLiveImFetch(webcastId, User.Data.UserUID)
+	fetch, err := t.FetchLiveImFetch(roomId.Data.RoomID, User.Data.UserUID)
 	if err != nil {
-		return "", err
+		return WsLink{}, err
 	}
-	signature, err := t.GenerateWssXbSignature(userAgent, webcastId, User.Data.UserUID)
+	signature, err := t.GenerateWssXbSignature(userAgent, roomId.Data.RoomID, User.Data.UserUID)
 	if err != nil {
-		return "", err
+		return WsLink{}, err
 	}
-	sprint := fmt.Sprintf("wss://webcast5-ws-web-lf.douyin.com/webcast/im/push/v2/?aid=6383&app_name="+
-		"douyin_web&browser_language=zh-CN&browser_name=%s&browser_online=true&browser_platform=Win32"+
-		"&browser_version=%s&compress=gzip&cookie_enabled=true&device_platform=web&did_rule=3"+
-		"&endpoint=live_pc&heartbeatDuration=0&host=https://live.douyin.com&identity=audience"+
-		"&im_path=/webcast/im/fetch/&insert_task_id=&live_id=1&live_reason="+
-		"&need_persist_msg_count=15&screen_height=1080&screen_width=1920"+
-		"&support_wrds=1&tz_name=Asia/Shanghai&update_version_code=1.0.14-beta.0"+
-		"&version_code=180800&webcast_sdk_version=1.0.14-beta.0&room_id=%s&user_unique_id=%s"+
-		"&cursor=%s&internal_ext=%s&signature=%s",
-		User.Data.BrowserName, User.Data.UserAgent, roomId.Data.RoomID, User.Data.UserUID, fetch.Data.Extra.Cursor, fetch.Data.InternalExt, signature.Data.XBogus)
-	return sprint, err
+	//browserInfo := strings.Split(User.Data.UserAgent, "Mozilla")[1]
+	//parsedURL := strings.Replace(browserInfo[1:], " ", "%20", -1)
+	wslink.Url = fmt.Sprintf("wss://webcast5-ws-web-hl.douyin.com/webcast/im/push/v2/?aid=6383&app_name=douyin_web&browser_language=zh-CN&browser_name=%s&browser_online=true&browser_platform=Win32&browser_version=%s&compress=gzip&cookie_enabled=true&device_platform=web&did_rule=3&endpoint=live_pc&heartbeatDuration=0&host=https://live.douyin.com&identity=audience&im_path=/webcast/im/fetch/&insert_task_id=&live_id=1&live_reason=&need_persist_msg_count=15&screen_height=1080&screen_width=1920&support_wrds=1&tz_name=Asia/Shanghai&update_version_code=1.0.14-beta.0&version_code=180800&webcast_sdk_version=1.0.14-beta.0&room_id=%s&user_unique_id=%s&cursor=%s&internal_ext=%s&signature=%s",
+		User.Data.BrowserName, userAgent,
+		roomId.Data.RoomID, User.Data.UserUID, fetch.Data.Extra.Cursor, fetch.Data.InternalExt, signature.Data.XBogus)
+	return wslink, err
 }
 
 // GenerateWssXbSignature 生成弹幕xb签名
@@ -86,14 +92,20 @@ func (t *Tikhub) GenerateWssXbSignature(userAgent, roomId, userUniqueId string) 
 // FetchQueryUser 查询抖音用户基本信息
 func (t *Tikhub) FetchQueryUser(ttwid string) (FetchJson, error) {
 	///api/v1/douyin/web/fetch_query_user
-	post, err := t.r.R().SetBodyString(ttwid).Post("/api/v1/douyin/web/fetch_query_user")
+	tw := fmt.Sprintf(`ttwid=%s;`, ttwid)
+
+	post, err := t.r.R().SetBody(tw).Post("/api/v1/douyin/web/fetch_query_user")
 	if err != nil {
 		return FetchJson{}, fmt.Errorf("FetchQueryUser请求失败: %v", err)
 	}
 	f := FetchJson{}
+	//println(tw, string(post.Request.Body))
 	err = post.UnmarshalJson(&f)
 	if err != nil {
 		return FetchJson{}, fmt.Errorf("FetchQueryUser解析失败: %v", err)
+	}
+	if f.Code != 200 {
+		return FetchJson{}, fmt.Errorf("FetchQueryUser/返回失败: %v", post.String())
 	}
 	t.ua = f.Data.UserAgent
 	t.browser_name = f.Data.BrowserName
@@ -108,6 +120,7 @@ func (t *Tikhub) GenerateTtwid(userAgent string) (Ttwid, error) {
 		return Ttwid{}, fmt.Errorf("GenerateTtwid请求失败: %v", err)
 	}
 	// 生成一个随机的 ttwid
+	//println(get.String())
 	ttwid := Ttwid{}
 	err = get.UnmarshalJson(&ttwid)
 	if err != nil {
@@ -126,7 +139,8 @@ func (t *Tikhub) FetchLiveImFetch(roomId, userUniqueId string) (Livejson, error)
 		return Livejson{}, fmt.Errorf("FetchLiveImFetch请求失败: %v", err)
 	}
 	l := Livejson{}
-	//println(get.String())
+	//println(roomId, userUniqueId, get.String())
+
 	err = get.UnmarshalJson(&l)
 	if err != nil {
 		return Livejson{}, fmt.Errorf("FetchLiveImFetch解析失败: %v", err)

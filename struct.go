@@ -77,3 +77,7 @@ type Roomidjson struct {
 		RoomID string `json:"room_id"`
 	} `json:"data"`
 }
+type WsLink struct {
+	Url   string
+	Ttwid string
+}
