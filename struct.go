@@ -1,6 +1,6 @@
 package Tikhub
 
-type xbjson struct {
+type Xbjson struct {
 	Code   int    `json:"code"`
 	Router string `json:"router"`
 	Params struct {
@@ -13,7 +13,7 @@ type xbjson struct {
 	} `json:"data"`
 }
 
-type ttwid struct {
+type Ttwid struct {
 	Code   int    `json:"code"`
 	Router string `json:"router"`
 	Params struct {
@@ -22,7 +22,7 @@ type ttwid struct {
 		Ttwid string `json:"ttwid"`
 	} `json:"data"`
 }
-type fetchJson struct {
+type FetchJson struct {
 	Code   int    `json:"code"`
 	Router string `json:"router"`
 	Params struct {
@@ -38,7 +38,7 @@ type fetchJson struct {
 		BrowserName        string `json:"browser_name"`
 	} `json:"data"`
 }
-type livejson struct {
+type Livejson struct {
 	Code   int    `json:"code"`
 	Router string `json:"router"`
 	Params struct {
@@ -67,7 +67,7 @@ type livejson struct {
 		StatusCode  int    `json:"status_code"`
 	} `json:"data"`
 }
-type roomidjson struct {
+type Roomidjson struct {
 	Code   int    `json:"code"`
 	Router string `json:"router"`
 	Params struct {

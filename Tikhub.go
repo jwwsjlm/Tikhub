@@ -26,92 +26,130 @@ func NewGithubClient(key string, ua string) *Tikhub {
 	tikhub.r = req.C().SetCommonBearerAuthToken(key).SetBaseURL("https://api.tikhub.io")
 	return tikhub
 }
-func (t *Tikhub) Generate_wss_xb_signature() (string, error) {
+func GenerateWsLink(key, userAgent, webcastId string) (string, error) {
+	t := NewGithubClient(key, userAgent)
+	ttwid, err := t.GenerateTtwid(userAgent)
+	if err != nil {
+		return "", err
+	}
+	roomId, err := t.WebcastId2RoomId(webcastId)
+	if err != nil {
+		return "", err
+	}
+	User, err := t.FetchQueryUser(ttwid.Data.Ttwid)
+
+	if err != nil {
+		return "", err
+	}
+	fetch, err := t.FetchLiveImFetch(webcastId, User.Data.UserUID)
+	if err != nil {
+		return "", err
+	}
+	signature, err := t.GenerateWssXbSignature(userAgent, webcastId, User.Data.UserUID)
+	if err != nil {
+		return "", err
+	}
+	sprint := fmt.Sprintf("wss://webcast5-ws-web-lf.douyin.com/webcast/im/push/v2/?aid=6383&app_name="+
+		"douyin_web&browser_language=zh-CN&browser_name=%s&browser_online=true&browser_platform=Win32"+
+		"&browser_version=%s&compress=gzip&cookie_enabled=true&device_platform=web&did_rule=3"+
+		"&endpoint=live_pc&heartbeatDuration=0&host=https://live.douyin.com&identity=audience"+
+		"&im_path=/webcast/im/fetch/&insert_task_id=&live_id=1&live_reason="+
+		"&need_persist_msg_count=15&screen_height=1080&screen_width=1920"+
+		"&support_wrds=1&tz_name=Asia/Shanghai&update_version_code=1.0.14-beta.0"+
+		"&version_code=180800&webcast_sdk_version=1.0.14-beta.0&room_id=%s&user_unique_id=%s"+
+		"&cursor=%s&internal_ext=%s&signature=%s",
+		User.Data.BrowserName, User.Data.UserAgent, roomId.Data.RoomID, User.Data.UserUID, fetch.Data.Extra.Cursor, fetch.Data.InternalExt, signature.Data.XBogus)
+	return sprint, err
+}
+
+// GenerateWssXbSignature 生成弹幕xb签名
+func (t *Tikhub) GenerateWssXbSignature(userAgent, roomId, userUniqueId string) (Xbjson, error) {
 	//api/v1/douyin/web/generate_wss_xb_signature
-	get, err := t.r.R().SetQueryParam("user_agent", t.ua).
-		SetQueryParam("room_id", t.room_id).
-		SetQueryParam("user_unique_id", t.user_unique_id).
+	get, err := t.r.R().SetQueryParam("user_agent", userAgent).
+		SetQueryParam("room_id", roomId).
+		SetQueryParam("user_unique_id", userUniqueId).
 		Get("/api/v1/douyin/web/generate_wss_xb_signature")
 	if err != nil {
-		return "", err
+		return Xbjson{}, fmt.Errorf("GenerateWssXbSignature请求失败: %v", err)
 	}
-	x := &xbjson{}
+	x := Xbjson{}
 	//println(get.String())
-	err = get.UnmarshalJson(x)
+	err = get.UnmarshalJson(&x)
 	if err != nil {
-		return "", err
+		return Xbjson{}, fmt.Errorf("GenerateWssXbSignature解析失败: %v", err)
 	}
 	t.XBogus = x.Data.XBogus
-	return x.Data.XBogus, nil
+	return x, nil
 
 }
-func (t *Tikhub) Fetch_query_user(ttwid string) (string, error) {
+
+// FetchQueryUser 查询抖音用户基本信息
+func (t *Tikhub) FetchQueryUser(ttwid string) (FetchJson, error) {
 	///api/v1/douyin/web/fetch_query_user
 	post, err := t.r.R().SetBodyString(ttwid).Post("/api/v1/douyin/web/fetch_query_user")
 	if err != nil {
-		return "", err
+		return FetchJson{}, fmt.Errorf("FetchQueryUser请求失败: %v", err)
 	}
-	f := &fetchJson{}
-	err = post.UnmarshalJson(f)
+	f := FetchJson{}
+	err = post.UnmarshalJson(&f)
 	if err != nil {
-		return "", err
+		return FetchJson{}, fmt.Errorf("FetchQueryUser解析失败: %v", err)
 	}
 	t.ua = f.Data.UserAgent
 	t.browser_name = f.Data.BrowserName
 	t.user_unique_id = f.Data.UserUID
-	return f.Data.UserUID, nil
+	return f, nil
 }
-func (t *Tikhub) Generate_ttwid() (string, error) {
-	get, err := t.r.R().SetQueryParam("user_agent", t.ua).Get("/api/v1/douyin/web/generate_ttwid")
+
+// GenerateTtwid 生成ttwid
+func (t *Tikhub) GenerateTtwid(userAgent string) (Ttwid, error) {
+	get, err := t.r.R().SetQueryParam("user_agent", userAgent).Get("/api/v1/douyin/web/generate_ttwid")
 	if err != nil {
-		return "", err
+		return Ttwid{}, fmt.Errorf("GenerateTtwid请求失败: %v", err)
 	}
 	// 生成一个随机的 ttwid
-	var ttwid ttwid
+	ttwid := Ttwid{}
 	err = get.UnmarshalJson(&ttwid)
 	if err != nil {
-		return "", err
+		return Ttwid{}, fmt.Errorf("GenerateTtwid解析失败: %v", err)
 	}
-	return "ttwid=" + ttwid.Data.Ttwid, nil
+	return ttwid, nil
 }
-func (t *Tikhub) Fetch_live_im_fetch(room_id string) error {
+
+// FetchLiveImFetch 抖音直播间弹幕参数获取
+func (t *Tikhub) FetchLiveImFetch(roomId, userUniqueId string) (Livejson, error) {
 	///api/v1/douyin/web/fetch_live_im_fetch
-	get, err := t.r.R().SetQueryParam("room_id", room_id).
-		SetQueryParam("user_unique_id", t.user_unique_id).
+	get, err := t.r.R().SetQueryParam("room_id", roomId).
+		SetQueryParam("user_unique_id", userUniqueId).
 		Get("api/v1/douyin/web/fetch_live_im_fetch")
 	if err != nil {
-		return err
+		return Livejson{}, fmt.Errorf("FetchLiveImFetch请求失败: %v", err)
 	}
-	l := &livejson{}
+	l := Livejson{}
 	//println(get.String())
-	err = get.UnmarshalJson(l)
+	err = get.UnmarshalJson(&l)
 	if err != nil {
-		return err
+		return Livejson{}, fmt.Errorf("FetchLiveImFetch解析失败: %v", err)
 	}
-	//println(l.Data.InternalExt)
-	t.room_id = l.Params.RoomID
-	t.user_unique_id = l.Params.UserUniqueID
-	t.Internal_ext = l.Data.InternalExt
-	t.Live_cursor = l.Data.Extra.LiveCursor
-	t.Cursor = l.Data.Extra.Cursor
-	// 处理 l.Data
-	return nil
+	return l, nil
 }
-func (t *Tikhub) webcast_id_2_room_id(room string) (string, error) {
+
+// WebcastId2RoomId 直播间号转房间号
+func (t *Tikhub) WebcastId2RoomId(room string) (Roomidjson, error) {
 	get, err := t.r.R().SetQueryParam("webcast_id", room).Get("/api/v1/douyin/web/webcast_id_2_room_id")
 	if err != nil {
-		return "", err
+		return Roomidjson{}, fmt.Errorf("WebcastId2RoomId请求失败: %v", err)
 	}
-	ri := &roomidjson{}
-	err = get.UnmarshalJson(ri)
+	json := Roomidjson{}
+	err = get.UnmarshalJson(&json)
 	if err != nil {
-		return "", err
+		return Roomidjson{}, fmt.Errorf("WebcastId2RoomId解析失败: %v", err)
 	}
-	t.room_id = ri.Data.RoomID
-	return t.room_id, nil
+	t.room_id = json.Data.RoomID
+	return json, nil
 }
 func (t *Tikhub) SprintUrl() string {
-	roomid, err := t.webcast_id_2_room_id(t.room_id)
+	roomid, err := t.WebcastId2RoomId(t.room_id)
 	if err != nil {
 		return ""
 	}
@@ -123,6 +161,6 @@ func (t *Tikhub) SprintUrl() string {
 		"&need_persist_msg_count=15&screen_height=1080&screen_width=1920"+
 		"&support_wrds=1&tz_name=Asia/Shanghai&update_version_code=1.0.14-beta.0"+
 		"&version_code=180800&webcast_sdk_version=1.0.14-beta.0&room_id=%s&user_unique_id=%s"+
-		"&cursor=%s&internal_ext=%s&signature=%s", t.browser_name, t.ua, roomid, t.user_unique_id, t.Cursor, t.Internal_ext, t.XBogus)
+		"&cursor=%s&internal_ext=%s&signature=%s", t.browser_name, t.ua, roomid.Data.RoomID, t.user_unique_id, t.Cursor, t.Internal_ext, t.XBogus)
 	return sprint
 }
