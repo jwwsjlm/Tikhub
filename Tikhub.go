@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/brianvoe/gofakeit/v7"
 	"github.com/imroc/req/v3"
+	"net/url"
 )
 
 type Tikhub struct {
@@ -63,7 +64,7 @@ func GenerateWsLink(key, userAgent, webcastId string) (WsLink, error) {
 	//browserInfo := strings.Split(User.Data.UserAgent, "Mozilla")[1]
 	//parsedURL := strings.Replace(browserInfo[1:], " ", "%20", -1)
 	wslink.Url = fmt.Sprintf("wss://webcast5-ws-web-hl.douyin.com/webcast/im/push/v2/?aid=6383&app_name=douyin_web&browser_language=zh-CN&browser_name=%s&browser_online=true&browser_platform=Win32&browser_version=%s&compress=gzip&cookie_enabled=true&device_platform=web&did_rule=3&endpoint=live_pc&heartbeatDuration=0&host=https://live.douyin.com&identity=audience&im_path=/webcast/im/fetch/&insert_task_id=&live_id=1&live_reason=&need_persist_msg_count=15&screen_height=1080&screen_width=1920&support_wrds=1&tz_name=Asia/Shanghai&update_version_code=1.0.14-beta.0&version_code=180800&webcast_sdk_version=1.0.14-beta.0&room_id=%s&user_unique_id=%s&cursor=%s&internal_ext=%s&signature=%s",
-		User.Data.BrowserName, userAgent,
+		User.Data.BrowserName, url.PathEscape(userAgent),
 		roomId.Data.RoomID, User.Data.UserUID, fetch.Data.Extra.Cursor, fetch.Data.InternalExt, signature.Data.XBogus)
 	return wslink, err
 }
