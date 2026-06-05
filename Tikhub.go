@@ -3,7 +3,7 @@ package Tikhub
 import (
 	"fmt"
 	"github.com/brianvoe/gofakeit/v7"
-	"github.com/imroc/req/v3"
+	"github.com/jwwsjlm/req/v3"
 	"net/url"
 )
 
@@ -60,6 +60,9 @@ func GenerateWsLink(key, userAgent, webcastId string) (WsLink, error) {
 	signature, err := t.GenerateWssXbSignature(userAgent, roomId.Data.RoomID, User.Data.UserUID)
 	if err != nil {
 		return WsLink{}, err
+	}
+	if signature.Data.XBogus == "" {
+		return WsLink{}, fmt.Errorf("GenerateWssXbSignature/x_bogus为空")
 	}
 	//browserInfo := strings.Split(userAgent, "/")[1]
 	//parsedURL := strings.Replace(browserInfo[1:], " ", "%20", -1)
