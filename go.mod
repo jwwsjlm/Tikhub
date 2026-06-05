@@ -2,10 +2,7 @@ module github.com/jwwsjlm/Tikhub
 
 go 1.26.3
 
-require (
-	github.com/brianvoe/gofakeit/v7 v7.2.1
-	github.com/jwwsjlm/req/v3 v3.58.1
-)
+require github.com/jwwsjlm/req/v3 v3.58.1
 
 require (
 	github.com/Danny-Dasilva/CycleTLS/cycletls v1.0.30 // indirect

@@ -102,19 +102,6 @@ if err != nil {
 resp, err := tikhub.ParseResponse(rawResp)
 ```
 
-## 直播弹幕 WS 链接
-
-旧版 helper 仍然保留：
-
-```go
-ua := tikhub.RandUserAgent()
-ws, err := tikhub.GenerateWsLink("你的 TikHub API Key", ua, "直播间号")
-if err != nil {
-	log.Fatal(err)
-}
-log.Println(ws.Url, ws.Ttwid)
-```
-
 ## 集成测试
 
 默认测试只走本地 mock server：
@@ -127,6 +114,5 @@ go test ./...
 
 ```bash
 set TIKHUB_API_KEY=你的 TikHub API Key
-set TIKHUB_WEBCAST_ID=直播间号
 go test ./...
 ```
