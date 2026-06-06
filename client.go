@@ -17,6 +17,8 @@ const DefaultBaseURL = "https://api.tikhub.io"
 
 // Client is a TikHub API client backed by github.com/jwwsjlm/req/v3.
 type Client struct {
+	Resources
+
 	r       *req.Client
 	apiKey  string
 	baseURL string
@@ -86,6 +88,7 @@ func NewClient(apiKey string, opts ...Option) *Client {
 	for _, opt := range opts {
 		opt(c)
 	}
+	c.initResources()
 	return c
 }
 
@@ -386,6 +389,13 @@ func addQueryValue(values url.Values, key string, value any) {
 	}
 }
 
+func addOptionalQueryValue(values url.Values, key string, value any) {
+	if isZeroValue(value) {
+		return
+	}
+	addQueryValue(values, key, value)
+}
+
 func addBodyValue(body map[string]any, key string, value any) {
 	if key == "" || value == nil {
 		return
@@ -406,4 +416,32 @@ func addBodyValue(body map[string]any, key string, value any) {
 	}
 
 	body[key] = rv.Interface()
+}
+
+func addOptionalBodyValue(body map[string]any, key string, value any) {
+	if isZeroValue(value) {
+		return
+	}
+	addBodyValue(body, key, value)
+}
+
+func isZeroValue(value any) bool {
+	if value == nil {
+		return true
+	}
+
+	rv := reflect.ValueOf(value)
+	for rv.IsValid() && (rv.Kind() == reflect.Pointer || rv.Kind() == reflect.Interface) {
+		if rv.IsNil() {
+			return true
+		}
+		rv = rv.Elem()
+	}
+	if !rv.IsValid() {
+		return true
+	}
+	if (rv.Kind() == reflect.Slice || rv.Kind() == reflect.Map) && rv.IsNil() {
+		return true
+	}
+	return rv.IsZero()
 }

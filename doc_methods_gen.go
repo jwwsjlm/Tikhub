@@ -47,13 +47,13 @@ type TikHubUserCalculatePriceRequest struct {
 	// 请求的端点/Requested endpoint
 	Endpoint string `query:"endpoint,omitempty" json:"endpoint,omitempty"`
 	// 每日请求次数/Request per day
-	RequestPerDay *int `query:"request_per_day,omitempty" json:"request_per_day,omitempty"`
+	RequestPerDay int `query:"request_per_day,omitempty" json:"request_per_day,omitempty"`
 }
 
 func (r TikHubUserCalculatePriceRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "endpoint", r.Endpoint)
-	addQueryValue(values, "request_per_day", r.RequestPerDay)
+	addOptionalQueryValue(values, "request_per_day", r.RequestPerDay)
 	return values
 }
 
@@ -122,15 +122,15 @@ type TikTokWebGetSingleVideoDataV2Response = APIResponse
 // TikTokWebGetExploreVideoDataRequest is the request for 获取探索作品数据/Get explore video data.
 type TikTokWebGetExploreVideoDataRequest struct {
 	// 作品分类/Video category
-	CategoryType *string `query:"categoryType,omitempty" json:"categoryType,omitempty"`
+	CategoryType string `query:"categoryType,omitempty" json:"categoryType,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokWebGetExploreVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "categoryType", r.CategoryType)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "categoryType", r.CategoryType)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -154,15 +154,15 @@ type TikTokWebGetDailyTrendingSearchWordsResponse = APIResponse
 // TikTokWebGetUserProfileRequest is the request for 获取用户的个人信息/Get user profile.
 type TikTokWebGetUserProfileRequest struct {
 	// 用户uniqueId/User uniqueId
-	UniqueID *string `query:"uniqueId,omitempty" json:"uniqueId,omitempty"`
+	UniqueID string `query:"uniqueId,omitempty" json:"uniqueId,omitempty"`
 	// 用户secUid/User secUid
-	SecUID *string `query:"secUid,omitempty" json:"secUid,omitempty"`
+	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 }
 
 func (r TikTokWebGetUserProfileRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "uniqueId", r.UniqueID)
-	addQueryValue(values, "secUid", r.SecUID)
+	addOptionalQueryValue(values, "uniqueId", r.UniqueID)
+	addOptionalQueryValue(values, "secUid", r.SecUID)
 	return values
 }
 
@@ -174,22 +174,22 @@ type TikTokWebGetUserPostsRequest struct {
 	// 用户secUid/User secUid
 	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 封面格式/Cover format
-	CoverFormat *int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
+	CoverFormat int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
 	// 排序方式/Sort type
-	PostItemListRequestType *int `query:"post_item_list_request_type,omitempty" json:"post_item_list_request_type,omitempty"`
+	PostItemListRequestType int `query:"post_item_list_request_type,omitempty" json:"post_item_list_request_type,omitempty"`
 }
 
 func (r TikTokWebGetUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "secUid", r.SecUID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "coverFormat", r.CoverFormat)
-	addQueryValue(values, "post_item_list_request_type", r.PostItemListRequestType)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "coverFormat", r.CoverFormat)
+	addOptionalQueryValue(values, "post_item_list_request_type", r.PostItemListRequestType)
 	return values
 }
 
@@ -201,19 +201,19 @@ type TikTokWebGetUserRepostsRequest struct {
 	// 用户secUid/User secUid
 	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 封面格式/Cover format
-	CoverFormat *int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
+	CoverFormat int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
 }
 
 func (r TikTokWebGetUserRepostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "secUid", r.SecUID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "coverFormat", r.CoverFormat)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "coverFormat", r.CoverFormat)
 	return values
 }
 
@@ -225,22 +225,22 @@ type TikTokWebGetUserLikesRequest struct {
 	// 用户secUid/User secUid
 	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 封面格式/Cover format
-	CoverFormat *int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
+	CoverFormat int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
 	// 排序方式/Sort type
-	PostItemListRequestType *int `query:"post_item_list_request_type,omitempty" json:"post_item_list_request_type,omitempty"`
+	PostItemListRequestType int `query:"post_item_list_request_type,omitempty" json:"post_item_list_request_type,omitempty"`
 }
 
 func (r TikTokWebGetUserLikesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "secUid", r.SecUID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "coverFormat", r.CoverFormat)
-	addQueryValue(values, "post_item_list_request_type", r.PostItemListRequestType)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "coverFormat", r.CoverFormat)
+	addOptionalQueryValue(values, "post_item_list_request_type", r.PostItemListRequestType)
 	return values
 }
 
@@ -254,20 +254,20 @@ type TikTokWebGetUserFavoritesRequest struct {
 	// 用户secUid/User secUid
 	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 封面格式/Cover format
-	CoverFormat *int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
+	CoverFormat int `query:"coverFormat,omitempty" json:"coverFormat,omitempty"`
 }
 
 func (r TikTokWebGetUserFavoritesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "cookie", r.Cookie)
 	addQueryValue(values, "secUid", r.SecUID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "coverFormat", r.CoverFormat)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "coverFormat", r.CoverFormat)
 	return values
 }
 
@@ -279,16 +279,16 @@ type TikTokWebGetUserPlayListRequest struct {
 	// 用户secUid/User secUid
 	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokWebGetUserPlayListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "secUid", r.SecUID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -300,16 +300,16 @@ type TikTokWebGetUserMixListRequest struct {
 	// 合辑id/Mix id
 	MixID string `query:"mixId,omitempty" json:"mixId,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokWebGetUserMixListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "mixId", r.MixID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -321,19 +321,19 @@ type TikTokWebGetVideoCommentsRequest struct {
 	// 作品id/Video id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 当前地区/Current region
-	CurrentRegion *string `query:"current_region,omitempty" json:"current_region,omitempty"`
+	CurrentRegion string `query:"current_region,omitempty" json:"current_region,omitempty"`
 }
 
 func (r TikTokWebGetVideoCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "current_region", r.CurrentRegion)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "current_region", r.CurrentRegion)
 	return values
 }
 
@@ -347,20 +347,20 @@ type TikTokWebGetVideoCommentRepliesRequest struct {
 	// 评论id/Comment id
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 当前地区/Current region
-	CurrentRegion *string `query:"current_region,omitempty" json:"current_region,omitempty"`
+	CurrentRegion string `query:"current_region,omitempty" json:"current_region,omitempty"`
 }
 
 func (r TikTokWebGetVideoCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "item_id", r.ItemID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "current_region", r.CurrentRegion)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "current_region", r.CurrentRegion)
 	return values
 }
 
@@ -372,19 +372,19 @@ type TikTokWebGetUserFollowersRequest struct {
 	// 用户secUid/User secUid
 	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 最大游标/Max cursor
-	MaxCursor *int `query:"maxCursor,omitempty" json:"maxCursor,omitempty"`
+	MaxCursor int `query:"maxCursor,omitempty" json:"maxCursor,omitempty"`
 	// 最小游标/Min cursor
-	MinCursor *int `query:"minCursor,omitempty" json:"minCursor,omitempty"`
+	MinCursor int `query:"minCursor,omitempty" json:"minCursor,omitempty"`
 }
 
 func (r TikTokWebGetUserFollowersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "secUid", r.SecUID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "maxCursor", r.MaxCursor)
-	addQueryValue(values, "minCursor", r.MinCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "maxCursor", r.MaxCursor)
+	addOptionalQueryValue(values, "minCursor", r.MinCursor)
 	return values
 }
 
@@ -396,19 +396,19 @@ type TikTokWebGetUserFollowingsRequest struct {
 	// 用户secUid/User secUid
 	SecUID string `query:"secUid,omitempty" json:"secUid,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 最大游标/Max cursor
-	MaxCursor *int `query:"maxCursor,omitempty" json:"maxCursor,omitempty"`
+	MaxCursor int `query:"maxCursor,omitempty" json:"maxCursor,omitempty"`
 	// 最小游标/Min cursor
-	MinCursor *int `query:"minCursor,omitempty" json:"minCursor,omitempty"`
+	MinCursor int `query:"minCursor,omitempty" json:"minCursor,omitempty"`
 }
 
 func (r TikTokWebGetUserFollowingsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "secUid", r.SecUID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "maxCursor", r.MaxCursor)
-	addQueryValue(values, "minCursor", r.MinCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "maxCursor", r.MaxCursor)
+	addOptionalQueryValue(values, "minCursor", r.MinCursor)
 	return values
 }
 
@@ -435,19 +435,19 @@ type TikTokWebGetGeneralSearchListRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 翻页游标/Page cursor
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 搜索id，翻页时需要提供/Search id, need to provide when paging
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 用户cookie(按需提供)/User cookie(if needed)
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokWebGetGeneralSearchListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -474,19 +474,19 @@ type TikTokWebSearchUserRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 搜索id，翻页时需要提供/Search id, need to provide when paging
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 用户cookie(按需提供)/User cookie(if needed)
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokWebSearchUserRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -498,22 +498,22 @@ type TikTokWebSearchVideoRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页游标/Page cursor
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 搜索id，翻页时需要提供/Search id, need to provide when paging
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 用户cookie(按需提供)/User cookie(if needed)
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokWebSearchVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -525,22 +525,22 @@ type TikTokWebSearchLiveRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页游标/Page cursor
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 搜索id，翻页时需要提供/Search id, need to provide when paging
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 用户cookie(按需提供)/User cookie(if needed)
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokWebSearchLiveRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -552,22 +552,22 @@ type TikTokWebSearchPhotoRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页游标/Page offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 搜索id，翻页时需要提供/Search id, need to provide when paging
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 用户cookie(按需提供)/User cookie(if needed)
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokWebSearchPhotoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -594,16 +594,16 @@ type TikTokWebTagPostRequest struct {
 	// Tag ID
 	ChallengeID string `query:"challengeID,omitempty" json:"challengeID,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TikTokWebTagPostRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "challengeID", r.ChallengeID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -613,15 +613,15 @@ type TikTokWebTagPostResponse = APIResponse
 // TikTokWebHomeFeedRequest is the request for 首页推荐作品/Home Feed.
 type TikTokWebHomeFeedRequest struct {
 	// 每页数量/Number per page
-	Count *int `json:"count,omitempty"`
+	Count int `json:"count,omitempty"`
 	// 用户自己的cookie，可选参数，用于接口返回数据的个性化推荐。/ User's own cookie, optional parameter, used for personalized recommendations of interface return data.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 }
 
 func (r TikTokWebHomeFeedRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "count", r.Count)
-	addBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "count", r.Count)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
 	return body
 }
 
@@ -631,15 +631,15 @@ type TikTokWebHomeFeedResponse = APIResponse
 // TikTokWebGenerateRealMSTokenRequest is the request for 生成真实msToken/Generate real msToken.
 type TikTokWebGenerateRealMSTokenRequest struct {
 	// Random Strdata
-	RandomStrData *bool `query:"random_strData,omitempty" json:"random_strData,omitempty"`
+	RandomStrData bool `query:"random_strData,omitempty" json:"random_strData,omitempty"`
 	// Browser Type
-	BrowserType *string `query:"browser_type,omitempty" json:"browser_type,omitempty"`
+	BrowserType string `query:"browser_type,omitempty" json:"browser_type,omitempty"`
 }
 
 func (r TikTokWebGenerateRealMSTokenRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "random_strData", r.RandomStrData)
-	addQueryValue(values, "browser_type", r.BrowserType)
+	addOptionalQueryValue(values, "random_strData", r.RandomStrData)
+	addOptionalQueryValue(values, "browser_type", r.BrowserType)
 	return values
 }
 
@@ -679,12 +679,12 @@ type TikTokWebDecryptStrDataResponse = APIResponse
 // TikTokWebGenerateBrowserFingerprintRequest is the request for 生成浏览器指纹/Generate browser fingerprint.
 type TikTokWebGenerateBrowserFingerprintRequest struct {
 	// Browser Type
-	BrowserType *string `query:"browser_type,omitempty" json:"browser_type,omitempty"`
+	BrowserType string `query:"browser_type,omitempty" json:"browser_type,omitempty"`
 }
 
 func (r TikTokWebGenerateBrowserFingerprintRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "browser_type", r.BrowserType)
+	addOptionalQueryValue(values, "browser_type", r.BrowserType)
 	return values
 }
 
@@ -694,27 +694,27 @@ type TikTokWebGenerateBrowserFingerprintResponse = APIResponse
 // TikTokWebGenerateWebIDRequest is the request for 生成web_id/Generate web_id.
 type TikTokWebGenerateWebIDRequest struct {
 	// Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 	// User Agent
-	UserAgent *string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
+	UserAgent string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
 	// Url
-	URL *string `query:"url,omitempty" json:"url,omitempty"`
+	URL string `query:"url,omitempty" json:"url,omitempty"`
 	// Referer
-	Referer *string `query:"referer,omitempty" json:"referer,omitempty"`
+	Referer string `query:"referer,omitempty" json:"referer,omitempty"`
 	// User Unique Id
-	UserUniqueID *string `query:"user_unique_id,omitempty" json:"user_unique_id,omitempty"`
+	UserUniqueID string `query:"user_unique_id,omitempty" json:"user_unique_id,omitempty"`
 	// App Id
-	AppID *int `query:"app_id,omitempty" json:"app_id,omitempty"`
+	AppID int `query:"app_id,omitempty" json:"app_id,omitempty"`
 }
 
 func (r TikTokWebGenerateWebIDRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "cookie", r.Cookie)
-	addQueryValue(values, "user_agent", r.UserAgent)
-	addQueryValue(values, "url", r.URL)
-	addQueryValue(values, "referer", r.Referer)
-	addQueryValue(values, "user_unique_id", r.UserUniqueID)
-	addQueryValue(values, "app_id", r.AppID)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "user_agent", r.UserAgent)
+	addOptionalQueryValue(values, "url", r.URL)
+	addOptionalQueryValue(values, "referer", r.Referer)
+	addOptionalQueryValue(values, "user_unique_id", r.UserUniqueID)
+	addOptionalQueryValue(values, "app_id", r.AppID)
 	return values
 }
 
@@ -724,12 +724,12 @@ type TikTokWebGenerateWebIDResponse = APIResponse
 // TikTokWebGenerateTtwidRequest is the request for 生成ttwid/Generate ttwid.
 type TikTokWebGenerateTtwidRequest struct {
 	// User Agent
-	UserAgent *string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
+	UserAgent string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
 }
 
 func (r TikTokWebGenerateTtwidRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_agent", r.UserAgent)
+	addOptionalQueryValue(values, "user_agent", r.UserAgent)
 	return values
 }
 
@@ -759,13 +759,13 @@ type TikTokWebGenerateXGnarlyRequest struct {
 	// 包含域名和参数的请求的API URL，不需要进行URL编码 | The requested API URL, no need to URL encode
 	URL string `json:"url,omitempty"`
 	// 请求的API参数，适用于POST请求 | The API parameters of the request, applicable for POST requests
-	Body *string `json:"body,omitempty"`
+	Body string `json:"body,omitempty"`
 }
 
 func (r TikTokWebGenerateXGnarlyRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "url", r.URL)
-	addBodyValue(body, "body", r.Body)
+	addOptionalBodyValue(body, "body", r.Body)
 	return body
 }
 
@@ -777,13 +777,13 @@ type TikTokWebGenerateXGnarlyAndXBogusRequest struct {
 	// 包含域名和参数的请求的API URL，不需要进行URL编码 | The requested API URL, no need to URL encode
 	URL string `json:"url,omitempty"`
 	// 请求的API参数，适用于POST请求 | The API parameters of the request, applicable for POST requests
-	Body *string `json:"body,omitempty"`
+	Body string `json:"body,omitempty"`
 }
 
 func (r TikTokWebGenerateXGnarlyAndXBogusRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "url", r.URL)
-	addBodyValue(body, "body", r.Body)
+	addOptionalBodyValue(body, "body", r.Body)
 	return body
 }
 
@@ -793,12 +793,12 @@ type TikTokWebGenerateXGnarlyAndXBogusResponse = APIResponse
 // TikTokWebGenerateXMSSDKInfoRequest is the request for 生成 X-Mssdk-Info /Generate X-Mssdk-Info.
 type TikTokWebGenerateXMSSDKInfoRequest struct {
 	// 可选的用户代理字符串，目前不支持自定义，默认为固定的值 | Optional User-Agent string, currently not supported for customization, defaults to a fixed value
-	UserAgent *string `json:"user_agent,omitempty"`
+	UserAgent string `json:"user_agent,omitempty"`
 }
 
 func (r TikTokWebGenerateXMSSDKInfoRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "user_agent", r.UserAgent)
+	addOptionalBodyValue(body, "user_agent", r.UserAgent)
 	return body
 }
 
@@ -927,16 +927,16 @@ type TikTokWebTiktokLiveRoomDanmakuParametersRequest struct {
 	// 直播间号/Live room id
 	RoomID string `query:"room_id,omitempty" json:"room_id,omitempty"`
 	// 用户唯一ID/User unique ID
-	UserUniqueID *string `query:"user_unique_id,omitempty" json:"user_unique_id,omitempty"`
+	UserUniqueID string `query:"user_unique_id,omitempty" json:"user_unique_id,omitempty"`
 	// 响应格式: protobuf 或 json / Response format: protobuf or json
-	RespContentType *string `query:"resp_content_type,omitempty" json:"resp_content_type,omitempty"`
+	RespContentType string `query:"resp_content_type,omitempty" json:"resp_content_type,omitempty"`
 }
 
 func (r TikTokWebTiktokLiveRoomDanmakuParametersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "room_id", r.RoomID)
-	addQueryValue(values, "user_unique_id", r.UserUniqueID)
-	addQueryValue(values, "resp_content_type", r.RespContentType)
+	addOptionalQueryValue(values, "user_unique_id", r.UserUniqueID)
+	addOptionalQueryValue(values, "resp_content_type", r.RespContentType)
 	return values
 }
 
@@ -946,12 +946,12 @@ type TikTokWebTiktokLiveRoomDanmakuParametersResponse = APIResponse
 // TikTokWebGenerateTikTokWSSXBogusSignatureRequest is the request for 生成TikTok WSS X-Bogus签名/Generate TikTok WSS X-Bogus signature.
 type TikTokWebGenerateTikTokWSSXBogusSignatureRequest struct {
 	// 用户浏览器代理（可选）/User browser agent (optional)
-	UserAgent *string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
+	UserAgent string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
 }
 
 func (r TikTokWebGenerateTikTokWSSXBogusSignatureRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_agent", r.UserAgent)
+	addOptionalQueryValue(values, "user_agent", r.UserAgent)
 	return values
 }
 
@@ -1036,12 +1036,12 @@ type TikTokWebGetLiveRoomHomepageRecommendationListResponse = APIResponse
 // TikTokWebGetLiveRoomGiftListRequest is the request for 获取直播间礼物列表/Get live room gift list.
 type TikTokWebGetLiveRoomGiftListRequest struct {
 	// 直播间ID，可选参数/Live room ID, optional parameter
-	RoomID *string `query:"room_id,omitempty" json:"room_id,omitempty"`
+	RoomID string `query:"room_id,omitempty" json:"room_id,omitempty"`
 }
 
 func (r TikTokWebGetLiveRoomGiftListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "room_id", r.RoomID)
+	addOptionalQueryValue(values, "room_id", r.RoomID)
 	return values
 }
 
@@ -1222,13 +1222,13 @@ type TikTokAppV3GetSingleVideoDataV3Request struct {
 	// 作品id/Video id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 国家代码/Country code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokAppV3GetSingleVideoDataV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -1309,18 +1309,18 @@ type TikTokAppV3GetUserIDAndSecUserIDByUsernameResponse = APIResponse
 // TikTokAppV3GetInformationOfSpecifiedUserRequest is the request for 获取指定用户的信息/Get information of specified user.
 type TikTokAppV3GetInformationOfSpecifiedUserRequest struct {
 	// 用户uid （可选，纯数字）/User uid (optional, pure number)
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 用户unique_id （用户名）/User unique_id (username)
-	UniqueID *string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
+	UniqueID string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
 }
 
 func (r TikTokAppV3GetInformationOfSpecifiedUserRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "unique_id", r.UniqueID)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "unique_id", r.UniqueID)
 	return values
 }
 
@@ -1330,15 +1330,15 @@ type TikTokAppV3GetInformationOfSpecifiedUserResponse = APIResponse
 // TikTokAppV3GetInformationOfSpecifiedWebcastUserRequest is the request for 获取指定 Webcast 用户的信息/Get information of specified Webcast user.
 type TikTokAppV3GetInformationOfSpecifiedWebcastUserRequest struct {
 	// 用户uid （可选，纯数字）/User uid (optional, pure number)
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 }
 
 func (r TikTokAppV3GetInformationOfSpecifiedWebcastUserRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
 	return values
 }
 
@@ -1365,13 +1365,13 @@ type TikTokAppV3SimilarUserRecommendationsRequest struct {
 	// 用户sec_uid/User sec_uid
 	SecUID string `query:"sec_uid,omitempty" json:"sec_uid,omitempty"`
 	// 分页标记/Page token
-	PageToken *string `query:"page_token,omitempty" json:"page_token,omitempty"`
+	PageToken string `query:"page_token,omitempty" json:"page_token,omitempty"`
 }
 
 func (r TikTokAppV3SimilarUserRecommendationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_uid", r.SecUID)
-	addQueryValue(values, "page_token", r.PageToken)
+	addOptionalQueryValue(values, "page_token", r.PageToken)
 	return values
 }
 
@@ -1383,16 +1383,16 @@ type TikTokAppV3GetUserRepostVideoDataRequest struct {
 	// 用户id/User id
 	UserID int `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetUserRepostVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1402,24 +1402,24 @@ type TikTokAppV3GetUserRepostVideoDataResponse = APIResponse
 // TikTokAppV3GetUserHomepageVideoDataV1Request is the request for 获取用户主页作品数据 V1/Get user homepage video data V1.
 type TikTokAppV3GetUserHomepageVideoDataV1Request struct {
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 用户unique_id/User unique_id
-	UniqueID *string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
+	UniqueID string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r TikTokAppV3GetUserHomepageVideoDataV1Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "unique_id", r.UniqueID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "unique_id", r.UniqueID)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -1429,24 +1429,24 @@ type TikTokAppV3GetUserHomepageVideoDataV1Response = APIResponse
 // TikTokAppV3GetUserHomepageVideoDataV2Request is the request for 获取用户主页作品数据 V2/Get user homepage video data V2.
 type TikTokAppV3GetUserHomepageVideoDataV2Request struct {
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 用户unique_id/User unique_id
-	UniqueID *string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
+	UniqueID string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r TikTokAppV3GetUserHomepageVideoDataV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "unique_id", r.UniqueID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "unique_id", r.UniqueID)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -1456,24 +1456,24 @@ type TikTokAppV3GetUserHomepageVideoDataV2Response = APIResponse
 // TikTokAppV3GetUserHomepageVideoDataV3Request is the request for 获取用户主页作品数据 V3（精简数据-更快速）/Get user homepage video data V3 (simplified data - faster).
 type TikTokAppV3GetUserHomepageVideoDataV3Request struct {
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 用户unique_id/User unique_id
-	UniqueID *string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
+	UniqueID string `query:"unique_id,omitempty" json:"unique_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r TikTokAppV3GetUserHomepageVideoDataV3Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "unique_id", r.UniqueID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "unique_id", r.UniqueID)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -1485,16 +1485,16 @@ type TikTokAppV3GetUserLikeVideoDataRequest struct {
 	// 用户sec_user_id/User sec_user_id
 	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Counts *int `query:"counts,omitempty" json:"counts,omitempty"`
+	Counts int `query:"counts,omitempty" json:"counts,omitempty"`
 }
 
 func (r TikTokAppV3GetUserLikeVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "counts", r.Counts)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "counts", r.Counts)
 	return values
 }
 
@@ -1506,16 +1506,16 @@ type TikTokAppV3GetSingleVideoCommentsDataRequest struct {
 	// 作品id/Video id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetSingleVideoCommentsDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1529,17 +1529,17 @@ type TikTokAppV3GetCommentRepliesDataOfSpecifiedVideoRequest struct {
 	// 评论id/Comment id
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetCommentRepliesDataOfSpecifiedVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "item_id", r.ItemID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1551,22 +1551,22 @@ type TikTokAppV3GetComprehensiveSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 发布时间/Publish time
-	PublishTime *int `query:"publish_time,omitempty" json:"publish_time,omitempty"`
+	PublishTime int `query:"publish_time,omitempty" json:"publish_time,omitempty"`
 }
 
 func (r TikTokAppV3GetComprehensiveSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "publish_time", r.PublishTime)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "publish_time", r.PublishTime)
 	return values
 }
 
@@ -1578,25 +1578,25 @@ type TikTokAppV3GetVideoSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 发布时间/Publish time
-	PublishTime *int `query:"publish_time,omitempty" json:"publish_time,omitempty"`
+	PublishTime int `query:"publish_time,omitempty" json:"publish_time,omitempty"`
 	// 地区/Region
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokAppV3GetVideoSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "publish_time", r.PublishTime)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "publish_time", r.PublishTime)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -1608,25 +1608,25 @@ type TikTokAppV3GetUserSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 根据粉丝数排序/Sort by number of followers
-	UserSearchFollowerCount *string `query:"user_search_follower_count,omitempty" json:"user_search_follower_count,omitempty"`
+	UserSearchFollowerCount string `query:"user_search_follower_count,omitempty" json:"user_search_follower_count,omitempty"`
 	// 根据账号类型排序/Sort by account type
-	UserSearchProfileType *string `query:"user_search_profile_type,omitempty" json:"user_search_profile_type,omitempty"`
+	UserSearchProfileType string `query:"user_search_profile_type,omitempty" json:"user_search_profile_type,omitempty"`
 	// 根据其他偏好排序/Sort by other preferences
-	UserSearchOtherPref *string `query:"user_search_other_pref,omitempty" json:"user_search_other_pref,omitempty"`
+	UserSearchOtherPref string `query:"user_search_other_pref,omitempty" json:"user_search_other_pref,omitempty"`
 }
 
 func (r TikTokAppV3GetUserSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "user_search_follower_count", r.UserSearchFollowerCount)
-	addQueryValue(values, "user_search_profile_type", r.UserSearchProfileType)
-	addQueryValue(values, "user_search_other_pref", r.UserSearchOtherPref)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "user_search_follower_count", r.UserSearchFollowerCount)
+	addOptionalQueryValue(values, "user_search_profile_type", r.UserSearchProfileType)
+	addOptionalQueryValue(values, "user_search_other_pref", r.UserSearchOtherPref)
 	return values
 }
 
@@ -1638,25 +1638,25 @@ type TikTokAppV3GetMusicSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 过滤类型/Filter type
-	FilterBy *int `query:"filter_by,omitempty" json:"filter_by,omitempty"`
+	FilterBy int `query:"filter_by,omitempty" json:"filter_by,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 地区/Region
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokAppV3GetMusicSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "filter_by", r.FilterBy)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "filter_by", r.FilterBy)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -1668,16 +1668,16 @@ type TikTokAppV3GetHashtagSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetHashtagSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1689,19 +1689,19 @@ type TikTokAppV3GetLiveSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 地区/Region
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokAppV3GetLiveSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -1713,16 +1713,16 @@ type TikTokAppV3GetLocationSearchResultsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetLocationSearchResultsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1749,16 +1749,16 @@ type TikTokAppV3GetVideoListOfSpecifiedMusicRequest struct {
 	// 音乐id/Music id
 	MusicID string `query:"music_id,omitempty" json:"music_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetVideoListOfSpecifiedMusicRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "music_id", r.MusicID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1785,16 +1785,16 @@ type TikTokAppV3GetVideoListOfSpecifiedHashtagRequest struct {
 	// 话题id/Hashtag id
 	ChID string `query:"ch_id,omitempty" json:"ch_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetVideoListOfSpecifiedHashtagRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "ch_id", r.ChID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1804,24 +1804,24 @@ type TikTokAppV3GetVideoListOfSpecifiedHashtagResponse = APIResponse
 // TikTokAppV3GetFollowerListOfSpecifiedUserRequest is the request for 获取指定用户的粉丝列表数据/Get follower list of specified user.
 type TikTokAppV3GetFollowerListOfSpecifiedUserRequest struct {
 	// 用户ID/User ID (与sec_user_id二选一/One of user_id and sec_user_id)
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户sec_user_id/User sec_user_id (与user_id二选一/One of user_id and sec_user_id)
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 最小时间，用于翻页/Minimum time for paging
-	MinTime *int `query:"min_time,omitempty" json:"min_time,omitempty"`
+	MinTime int `query:"min_time,omitempty" json:"min_time,omitempty"`
 	// 翻页token/Page token
-	PageToken *string `query:"page_token,omitempty" json:"page_token,omitempty"`
+	PageToken string `query:"page_token,omitempty" json:"page_token,omitempty"`
 }
 
 func (r TikTokAppV3GetFollowerListOfSpecifiedUserRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "min_time", r.MinTime)
-	addQueryValue(values, "page_token", r.PageToken)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "min_time", r.MinTime)
+	addOptionalQueryValue(values, "page_token", r.PageToken)
 	return values
 }
 
@@ -1831,24 +1831,24 @@ type TikTokAppV3GetFollowerListOfSpecifiedUserResponse = APIResponse
 // TikTokAppV3GetFollowingListOfSpecifiedUserRequest is the request for 获取指定用户的关注列表数据/Get following list of specified user.
 type TikTokAppV3GetFollowingListOfSpecifiedUserRequest struct {
 	// 用户ID/User ID (与sec_user_id二选一/One of user_id and sec_user_id)
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户sec_user_id/User sec_user_id (与user_id二选一/One of user_id and sec_user_id)
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 最小时间，用于翻页/Minimum time for paging
-	MinTime *int `query:"min_time,omitempty" json:"min_time,omitempty"`
+	MinTime int `query:"min_time,omitempty" json:"min_time,omitempty"`
 	// 翻页token/Page token
-	PageToken *string `query:"page_token,omitempty" json:"page_token,omitempty"`
+	PageToken string `query:"page_token,omitempty" json:"page_token,omitempty"`
 }
 
 func (r TikTokAppV3GetFollowingListOfSpecifiedUserRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "min_time", r.MinTime)
-	addQueryValue(values, "page_token", r.PageToken)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "min_time", r.MinTime)
+	addOptionalQueryValue(values, "page_token", r.PageToken)
 	return values
 }
 
@@ -1858,30 +1858,30 @@ type TikTokAppV3GetFollowingListOfSpecifiedUserResponse = APIResponse
 // TikTokAppV3CreatorSearchInsightsRequest is the request for 创作者搜索洞察/Creator Search Insights.
 type TikTokAppV3CreatorSearchInsightsRequest struct {
 	// 分页偏移量/Pagination offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页数量/Number per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 标签页类型/Tab type (all/content_gap/follower_searched/life_style/topics/challenges/sounds/hashtags)
-	Tab *string `query:"tab,omitempty" json:"tab,omitempty"`
+	Tab string `query:"tab,omitempty" json:"tab,omitempty"`
 	// 语言过滤器，多个用逗号分隔/Language filters (id/de/en/es/fr/pt/vi/tr/ar/th/ja/ko)
-	LanguageFilters *string `query:"language_filters,omitempty" json:"language_filters,omitempty"`
+	LanguageFilters string `query:"language_filters,omitempty" json:"language_filters,omitempty"`
 	// 分类过滤器，多个用逗号分隔/Category filters (Gaming/Fashion/Tourism/Science/Food/Sports)
-	CategoryFilters *string `query:"category_filters,omitempty" json:"category_filters,omitempty"`
+	CategoryFilters string `query:"category_filters,omitempty" json:"category_filters,omitempty"`
 	// 创作者来源/Creator source
-	CreatorSource *string `query:"creator_source,omitempty" json:"creator_source,omitempty"`
+	CreatorSource string `query:"creator_source,omitempty" json:"creator_source,omitempty"`
 	// 是否强制刷新/Force refresh
-	ForceRefresh *bool `query:"force_refresh,omitempty" json:"force_refresh,omitempty"`
+	ForceRefresh bool `query:"force_refresh,omitempty" json:"force_refresh,omitempty"`
 }
 
 func (r TikTokAppV3CreatorSearchInsightsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "tab", r.Tab)
-	addQueryValue(values, "language_filters", r.LanguageFilters)
-	addQueryValue(values, "category_filters", r.CategoryFilters)
-	addQueryValue(values, "creator_source", r.CreatorSource)
-	addQueryValue(values, "force_refresh", r.ForceRefresh)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "tab", r.Tab)
+	addOptionalQueryValue(values, "language_filters", r.LanguageFilters)
+	addOptionalQueryValue(values, "category_filters", r.CategoryFilters)
+	addOptionalQueryValue(values, "creator_source", r.CreatorSource)
+	addOptionalQueryValue(values, "force_refresh", r.ForceRefresh)
 	return values
 }
 
@@ -1893,22 +1893,22 @@ type TikTokAppV3CreatorSearchInsightsDetailRequest struct {
 	// 搜索词条ID，从 fetch_creator_search_insights 接口获取/Query ID from fetch_creator_search_insights
 	QueryIDStr string `query:"query_id_str,omitempty" json:"query_id_str,omitempty"`
 	// 时间范围/Time range (past_7_days/past_30_days/past_60_days/past_6_months/custom)
-	TimeRange *string `query:"time_range,omitempty" json:"time_range,omitempty"`
+	TimeRange string `query:"time_range,omitempty" json:"time_range,omitempty"`
 	// 开始时间戳（秒），仅当 time_range=custom 时生效/Start timestamp (seconds), only for custom range
-	StartDate *int `query:"start_date,omitempty" json:"start_date,omitempty"`
+	StartDate int `query:"start_date,omitempty" json:"start_date,omitempty"`
 	// 结束时间戳（秒），仅当 time_range=custom 时生效/End timestamp (seconds), only for custom range
-	EndDate *int `query:"end_date,omitempty" json:"end_date,omitempty"`
+	EndDate int `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 维度列表，多个用逗号分隔/Dimension list (gender/age/country)
-	DimensionList *string `query:"dimension_list,omitempty" json:"dimension_list,omitempty"`
+	DimensionList string `query:"dimension_list,omitempty" json:"dimension_list,omitempty"`
 }
 
 func (r TikTokAppV3CreatorSearchInsightsDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query_id_str", r.QueryIDStr)
-	addQueryValue(values, "time_range", r.TimeRange)
-	addQueryValue(values, "start_date", r.StartDate)
-	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "dimension_list", r.DimensionList)
+	addOptionalQueryValue(values, "time_range", r.TimeRange)
+	addOptionalQueryValue(values, "start_date", r.StartDate)
+	addOptionalQueryValue(values, "end_date", r.EndDate)
+	addOptionalQueryValue(values, "dimension_list", r.DimensionList)
 	return values
 }
 
@@ -1920,16 +1920,16 @@ type TikTokAppV3CreatorSearchInsightsTrendRequest struct {
 	// 搜索词条ID，从 fetch_creator_search_insights 接口获取/Query ID from fetch_creator_search_insights
 	QueryIDStr string `query:"query_id_str,omitempty" json:"query_id_str,omitempty"`
 	// 来源标签路径/From tab path
-	FromTabPath *string `query:"from_tab_path,omitempty" json:"from_tab_path,omitempty"`
+	FromTabPath string `query:"from_tab_path,omitempty" json:"from_tab_path,omitempty"`
 	// 是否需要查询分析/Whether query analysis is required
-	QueryAnalysisRequired *bool `query:"query_analysis_required,omitempty" json:"query_analysis_required,omitempty"`
+	QueryAnalysisRequired bool `query:"query_analysis_required,omitempty" json:"query_analysis_required,omitempty"`
 }
 
 func (r TikTokAppV3CreatorSearchInsightsTrendRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query_id_str", r.QueryIDStr)
-	addQueryValue(values, "from_tab_path", r.FromTabPath)
-	addQueryValue(values, "query_analysis_required", r.QueryAnalysisRequired)
+	addOptionalQueryValue(values, "from_tab_path", r.FromTabPath)
+	addOptionalQueryValue(values, "query_analysis_required", r.QueryAnalysisRequired)
 	return values
 }
 
@@ -1941,16 +1941,16 @@ type TikTokAppV3CreatorSearchInsightsVideosRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 分页偏移量/Pagination offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3CreatorSearchInsightsVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -1960,18 +1960,18 @@ type TikTokAppV3CreatorSearchInsightsVideosResponse = APIResponse
 // TikTokAppV3MusicChartListRequest is the request for 音乐排行榜/Music Chart List.
 type TikTokAppV3MusicChartListRequest struct {
 	// 排行榜类型/Chart type (0: Top 50, 1: Viral 50)
-	Scene *int `query:"scene,omitempty" json:"scene,omitempty"`
+	Scene int `query:"scene,omitempty" json:"scene,omitempty"`
 	// 分页游标/Pagination cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Number per page (max 50)
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3MusicChartListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "scene", r.Scene)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "scene", r.Scene)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -2097,13 +2097,13 @@ type TikTokAppV3GetShareQRCodeRequest struct {
 	// 对象id/Object id
 	ObjectID string `query:"object_id,omitempty" json:"object_id,omitempty"`
 	// 模式类型/Schema type
-	SchemaType *int `query:"schema_type,omitempty" json:"schema_type,omitempty"`
+	SchemaType int `query:"schema_type,omitempty" json:"schema_type,omitempty"`
 }
 
 func (r TikTokAppV3GetShareQRCodeRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "object_id", r.ObjectID)
-	addQueryValue(values, "schema_type", r.SchemaType)
+	addOptionalQueryValue(values, "schema_type", r.SchemaType)
 	return values
 }
 
@@ -2115,31 +2115,31 @@ type TikTokAppV3GetProductSearchResultsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 商品排序条件/Product sorting conditions
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 四星以上评价/Four-star or more reviews
-	CustomerReviewFourStar *bool `query:"customer_review_four_star,omitempty" json:"customer_review_four_star,omitempty"`
+	CustomerReviewFourStar bool `query:"customer_review_four_star,omitempty" json:"customer_review_four_star,omitempty"`
 	// 有优惠/Having discount
-	HaveDiscount *bool `query:"have_discount,omitempty" json:"have_discount,omitempty"`
+	HaveDiscount bool `query:"have_discount,omitempty" json:"have_discount,omitempty"`
 	// 最低价格/Minimum price
-	MinPrice *string `query:"min_price,omitempty" json:"min_price,omitempty"`
+	MinPrice string `query:"min_price,omitempty" json:"min_price,omitempty"`
 	// 最高价格/Maximum price
-	MaxPrice *string `query:"max_price,omitempty" json:"max_price,omitempty"`
+	MaxPrice string `query:"max_price,omitempty" json:"max_price,omitempty"`
 }
 
 func (r TikTokAppV3GetProductSearchResultsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "customer_review_four_star", r.CustomerReviewFourStar)
-	addQueryValue(values, "have_discount", r.HaveDiscount)
-	addQueryValue(values, "min_price", r.MinPrice)
-	addQueryValue(values, "max_price", r.MaxPrice)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "customer_review_four_star", r.CustomerReviewFourStar)
+	addOptionalQueryValue(values, "have_discount", r.HaveDiscount)
+	addOptionalQueryValue(values, "min_price", r.MinPrice)
+	addOptionalQueryValue(values, "max_price", r.MaxPrice)
 	return values
 }
 
@@ -2166,16 +2166,16 @@ type TikTokAppV3GetCreatorShowcaseProductListRequest struct {
 	// 创作者的sec_user_id/Creator's sec_user_id
 	KolID string `query:"kol_id,omitempty" json:"kol_id,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页参数/Page parameter
-	NextScrollParam *string `query:"next_scroll_param,omitempty" json:"next_scroll_param,omitempty"`
+	NextScrollParam string `query:"next_scroll_param,omitempty" json:"next_scroll_param,omitempty"`
 }
 
 func (r TikTokAppV3GetCreatorShowcaseProductListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "kol_id", r.KolID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "next_scroll_param", r.NextScrollParam)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "next_scroll_param", r.NextScrollParam)
 	return values
 }
 
@@ -2247,13 +2247,13 @@ type TikTokAppV3GetProductDetailDataV3Request struct {
 	// 商品id / Product ID
 	ProductID string `query:"product_id,omitempty" json:"product_id,omitempty"`
 	// 商品的国家/地区代码/ Country/region code of the product
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokAppV3GetProductDetailDataV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -2265,13 +2265,13 @@ type TikTokAppV3GetProductDetailDataV4Request struct {
 	// 商品id / Product ID
 	ProductID string `query:"product_id,omitempty" json:"product_id,omitempty"`
 	// 商品的国家/地区代码/ Country/region code of the product
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokAppV3GetProductDetailDataV4Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -2283,22 +2283,22 @@ type TikTokAppV3GetProductReviewDataRequest struct {
 	// 商品id/Product id
 	ProductID string `query:"product_id,omitempty" json:"product_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Size *int `query:"size,omitempty" json:"size,omitempty"`
+	Size int `query:"size,omitempty" json:"size,omitempty"`
 	// 筛选条件/Filter condition
-	FilterID *int `query:"filter_id,omitempty" json:"filter_id,omitempty"`
+	FilterID int `query:"filter_id,omitempty" json:"filter_id,omitempty"`
 	// 排序条件/Sorting conditions
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r TikTokAppV3GetProductReviewDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "size", r.Size)
-	addQueryValue(values, "filter_id", r.FilterID)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "size", r.Size)
+	addOptionalQueryValue(values, "filter_id", r.FilterID)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -2343,16 +2343,16 @@ type TikTokAppV3GetShopProductRecommendDataRequest struct {
 	// 商家id,店铺id/Seller id, shop id
 	SellerID string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
 	// 滚动参数，用于加载更多商品数据/Scroll parameter, used to load more product data
-	ScrollParam *string `query:"scroll_param,omitempty" json:"scroll_param,omitempty"`
+	ScrollParam string `query:"scroll_param,omitempty" json:"scroll_param,omitempty"`
 	// 每页数量/Number per page
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 func (r TikTokAppV3GetShopProductRecommendDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "seller_id", r.SellerID)
-	addQueryValue(values, "scroll_param", r.ScrollParam)
-	addQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "scroll_param", r.ScrollParam)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
 	return values
 }
 
@@ -2364,22 +2364,22 @@ type TikTokAppV3GetShopProductListDataRequest struct {
 	// 商家id,店铺id/Seller id, shop id
 	SellerID string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
 	// 滚动参数，用于加载更多商品数据/Scroll parameter, used to load more product data
-	ScrollParams *string `query:"scroll_params,omitempty" json:"scroll_params,omitempty"`
+	ScrollParams string `query:"scroll_params,omitempty" json:"scroll_params,omitempty"`
 	// 每页数量/Number per page
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 排序字段/Sorting field
-	SortField *int `query:"sort_field,omitempty" json:"sort_field,omitempty"`
+	SortField int `query:"sort_field,omitempty" json:"sort_field,omitempty"`
 	// 排序方式/Sorting method
-	SortOrder *int `query:"sort_order,omitempty" json:"sort_order,omitempty"`
+	SortOrder int `query:"sort_order,omitempty" json:"sort_order,omitempty"`
 }
 
 func (r TikTokAppV3GetShopProductListDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "seller_id", r.SellerID)
-	addQueryValue(values, "scroll_params", r.ScrollParams)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "sort_field", r.SortField)
-	addQueryValue(values, "sort_order", r.SortOrder)
+	addOptionalQueryValue(values, "scroll_params", r.ScrollParams)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "sort_field", r.SortField)
+	addOptionalQueryValue(values, "sort_order", r.SortOrder)
 	return values
 }
 
@@ -2391,22 +2391,22 @@ type TikTokAppV3GetShopProductListDataV2Request struct {
 	// 商家id,店铺id/Seller id, shop id
 	SellerID string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
 	// 滚动参数，用于加载更多商品数据/Scroll parameter, used to load more product data
-	ScrollParams *string `query:"scroll_params,omitempty" json:"scroll_params,omitempty"`
+	ScrollParams string `query:"scroll_params,omitempty" json:"scroll_params,omitempty"`
 	// 每页数量/Number per page
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 排序字段/Sorting field
-	SortField *int `query:"sort_field,omitempty" json:"sort_field,omitempty"`
+	SortField int `query:"sort_field,omitempty" json:"sort_field,omitempty"`
 	// 排序方式/Sorting method
-	SortOrder *int `query:"sort_order,omitempty" json:"sort_order,omitempty"`
+	SortOrder int `query:"sort_order,omitempty" json:"sort_order,omitempty"`
 }
 
 func (r TikTokAppV3GetShopProductListDataV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "seller_id", r.SellerID)
-	addQueryValue(values, "scroll_params", r.ScrollParams)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "sort_field", r.SortField)
-	addQueryValue(values, "sort_order", r.SortOrder)
+	addOptionalQueryValue(values, "scroll_params", r.ScrollParams)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "sort_field", r.SortField)
+	addOptionalQueryValue(values, "sort_order", r.SortOrder)
 	return values
 }
 
@@ -2446,27 +2446,27 @@ type TikTokAppV3GetShopProductCategoryDataResponse = APIResponse
 // TikTokAppV3GetLiveDailyRankDataRequest is the request for 获取直播每日榜单数据/Get live daily rank data.
 type TikTokAppV3GetLiveDailyRankDataRequest struct {
 	// 主播id/Anchor id
-	AnchorID *string `query:"anchor_id,omitempty" json:"anchor_id,omitempty"`
+	AnchorID string `query:"anchor_id,omitempty" json:"anchor_id,omitempty"`
 	// 直播间id/Live room id
-	RoomID *string `query:"room_id,omitempty" json:"room_id,omitempty"`
+	RoomID string `query:"room_id,omitempty" json:"room_id,omitempty"`
 	// 榜单类型/Rank type
-	RankType *int `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType int `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 	// 地区类型/Region type
-	RegionType *int `query:"region_type,omitempty" json:"region_type,omitempty"`
+	RegionType int `query:"region_type,omitempty" json:"region_type,omitempty"`
 	// 时间间隔/Time interval
-	GapInterval *int `query:"gap_interval,omitempty" json:"gap_interval,omitempty"`
+	GapInterval int `query:"gap_interval,omitempty" json:"gap_interval,omitempty"`
 	// 用户自己的cookie/User's own cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokAppV3GetLiveDailyRankDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "anchor_id", r.AnchorID)
-	addQueryValue(values, "room_id", r.RoomID)
-	addQueryValue(values, "rank_type", r.RankType)
-	addQueryValue(values, "region_type", r.RegionType)
-	addQueryValue(values, "gap_interval", r.GapInterval)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "anchor_id", r.AnchorID)
+	addOptionalQueryValue(values, "room_id", r.RoomID)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "region_type", r.RegionType)
+	addOptionalQueryValue(values, "gap_interval", r.GapInterval)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -2478,16 +2478,16 @@ type TikTokAppV3GetUserMusicListDataRequest struct {
 	// 用户sec_uid/User sec_uid
 	SecUID string `query:"sec_uid,omitempty" json:"sec_uid,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokAppV3GetUserMusicListDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_uid", r.SecUID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -2497,15 +2497,15 @@ type TikTokAppV3GetUserMusicListDataResponse = APIResponse
 // TikTokAppV3GetContentTranslationDataRequest is the request for 获取内容翻译数据/Get content translation data.
 type TikTokAppV3GetContentTranslationDataRequest struct {
 	// 目标语言ISO639-1代码，例如：zh-Hans/ Target language ISO639-1 code, e.g. zh-Hans
-	TrgLang *string `json:"trg_lang,omitempty"`
+	TrgLang string `json:"trg_lang,omitempty"`
 	// 源语言内容，也就是需要翻译的内容/ Source language content, i.e. the content to be translated
-	SrcContent *string `json:"src_content,omitempty"`
+	SrcContent string `json:"src_content,omitempty"`
 }
 
 func (r TikTokAppV3GetContentTranslationDataRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "trg_lang", r.TrgLang)
-	addBodyValue(body, "src_content", r.SrcContent)
+	addOptionalBodyValue(body, "trg_lang", r.TrgLang)
+	addOptionalBodyValue(body, "src_content", r.SrcContent)
 	return body
 }
 
@@ -2515,12 +2515,12 @@ type TikTokAppV3GetContentTranslationDataResponse = APIResponse
 // TikTokAppV3GetHomeFeedVideoDataRequest is the request for 获取主页视频推荐数据/Get home feed(recommend) video data.
 type TikTokAppV3GetHomeFeedVideoDataRequest struct {
 	// 用户自己的cookie，可选参数，用于接口返回数据的个性化推荐。/ User's own cookie, optional parameter, used for personalized recommendations of interface return data.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 }
 
 func (r TikTokAppV3GetHomeFeedVideoDataRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
 	return body
 }
 
@@ -2530,17 +2530,17 @@ type TikTokAppV3GetHomeFeedVideoDataResponse = APIResponse
 // TikTokAppV3TikTokAppEncryptionAlgorithmRequest is the request for TikTok APP加密算法/TikTok APP encryption algorithm.
 type TikTokAppV3TikTokAppEncryptionAlgorithmRequest struct {
 	// 需要加密的URL/URL to be encrypted
-	URL *string `json:"url,omitempty"`
+	URL string `json:"url,omitempty"`
 	// 如果有POST请求，请填写POST请求的数据参与加密计算/If there is a POST request, please fill in the data of the POST request to participate in the encryption calculation
-	Data *string `json:"data,omitempty"`
+	Data string `json:"data,omitempty"`
 	// 设备信息，可选参数，如果不填写则使用默认设备信息/Device information, optional parameter, if not filled in, the default device information is used
 	DeviceInfo map[string]any `json:"device_info,omitempty"`
 }
 
 func (r TikTokAppV3TikTokAppEncryptionAlgorithmRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "url", r.URL)
-	addBodyValue(body, "data", r.Data)
+	addOptionalBodyValue(body, "url", r.URL)
+	addOptionalBodyValue(body, "data", r.Data)
 	addBodyValue(body, "device_info", r.DeviceInfo)
 	return body
 }
@@ -2555,23 +2555,23 @@ type TikTokAppV3GetLiveRoomProductListDataRequest struct {
 	// 主播id/Anchor id
 	AuthorID string `query:"author_id,omitempty" json:"author_id,omitempty"`
 	// 数量/Number
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 数量/Number
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 地区/Region
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 	// 用户自己的cookie/User's own cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokAppV3GetLiveRoomProductListDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "room_id", r.RoomID)
 	addQueryValue(values, "author_id", r.AuthorID)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "region", r.Region)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -2585,23 +2585,23 @@ type TikTokAppV3GetLiveRoomProductListDataV2Request struct {
 	// 主播id/Anchor id
 	AuthorID string `query:"author_id,omitempty" json:"author_id,omitempty"`
 	// 数量/Number
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 数量/Number
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 地区/Region
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 	// 用户自己的cookie/User's own cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r TikTokAppV3GetLiveRoomProductListDataV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "room_id", r.RoomID)
 	addQueryValue(values, "author_id", r.AuthorID)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "region", r.Region)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -2629,18 +2629,18 @@ type TikTokAppV3IncreaseTheNumberOfPlaysOfTheWorkAccordingToTheVideoIDResponse =
 // TikTokAppV3EncryptOrDecryptTikTokAppLoginRequestBodyRequest is the request for 加密或解密 TikTok APP 登录请求体/Encrypt or Decrypt TikTok APP login request body.
 type TikTokAppV3EncryptOrDecryptTikTokAppLoginRequestBodyRequest struct {
 	// Plaintext or encrypted username
-	Username *string `json:"username,omitempty"`
+	Username string `json:"username,omitempty"`
 	// Plaintext or encrypted password
-	Password *string `json:"password,omitempty"`
+	Password string `json:"password,omitempty"`
 	// Encrypt or decrypt the input string
-	Mode *string `json:"mode,omitempty"`
+	Mode string `json:"mode,omitempty"`
 }
 
 func (r TikTokAppV3EncryptOrDecryptTikTokAppLoginRequestBodyRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "username", r.Username)
-	addBodyValue(body, "password", r.Password)
-	addBodyValue(body, "mode", r.Mode)
+	addOptionalBodyValue(body, "username", r.Username)
+	addOptionalBodyValue(body, "password", r.Password)
+	addOptionalBodyValue(body, "mode", r.Mode)
 	return body
 }
 
@@ -2710,15 +2710,15 @@ type TikTokAppV3GenerateTikTokShareLinkCallTikTokAppAndSendPrivateMessagesToSpec
 // TikTokCreatorGetCreatorAccountHealthStatusRequest is the request for 获取创作者账号健康状态/Get Creator Account Health Status.
 type TikTokCreatorGetCreatorAccountHealthStatusRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorAccountHealthStatusRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -2728,18 +2728,18 @@ type TikTokCreatorGetCreatorAccountHealthStatusResponse = APIResponse
 // TikTokCreatorGetCreatorAccountViolationRecordListRequest is the request for 获取创作者账号违规记录列表/Get Creator Account Violation Record List.
 type TikTokCreatorGetCreatorAccountViolationRecordListRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 页码/Page Number
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorAccountViolationRecordListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "page", r.Page)
 	return body
 }
 
@@ -2749,18 +2749,18 @@ type TikTokCreatorGetCreatorAccountViolationRecordListResponse = APIResponse
 // TikTokCreatorGetCreatorAccountOverviewRequest is the request for 获取创作者账号概览/Get Creator Account Overview.
 type TikTokCreatorGetCreatorAccountOverviewRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorAccountOverviewRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	return body
 }
 
@@ -2770,18 +2770,18 @@ type TikTokCreatorGetCreatorAccountOverviewResponse = APIResponse
 // TikTokCreatorGetCreatorLiveOverviewRequest is the request for 获取创作者直播概览/Get Creator Live Overview.
 type TikTokCreatorGetCreatorLiveOverviewRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorLiveOverviewRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	return body
 }
 
@@ -2791,15 +2791,15 @@ type TikTokCreatorGetCreatorLiveOverviewResponse = APIResponse
 // TikTokCreatorGetCreatorVideoOverviewRequest is the request for 获取创作者视频概览/Get Creator Video Overview.
 type TikTokCreatorGetCreatorVideoOverviewRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorVideoOverviewRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -2809,24 +2809,24 @@ type TikTokCreatorGetCreatorVideoOverviewResponse = APIResponse
 // TikTokCreatorGetCreatorVideoListAnalyticsRequest is the request for 获取创作者视频列表分析/Get Creator Video List Analytics.
 type TikTokCreatorGetCreatorVideoListAnalyticsRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 	// 页码/Page Number
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 列表排序规则，默认按发布时间排序/ List sorting rule, default is by publish time
-	Rules *string `json:"rules,omitempty"`
+	Rules string `json:"rules,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorVideoListAnalyticsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "rules", r.Rules)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "rules", r.Rules)
 	return body
 }
 
@@ -2836,24 +2836,24 @@ type TikTokCreatorGetCreatorVideoListAnalyticsResponse = APIResponse
 // TikTokCreatorGetCreatorProductListAnalyticsRequest is the request for 获取创作者商品列表分析/Get Creator Product List Analytics.
 type TikTokCreatorGetCreatorProductListAnalyticsRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 开始日期，如 '2025-04-01'/ Start Date, e.g. '2025-04-01'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 	// 结束日期，如 '2025-05-01'/ End Date, e.g. '2025-05-01'
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate string `json:"end_date,omitempty"`
 	// 页码/Page Number
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorProductListAnalyticsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
-	addBodyValue(body, "end_date", r.EndDate)
-	addBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "end_date", r.EndDate)
+	addOptionalBodyValue(body, "page", r.Page)
 	return body
 }
 
@@ -2863,15 +2863,15 @@ type TikTokCreatorGetCreatorProductListAnalyticsResponse = APIResponse
 // TikTokCreatorGetCreatorAccountInfoRequest is the request for 获取创作者账号信息/Get Creator Account Info.
 type TikTokCreatorGetCreatorAccountInfoRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokCreatorGetCreatorAccountInfoRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -2881,21 +2881,21 @@ type TikTokCreatorGetCreatorAccountInfoResponse = APIResponse
 // TikTokCreatorGetShowcaseProductListRequest is the request for 获取橱窗商品列表/Get Showcase Product List.
 type TikTokCreatorGetShowcaseProductListRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 每页数量/Page Size
-	Count *int `json:"count,omitempty"`
+	Count int `json:"count,omitempty"`
 	// 偏移量/Offset
-	Offset *int `json:"offset,omitempty"`
+	Offset int `json:"offset,omitempty"`
 }
 
 func (r TikTokCreatorGetShowcaseProductListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "count", r.Count)
-	addBodyValue(body, "offset", r.Offset)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "count", r.Count)
+	addOptionalBodyValue(body, "offset", r.Offset)
 	return body
 }
 
@@ -2905,20 +2905,20 @@ type TikTokCreatorGetShowcaseProductListResponse = APIResponse
 // TikTokCreatorGetVideoAssociatedProductListRequest is the request for 获取视频关联商品列表/Get Video Associated Product List.
 type TikTokCreatorGetVideoAssociatedProductListRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 	// 视频 ID 列表/Video ID List
 	ItemIds []string `json:"item_ids,omitempty"`
 }
 
 func (r TikTokCreatorGetVideoAssociatedProductListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	addBodyValue(body, "item_ids", r.ItemIds)
 	return body
 }
@@ -2929,20 +2929,20 @@ type TikTokCreatorGetVideoAssociatedProductListResponse = APIResponse
 // TikTokCreatorGetVideoDetailedStatisticsRequest is the request for 获取视频详细分段统计数据/Get Video Detailed Statistics.
 type TikTokCreatorGetVideoDetailedStatisticsRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 	// 视频 ID/Video ID
 	ItemID string `json:"item_id,omitempty"`
 }
 
 func (r TikTokCreatorGetVideoDetailedStatisticsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	addBodyValue(body, "item_id", r.ItemID)
 	return body
 }
@@ -2953,11 +2953,11 @@ type TikTokCreatorGetVideoDetailedStatisticsResponse = APIResponse
 // TikTokCreatorGetVideoProductAssociationStatisticsRequest is the request for 获取视频与商品关联统计数据/Get Video-Product Association Statistics.
 type TikTokCreatorGetVideoProductAssociationStatisticsRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 	// 视频 ID/Video ID
 	ItemID string `json:"item_id,omitempty"`
 	// 商品 ID/Product ID
@@ -2966,9 +2966,9 @@ type TikTokCreatorGetVideoProductAssociationStatisticsRequest struct {
 
 func (r TikTokCreatorGetVideoProductAssociationStatisticsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	addBodyValue(body, "item_id", r.ItemID)
 	addBodyValue(body, "product_id", r.ProductID)
 	return body
@@ -2980,11 +2980,11 @@ type TikTokCreatorGetVideoProductAssociationStatisticsResponse = APIResponse
 // TikTokCreatorGetProductRelatedVideosRequest is the request for 获取同款商品关联视频/Get Product Related Videos.
 type TikTokCreatorGetProductRelatedVideosRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 	// 视频 ID/Video ID
 	ItemID string `json:"item_id,omitempty"`
 	// 商品 ID/Product ID
@@ -2993,9 +2993,9 @@ type TikTokCreatorGetProductRelatedVideosRequest struct {
 
 func (r TikTokCreatorGetProductRelatedVideosRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	addBodyValue(body, "item_id", r.ItemID)
 	addBodyValue(body, "product_id", r.ProductID)
 	return body
@@ -3007,20 +3007,20 @@ type TikTokCreatorGetProductRelatedVideosResponse = APIResponse
 // TikTokCreatorGetVideoAudienceAnalysisDataRequest is the request for 获取视频受众分析数据/Get Video Audience Analysis Data.
 type TikTokCreatorGetVideoAudienceAnalysisDataRequest struct {
 	// 用户 Cookie 字符串/User Cookie String
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 可选 HTTP 代理地址/Optional HTTP Proxy Address
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 	// 查询开始时间，如 '04-01-2025'/ Query Start Date, e.g. '04-01-2025'
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
 	// 视频 ID/Video ID
 	ItemID string `json:"item_id,omitempty"`
 }
 
 func (r TikTokCreatorGetVideoAudienceAnalysisDataRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	addBodyValue(body, "item_id", r.ItemID)
 	return body
 }
@@ -3048,13 +3048,13 @@ type TikTokAnalyticsDetectFakeViewsInVideoRequest struct {
 	// 作品id/Video id
 	ItemID string `query:"item_id,omitempty" json:"item_id,omitempty"`
 	// 内容分类/Content category, options: default, entertainment, education, product, verified_large
-	ContentCategory *string `query:"content_category,omitempty" json:"content_category,omitempty"`
+	ContentCategory string `query:"content_category,omitempty" json:"content_category,omitempty"`
 }
 
 func (r TikTokAnalyticsDetectFakeViewsInVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "item_id", r.ItemID)
-	addQueryValue(values, "content_category", r.ContentCategory)
+	addOptionalQueryValue(values, "content_category", r.ContentCategory)
 	return values
 }
 
@@ -3109,45 +3109,45 @@ type TikTokAdsGetSingleAdDetailResponse = APIResponse
 // TikTokAdsSearchAdsRequest is the request for 搜索广告/Search ads.
 type TikTokAdsSearchAdsRequest struct {
 	// 广告目标类型/Ad objective (1:流量 2:应用安装 3:转化 4:视频浏览 5:触达 6:潜在客户 7:产品销售)
-	Objective *int `query:"objective,omitempty" json:"objective,omitempty"`
+	Objective int `query:"objective,omitempty" json:"objective,omitempty"`
 	// 表现排名/Performance rank (1:前1-20% 2:前21-40% 3:前41-60% 4:前61-80%)
-	Like *int `query:"like,omitempty" json:"like,omitempty"`
+	Like int `query:"like,omitempty" json:"like,omitempty"`
 	// 时间段/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 行业ID/Industry ID
-	Industry *string `query:"industry,omitempty" json:"industry,omitempty"`
+	Industry string `query:"industry,omitempty" json:"industry,omitempty"`
 	// 搜索关键词/Search keyword
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排序方式/Sort by (for_you, likes)
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 广告格式/Ad format (1:视频)
-	AdFormat *int `query:"ad_format,omitempty" json:"ad_format,omitempty"`
+	AdFormat int `query:"ad_format,omitempty" json:"ad_format,omitempty"`
 	// 广告语言/Ad language
-	AdLanguage *string `query:"ad_language,omitempty" json:"ad_language,omitempty"`
+	AdLanguage string `query:"ad_language,omitempty" json:"ad_language,omitempty"`
 	// 搜索ID（可选）/Search ID (optional)
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 }
 
 func (r TikTokAdsSearchAdsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "objective", r.Objective)
-	addQueryValue(values, "like", r.Like)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "industry", r.Industry)
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "ad_format", r.AdFormat)
-	addQueryValue(values, "ad_language", r.AdLanguage)
-	addQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "objective", r.Objective)
+	addOptionalQueryValue(values, "like", r.Like)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "industry", r.Industry)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "ad_format", r.AdFormat)
+	addOptionalQueryValue(values, "ad_language", r.AdLanguage)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
 	return values
 }
 
@@ -3157,39 +3157,39 @@ type TikTokAdsSearchAdsResponse = APIResponse
 // TikTokAdsGetKeywordInsightsDataRequest is the request for 获取关键词洞察数据/Get keyword insights data.
 type TikTokAdsGetKeywordInsightsDataRequest struct {
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 时间段（天）/Time period (days, 7/30/120/180)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 排序字段/Sort field (post, ctr, click_rate, etc.)
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 排序方式/Sort order (desc, asc)
-	OrderType *string `query:"order_type,omitempty" json:"order_type,omitempty"`
+	OrderType string `query:"order_type,omitempty" json:"order_type,omitempty"`
 	// 行业ID/Industry ID
-	Industry *string `query:"industry,omitempty" json:"industry,omitempty"`
+	Industry string `query:"industry,omitempty" json:"industry,omitempty"`
 	// 广告目标/Ad objective
-	Objective *string `query:"objective,omitempty" json:"objective,omitempty"`
+	Objective string `query:"objective,omitempty" json:"objective,omitempty"`
 	// 关键词类型/Keyword type
-	KeywordType *string `query:"keyword_type,omitempty" json:"keyword_type,omitempty"`
+	KeywordType string `query:"keyword_type,omitempty" json:"keyword_type,omitempty"`
 	// 关键词/Keyword
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r TikTokAdsGetKeywordInsightsDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "order_type", r.OrderType)
-	addQueryValue(values, "industry", r.Industry)
-	addQueryValue(values, "objective", r.Objective)
-	addQueryValue(values, "keyword_type", r.KeywordType)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "order_type", r.OrderType)
+	addOptionalQueryValue(values, "industry", r.Industry)
+	addOptionalQueryValue(values, "objective", r.Objective)
+	addOptionalQueryValue(values, "keyword_type", r.KeywordType)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -3199,36 +3199,36 @@ type TikTokAdsGetKeywordInsightsDataResponse = APIResponse
 // TikTokAdsGetTopProductsListRequest is the request for 获取热门产品列表/Get top products list.
 type TikTokAdsGetTopProductsListRequest struct {
 	// 最近天数/Last days
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 电商类目ID，多个用逗号分隔/E-commerce category IDs, comma separated
-	FirstEcomCategoryID *string `query:"first_ecom_category_id,omitempty" json:"first_ecom_category_id,omitempty"`
+	FirstEcomCategoryID string `query:"first_ecom_category_id,omitempty" json:"first_ecom_category_id,omitempty"`
 	// 电商类型/E-commerce type (l3)
-	EcomType *string `query:"ecom_type,omitempty" json:"ecom_type,omitempty"`
+	EcomType string `query:"ecom_type,omitempty" json:"ecom_type,omitempty"`
 	// 时间类型/Period type (last)
-	PeriodType *string `query:"period_type,omitempty" json:"period_type,omitempty"`
+	PeriodType string `query:"period_type,omitempty" json:"period_type,omitempty"`
 	// 排序字段/Sort field (post, ctr, cvr)
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 排序方式/Sort order (desc, asc)
-	OrderType *string `query:"order_type,omitempty" json:"order_type,omitempty"`
+	OrderType string `query:"order_type,omitempty" json:"order_type,omitempty"`
 }
 
 func (r TikTokAdsGetTopProductsListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "last", r.Last)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "first_ecom_category_id", r.FirstEcomCategoryID)
-	addQueryValue(values, "ecom_type", r.EcomType)
-	addQueryValue(values, "period_type", r.PeriodType)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "order_type", r.OrderType)
+	addOptionalQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "first_ecom_category_id", r.FirstEcomCategoryID)
+	addOptionalQueryValue(values, "ecom_type", r.EcomType)
+	addOptionalQueryValue(values, "period_type", r.PeriodType)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "order_type", r.OrderType)
 	return values
 }
 
@@ -3238,30 +3238,30 @@ type TikTokAdsGetTopProductsListResponse = APIResponse
 // TikTokAdsGetPopularHashtagsListRequest is the request for 获取热门标签列表/Get popular hashtags list.
 type TikTokAdsGetPopularHashtagsListRequest struct {
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 排序方式/Sort by (popular, new)
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 行业ID/Industry ID
-	IndustryID *string `query:"industry_id,omitempty" json:"industry_id,omitempty"`
+	IndustryID string `query:"industry_id,omitempty" json:"industry_id,omitempty"`
 	// 筛选条件/Filter (new_on_board)
-	FilterBy *string `query:"filter_by,omitempty" json:"filter_by,omitempty"`
+	FilterBy string `query:"filter_by,omitempty" json:"filter_by,omitempty"`
 }
 
 func (r TikTokAdsGetPopularHashtagsListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "industry_id", r.IndustryID)
-	addQueryValue(values, "filter_by", r.FilterBy)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "industry_id", r.IndustryID)
+	addOptionalQueryValue(values, "filter_by", r.FilterBy)
 	return values
 }
 
@@ -3271,30 +3271,30 @@ type TikTokAdsGetPopularHashtagsListResponse = APIResponse
 // TikTokAdsGetPopularSoundRankingsRequest is the request for 获取热门音乐排行榜/Get popular sound rankings.
 type TikTokAdsGetPopularSoundRankingsRequest struct {
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排行类型/Rank type (popular, surging)
-	RankType *string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 	// 是否只看新上榜/Only new on board
-	NewOnBoard *bool `query:"new_on_board,omitempty" json:"new_on_board,omitempty"`
+	NewOnBoard bool `query:"new_on_board,omitempty" json:"new_on_board,omitempty"`
 	// 是否商业音乐/Commercial music only
-	CommercialMusic *bool `query:"commercial_music,omitempty" json:"commercial_music,omitempty"`
+	CommercialMusic bool `query:"commercial_music,omitempty" json:"commercial_music,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 }
 
 func (r TikTokAdsGetPopularSoundRankingsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "rank_type", r.RankType)
-	addQueryValue(values, "new_on_board", r.NewOnBoard)
-	addQueryValue(values, "commercial_music", r.CommercialMusic)
-	addQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "new_on_board", r.NewOnBoard)
+	addOptionalQueryValue(values, "commercial_music", r.CommercialMusic)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
 	return values
 }
 
@@ -3304,27 +3304,27 @@ type TikTokAdsGetPopularSoundRankingsResponse = APIResponse
 // TikTokAdsGetKeywordListRequest is the request for 获取关键词列表/Get keyword list.
 type TikTokAdsGetKeywordListRequest struct {
 	// 关键词/Keyword
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 行业ID列表，逗号分隔/Industry IDs, comma separated
-	Industry *string `query:"industry,omitempty" json:"industry,omitempty"`
+	Industry string `query:"industry,omitempty" json:"industry,omitempty"`
 }
 
 func (r TikTokAdsGetKeywordListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "industry", r.Industry)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "industry", r.Industry)
 	return values
 }
 
@@ -3334,18 +3334,18 @@ type TikTokAdsGetKeywordListResponse = APIResponse
 // TikTokAdsGetTopAdsSpotlightRequest is the request for 获取热门广告聚光灯/Get top ads spotlight.
 type TikTokAdsGetTopAdsSpotlightRequest struct {
 	// 行业ID/Industry ID
-	Industry *string `query:"industry,omitempty" json:"industry,omitempty"`
+	Industry string `query:"industry,omitempty" json:"industry,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r TikTokAdsGetTopAdsSpotlightRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "industry", r.Industry)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "industry", r.Industry)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -3357,13 +3357,13 @@ type TikTokAdsGetAdKeyframeAnalysisRequest struct {
 	// 广告素材ID/Ad material ID
 	MaterialID string `query:"material_id,omitempty" json:"material_id,omitempty"`
 	// 分析指标/Analysis metric (retain_ctr, retain_cvr, click_cnt, convert_cnt, play_retain_cnt)
-	Metric *string `query:"metric,omitempty" json:"metric,omitempty"`
+	Metric string `query:"metric,omitempty" json:"metric,omitempty"`
 }
 
 func (r TikTokAdsGetAdKeyframeAnalysisRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "material_id", r.MaterialID)
-	addQueryValue(values, "metric", r.Metric)
+	addOptionalQueryValue(values, "metric", r.Metric)
 	return values
 }
 
@@ -3375,16 +3375,16 @@ type TikTokAdsGetAdPercentileDataRequest struct {
 	// 广告素材ID/Ad material ID
 	MaterialID string `query:"material_id,omitempty" json:"material_id,omitempty"`
 	// 分析指标/Analysis metric (ctr_percentile, time_attr_conversion_rate_percentile, click_cnt_percentile, time_attr_convert_cnt_percentile, show_cnt_percentile)
-	Metric *string `query:"metric,omitempty" json:"metric,omitempty"`
+	Metric string `query:"metric,omitempty" json:"metric,omitempty"`
 	// 时间范围(天)/Time period (days)
-	PeriodType *int `query:"period_type,omitempty" json:"period_type,omitempty"`
+	PeriodType int `query:"period_type,omitempty" json:"period_type,omitempty"`
 }
 
 func (r TikTokAdsGetAdPercentileDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "material_id", r.MaterialID)
-	addQueryValue(values, "metric", r.Metric)
-	addQueryValue(values, "period_type", r.PeriodType)
+	addOptionalQueryValue(values, "metric", r.Metric)
+	addOptionalQueryValue(values, "period_type", r.PeriodType)
 	return values
 }
 
@@ -3396,16 +3396,16 @@ type TikTokAdsGetAdInteractiveAnalysisRequest struct {
 	// 广告素材ID/Ad material ID
 	MaterialID string `query:"material_id,omitempty" json:"material_id,omitempty"`
 	// 分析类型/Analysis type (ctr, cvr, clicks, conversion, remain)
-	MetricType *string `query:"metric_type,omitempty" json:"metric_type,omitempty"`
+	MetricType string `query:"metric_type,omitempty" json:"metric_type,omitempty"`
 	// 时间范围(天)/Period type (days)
-	PeriodType *int `query:"period_type,omitempty" json:"period_type,omitempty"`
+	PeriodType int `query:"period_type,omitempty" json:"period_type,omitempty"`
 }
 
 func (r TikTokAdsGetAdInteractiveAnalysisRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "material_id", r.MaterialID)
-	addQueryValue(values, "metric_type", r.MetricType)
-	addQueryValue(values, "period_type", r.PeriodType)
+	addOptionalQueryValue(values, "metric_type", r.MetricType)
+	addOptionalQueryValue(values, "period_type", r.PeriodType)
 	return values
 }
 
@@ -3417,16 +3417,16 @@ type TikTokAdsGetRecommendedAdsRequest struct {
 	// 广告素材ID/Ad material ID
 	MaterialID string `query:"material_id,omitempty" json:"material_id,omitempty"`
 	// 行业ID/Industry ID
-	Industry *string `query:"industry,omitempty" json:"industry,omitempty"`
+	Industry string `query:"industry,omitempty" json:"industry,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 }
 
 func (r TikTokAdsGetRecommendedAdsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "material_id", r.MaterialID)
-	addQueryValue(values, "industry", r.Industry)
-	addQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "industry", r.Industry)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
 	return values
 }
 
@@ -3436,15 +3436,15 @@ type TikTokAdsGetRecommendedAdsResponse = APIResponse
 // TikTokAdsGetQuerySuggestionsRequest is the request for 获取查询建议/Get query suggestions.
 type TikTokAdsGetQuerySuggestionsRequest struct {
 	// 建议数量/Suggestion count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 场景类型/Scenario type
-	Scenario *int `query:"scenario,omitempty" json:"scenario,omitempty"`
+	Scenario int `query:"scenario,omitempty" json:"scenario,omitempty"`
 }
 
 func (r TikTokAdsGetQuerySuggestionsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "scenario", r.Scenario)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "scenario", r.Scenario)
 	return values
 }
 
@@ -3461,30 +3461,30 @@ type TikTokAdsGetKeywordFiltersResponse = APIResponse
 // TikTokAdsGetRelatedKeywordsRequest is the request for 获取相关关键词/Get related keywords.
 type TikTokAdsGetRelatedKeywordsRequest struct {
 	// 目标关键词/Target keyword
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 时间段（天）/Time period (days, 7/30/120)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 国家/地区代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 排名类型/Rank type (popular: 热门, breakout: 突破性)
-	RankType *string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 	// 内容类型/Content type (keyword, hashtag)
-	ContentType *string `query:"content_type,omitempty" json:"content_type,omitempty"`
+	ContentType string `query:"content_type,omitempty" json:"content_type,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r TikTokAdsGetRelatedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "rank_type", r.RankType)
-	addQueryValue(values, "content_type", r.ContentType)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "content_type", r.ContentType)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -3494,39 +3494,39 @@ type TikTokAdsGetRelatedKeywordsResponse = APIResponse
 // TikTokAdsGetKeywordDetailsRequest is the request for 获取关键词详细信息/Get keyword details.
 type TikTokAdsGetKeywordDetailsRequest struct {
 	// 关键词（可选）/Keyword (optional)
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 排序字段/Sort field
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 排序方式/Sort order (desc, asc)
-	OrderType *string `query:"order_type,omitempty" json:"order_type,omitempty"`
+	OrderType string `query:"order_type,omitempty" json:"order_type,omitempty"`
 	// 行业ID/Industry ID
-	Industry *string `query:"industry,omitempty" json:"industry,omitempty"`
+	Industry string `query:"industry,omitempty" json:"industry,omitempty"`
 	// 广告目标/Ad objective
-	Objective *string `query:"objective,omitempty" json:"objective,omitempty"`
+	Objective string `query:"objective,omitempty" json:"objective,omitempty"`
 	// 关键词类型/Keyword type
-	KeywordType *string `query:"keyword_type,omitempty" json:"keyword_type,omitempty"`
+	KeywordType string `query:"keyword_type,omitempty" json:"keyword_type,omitempty"`
 }
 
 func (r TikTokAdsGetKeywordDetailsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "order_type", r.OrderType)
-	addQueryValue(values, "industry", r.Industry)
-	addQueryValue(values, "objective", r.Objective)
-	addQueryValue(values, "keyword_type", r.KeywordType)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "order_type", r.OrderType)
+	addOptionalQueryValue(values, "industry", r.Industry)
+	addOptionalQueryValue(values, "objective", r.Objective)
+	addOptionalQueryValue(values, "keyword_type", r.KeywordType)
 	return values
 }
 
@@ -3536,30 +3536,30 @@ type TikTokAdsGetKeywordDetailsResponse = APIResponse
 // TikTokAdsGetCreativePatternRankingsRequest is the request for 获取创意模式排行榜/Get creative pattern rankings.
 type TikTokAdsGetCreativePatternRankingsRequest struct {
 	// 一级行业ID/First industry ID
-	FirstIndustryID *string `query:"first_industry_id,omitempty" json:"first_industry_id,omitempty"`
+	FirstIndustryID string `query:"first_industry_id,omitempty" json:"first_industry_id,omitempty"`
 	// 时间周期类型/Period type (week, month)
-	PeriodType *string `query:"period_type,omitempty" json:"period_type,omitempty"`
+	PeriodType string `query:"period_type,omitempty" json:"period_type,omitempty"`
 	// 排序字段/Order field (ctr, play_over_rate)
-	OrderField *string `query:"order_field,omitempty" json:"order_field,omitempty"`
+	OrderField string `query:"order_field,omitempty" json:"order_field,omitempty"`
 	// 排序方式/Sort order (desc, asc)
-	OrderType *string `query:"order_type,omitempty" json:"order_type,omitempty"`
+	OrderType string `query:"order_type,omitempty" json:"order_type,omitempty"`
 	// 特定周（可选）/Specific week (optional)
-	Week *string `query:"week,omitempty" json:"week,omitempty"`
+	Week string `query:"week,omitempty" json:"week,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r TikTokAdsGetCreativePatternRankingsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "first_industry_id", r.FirstIndustryID)
-	addQueryValue(values, "period_type", r.PeriodType)
-	addQueryValue(values, "order_field", r.OrderField)
-	addQueryValue(values, "order_type", r.OrderType)
-	addQueryValue(values, "week", r.Week)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "first_industry_id", r.FirstIndustryID)
+	addOptionalQueryValue(values, "period_type", r.PeriodType)
+	addOptionalQueryValue(values, "order_field", r.OrderField)
+	addOptionalQueryValue(values, "order_type", r.OrderType)
+	addOptionalQueryValue(values, "week", r.Week)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -3578,25 +3578,25 @@ type TikTokAdsGetProductMetricsRequest struct {
 	// 产品类目ID/Product category ID
 	ID string `query:"id,omitempty" json:"id,omitempty"`
 	// 最近天数/Last days
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 	// 指标类型，逗号分隔/Metrics types, comma separated
-	Metrics *string `query:"metrics,omitempty" json:"metrics,omitempty"`
+	Metrics string `query:"metrics,omitempty" json:"metrics,omitempty"`
 	// 电商类型/E-commerce type
-	EcomType *string `query:"ecom_type,omitempty" json:"ecom_type,omitempty"`
+	EcomType string `query:"ecom_type,omitempty" json:"ecom_type,omitempty"`
 	// 时间类型/Period type
-	PeriodType *string `query:"period_type,omitempty" json:"period_type,omitempty"`
+	PeriodType string `query:"period_type,omitempty" json:"period_type,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 }
 
 func (r TikTokAdsGetProductMetricsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "id", r.ID)
-	addQueryValue(values, "last", r.Last)
-	addQueryValue(values, "metrics", r.Metrics)
-	addQueryValue(values, "ecom_type", r.EcomType)
-	addQueryValue(values, "period_type", r.PeriodType)
-	addQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "metrics", r.Metrics)
+	addOptionalQueryValue(values, "ecom_type", r.EcomType)
+	addOptionalQueryValue(values, "period_type", r.PeriodType)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
 	return values
 }
 
@@ -3608,22 +3608,22 @@ type TikTokAdsGetProductDetailRequest struct {
 	// 产品类目ID/Product category ID
 	ID string `query:"id,omitempty" json:"id,omitempty"`
 	// 最近天数/Last days
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 	// 电商类型/E-commerce type
-	EcomType *string `query:"ecom_type,omitempty" json:"ecom_type,omitempty"`
+	EcomType string `query:"ecom_type,omitempty" json:"ecom_type,omitempty"`
 	// 时间类型/Period type
-	PeriodType *string `query:"period_type,omitempty" json:"period_type,omitempty"`
+	PeriodType string `query:"period_type,omitempty" json:"period_type,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 }
 
 func (r TikTokAdsGetProductDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "id", r.ID)
-	addQueryValue(values, "last", r.Last)
-	addQueryValue(values, "ecom_type", r.EcomType)
-	addQueryValue(values, "period_type", r.PeriodType)
-	addQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "ecom_type", r.EcomType)
+	addOptionalQueryValue(values, "period_type", r.PeriodType)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
 	return values
 }
 
@@ -3655,12 +3655,12 @@ type TikTokAdsGetHashtagCreatorInfoResponse = APIResponse
 // TikTokAdsGetSoundFiltersRequest is the request for 获取音乐筛选器/Get sound filters.
 type TikTokAdsGetSoundFiltersRequest struct {
 	// 排行类型/Rank type (popular, surging)
-	RankType *string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 }
 
 func (r TikTokAdsGetSoundFiltersRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
 	return values
 }
 
@@ -3672,16 +3672,16 @@ type TikTokAdsGetSoundDetailRequest struct {
 	// 音乐ID/Sound clip ID
 	ClipID string `query:"clip_id,omitempty" json:"clip_id,omitempty"`
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 }
 
 func (r TikTokAdsGetSoundDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "clip_id", r.ClipID)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
 	return values
 }
 
@@ -3693,31 +3693,31 @@ type TikTokAdsSearchSoundHintsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排行类型/Rank type (popular, surging)
-	RankType *string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否只看已验证/Only verified
-	FilterByChecked *bool `query:"filter_by_checked,omitempty" json:"filter_by_checked,omitempty"`
+	FilterByChecked bool `query:"filter_by_checked,omitempty" json:"filter_by_checked,omitempty"`
 	// 是否商业音乐/Commercial music only
-	CommercialMusic *bool `query:"commercial_music,omitempty" json:"commercial_music,omitempty"`
+	CommercialMusic bool `query:"commercial_music,omitempty" json:"commercial_music,omitempty"`
 }
 
 func (r TikTokAdsSearchSoundHintsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "rank_type", r.RankType)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "filter_by_checked", r.FilterByChecked)
-	addQueryValue(values, "commercial_music", r.CommercialMusic)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "filter_by_checked", r.FilterByChecked)
+	addOptionalQueryValue(values, "commercial_music", r.CommercialMusic)
 	return values
 }
 
@@ -3729,31 +3729,31 @@ type TikTokAdsSearchSoundsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排行类型/Rank type (popular, surging)
-	RankType *string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 	// 是否只看新上榜/Only new on board
-	NewOnBoard *bool `query:"new_on_board,omitempty" json:"new_on_board,omitempty"`
+	NewOnBoard bool `query:"new_on_board,omitempty" json:"new_on_board,omitempty"`
 	// 是否商业音乐/Commercial music only
-	CommercialMusic *bool `query:"commercial_music,omitempty" json:"commercial_music,omitempty"`
+	CommercialMusic bool `query:"commercial_music,omitempty" json:"commercial_music,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 }
 
 func (r TikTokAdsSearchSoundsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "rank_type", r.RankType)
-	addQueryValue(values, "new_on_board", r.NewOnBoard)
-	addQueryValue(values, "commercial_music", r.CommercialMusic)
-	addQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "new_on_board", r.NewOnBoard)
+	addOptionalQueryValue(values, "commercial_music", r.CommercialMusic)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
 	return values
 }
 
@@ -3765,13 +3765,13 @@ type TikTokAdsGetSoundRecommendationsRequest struct {
 	// 参考音乐ID/Reference sound clip ID
 	ClipID string `query:"clip_id,omitempty" json:"clip_id,omitempty"`
 	// 推荐数量/Number of recommendations
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r TikTokAdsGetSoundRecommendationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "clip_id", r.ClipID)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -3788,30 +3788,30 @@ type TikTokAdsGetCreatorFiltersResponse = APIResponse
 // TikTokAdsGetCreatorListRequest is the request for 获取创作者列表/Get creator list.
 type TikTokAdsGetCreatorListRequest struct {
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排序方式/Sort by (follower, engagement, avg_views)
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 创作者国家/Creator country
-	CreatorCountry *string `query:"creator_country,omitempty" json:"creator_country,omitempty"`
+	CreatorCountry string `query:"creator_country,omitempty" json:"creator_country,omitempty"`
 	// 受众国家/Audience country
-	AudienceCountry *string `query:"audience_country,omitempty" json:"audience_country,omitempty"`
+	AudienceCountry string `query:"audience_country,omitempty" json:"audience_country,omitempty"`
 	// 受众数量筛选/Audience count filter
-	AudienceCount *int `query:"audience_count,omitempty" json:"audience_count,omitempty"`
+	AudienceCount int `query:"audience_count,omitempty" json:"audience_count,omitempty"`
 	// 关键词/Keyword
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r TikTokAdsGetCreatorListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "creator_country", r.CreatorCountry)
-	addQueryValue(values, "audience_country", r.AudienceCountry)
-	addQueryValue(values, "audience_count", r.AudienceCount)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "creator_country", r.CreatorCountry)
+	addOptionalQueryValue(values, "audience_country", r.AudienceCountry)
+	addOptionalQueryValue(values, "audience_count", r.AudienceCount)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -3823,22 +3823,22 @@ type TikTokAdsSearchCreatorsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排序方式/Sort by (follower, avg_views)
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 创作者国家/Creator country
-	CreatorCountry *string `query:"creator_country,omitempty" json:"creator_country,omitempty"`
+	CreatorCountry string `query:"creator_country,omitempty" json:"creator_country,omitempty"`
 }
 
 func (r TikTokAdsSearchCreatorsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "creator_country", r.CreatorCountry)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "creator_country", r.CreatorCountry)
 	return values
 }
 
@@ -3848,24 +3848,24 @@ type TikTokAdsSearchCreatorsResponse = APIResponse
 // TikTokAdsGetPopularTrendVideosRequest is the request for 获取流行趋势视频/Get popular trend videos.
 type TikTokAdsGetPopularTrendVideosRequest struct {
 	// 时间范围（天）/Time period (days)
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排序字段/Order by (vv, like, comment, repost)
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 }
 
 func (r TikTokAdsGetPopularTrendVideosRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
 	return values
 }
 
@@ -3877,16 +3877,16 @@ type TikTokShopWebGetProductDetailV1Request struct {
 	// 商品ID/Product ID
 	ProductID string `query:"product_id,omitempty" json:"product_id,omitempty"`
 	// 卖家ID(可选)/Seller ID (optional)
-	SellerID *string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
+	SellerID string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetProductDetailV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
-	addQueryValue(values, "seller_id", r.SellerID)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "seller_id", r.SellerID)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -3898,16 +3898,16 @@ type TikTokShopWebGetProductDetailV2Request struct {
 	// 商品ID/Product ID
 	ProductID string `query:"product_id,omitempty" json:"product_id,omitempty"`
 	// 卖家ID(可选)/Seller ID (optional)
-	SellerID *string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
+	SellerID string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetProductDetailV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
-	addQueryValue(values, "seller_id", r.SellerID)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "seller_id", r.SellerID)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -3919,13 +3919,13 @@ type TikTokShopWebGetProductDetailV3Request struct {
 	// 商品ID/Product ID
 	ProductID string `query:"product_id,omitempty" json:"product_id,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetProductDetailV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -3937,25 +3937,25 @@ type TikTokShopWebGetProductReviewsV2Request struct {
 	// 商品ID/Product ID
 	ProductID string `query:"product_id,omitempty" json:"product_id,omitempty"`
 	// 起始页码/Page start
-	PageStart *int `query:"page_start,omitempty" json:"page_start,omitempty"`
+	PageStart int `query:"page_start,omitempty" json:"page_start,omitempty"`
 	// 排序规则/Sort rule
-	SortRule *int `query:"sort_rule,omitempty" json:"sort_rule,omitempty"`
+	SortRule int `query:"sort_rule,omitempty" json:"sort_rule,omitempty"`
 	// 筛选类型/Filter type: 1=默认, 2=有图片/视频, 3=真实购买
-	FilterType *int `query:"filter_type,omitempty" json:"filter_type,omitempty"`
+	FilterType int `query:"filter_type,omitempty" json:"filter_type,omitempty"`
 	// 星级筛选/Star filter: 6=全部, 5-1=对应星级
-	FilterValue *int `query:"filter_value,omitempty" json:"filter_value,omitempty"`
+	FilterValue int `query:"filter_value,omitempty" json:"filter_value,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetProductReviewsV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
-	addQueryValue(values, "page_start", r.PageStart)
-	addQueryValue(values, "sort_rule", r.SortRule)
-	addQueryValue(values, "filter_type", r.FilterType)
-	addQueryValue(values, "filter_value", r.FilterValue)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "page_start", r.PageStart)
+	addOptionalQueryValue(values, "sort_rule", r.SortRule)
+	addOptionalQueryValue(values, "filter_type", r.FilterType)
+	addOptionalQueryValue(values, "filter_value", r.FilterValue)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -3967,16 +3967,16 @@ type TikTokShopWebGetSellerProductsListV1Request struct {
 	// 卖家ID/Seller ID
 	SellerID string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
 	// 搜索参数(用于分页)/Search params (for pagination)
-	SearchParams *string `query:"search_params,omitempty" json:"search_params,omitempty"`
+	SearchParams string `query:"search_params,omitempty" json:"search_params,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetSellerProductsListV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "seller_id", r.SellerID)
-	addQueryValue(values, "search_params", r.SearchParams)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "search_params", r.SearchParams)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -3988,16 +3988,16 @@ type TikTokShopWebGetSellerProductsListV2Request struct {
 	// 卖家ID/Seller ID
 	SellerID string `query:"seller_id,omitempty" json:"seller_id,omitempty"`
 	// 搜索参数/Search params
-	SearchParams *string `query:"searchParams,omitempty" json:"searchParams,omitempty"`
+	SearchParams string `query:"searchParams,omitempty" json:"searchParams,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetSellerProductsListV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "seller_id", r.SellerID)
-	addQueryValue(values, "searchParams", r.SearchParams)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "searchParams", r.SearchParams)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4009,16 +4009,16 @@ type TikTokShopWebGetSearchKeywordSuggestionsV1Request struct {
 	// 搜索关键词/Search keyword
 	SearchWord string `query:"search_word,omitempty" json:"search_word,omitempty"`
 	// 语言/Language
-	Lang *string `query:"lang,omitempty" json:"lang,omitempty"`
+	Lang string `query:"lang,omitempty" json:"lang,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetSearchKeywordSuggestionsV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_word", r.SearchWord)
-	addQueryValue(values, "lang", r.Lang)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "lang", r.Lang)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4030,16 +4030,16 @@ type TikTokShopWebGetSearchKeywordSuggestionsV2Request struct {
 	// 搜索关键词/Search keyword
 	SearchWord string `query:"search_word,omitempty" json:"search_word,omitempty"`
 	// 语言/Language
-	Lang *string `query:"lang,omitempty" json:"lang,omitempty"`
+	Lang string `query:"lang,omitempty" json:"lang,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetSearchKeywordSuggestionsV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_word", r.SearchWord)
-	addQueryValue(values, "lang", r.Lang)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "lang", r.Lang)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4051,19 +4051,19 @@ type TikTokShopWebSearchProductsListV1Request struct {
 	// 搜索关键词/Search keyword
 	SearchWord string `query:"search_word,omitempty" json:"search_word,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 分页标记/Page token
-	PageToken *string `query:"page_token,omitempty" json:"page_token,omitempty"`
+	PageToken string `query:"page_token,omitempty" json:"page_token,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebSearchProductsListV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_word", r.SearchWord)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "page_token", r.PageToken)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "page_token", r.PageToken)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4075,19 +4075,19 @@ type TikTokShopWebSearchProductsListV2Request struct {
 	// 搜索关键词/Search keyword
 	SearchWord string `query:"search_word,omitempty" json:"search_word,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 分页标记/Page token
-	PageToken *string `query:"page_token,omitempty" json:"page_token,omitempty"`
+	PageToken string `query:"page_token,omitempty" json:"page_token,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebSearchProductsListV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_word", r.SearchWord)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "page_token", r.PageToken)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "page_token", r.PageToken)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4097,12 +4097,12 @@ type TikTokShopWebSearchProductsListV2Response = APIResponse
 // TikTokShopWebGetProductCategoryListRequest is the request for 获取商品分类列表/Get product category list.
 type TikTokShopWebGetProductCategoryListRequest struct {
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetProductCategoryListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4114,16 +4114,16 @@ type TikTokShopWebGetProductsByCategoryIDRequest struct {
 	// 分类ID/Category ID
 	CategoryID int `query:"category_id,omitempty" json:"category_id,omitempty"`
 	// 翻页偏移量/Offset for pagination
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r TikTokShopWebGetProductsByCategoryIDRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "category_id", r.CategoryID)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4133,15 +4133,15 @@ type TikTokShopWebGetProductsByCategoryIDResponse = APIResponse
 // TikTokShopWebGetHotSellingProductsListRequest is the request for 获取热卖商品列表/Get hot selling products list.
 type TikTokShopWebGetHotSellingProductsListRequest struct {
 	// 地区代码/Region code
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 	// 返回商品数量/Number of products to return
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r TikTokShopWebGetHotSellingProductsListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "region", r.Region)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -4169,27 +4169,27 @@ type TikTokInteractionApplyForTikTokInteractionAPIPermissionResponse = APIRespon
 // TikTokInteractionPostCommentRequest is the request for 发送评论/Post comment.
 type TikTokInteractionPostCommentRequest struct {
 	// Video ID, which can be obtained from the sharing link, for example: https://www.tiktok.com/@username/video/7419966340443819295
-	AwemeID *string `json:"aweme_id,omitempty"`
+	AwemeID string `json:"aweme_id,omitempty"`
 	// Comment content, TikTok comment content needs to comply with the specifications, do not contain illegal keywords, otherwise, even if the request is successful, it will be judged as spam comments by the system and will not be displayed.
-	Text *string `json:"text,omitempty"`
+	Text string `json:"text,omitempty"`
 	// User Cookie, you can log in to your TikTok account in the browser and then copy the Cookie information, please use URL-encoded Cookie string when submitting.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// Device id, optional, if not filled in, it will be automatically generated, if you need to customize the device id, please use the device information interface to get the device id.
-	DeviceID *string `json:"device_id,omitempty"`
+	DeviceID string `json:"device_id,omitempty"`
 	// Device install id, optional, if not filled in, it will be automatically generated, if you need to customize the device iid, please use the device information interface to get the device iid.
-	Iid *string `json:"iid,omitempty"`
+	Iid string `json:"iid,omitempty"`
 	// Proxy IP, optional, if not filled in, it will be automatically generated, if you need to customize the proxy IP, please use the proxy IP interface to get the proxy IP.
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokInteractionPostCommentRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "aweme_id", r.AwemeID)
-	addBodyValue(body, "text", r.Text)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "device_id", r.DeviceID)
-	addBodyValue(body, "iid", r.Iid)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "aweme_id", r.AwemeID)
+	addOptionalBodyValue(body, "text", r.Text)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "device_id", r.DeviceID)
+	addOptionalBodyValue(body, "iid", r.Iid)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -4199,30 +4199,30 @@ type TikTokInteractionPostCommentResponse = APIResponse
 // TikTokInteractionReplyToCommentRequest is the request for 回复评论/Reply to comment.
 type TikTokInteractionReplyToCommentRequest struct {
 	// Video ID, which can be obtained from the sharing link, for example: https://www.tiktok.com/@username/video/7419966340443819295
-	AwemeID *string `json:"aweme_id,omitempty"`
+	AwemeID string `json:"aweme_id,omitempty"`
 	// Comment ID, which can be obtained from the comment data of the specified video.
-	ReplyID *string `json:"reply_id,omitempty"`
+	ReplyID string `json:"reply_id,omitempty"`
 	// Comment content, TikTok comment content needs to comply with the specifications, do not contain illegal keywords, otherwise, even if the request is successful, it will be judged as spam comments by the system and will not be displayed.
-	Text *string `json:"text,omitempty"`
+	Text string `json:"text,omitempty"`
 	// User Cookie, you can log in to your TikTok account in the browser and then copy the Cookie information, please use URL-encoded Cookie string when submitting.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// Device id, optional, if not filled in, it will be automatically generated, if you need to customize the device id, please use the device information interface to get the device id.
-	DeviceID *string `json:"device_id,omitempty"`
+	DeviceID string `json:"device_id,omitempty"`
 	// Device install id, optional, if not filled in, it will be automatically generated, if you need to customize the device iid, please use the device information interface to get the device iid.
-	Iid *string `json:"iid,omitempty"`
+	Iid string `json:"iid,omitempty"`
 	// Proxy IP, optional, if not filled in, it will be automatically generated, if you need to customize the proxy IP, please use the proxy IP interface to get the proxy IP.
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokInteractionReplyToCommentRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "aweme_id", r.AwemeID)
-	addBodyValue(body, "reply_id", r.ReplyID)
-	addBodyValue(body, "text", r.Text)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "device_id", r.DeviceID)
-	addBodyValue(body, "iid", r.Iid)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "aweme_id", r.AwemeID)
+	addOptionalBodyValue(body, "reply_id", r.ReplyID)
+	addOptionalBodyValue(body, "text", r.Text)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "device_id", r.DeviceID)
+	addOptionalBodyValue(body, "iid", r.Iid)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -4232,24 +4232,24 @@ type TikTokInteractionReplyToCommentResponse = APIResponse
 // TikTokInteractionLikeRequest is the request for 点赞/Like.
 type TikTokInteractionLikeRequest struct {
 	// Video ID, which can be obtained from the sharing link, for example: https://www.tiktok.com/@username/video/7419966340443819295
-	AwemeID *string `json:"aweme_id,omitempty"`
+	AwemeID string `json:"aweme_id,omitempty"`
 	// User Cookie, you can log in to your TikTok account in the browser and then copy the Cookie information, please use URL-encoded Cookie string when submitting.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// Device id, optional, if not filled in, it will be automatically generated, if you need to customize the device id, please use the device information interface to get the device id.
-	DeviceID *string `json:"device_id,omitempty"`
+	DeviceID string `json:"device_id,omitempty"`
 	// Device install id, optional, if not filled in, it will be automatically generated, if you need to customize the device iid, please use the device information interface to get the device iid.
-	Iid *string `json:"iid,omitempty"`
+	Iid string `json:"iid,omitempty"`
 	// Proxy IP, optional, if not filled in, it will be automatically generated, if you need to customize the proxy IP, please use the proxy IP interface to get the proxy IP.
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokInteractionLikeRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "aweme_id", r.AwemeID)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "device_id", r.DeviceID)
-	addBodyValue(body, "iid", r.Iid)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "aweme_id", r.AwemeID)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "device_id", r.DeviceID)
+	addOptionalBodyValue(body, "iid", r.Iid)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -4259,27 +4259,27 @@ type TikTokInteractionLikeResponse = APIResponse
 // TikTokInteractionFollowRequest is the request for 关注/Follow.
 type TikTokInteractionFollowRequest struct {
 	// Video ID, which can be obtained from the sharing link, for example: https://www.tiktok.com/@username/video/7419966340443819295
-	UserID *string `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty"`
 	// User sec_id, which can be obtained from the sharing link, for example: https://www.tiktok.com/@username/video/7419966340443819295
-	SecUserID *string `json:"sec_user_id,omitempty"`
+	SecUserID string `json:"sec_user_id,omitempty"`
 	// User Cookie, you can log in to your TikTok account in the browser and then copy the Cookie information, please use URL-encoded Cookie string when submitting.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// Device id, optional, if not filled in, it will be automatically generated, if you need to customize the device id, please use the device information interface to get the device id.
-	DeviceID *string `json:"device_id,omitempty"`
+	DeviceID string `json:"device_id,omitempty"`
 	// Device install id, optional, if not filled in, it will be automatically generated, if you need to customize the device iid, please use the device information interface to get the device iid.
-	Iid *string `json:"iid,omitempty"`
+	Iid string `json:"iid,omitempty"`
 	// Proxy IP, optional, if not filled in, it will be automatically generated, if you need to customize the proxy IP, please use the proxy IP interface to get the proxy IP.
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokInteractionFollowRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "user_id", r.UserID)
-	addBodyValue(body, "sec_user_id", r.SecUserID)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "device_id", r.DeviceID)
-	addBodyValue(body, "iid", r.Iid)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "user_id", r.UserID)
+	addOptionalBodyValue(body, "sec_user_id", r.SecUserID)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "device_id", r.DeviceID)
+	addOptionalBodyValue(body, "iid", r.Iid)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -4289,24 +4289,24 @@ type TikTokInteractionFollowResponse = APIResponse
 // TikTokInteractionCollectRequest is the request for 收藏/Collect.
 type TikTokInteractionCollectRequest struct {
 	// Video ID, which can be obtained from the sharing link, for example: https://www.tiktok.com/@username/video/7419966340443819295
-	AwemeID *string `json:"aweme_id,omitempty"`
+	AwemeID string `json:"aweme_id,omitempty"`
 	// User Cookie, you can log in to your TikTok account in the browser and then copy the Cookie information, please use URL-encoded Cookie string when submitting.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// Device id, optional, if not filled in, it will be automatically generated, if you need to customize the device id, please use the device information interface to get the device id.
-	DeviceID *string `json:"device_id,omitempty"`
+	DeviceID string `json:"device_id,omitempty"`
 	// Device install id, optional, if not filled in, it will be automatically generated, if you need to customize the device iid, please use the device information interface to get the device iid.
-	Iid *string `json:"iid,omitempty"`
+	Iid string `json:"iid,omitempty"`
 	// Proxy IP, optional, if not filled in, it will be automatically generated, if you need to customize the proxy IP, please use the proxy IP interface to get the proxy IP.
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokInteractionCollectRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "aweme_id", r.AwemeID)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "device_id", r.DeviceID)
-	addBodyValue(body, "iid", r.Iid)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "aweme_id", r.AwemeID)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "device_id", r.DeviceID)
+	addOptionalBodyValue(body, "iid", r.Iid)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -4316,24 +4316,24 @@ type TikTokInteractionCollectResponse = APIResponse
 // TikTokInteractionForwardRequest is the request for 转发/Forward.
 type TikTokInteractionForwardRequest struct {
 	// Video ID, which can be obtained from the sharing link, for example: https://www.tiktok.com/@username/video/7419966340443819295
-	AwemeID *string `json:"aweme_id,omitempty"`
+	AwemeID string `json:"aweme_id,omitempty"`
 	// User Cookie, you can log in to your TikTok account in the browser and then copy the Cookie information, please use URL-encoded Cookie string when submitting.
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// Device id, optional, if not filled in, it will be automatically generated, if you need to customize the device id, please use the device information interface to get the device id.
-	DeviceID *string `json:"device_id,omitempty"`
+	DeviceID string `json:"device_id,omitempty"`
 	// Device install id, optional, if not filled in, it will be automatically generated, if you need to customize the device iid, please use the device information interface to get the device iid.
-	Iid *string `json:"iid,omitempty"`
+	Iid string `json:"iid,omitempty"`
 	// Proxy IP, optional, if not filled in, it will be automatically generated, if you need to customize the proxy IP, please use the proxy IP interface to get the proxy IP.
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r TikTokInteractionForwardRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "aweme_id", r.AwemeID)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "device_id", r.DeviceID)
-	addBodyValue(body, "iid", r.Iid)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "aweme_id", r.AwemeID)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "device_id", r.DeviceID)
+	addOptionalBodyValue(body, "iid", r.Iid)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -4345,13 +4345,13 @@ type DouyinWebGetSingleVideoDataRequest struct {
 	// 作品id/Video id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 是否需要锚点信息/Whether anchor information is needed
-	NeedAnchorInfo *bool `query:"need_anchor_info,omitempty" json:"need_anchor_info,omitempty"`
+	NeedAnchorInfo bool `query:"need_anchor_info,omitempty" json:"need_anchor_info,omitempty"`
 }
 
 func (r DouyinWebGetSingleVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "need_anchor_info", r.NeedAnchorInfo)
+	addOptionalQueryValue(values, "need_anchor_info", r.NeedAnchorInfo)
 	return values
 }
 
@@ -4391,18 +4391,18 @@ type DouyinWebGetSingleVideoDataBySharingLinkResponse = APIResponse
 // DouyinWebGetTheHighestQualityPlayURLOfTheVideoRequest is the request for 获取视频的最高画质播放链接/Get the highest quality play URL of the video.
 type DouyinWebGetTheHighestQualityPlayURLOfTheVideoRequest struct {
 	// 作品id/Video id
-	AwemeID *string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
+	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 可选，分享链接/Optional, share link
-	ShareURL *string `query:"share_url,omitempty" json:"share_url,omitempty"`
+	ShareURL string `query:"share_url,omitempty" json:"share_url,omitempty"`
 	// 可选，请求出口地区(ISO 国家代码，如 CN/US/HK)，国内用户传 CN 可拿到国内 CDN 域名以加快下载速度 / Optional, ISO country code (e.g. CN/US/HK). Pass CN to get China-region CDN URLs for faster download in mainland China.
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r DouyinWebGetTheHighestQualityPlayURLOfTheVideoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "share_url", r.ShareURL)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "aweme_id", r.AwemeID)
+	addOptionalQueryValue(values, "share_url", r.ShareURL)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -4412,15 +4412,15 @@ type DouyinWebGetTheHighestQualityPlayURLOfTheVideoResponse = APIResponse
 // DouyinWebBatchGetTheHighestQualityPlayURLOfVideosRequest is the request for 批量获取视频的最高画质播放链接/Batch get the highest quality play URL of videos.
 type DouyinWebBatchGetTheHighestQualityPlayURLOfVideosRequest struct {
 	// 作品id列表，用逗号分隔，最多50个/Video id list, separated by commas, up to 50
-	AwemeIds *string `json:"aweme_ids,omitempty"`
+	AwemeIds string `json:"aweme_ids,omitempty"`
 	// 可选，请求出口地区(ISO 国家代码，如 CN/US/HK)。抖音根据请求 IP 返回对应区域 CDN，国内用户传 'CN' 可获得国内 CDN 链接以加快下载速度 / Optional, ISO country code (e.g. CN). Pass 'CN' for users in mainland China to get China-region CDN URLs for faster download.
-	Region *string `json:"region,omitempty"`
+	Region string `json:"region,omitempty"`
 }
 
 func (r DouyinWebBatchGetTheHighestQualityPlayURLOfVideosRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "aweme_ids", r.AwemeIds)
-	addBodyValue(body, "region", r.Region)
+	addOptionalBodyValue(body, "aweme_ids", r.AwemeIds)
+	addOptionalBodyValue(body, "region", r.Region)
 	return body
 }
 
@@ -4467,15 +4467,15 @@ type DouyinWebGetSingleVideoDanmakuDataResponse = APIResponse
 // DouyinWebGetHomeFeedDataRequest is the request for 获取首页推荐数据/Get home feed data.
 type DouyinWebGetHomeFeedDataRequest struct {
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页索引/Paging index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 }
 
 func (r DouyinWebGetHomeFeedDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
 	return values
 }
 
@@ -4487,16 +4487,16 @@ type DouyinWebGetRelatedPostsRecommendationDataRequest struct {
 	// 作品id/Video id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 翻页索引/Paging index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinWebGetRelatedPostsRecommendationDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -4508,22 +4508,22 @@ type DouyinWebGetUserHomepageVideoDataRequest struct {
 	// 用户sec_user_id/User sec_user_id
 	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *string `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor string `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 过滤类型/Filter type
-	FilterType *string `query:"filter_type,omitempty" json:"filter_type,omitempty"`
+	FilterType string `query:"filter_type,omitempty" json:"filter_type,omitempty"`
 	// 用户网页版抖音Cookie/Your web version of Douyin Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinWebGetUserHomepageVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "filter_type", r.FilterType)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "filter_type", r.FilterType)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -4535,19 +4535,19 @@ type DouyinWebGetUserLikeVideoDataRequest struct {
 	// 用户sec_user_id/User sec_user_id
 	SecUserID string `json:"sec_user_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `json:"max_cursor,omitempty"`
+	MaxCursor int `json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Counts *int `json:"counts,omitempty"`
+	Counts int `json:"counts,omitempty"`
 	// 用户网页版抖音Cookie/Your web version of Douyin Cookie
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 }
 
 func (r DouyinWebGetUserLikeVideoDataRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "sec_user_id", r.SecUserID)
-	addBodyValue(body, "max_cursor", r.MaxCursor)
-	addBodyValue(body, "counts", r.Counts)
-	addBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "max_cursor", r.MaxCursor)
+	addOptionalBodyValue(body, "counts", r.Counts)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
 	return body
 }
 
@@ -4559,16 +4559,16 @@ type DouyinWebGetUserCollectionVideoDataRequest struct {
 	// 用户网页版抖音Cookie/Your web version of Douyin Cookie
 	Cookie string `json:"cookie,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `json:"max_cursor,omitempty"`
+	MaxCursor int `json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Counts *int `json:"counts,omitempty"`
+	Counts int `json:"counts,omitempty"`
 }
 
 func (r DouyinWebGetUserCollectionVideoDataRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "max_cursor", r.MaxCursor)
-	addBodyValue(body, "counts", r.Counts)
+	addOptionalBodyValue(body, "max_cursor", r.MaxCursor)
+	addOptionalBodyValue(body, "counts", r.Counts)
 	return body
 }
 
@@ -4578,17 +4578,17 @@ type DouyinWebGetUserCollectionVideoDataResponse = APIResponse
 // DouyinWebGetUserCollectionRequest is the request for 获取用户收藏夹/Get user collection.
 type DouyinWebGetUserCollectionRequest struct {
 	// 最大游标/Maximum cursor
-	MaxCursor *int `json:"max_cursor,omitempty"`
+	MaxCursor int `json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Counts *int `json:"counts,omitempty"`
+	Counts int `json:"counts,omitempty"`
 	// 用户网页版抖音Cookie/Your web version of Douyin Cookie
 	Cookie string `json:"cookie,omitempty"`
 }
 
 func (r DouyinWebGetUserCollectionRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "max_cursor", r.MaxCursor)
-	addBodyValue(body, "counts", r.Counts)
+	addOptionalBodyValue(body, "max_cursor", r.MaxCursor)
+	addOptionalBodyValue(body, "counts", r.Counts)
 	addBodyValue(body, "cookie", r.Cookie)
 	return body
 }
@@ -4601,16 +4601,16 @@ type DouyinWebGetUserCollectionDataRequest struct {
 	// 收藏夹id/Collection id
 	CollectsID string `query:"collects_id,omitempty" json:"collects_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Counts *int `query:"counts,omitempty" json:"counts,omitempty"`
+	Counts int `query:"counts,omitempty" json:"counts,omitempty"`
 }
 
 func (r DouyinWebGetUserCollectionDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "collects_id", r.CollectsID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "counts", r.Counts)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "counts", r.Counts)
 	return values
 }
 
@@ -4622,16 +4622,16 @@ type DouyinWebGetUserMixVideoDataRequest struct {
 	// 合辑id/Mix id
 	MixID string `query:"mix_id,omitempty" json:"mix_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Counts *int `query:"counts,omitempty" json:"counts,omitempty"`
+	Counts int `query:"counts,omitempty" json:"counts,omitempty"`
 }
 
 func (r DouyinWebGetUserMixVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "mix_id", r.MixID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "counts", r.Counts)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "counts", r.Counts)
 	return values
 }
 
@@ -4703,13 +4703,13 @@ type DouyinWebGetLiveRoomGiftUserRankingRequest struct {
 	// 直播间room_id/Room room_id
 	RoomID string `query:"room_id,omitempty" json:"room_id,omitempty"`
 	// 排行类型/Leaderboard type
-	RankType *int `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType int `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 }
 
 func (r DouyinWebGetLiveRoomGiftUserRankingRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "room_id", r.RoomID)
-	addQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
 	return values
 }
 
@@ -4723,17 +4723,17 @@ type DouyinWebDouyinLiveRoomProductInformationRequest struct {
 	// 作者id/Author id
 	AuthorID string `query:"author_id,omitempty" json:"author_id,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r DouyinWebDouyinLiveRoomProductInformationRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "room_id", r.RoomID)
 	addQueryValue(values, "author_id", r.AuthorID)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -4810,20 +4810,20 @@ type DouyinWebGetProductReviewListRequest struct {
 	// 店铺ID/Shop ID
 	ShopID string `query:"shop_id,omitempty" json:"shop_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型 (0: 默认排序, 1: 最新排序)/Sort Type (0: Default, 1: Latest)
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r DouyinWebGetProductReviewListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "product_id", r.ProductID)
 	addQueryValue(values, "shop_id", r.ShopID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -4998,21 +4998,21 @@ type DouyinWebGetInformationOfSpecifiedUserBySecUserIDWebHandlerUserProfileV4Res
 // DouyinWebGetUserFansListRequest is the request for 获取用户粉丝列表/Get user fans list.
 type DouyinWebGetUserFansListRequest struct {
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大时间戳/Maximum timestamp
-	MaxTime *string `query:"max_time,omitempty" json:"max_time,omitempty"`
+	MaxTime string `query:"max_time,omitempty" json:"max_time,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 来源类型/Source type
-	SourceType *int `query:"source_type,omitempty" json:"source_type,omitempty"`
+	SourceType int `query:"source_type,omitempty" json:"source_type,omitempty"`
 }
 
 func (r DouyinWebGetUserFansListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_time", r.MaxTime)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "source_type", r.SourceType)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "max_time", r.MaxTime)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "source_type", r.SourceType)
 	return values
 }
 
@@ -5022,21 +5022,21 @@ type DouyinWebGetUserFansListResponse = APIResponse
 // DouyinWebGetUserFollowingListRequest is the request for 获取用户关注列表/Get user following list.
 type DouyinWebGetUserFollowingListRequest struct {
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大时间戳/Maximum timestamp
-	MaxTime *string `query:"max_time,omitempty" json:"max_time,omitempty"`
+	MaxTime string `query:"max_time,omitempty" json:"max_time,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 来源类型/Source type
-	SourceType *int `query:"source_type,omitempty" json:"source_type,omitempty"`
+	SourceType int `query:"source_type,omitempty" json:"source_type,omitempty"`
 }
 
 func (r DouyinWebGetUserFollowingListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_time", r.MaxTime)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "source_type", r.SourceType)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "max_time", r.MaxTime)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "source_type", r.SourceType)
 	return values
 }
 
@@ -5048,16 +5048,16 @@ type DouyinWebGetSingleVideoCommentsDataRequest struct {
 	// 作品id/Video id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinWebGetSingleVideoCommentsDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -5071,17 +5071,17 @@ type DouyinWebGetCommentRepliesDataOfSpecifiedVideoRequest struct {
 	// 评论id/Comment id
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinWebGetCommentRepliesDataOfSpecifiedVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "item_id", r.ItemID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -5093,19 +5093,19 @@ type DouyinWebGetUserSearchResultsOfSpecifiedKeywordsV3Request struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 用户类型/User type
-	DouyinUserType *string `query:"douyin_user_type,omitempty" json:"douyin_user_type,omitempty"`
+	DouyinUserType string `query:"douyin_user_type,omitempty" json:"douyin_user_type,omitempty"`
 	// 粉丝数/Fans
-	DouyinUserFans *string `query:"douyin_user_fans,omitempty" json:"douyin_user_fans,omitempty"`
+	DouyinUserFans string `query:"douyin_user_fans,omitempty" json:"douyin_user_fans,omitempty"`
 }
 
 func (r DouyinWebGetUserSearchResultsOfSpecifiedKeywordsV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "douyin_user_type", r.DouyinUserType)
-	addQueryValue(values, "douyin_user_fans", r.DouyinUserFans)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "douyin_user_type", r.DouyinUserType)
+	addOptionalQueryValue(values, "douyin_user_fans", r.DouyinUserFans)
 	return values
 }
 
@@ -5115,24 +5115,24 @@ type DouyinWebGetUserSearchResultsOfSpecifiedKeywordsV3Response = APIResponse
 // DouyinWebChallengePostsRequest is the request for 话题作品/Challenge Posts.
 type DouyinWebChallengePostsRequest struct {
 	// 话题ID/Challenge ID
-	ChallengeID *string `json:"challenge_id,omitempty"`
+	ChallengeID string `json:"challenge_id,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `json:"sort_type,omitempty"`
+	SortType int `json:"sort_type,omitempty"`
 	// 游标/Cursor
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 数量/Count
-	Count *int `json:"count,omitempty"`
+	Count int `json:"count,omitempty"`
 	// 用户自行提供的Cookie/User provided Cookie
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 }
 
 func (r DouyinWebChallengePostsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "challenge_id", r.ChallengeID)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "count", r.Count)
-	addBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "challenge_id", r.ChallengeID)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "count", r.Count)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
 	return body
 }
 
@@ -5151,16 +5151,16 @@ type DouyinWebDouyinVideoChannelDataRequest struct {
 	// 标签id/Tag id
 	TagID int `query:"tag_id,omitempty" json:"tag_id,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 刷新索引/Refresh index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 }
 
 func (r DouyinWebDouyinVideoChannelDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tag_id", r.TagID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
 	return values
 }
 
@@ -5192,12 +5192,12 @@ type DouyinWebGenerateRealMSTokenResponse = APIResponse
 // DouyinWebGenerateTtwidRequest is the request for 生成ttwid/Generate ttwid.
 type DouyinWebGenerateTtwidRequest struct {
 	// User Agent
-	UserAgent *string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
+	UserAgent string `query:"user_agent,omitempty" json:"user_agent,omitempty"`
 }
 
 func (r DouyinWebGenerateTtwidRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_agent", r.UserAgent)
+	addOptionalQueryValue(values, "user_agent", r.UserAgent)
 	return values
 }
 
@@ -5207,7 +5207,7 @@ type DouyinWebGenerateTtwidResponse = APIResponse
 // DouyinWebQueryDouyinUserBasicInformationRequest is the request for 查询抖音用户基本信息/Query Douyin user basic information.
 type DouyinWebQueryDouyinUserBasicInformationRequest struct {
 	// 用户ttwid Cookie，获取方式：调用'/api/v1/douyin/web/generate_ttwid'接口获取。/User ttwid Cookie, acquisition method: call '/api/v1/douyin/web/generate_ttwid' interface to get.
-	Cookie *string `json:"body,omitempty"`
+	Cookie string `json:"body,omitempty"`
 }
 
 func (r DouyinWebQueryDouyinUserBasicInformationRequest) toBody() any {
@@ -5279,11 +5279,11 @@ type DouyinWebGenerateABogusParameterUsingAPIURLRequest struct {
 	// 请求API时的User-Agent | User-Agent when requesting the API
 	UserAgent string `json:"user_agent,omitempty"`
 	// 加密明文列表的第一个值，无特殊要求，默认为0
-	Index0 *int `json:"index_0,omitempty"`
+	Index0 int `json:"index_0,omitempty"`
 	// 加密明文列表的第一个值，无特殊要求，默认为1
-	Index1 *int `json:"index_1,omitempty"`
+	Index1 int `json:"index_1,omitempty"`
 	// 加密明文列表的第一个值，无特殊要求，默认为14
-	Index2 *int `json:"index_2,omitempty"`
+	Index2 int `json:"index_2,omitempty"`
 }
 
 func (r DouyinWebGenerateABogusParameterUsingAPIURLRequest) toBody() any {
@@ -5291,9 +5291,9 @@ func (r DouyinWebGenerateABogusParameterUsingAPIURLRequest) toBody() any {
 	addBodyValue(body, "url", r.URL)
 	addBodyValue(body, "data", r.Data)
 	addBodyValue(body, "user_agent", r.UserAgent)
-	addBodyValue(body, "index_0", r.Index0)
-	addBodyValue(body, "index_1", r.Index1)
-	addBodyValue(body, "index_2", r.Index2)
+	addOptionalBodyValue(body, "index_0", r.Index0)
+	addOptionalBodyValue(body, "index_1", r.Index1)
+	addOptionalBodyValue(body, "index_2", r.Index2)
 	return body
 }
 
@@ -5444,7 +5444,7 @@ type DouyinWebSeriesVideoRequest struct {
 	// 短剧类型/Subtype
 	ContentType int `query:"content_type,omitempty" json:"content_type,omitempty"`
 	// 用户自行提供的Cookie/User provided Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinWebSeriesVideoRequest) toQuery() url.Values {
@@ -5452,7 +5452,7 @@ func (r DouyinWebSeriesVideoRequest) toQuery() url.Values {
 	addQueryValue(values, "offset", r.Offset)
 	addQueryValue(values, "count", r.Count)
 	addQueryValue(values, "content_type", r.ContentType)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -5464,16 +5464,16 @@ type DouyinWebKnowledgeVideoRequest struct {
 	// 每页数量/Number per page
 	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页索引/Paging index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 	// 用户自行提供的Cookie/User provided Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinWebKnowledgeVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -5485,16 +5485,16 @@ type DouyinWebGameVideoRequest struct {
 	// 每页数量/Number per page
 	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页索引/Paging index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 	// 用户自行提供的Cookie/User provided Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinWebGameVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -5506,16 +5506,16 @@ type DouyinWebAnimeVideoRequest struct {
 	// 每页数量/Number per page
 	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页索引/Paging index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 	// 用户自行提供的Cookie/User provided Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinWebAnimeVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -5527,16 +5527,16 @@ type DouyinWebMusicVideoRequest struct {
 	// 每页数量/Number per page
 	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页索引/Paging index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 	// 用户自行提供的Cookie/User provided Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinWebMusicVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -5548,16 +5548,16 @@ type DouyinWebFoodVideoRequest struct {
 	// 每页数量/Number per page
 	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 翻页索引/Paging index
-	RefreshIndex *int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
+	RefreshIndex int `query:"refresh_index,omitempty" json:"refresh_index,omitempty"`
 	// 用户自行提供的Cookie/User provided Cookie
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinWebFoodVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "refresh_index", r.RefreshIndex)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "refresh_index", r.RefreshIndex)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -5668,18 +5668,18 @@ type DouyinAppV3GetSingleVideoDataBySharingLinkResponse = APIResponse
 // DouyinAppV3GetTheHighestQualityPlayURLOfTheVideoRequest is the request for 获取视频的最高画质播放链接/Get the highest quality play URL of the video.
 type DouyinAppV3GetTheHighestQualityPlayURLOfTheVideoRequest struct {
 	// 作品id/Video id
-	AwemeID *string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
+	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 可选，分享链接/Optional, share link
-	ShareURL *string `query:"share_url,omitempty" json:"share_url,omitempty"`
+	ShareURL string `query:"share_url,omitempty" json:"share_url,omitempty"`
 	// 可选，请求出口地区(ISO 国家代码，如 CN/US/HK)，国内用户传 CN 可拿到国内 CDN 域名以加快下载速度 / Optional, ISO country code (e.g. CN/US/HK). Pass CN to get China-region CDN URLs for faster download in mainland China.
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r DouyinAppV3GetTheHighestQualityPlayURLOfTheVideoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "share_url", r.ShareURL)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "aweme_id", r.AwemeID)
+	addOptionalQueryValue(values, "share_url", r.ShareURL)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -5689,15 +5689,15 @@ type DouyinAppV3GetTheHighestQualityPlayURLOfTheVideoResponse = APIResponse
 // DouyinAppV3BatchGetTheHighestQualityPlayURLOfVideosRequest is the request for 批量获取视频的最高画质播放链接/Batch get the highest quality play URL of videos.
 type DouyinAppV3BatchGetTheHighestQualityPlayURLOfVideosRequest struct {
 	// 作品id列表，用逗号分隔，最多50个/Video id list, separated by commas, up to 50
-	AwemeIds *string `json:"aweme_ids,omitempty"`
+	AwemeIds string `json:"aweme_ids,omitempty"`
 	// 可选，请求出口地区(ISO 国家代码，如 CN/US/HK)。抖音根据请求 IP 返回对应区域 CDN，国内用户传 'CN' 可获得国内 CDN 链接以加快下载速度 / Optional, ISO country code (e.g. CN). Pass 'CN' for users in mainland China to get China-region CDN URLs for faster download.
-	Region *string `json:"region,omitempty"`
+	Region string `json:"region,omitempty"`
 }
 
 func (r DouyinAppV3BatchGetTheHighestQualityPlayURLOfVideosRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "aweme_ids", r.AwemeIds)
-	addBodyValue(body, "region", r.Region)
+	addOptionalBodyValue(body, "aweme_ids", r.AwemeIds)
+	addOptionalBodyValue(body, "region", r.Region)
 	return body
 }
 
@@ -5741,14 +5741,14 @@ type DouyinAppV3IncreaseTheNumberOfPlaysOfTheWorkAccordingToTheVideoIDRequest st
 	// 作品id/Video id
 	ItemID string `query:"item_id,omitempty" json:"item_id,omitempty"`
 	// 可选，默认使用游客Cookie/Optional, use guest Cookie by default
-	Cookie *string `query:"cookie,omitempty" json:"cookie,omitempty"`
+	Cookie string `query:"cookie,omitempty" json:"cookie,omitempty"`
 }
 
 func (r DouyinAppV3IncreaseTheNumberOfPlaysOfTheWorkAccordingToTheVideoIDRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_type", r.AwemeType)
 	addQueryValue(values, "item_id", r.ItemID)
-	addQueryValue(values, "cookie", r.Cookie)
+	addOptionalQueryValue(values, "cookie", r.Cookie)
 	return values
 }
 
@@ -5773,18 +5773,18 @@ type DouyinAppV3GetInformationOfSpecifiedUserResponse = APIResponse
 // DouyinAppV3GetUserFansListRequest is the request for 获取用户粉丝列表/Get user fans list.
 type DouyinAppV3GetUserFansListRequest struct {
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大时间戳/Maximum timestamp
-	MaxTime *string `query:"max_time,omitempty" json:"max_time,omitempty"`
+	MaxTime string `query:"max_time,omitempty" json:"max_time,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetUserFansListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_time", r.MaxTime)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "max_time", r.MaxTime)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -5794,18 +5794,18 @@ type DouyinAppV3GetUserFansListResponse = APIResponse
 // DouyinAppV3APIV1DouyinWebFetchUserFollowingListGetUserFollowingListRequest is the request for 获取用户关注列表 (弃用，使用 /api/v1/douyin/web/fetch_user_following_list 替代)/Get user following list (Deprecated, use /api/v1/douyin/web/fetch_user_following_list instead).
 type DouyinAppV3APIV1DouyinWebFetchUserFollowingListGetUserFollowingListRequest struct {
 	// 用户sec_user_id/User sec_user_id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大时间戳/Maximum timestamp
-	MaxTime *string `query:"max_time,omitempty" json:"max_time,omitempty"`
+	MaxTime string `query:"max_time,omitempty" json:"max_time,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3APIV1DouyinWebFetchUserFollowingListGetUserFollowingListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_time", r.MaxTime)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "max_time", r.MaxTime)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -5817,19 +5817,19 @@ type DouyinAppV3GetUserHomepageVideoDataRequest struct {
 	// 用户sec_user_id/User sec_user_id
 	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r DouyinAppV3GetUserHomepageVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -5841,16 +5841,16 @@ type DouyinAppV3GetUserLikeVideoDataRequest struct {
 	// 用户sec_user_id/User sec_user_id
 	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 最大游标/Maximum cursor
-	MaxCursor *int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor int `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 每页数量/Number per page
-	Counts *int `query:"counts,omitempty" json:"counts,omitempty"`
+	Counts int `query:"counts,omitempty" json:"counts,omitempty"`
 }
 
 func (r DouyinAppV3GetUserLikeVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "counts", r.Counts)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "counts", r.Counts)
 	return values
 }
 
@@ -5862,16 +5862,16 @@ type DouyinAppV3GetSingleVideoCommentsDataRequest struct {
 	// 作品id/Video id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetSingleVideoCommentsDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -5885,17 +5885,17 @@ type DouyinAppV3GetCommentRepliesDataOfSpecifiedVideoRequest struct {
 	// 评论id/Comment id
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetCommentRepliesDataOfSpecifiedVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "item_id", r.ItemID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -5922,16 +5922,16 @@ type DouyinAppV3GetDouyinVideoMixPostListDataRequest struct {
 	// 合集id/Mix id
 	MixID string `query:"mix_id,omitempty" json:"mix_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetDouyinVideoMixPostListDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "mix_id", r.MixID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -5941,18 +5941,18 @@ type DouyinAppV3GetDouyinVideoMixPostListDataResponse = APIResponse
 // DouyinAppV3GetUserSeriesListRequest is the request for 获取用户短剧合集列表/Get user series list.
 type DouyinAppV3GetUserSeriesListRequest struct {
 	// 用户id/User id
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户加密id/User sec id
-	SecUserID *string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
+	SecUserID string `query:"sec_user_id,omitempty" json:"sec_user_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r DouyinAppV3GetUserSeriesListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "sec_user_id", r.SecUserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "sec_user_id", r.SecUserID)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -5964,13 +5964,13 @@ type DouyinAppV3GetSeriesVideoListRequest struct {
 	// 短剧id/Series id
 	SeriesID string `query:"series_id,omitempty" json:"series_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r DouyinAppV3GetSeriesVideoListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "series_id", r.SeriesID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -5997,28 +5997,28 @@ type DouyinAppV3GetComprehensiveSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 发布时间/Publish time
-	PublishTime *string `query:"publish_time,omitempty" json:"publish_time,omitempty"`
+	PublishTime string `query:"publish_time,omitempty" json:"publish_time,omitempty"`
 	// 时长/Duration
-	FilterDuration *string `query:"filter_duration,omitempty" json:"filter_duration,omitempty"`
+	FilterDuration string `query:"filter_duration,omitempty" json:"filter_duration,omitempty"`
 	// 内容类型/Content type
-	ContentType *string `query:"content_type,omitempty" json:"content_type,omitempty"`
+	ContentType string `query:"content_type,omitempty" json:"content_type,omitempty"`
 }
 
 func (r DouyinAppV3GetComprehensiveSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "publish_time", r.PublishTime)
-	addQueryValue(values, "filter_duration", r.FilterDuration)
-	addQueryValue(values, "content_type", r.ContentType)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "publish_time", r.PublishTime)
+	addOptionalQueryValue(values, "filter_duration", r.FilterDuration)
+	addOptionalQueryValue(values, "content_type", r.ContentType)
 	return values
 }
 
@@ -6030,25 +6030,25 @@ type DouyinAppV3GetVideoSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 排序类型/Sort type
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 发布时间/Publish time
-	PublishTime *string `query:"publish_time,omitempty" json:"publish_time,omitempty"`
+	PublishTime string `query:"publish_time,omitempty" json:"publish_time,omitempty"`
 	// 时长/Duration
-	FilterDuration *string `query:"filter_duration,omitempty" json:"filter_duration,omitempty"`
+	FilterDuration string `query:"filter_duration,omitempty" json:"filter_duration,omitempty"`
 }
 
 func (r DouyinAppV3GetVideoSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "publish_time", r.PublishTime)
-	addQueryValue(values, "filter_duration", r.FilterDuration)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "publish_time", r.PublishTime)
+	addOptionalQueryValue(values, "filter_duration", r.FilterDuration)
 	return values
 }
 
@@ -6060,22 +6060,22 @@ type DouyinAppV3GetUserSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 粉丝数/Fans
-	DouyinUserFans *string `query:"douyin_user_fans,omitempty" json:"douyin_user_fans,omitempty"`
+	DouyinUserFans string `query:"douyin_user_fans,omitempty" json:"douyin_user_fans,omitempty"`
 	// 用户类型/User type
-	DouyinUserType *string `query:"douyin_user_type,omitempty" json:"douyin_user_type,omitempty"`
+	DouyinUserType string `query:"douyin_user_type,omitempty" json:"douyin_user_type,omitempty"`
 }
 
 func (r DouyinAppV3GetUserSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "douyin_user_fans", r.DouyinUserFans)
-	addQueryValue(values, "douyin_user_type", r.DouyinUserType)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "douyin_user_fans", r.DouyinUserFans)
+	addOptionalQueryValue(values, "douyin_user_type", r.DouyinUserType)
 	return values
 }
 
@@ -6087,16 +6087,16 @@ type DouyinAppV3GetLiveSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetLiveSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -6108,16 +6108,16 @@ type DouyinAppV3GetMusicSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetMusicSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -6129,16 +6129,16 @@ type DouyinAppV3GetHashtagSearchResultsOfSpecifiedKeywordsRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetHashtagSearchResultsOfSpecifiedKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -6165,16 +6165,16 @@ type DouyinAppV3GetVideoListOfSpecifiedMusicRequest struct {
 	// 音乐id/Music id
 	MusicID string `query:"music_id,omitempty" json:"music_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetVideoListOfSpecifiedMusicRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "music_id", r.MusicID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -6201,19 +6201,19 @@ type DouyinAppV3GetVideoListOfSpecifiedHashtagRequest struct {
 	// 话题id/Hashtag id
 	ChID string `query:"ch_id,omitempty" json:"ch_id,omitempty"`
 	// 游标/Cursor
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 排序类型/Sort type
-	SortType *int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType int `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 数量/Number
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r DouyinAppV3GetVideoListOfSpecifiedHashtagRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "ch_id", r.ChID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -6223,15 +6223,15 @@ type DouyinAppV3GetVideoListOfSpecifiedHashtagResponse = APIResponse
 // DouyinAppV3GetDouyinHotSearchListDataRequest is the request for 获取抖音热搜榜数据/Get Douyin hot search list data.
 type DouyinAppV3GetDouyinHotSearchListDataRequest struct {
 	// 榜单类型/Board type
-	BoardType *string `query:"board_type,omitempty" json:"board_type,omitempty"`
+	BoardType string `query:"board_type,omitempty" json:"board_type,omitempty"`
 	// 榜单子类型/Board sub type
-	BoardSubType *string `query:"board_sub_type,omitempty" json:"board_sub_type,omitempty"`
+	BoardSubType string `query:"board_sub_type,omitempty" json:"board_sub_type,omitempty"`
 }
 
 func (r DouyinAppV3GetDouyinHotSearchListDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "board_type", r.BoardType)
-	addQueryValue(values, "board_sub_type", r.BoardSubType)
+	addOptionalQueryValue(values, "board_type", r.BoardType)
+	addOptionalQueryValue(values, "board_sub_type", r.BoardSubType)
 	return values
 }
 
@@ -6248,15 +6248,15 @@ type DouyinAppV3GetDouyinLiveHotSearchListDataResponse = APIResponse
 // DouyinAppV3GetDouyinMusicHotSearchListDataRequest is the request for 获取抖音音乐榜数据/Get Douyin music hot search list data.
 type DouyinAppV3GetDouyinMusicHotSearchListDataRequest struct {
 	// 榜单类型/Chart type
-	ChartType *string `query:"chart_type,omitempty" json:"chart_type,omitempty"`
+	ChartType string `query:"chart_type,omitempty" json:"chart_type,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r DouyinAppV3GetDouyinMusicHotSearchListDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "chart_type", r.ChartType)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "chart_type", r.ChartType)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -6318,12 +6318,12 @@ type DouyinAppV3GenerateDouyinVideoShareQRCodeResponse = APIResponse
 // DouyinAppV3DouyinAppRegisterDeviceRequest is the request for 抖音APP注册设备/Douyin APP register device.
 type DouyinAppV3DouyinAppRegisterDeviceRequest struct {
 	// 代理/Proxy
-	Proxy *string `query:"proxy,omitempty" json:"proxy,omitempty"`
+	Proxy string `query:"proxy,omitempty" json:"proxy,omitempty"`
 }
 
 func (r DouyinAppV3DouyinAppRegisterDeviceRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "proxy", r.Proxy)
+	addOptionalQueryValue(values, "proxy", r.Proxy)
 	return values
 }
 
@@ -6439,18 +6439,18 @@ type DouyinCreatorGetCreatorMaterialCenterConfigResponse = APIResponse
 // DouyinCreatorGetCreatorMaterialCenterBillboardRequest is the request for 获取创作者中心热门视频榜单/Get creator material center billboard.
 type DouyinCreatorGetCreatorMaterialCenterBillboardRequest struct {
 	// 榜单标签，0=全部，其他值请通过config接口获取/Billboard tag, 0=all, other values can be obtained through config interface
-	BillboardTag *int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
+	BillboardTag int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
 	// 排序键: 1=播放最高, 2=点赞最多, 3=评论最多, 4=热度最高/Order key: 1=highest views, 2=most likes, 3=most comments, 4=highest popularity
-	OrderKey *int `query:"order_key,omitempty" json:"order_key,omitempty"`
+	OrderKey int `query:"order_key,omitempty" json:"order_key,omitempty"`
 	// 时间筛选: 1=24小时, 2=7天, 3=30天/Time filter: 1=24 hours, 2=7 days, 3=30 days
-	TimeFilter *int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
+	TimeFilter int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
 }
 
 func (r DouyinCreatorGetCreatorMaterialCenterBillboardRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "billboard_tag", r.BillboardTag)
-	addQueryValue(values, "order_key", r.OrderKey)
-	addQueryValue(values, "time_filter", r.TimeFilter)
+	addOptionalQueryValue(values, "billboard_tag", r.BillboardTag)
+	addOptionalQueryValue(values, "order_key", r.OrderKey)
+	addOptionalQueryValue(values, "time_filter", r.TimeFilter)
 	return values
 }
 
@@ -6462,19 +6462,19 @@ type DouyinCreatorGetTopicOrHotSpotRelatedVideosRequest struct {
 	// 查询ID/Query ID (话题ID/热点ID，从其他榜单接口获取)
 	QueryID string `query:"query_id,omitempty" json:"query_id,omitempty"`
 	// 榜单类型/Billboard type (2=热点, 3=话题, 4=道具, 5=音乐)
-	BillboardType *int `query:"billboard_type,omitempty" json:"billboard_type,omitempty"`
+	BillboardType int `query:"billboard_type,omitempty" json:"billboard_type,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r DouyinCreatorGetTopicOrHotSpotRelatedVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query_id", r.QueryID)
-	addQueryValue(values, "billboard_type", r.BillboardType)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "billboard_type", r.BillboardType)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -6484,18 +6484,18 @@ type DouyinCreatorGetTopicOrHotSpotRelatedVideosResponse = APIResponse
 // DouyinCreatorGetCreatorHotSpotBillboardRequest is the request for 获取创作者中心创作热点/Get creator hot spot billboard.
 type DouyinCreatorGetCreatorHotSpotBillboardRequest struct {
 	// 热点标签，多个标签用逗号分隔，如'1004,1000,1002'/Hot spot tag - multiple tags separated by comma, like '1004,1000,1002'
-	BillboardTag *string `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
+	BillboardTag string `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
 	// 热搜类型: 1=热点总榜, 2=同城热点榜, 3=热点上升榜/Hot search type: 1=Overall ranking, 2=Local ranking, 3=Rising ranking
-	HotSearchType *int `query:"hot_search_type,omitempty" json:"hot_search_type,omitempty"`
+	HotSearchType int `query:"hot_search_type,omitempty" json:"hot_search_type,omitempty"`
 	// 城市代码，当hot_search_type=2时必需/City code - required when hot_search_type=2
-	CityCode *string `query:"city_code,omitempty" json:"city_code,omitempty"`
+	CityCode string `query:"city_code,omitempty" json:"city_code,omitempty"`
 }
 
 func (r DouyinCreatorGetCreatorHotSpotBillboardRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "billboard_tag", r.BillboardTag)
-	addQueryValue(values, "hot_search_type", r.HotSearchType)
-	addQueryValue(values, "city_code", r.CityCode)
+	addOptionalQueryValue(values, "billboard_tag", r.BillboardTag)
+	addOptionalQueryValue(values, "hot_search_type", r.HotSearchType)
+	addOptionalQueryValue(values, "city_code", r.CityCode)
 	return values
 }
 
@@ -6505,18 +6505,18 @@ type DouyinCreatorGetCreatorHotSpotBillboardResponse = APIResponse
 // DouyinCreatorGetCreatorHotTopicBillboardRequest is the request for 获取创作者热门话题榜单/Get creator hot topic billboard.
 type DouyinCreatorGetCreatorHotTopicBillboardRequest struct {
 	// 榜单标签，0=全部，其他值请通过config接口获取/Billboard tag, 0=all, other values can be obtained through config interface
-	BillboardTag *int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
+	BillboardTag int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
 	// 排序键: 1=播放最高, 2=点赞最多, 3=评论最多, 4=投稿最多/Order key: 1=highest views, 2=most likes, 3=most comments, 4=most submissions
-	OrderKey *int `query:"order_key,omitempty" json:"order_key,omitempty"`
+	OrderKey int `query:"order_key,omitempty" json:"order_key,omitempty"`
 	// 时间筛选: 1=24小时, 2=7天, 3=30天/Time filter: 1=24 hours, 2=7 days, 3=30 days
-	TimeFilter *int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
+	TimeFilter int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
 }
 
 func (r DouyinCreatorGetCreatorHotTopicBillboardRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "billboard_tag", r.BillboardTag)
-	addQueryValue(values, "order_key", r.OrderKey)
-	addQueryValue(values, "time_filter", r.TimeFilter)
+	addOptionalQueryValue(values, "billboard_tag", r.BillboardTag)
+	addOptionalQueryValue(values, "order_key", r.OrderKey)
+	addOptionalQueryValue(values, "time_filter", r.TimeFilter)
 	return values
 }
 
@@ -6526,18 +6526,18 @@ type DouyinCreatorGetCreatorHotTopicBillboardResponse = APIResponse
 // DouyinCreatorGetCreatorHotPropsBillboardRequest is the request for 获取创作者热门道具榜单/Get creator hot props billboard.
 type DouyinCreatorGetCreatorHotPropsBillboardRequest struct {
 	// 榜单标签，0=全部，其他值请通过config接口获取/Billboard tag, 0=all, other values can be obtained through config interface
-	BillboardTag *int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
+	BillboardTag int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
 	// 排序键: 1=播放最高, 5=投稿最多, 6=展现最高, 7=收藏最高/Order key: 1=highest views, 5=most submissions, 6=highest exposure, 7=most favorites
-	OrderKey *int `query:"order_key,omitempty" json:"order_key,omitempty"`
+	OrderKey int `query:"order_key,omitempty" json:"order_key,omitempty"`
 	// 时间筛选: 1=24小时, 2=7天, 3=30天/Time filter: 1=24 hours, 2=7 days, 3=30 days
-	TimeFilter *int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
+	TimeFilter int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
 }
 
 func (r DouyinCreatorGetCreatorHotPropsBillboardRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "billboard_tag", r.BillboardTag)
-	addQueryValue(values, "order_key", r.OrderKey)
-	addQueryValue(values, "time_filter", r.TimeFilter)
+	addOptionalQueryValue(values, "billboard_tag", r.BillboardTag)
+	addOptionalQueryValue(values, "order_key", r.OrderKey)
+	addOptionalQueryValue(values, "time_filter", r.TimeFilter)
 	return values
 }
 
@@ -6554,18 +6554,18 @@ type DouyinCreatorGetCreatorHotChallengeBillboardResponse = APIResponse
 // DouyinCreatorGetCreatorHotMusicBillboardRequest is the request for 获取创作者热门音乐榜单/Get creator hot music billboard.
 type DouyinCreatorGetCreatorHotMusicBillboardRequest struct {
 	// 榜单标签/Billboard tag (0=全部，具体分类值可通过配置接口获取)
-	BillboardTag *int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
+	BillboardTag int `query:"billboard_tag,omitempty" json:"billboard_tag,omitempty"`
 	// 排序键/Order key (1=播放最高, 2=点赞最多, 4=热度最高, 5=投稿最多)
-	OrderKey *int `query:"order_key,omitempty" json:"order_key,omitempty"`
+	OrderKey int `query:"order_key,omitempty" json:"order_key,omitempty"`
 	// 时间筛选/Time filter (1=24小时, 2=7天, 3=30天)
-	TimeFilter *int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
+	TimeFilter int `query:"time_filter,omitempty" json:"time_filter,omitempty"`
 }
 
 func (r DouyinCreatorGetCreatorHotMusicBillboardRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "billboard_tag", r.BillboardTag)
-	addQueryValue(values, "order_key", r.OrderKey)
-	addQueryValue(values, "time_filter", r.TimeFilter)
+	addOptionalQueryValue(values, "billboard_tag", r.BillboardTag)
+	addOptionalQueryValue(values, "order_key", r.OrderKey)
+	addOptionalQueryValue(values, "time_filter", r.TimeFilter)
 	return values
 }
 
@@ -6575,21 +6575,21 @@ type DouyinCreatorGetCreatorHotMusicBillboardResponse = APIResponse
 // DouyinCreatorGetCreatorHotCourseRequest is the request for 获取创作者热门课程/Get creator hot course.
 type DouyinCreatorGetCreatorHotCourseRequest struct {
 	// 排序方式/Order type (1=推荐排序, 2=最受欢迎, 3=最新上传)
-	Order *int `query:"order,omitempty" json:"order,omitempty"`
+	Order int `query:"order,omitempty" json:"order,omitempty"`
 	// 每页数量/Items per page (建议24)
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 精选专题分类ID/Selected topic category ID - 不传则为热门课程，传入则为精选专题 可选值/Available values: 6976547830546582816=知识品类, 6976547923849006336=生活品类, 6976547940311633165=娱乐品类, 6976547972108635404=美食品类, 6980288134957272352=正能量, 6980288181744766219=游戏品类, 6980288219548011776=通用
-	CategoryID *string `query:"category_id,omitempty" json:"category_id,omitempty"`
+	CategoryID string `query:"category_id,omitempty" json:"category_id,omitempty"`
 }
 
 func (r DouyinCreatorGetCreatorHotCourseRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "order", r.Order)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "category_id", r.CategoryID)
+	addOptionalQueryValue(values, "order", r.Order)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "category_id", r.CategoryID)
 	return values
 }
 
@@ -6608,19 +6608,19 @@ type DouyinCreatorGetCreatorContentCreationCourseRequest struct {
 	// 分类ID/Category ID
 	CategoryID int `query:"category_id,omitempty" json:"category_id,omitempty"`
 	// 排序方式/Order type (1=推荐排序, 2=最受欢迎, 3=最新上传)
-	Order *int `query:"order,omitempty" json:"order,omitempty"`
+	Order int `query:"order,omitempty" json:"order,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset (starting position)
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r DouyinCreatorGetCreatorContentCreationCourseRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "category_id", r.CategoryID)
-	addQueryValue(values, "order", r.Order)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "order", r.Order)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -6632,22 +6632,22 @@ type DouyinCreatorGetVideoDanmakuListRequest struct {
 	// 作品ID/Video item ID
 	ItemID string `query:"item_id,omitempty" json:"item_id,omitempty"`
 	// 每页数量/Items per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 偏移量/Offset (starting position)
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 排序类型/Order type (1=时间排序, 2=其他排序)
-	OrderType *int `query:"order_type,omitempty" json:"order_type,omitempty"`
+	OrderType int `query:"order_type,omitempty" json:"order_type,omitempty"`
 	// 是否被屏蔽/Is blocked
-	IsBlocked *bool `query:"is_blocked,omitempty" json:"is_blocked,omitempty"`
+	IsBlocked bool `query:"is_blocked,omitempty" json:"is_blocked,omitempty"`
 }
 
 func (r DouyinCreatorGetVideoDanmakuListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "item_id", r.ItemID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "order_type", r.OrderType)
-	addQueryValue(values, "is_blocked", r.IsBlocked)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "order_type", r.OrderType)
+	addOptionalQueryValue(values, "is_blocked", r.IsBlocked)
 	return values
 }
 
@@ -6672,45 +6672,45 @@ type DouyinCreatorSearchUsersResponse = APIResponse
 // DouyinCreatorGetMissionTaskListRequest is the request for 获取商单任务列表/Get mission task list.
 type DouyinCreatorGetMissionTaskListRequest struct {
 	// 游标/Cursor (分页)
-	Cursor *int `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor int `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页数量/Items per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 任务类型/Mission type
-	MissionType *int `query:"mission_type,omitempty" json:"mission_type,omitempty"`
+	MissionType int `query:"mission_type,omitempty" json:"mission_type,omitempty"`
 	// 场景类型/Scene type (1=可投稿, 2=可报名, 3=好物测评)
-	TabScene *int `query:"tab_scene,omitempty" json:"tab_scene,omitempty"`
+	TabScene int `query:"tab_scene,omitempty" json:"tab_scene,omitempty"`
 	// 一级行业/Primary industry (-1=全部)
-	IndustryLv1 *int `query:"industry_lv1,omitempty" json:"industry_lv1,omitempty"`
+	IndustryLv1 int `query:"industry_lv1,omitempty" json:"industry_lv1,omitempty"`
 	// 二级行业/Secondary industry (-1=全部)
-	IndustryLv2 *int `query:"industry_lv2,omitempty" json:"industry_lv2,omitempty"`
+	IndustryLv2 int `query:"industry_lv2,omitempty" json:"industry_lv2,omitempty"`
 	// 平台渠道/Platform channel (1=抖音视频, 2=抖音直播, 3=抖音图文)
-	PlatformChannel *int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
+	PlatformChannel int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
 	// 付费类型/Pay type (1=视频等级, 2=自定义, 3=按转化付费, 4=按有效播放量, 5=按销售量, 9=按核销量, 14=按付费分佣)
-	PayType *int `query:"pay_type,omitempty" json:"pay_type,omitempty"`
+	PayType int `query:"pay_type,omitempty" json:"pay_type,omitempty"`
 	// 成本进度/Cost progress (20=高于20%, 50=高于50%, 80=高于80%)
-	GreaterThanCostProgress *int `query:"greater_than_cost_progress,omitempty" json:"greater_than_cost_progress,omitempty"`
+	GreaterThanCostProgress int `query:"greater_than_cost_progress,omitempty" json:"greater_than_cost_progress,omitempty"`
 	// 发布开始时间/Publish start time (时间戳)
-	PublishTimeStart *int `query:"publish_time_start,omitempty" json:"publish_time_start,omitempty"`
+	PublishTimeStart int `query:"publish_time_start,omitempty" json:"publish_time_start,omitempty"`
 	// 快速选择场景/Quick selector (1=高收益, 4=保底收入, 5=合作过)
-	QuickSelectorScene *int `query:"quick_selector_scene,omitempty" json:"quick_selector_scene,omitempty"`
+	QuickSelectorScene int `query:"quick_selector_scene,omitempty" json:"quick_selector_scene,omitempty"`
 	// 关键词/Keyword (任务名称或ID)
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r DouyinCreatorGetMissionTaskListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "mission_type", r.MissionType)
-	addQueryValue(values, "tab_scene", r.TabScene)
-	addQueryValue(values, "industry_lv1", r.IndustryLv1)
-	addQueryValue(values, "industry_lv2", r.IndustryLv2)
-	addQueryValue(values, "platform_channel", r.PlatformChannel)
-	addQueryValue(values, "pay_type", r.PayType)
-	addQueryValue(values, "greater_than_cost_progress", r.GreaterThanCostProgress)
-	addQueryValue(values, "publish_time_start", r.PublishTimeStart)
-	addQueryValue(values, "quick_selector_scene", r.QuickSelectorScene)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "mission_type", r.MissionType)
+	addOptionalQueryValue(values, "tab_scene", r.TabScene)
+	addOptionalQueryValue(values, "industry_lv1", r.IndustryLv1)
+	addOptionalQueryValue(values, "industry_lv2", r.IndustryLv2)
+	addOptionalQueryValue(values, "platform_channel", r.PlatformChannel)
+	addOptionalQueryValue(values, "pay_type", r.PayType)
+	addOptionalQueryValue(values, "greater_than_cost_progress", r.GreaterThanCostProgress)
+	addOptionalQueryValue(values, "publish_time_start", r.PublishTimeStart)
+	addOptionalQueryValue(values, "quick_selector_scene", r.QuickSelectorScene)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -6731,14 +6731,14 @@ type DouyinCreatorV2FetchItemOverviewDataRequest struct {
 	// 作品ID列表,多个ID用逗号分隔/Item IDs, separated by comma
 	Ids string `json:"ids,omitempty"`
 	// 需要返回的字段,多个字段用逗号分隔/Fields to return, separated by comma. 可选值: metrics(指标),review(审核),play_info(播放信息),dou_plus(抖+),integrated_incentive(综合激励),incentive_life(激励生命周期),content_analysis(内容分析)
-	Fields *string `json:"fields,omitempty"`
+	Fields string `json:"fields,omitempty"`
 }
 
 func (r DouyinCreatorV2FetchItemOverviewDataRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "cookie", r.Cookie)
 	addBodyValue(body, "ids", r.Ids)
-	addBodyValue(body, "fields", r.Fields)
+	addOptionalBodyValue(body, "fields", r.Fields)
 	return body
 }
 
@@ -6788,14 +6788,14 @@ type DouyinCreatorV2FetchItemWatchTrendAnalysisRequest struct {
 	// 作品ID/Item ID
 	ItemID string `json:"item_id,omitempty"`
 	// 分析类型/Analysis type: 1=留存分析(Retention), 2=点赞分析(Like), 7=跳出分析(Bounce)
-	AnalysisType *int `json:"analysis_type,omitempty"`
+	AnalysisType int `json:"analysis_type,omitempty"`
 }
 
 func (r DouyinCreatorV2FetchItemWatchTrendAnalysisRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "cookie", r.Cookie)
 	addBodyValue(body, "item_id", r.ItemID)
-	addBodyValue(body, "analysis_type", r.AnalysisType)
+	addOptionalBodyValue(body, "analysis_type", r.AnalysisType)
 	return body
 }
 
@@ -6917,7 +6917,7 @@ type DouyinCreatorV2FetchItemAnalysisItemPerformanceRequest struct {
 	// 垂类标签列表/Primary verticals list (从involved_vertical接口获取)
 	PrimaryVerticals []string `json:"primary_verticals,omitempty"`
 	// 指标类型/Metric type: 1=播放量(Views), 2=点赞量(Likes), 3=评论量(Comments), 4=分享量(Shares)
-	MetricType *int `json:"metric_type,omitempty"`
+	MetricType int `json:"metric_type,omitempty"`
 }
 
 func (r DouyinCreatorV2FetchItemAnalysisItemPerformanceRequest) toBody() any {
@@ -6927,7 +6927,7 @@ func (r DouyinCreatorV2FetchItemAnalysisItemPerformanceRequest) toBody() any {
 	addBodyValue(body, "end_date", r.EndDate)
 	addBodyValue(body, "genres", r.Genres)
 	addBodyValue(body, "primary_verticals", r.PrimaryVerticals)
-	addBodyValue(body, "metric_type", r.MetricType)
+	addOptionalBodyValue(body, "metric_type", r.MetricType)
 	return body
 }
 
@@ -6939,34 +6939,34 @@ type DouyinCreatorV2FetchItemListRequest struct {
 	// 用户Cookie/User Cookie
 	Cookie string `json:"cookie,omitempty"`
 	// 每页数量/Count per page (最多100条)
-	Count *int `json:"count,omitempty"`
+	Count int `json:"count,omitempty"`
 	// 排序方式/Order by (1-26): 1=发布时间↓(新到旧), 2=发布时间↑(旧到新), 3=播放量↓, 4=播放量↑, 5=点赞量↓, 6=点赞量↑, 7=评论量↓, 8=评论量↑, 9=分享量↓, 10=分享量↑, 11=收藏量↓, 12=收藏量↑, 13=2s跳出率↓, 14=2s跳出率↑, 15=5s完播率↓, 16=5s完播率↑, 17=完播率↓, 18=完播率↑, 19=封面点击率↓, 20=封面点击率↑, 21=平均播放时长↓, 22=平均播放时长↑, 23=主页访问量↓, 24=主页访问量↑, 25=粉丝增量↓, 26=粉丝增量↑
-	OrderBy *int `json:"order_by,omitempty"`
+	OrderBy int `json:"order_by,omitempty"`
 	// 需要返回的字段/Fields to return
-	Fields *string `json:"fields,omitempty"`
+	Fields string `json:"fields,omitempty"`
 	// 是否需要合作信息/Need cooperation info
-	NeedCooperation *bool `json:"need_cooperation,omitempty"`
+	NeedCooperation bool `json:"need_cooperation,omitempty"`
 	// 开始时间戳(毫秒)/Start time timestamp (milliseconds)
 	StartTime int `json:"start_time,omitempty"`
 	// 结束时间戳(毫秒)/End time timestamp (milliseconds)
 	EndTime int `json:"end_time,omitempty"`
 	// 是否包含长图文/Include long articles
-	NeedLongArticle *bool `json:"need_long_article,omitempty"`
+	NeedLongArticle bool `json:"need_long_article,omitempty"`
 	// 分页游标/Pagination cursor (可选)
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 }
 
 func (r DouyinCreatorV2FetchItemListRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "count", r.Count)
-	addBodyValue(body, "order_by", r.OrderBy)
-	addBodyValue(body, "fields", r.Fields)
-	addBodyValue(body, "need_cooperation", r.NeedCooperation)
+	addOptionalBodyValue(body, "count", r.Count)
+	addOptionalBodyValue(body, "order_by", r.OrderBy)
+	addOptionalBodyValue(body, "fields", r.Fields)
+	addOptionalBodyValue(body, "need_cooperation", r.NeedCooperation)
 	addBodyValue(body, "start_time", r.StartTime)
 	addBodyValue(body, "end_time", r.EndTime)
-	addBodyValue(body, "need_long_article", r.NeedLongArticle)
-	addBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "need_long_article", r.NeedLongArticle)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
 	return body
 }
 
@@ -6984,7 +6984,7 @@ type DouyinCreatorV2DownloadItemListRequest struct {
 	// 体裁类型过滤/Type filters: 1=1min以内视频, 2=1-3min视频, 3=3-5min视频, 4=5min+视频, 5=图文, 8=长图文
 	TypeFilters []int `json:"type_filters,omitempty"`
 	// 是否包含长图文/Include long articles
-	NeedLongArticle *bool `json:"need_long_article,omitempty"`
+	NeedLongArticle bool `json:"need_long_article,omitempty"`
 }
 
 func (r DouyinCreatorV2DownloadItemListRequest) toBody() any {
@@ -6993,7 +6993,7 @@ func (r DouyinCreatorV2DownloadItemListRequest) toBody() any {
 	addBodyValue(body, "min_cursor", r.MinCursor)
 	addBodyValue(body, "max_cursor", r.MaxCursor)
 	addBodyValue(body, "type_filters", r.TypeFilters)
-	addBodyValue(body, "need_long_article", r.NeedLongArticle)
+	addOptionalBodyValue(body, "need_long_article", r.NeedLongArticle)
 	return body
 }
 
@@ -7009,11 +7009,11 @@ type DouyinCreatorV2FetchLiveRoomHistoryListRequest struct {
 	// 结束日期(格式YYYY-MM-DD)/End date (format YYYY-MM-DD)
 	EndDate string `json:"end_date,omitempty"`
 	// 每页数量限制/Limit per page (最多400条)
-	Limit *int `json:"limit,omitempty"`
+	Limit int `json:"limit,omitempty"`
 	// 是否包含正在直播的场次/Include living rooms: 0=不包含, 1=包含
-	NeedLiving *int `json:"need_living,omitempty"`
+	NeedLiving int `json:"need_living,omitempty"`
 	// 是否下载/Download: 0=不下载, 1=下载
-	Download *int `json:"download,omitempty"`
+	Download int `json:"download,omitempty"`
 }
 
 func (r DouyinCreatorV2FetchLiveRoomHistoryListRequest) toBody() any {
@@ -7021,9 +7021,9 @@ func (r DouyinCreatorV2FetchLiveRoomHistoryListRequest) toBody() any {
 	addBodyValue(body, "cookie", r.Cookie)
 	addBodyValue(body, "start_date", r.StartDate)
 	addBodyValue(body, "end_date", r.EndDate)
-	addBodyValue(body, "limit", r.Limit)
-	addBodyValue(body, "need_living", r.NeedLiving)
-	addBodyValue(body, "download", r.Download)
+	addOptionalBodyValue(body, "limit", r.Limit)
+	addOptionalBodyValue(body, "need_living", r.NeedLiving)
+	addOptionalBodyValue(body, "download", r.Download)
 	return body
 }
 
@@ -7076,12 +7076,12 @@ type DouyinIndexGetCurrentHotTopicsResponse = APIResponse
 // DouyinIndexGetHotWordsRequest is the request for 获取热门关键词/Get hot words.
 type DouyinIndexGetHotWordsRequest struct {
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexGetHotWordsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7112,9 +7112,9 @@ type DouyinIndexGetMultiKeywordHotTrendRequest struct {
 	// 结束日期/End date, YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 	// 地区列表，逗号分隔/Region list, comma separated
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r DouyinIndexGetMultiKeywordHotTrendRequest) toQuery() url.Values {
@@ -7122,8 +7122,8 @@ func (r DouyinIndexGetMultiKeywordHotTrendRequest) toQuery() url.Values {
 	addQueryValue(values, "keyword_list", r.KeywordList)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -7139,9 +7139,9 @@ type DouyinIndexGetMultiKeywordInterpretationRequest struct {
 	// 结束日期/End date, YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 	// 地区列表，逗号分隔/Region list, comma separated
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r DouyinIndexGetMultiKeywordInterpretationRequest) toQuery() url.Values {
@@ -7149,8 +7149,8 @@ func (r DouyinIndexGetMultiKeywordInterpretationRequest) toQuery() url.Values {
 	addQueryValue(values, "keyword_list", r.KeywordList)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -7166,7 +7166,7 @@ type DouyinIndexGetRelationWordAnalysisRequest struct {
 	// 结束日期（必须为周日）/End date (must be Sunday) YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexGetRelationWordAnalysisRequest) toQuery() url.Values {
@@ -7174,7 +7174,7 @@ func (r DouyinIndexGetRelationWordAnalysisRequest) toQuery() url.Values {
 	addQueryValue(values, "keyword", r.Keyword)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7190,7 +7190,7 @@ type DouyinIndexGetCrowdPortraitRequest struct {
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexGetCrowdPortraitRequest) toQuery() url.Values {
@@ -7198,7 +7198,7 @@ func (r DouyinIndexGetCrowdPortraitRequest) toQuery() url.Values {
 	addQueryValue(values, "keyword", r.Keyword)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7232,13 +7232,13 @@ type DouyinIndexDarenSearchSuggestRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 返回数量/Return count
-	Total *string `query:"total,omitempty" json:"total,omitempty"`
+	Total string `query:"total,omitempty" json:"total,omitempty"`
 }
 
 func (r DouyinIndexDarenSearchSuggestRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "total", r.Total)
+	addOptionalQueryValue(values, "total", r.Total)
 	return values
 }
 
@@ -7250,13 +7250,13 @@ type DouyinIndexDarenCompareUsersRequest struct {
 	// 达人抖音 uid 列表，逗号分隔，最多5个 / Daren uid list, comma separated, max 5
 	UserList string `query:"user_list,omitempty" json:"user_list,omitempty"`
 	// 天数/Days: 7 or 30
-	Days *string `query:"days,omitempty" json:"days,omitempty"`
+	Days string `query:"days,omitempty" json:"days,omitempty"`
 }
 
 func (r DouyinIndexDarenCompareUsersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_list", r.UserList)
-	addQueryValue(values, "days", r.Days)
+	addOptionalQueryValue(values, "days", r.Days)
 	return values
 }
 
@@ -7356,22 +7356,22 @@ type DouyinIndexVideoSearchResultsRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 垂类ID（可通过 fetch_item_filter_options 获取）/Category ID (get from fetch_item_filter_options), 0=全部/all
-	CategoryID *string `query:"category_id,omitempty" json:"category_id,omitempty"`
+	CategoryID string `query:"category_id,omitempty" json:"category_id,omitempty"`
 	// 发布时间类型（可通过 fetch_item_filter_options 获取）/Date type (get from fetch_item_filter_options), 0=不限/unlimited
-	DateType *int `query:"date_type,omitempty" json:"date_type,omitempty"`
+	DateType int `query:"date_type,omitempty" json:"date_type,omitempty"`
 	// 视频类型（可通过 fetch_item_filter_options 获取）/Label type (get from fetch_item_filter_options), 0=不限/unlimited
-	LabelType *int `query:"label_type,omitempty" json:"label_type,omitempty"`
+	LabelType int `query:"label_type,omitempty" json:"label_type,omitempty"`
 	// 时长类型（可通过 fetch_item_filter_options 获取）/Duration type (get from fetch_item_filter_options), 0=不限/unlimited
-	DurationType *int `query:"duration_type,omitempty" json:"duration_type,omitempty"`
+	DurationType int `query:"duration_type,omitempty" json:"duration_type,omitempty"`
 }
 
 func (r DouyinIndexVideoSearchResultsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "category_id", r.CategoryID)
-	addQueryValue(values, "date_type", r.DateType)
-	addQueryValue(values, "label_type", r.LabelType)
-	addQueryValue(values, "duration_type", r.DurationType)
+	addOptionalQueryValue(values, "category_id", r.CategoryID)
+	addOptionalQueryValue(values, "date_type", r.DateType)
+	addOptionalQueryValue(values, "label_type", r.LabelType)
+	addOptionalQueryValue(values, "duration_type", r.DurationType)
 	return values
 }
 
@@ -7417,7 +7417,7 @@ type DouyinIndexGetBrandRadarChartRequest struct {
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexGetBrandRadarChartRequest) toQuery() url.Values {
@@ -7425,7 +7425,7 @@ func (r DouyinIndexGetBrandRadarChartRequest) toQuery() url.Values {
 	addQueryValue(values, "brand_name", r.BrandName)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7441,7 +7441,7 @@ type DouyinIndexGetBrandTrendLinesRequest struct {
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexGetBrandTrendLinesRequest) toQuery() url.Values {
@@ -7449,7 +7449,7 @@ func (r DouyinIndexGetBrandTrendLinesRequest) toQuery() url.Values {
 	addQueryValue(values, "brand_name", r.BrandName)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7465,7 +7465,7 @@ type DouyinIndexGetBrandCyclesRequest struct {
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexGetBrandCyclesRequest) toQuery() url.Values {
@@ -7473,7 +7473,7 @@ func (r DouyinIndexGetBrandCyclesRequest) toQuery() url.Values {
 	addQueryValue(values, "brand_name", r.BrandName)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7489,7 +7489,7 @@ type DouyinIndexGetBrandInitiativeRankWeeklyRequest struct {
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexGetBrandInitiativeRankWeeklyRequest) toQuery() url.Values {
@@ -7497,7 +7497,7 @@ func (r DouyinIndexGetBrandInitiativeRankWeeklyRequest) toQuery() url.Values {
 	addQueryValue(values, "brand_name", r.BrandName)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7509,13 +7509,13 @@ type DouyinIndexTopicSearchSuggestRequest struct {
 	// 话题关键词/Topic keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexTopicSearchSuggestRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7531,7 +7531,7 @@ type DouyinIndexTopicSearchResultsRequest struct {
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 平台/Platform: aweme(抖音), toutiao(头条)
-	AppName *string `query:"app_name,omitempty" json:"app_name,omitempty"`
+	AppName string `query:"app_name,omitempty" json:"app_name,omitempty"`
 }
 
 func (r DouyinIndexTopicSearchResultsRequest) toQuery() url.Values {
@@ -7539,7 +7539,7 @@ func (r DouyinIndexTopicSearchResultsRequest) toQuery() url.Values {
 	addQueryValue(values, "keyword", r.Keyword)
 	addQueryValue(values, "start_date", r.StartDate)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "app_name", r.AppName)
+	addOptionalQueryValue(values, "app_name", r.AppName)
 	return values
 }
 
@@ -7565,7 +7565,7 @@ type DouyinIndexContentCreativeKeywordsRequest struct {
 	// 垂类ID，**必填，不支持 0=全部**（同 fetch_item_query 的 category_id 但不接受 0）/Category ID, **required, does NOT support 0=all**. Get full list via fetch_item_filter_options (excluding id=0)
 	TagID string `query:"tag_id,omitempty" json:"tag_id,omitempty"`
 	// 时间周期/Period: 1=近1天, 3=近3天, 7=近7天
-	Period *string `query:"period,omitempty" json:"period,omitempty"`
+	Period string `query:"period,omitempty" json:"period,omitempty"`
 	// 结束日期 YYYYMMDD（**仅当 period=7 时必须为周日**，period=1/3 时可为任意日期）/End date YYYYMMDD (**must be a Sunday only when period=7**; any day for period=1/3)
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 }
@@ -7573,7 +7573,7 @@ type DouyinIndexContentCreativeKeywordsRequest struct {
 func (r DouyinIndexContentCreativeKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tag_id", r.TagID)
-	addQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "period", r.Period)
 	addQueryValue(values, "end_date", r.EndDate)
 	return values
 }
@@ -7586,7 +7586,7 @@ type DouyinIndexCreativeKeywordRelatedItemsRequest struct {
 	// 垂类ID，**必填，不支持 0=全部** / Category ID, **required, does NOT support 0=all**
 	TagID string `query:"tag_id,omitempty" json:"tag_id,omitempty"`
 	// 时间周期/Period: 1, 3, 7
-	Period *string `query:"period,omitempty" json:"period,omitempty"`
+	Period string `query:"period,omitempty" json:"period,omitempty"`
 	// 结束日期 YYYYMMDD（**仅当 period=7 时必须为周日**，period=1/3 时可为任意日期）/End date YYYYMMDD (**must be a Sunday only when period=7**; any day for period=1/3)
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 关键词（从 fetch_content_creative_keywords 获取）/Keyword (get from fetch_content_creative_keywords)
@@ -7596,7 +7596,7 @@ type DouyinIndexCreativeKeywordRelatedItemsRequest struct {
 func (r DouyinIndexCreativeKeywordRelatedItemsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tag_id", r.TagID)
-	addQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "period", r.Period)
 	addQueryValue(values, "end_date", r.EndDate)
 	addQueryValue(values, "keyword", r.Keyword)
 	return values
@@ -7610,19 +7610,19 @@ type DouyinIndexContentCreativeTopicRequest struct {
 	// 垂类ID，**必填，不支持 0=全部** / Category ID, **required, does NOT support 0=all**
 	TagID string `query:"tag_id,omitempty" json:"tag_id,omitempty"`
 	// 时间周期/Period: 1, 3, 7
-	Period *string `query:"period,omitempty" json:"period,omitempty"`
+	Period string `query:"period,omitempty" json:"period,omitempty"`
 	// 结束日期 YYYYMMDD（**仅当 period=7 时必须为周日**，period=1/3 时可为任意日期）/End date YYYYMMDD (**must be a Sunday only when period=7**; any day for period=1/3)
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 排序类型/Rank type: index=指数排序, rise=飙升排序
-	RankType *string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
+	RankType string `query:"rank_type,omitempty" json:"rank_type,omitempty"`
 }
 
 func (r DouyinIndexContentCreativeTopicRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tag_id", r.TagID)
-	addQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "period", r.Period)
 	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "rank_type", r.RankType)
+	addOptionalQueryValue(values, "rank_type", r.RankType)
 	return values
 }
 
@@ -7655,7 +7655,7 @@ type DouyinIndexContentCreativeDurationRequest struct {
 	// 垂类ID，**必填，不支持 0=全部**（同 fetch_item_query 的 category_id 但不接受 0）/Category ID, **required, does NOT support 0=all**. Get full list via fetch_item_filter_options (excluding id=0)
 	TagID string `query:"tag_id,omitempty" json:"tag_id,omitempty"`
 	// 时间粒度/Period: week=周, month=月
-	Period *string `query:"period,omitempty" json:"period,omitempty"`
+	Period string `query:"period,omitempty" json:"period,omitempty"`
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 }
@@ -7663,7 +7663,7 @@ type DouyinIndexContentCreativeDurationRequest struct {
 func (r DouyinIndexContentCreativeDurationRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tag_id", r.TagID)
-	addQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "period", r.Period)
 	addQueryValue(values, "end_date", r.EndDate)
 	return values
 }
@@ -7676,7 +7676,7 @@ type DouyinIndexContentAuthorPortraitRequest struct {
 	// 垂类ID，**必填，不支持 0=全部**（同 fetch_item_query 的 category_id 但不接受 0）/Category ID, **required, does NOT support 0=all**. Get full list via fetch_item_filter_options (excluding id=0)
 	TagID string `query:"tag_id,omitempty" json:"tag_id,omitempty"`
 	// 时间粒度/Period: week or month
-	Period *string `query:"period,omitempty" json:"period,omitempty"`
+	Period string `query:"period,omitempty" json:"period,omitempty"`
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 }
@@ -7684,7 +7684,7 @@ type DouyinIndexContentAuthorPortraitRequest struct {
 func (r DouyinIndexContentAuthorPortraitRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tag_id", r.TagID)
-	addQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "period", r.Period)
 	addQueryValue(values, "end_date", r.EndDate)
 	return values
 }
@@ -7697,7 +7697,7 @@ type DouyinIndexContentConsumerPortraitRequest struct {
 	// 垂类ID，**必填，不支持 0=全部**（同 fetch_item_query 的 category_id 但不接受 0）/Category ID, **required, does NOT support 0=all**. Get full list via fetch_item_filter_options (excluding id=0)
 	TagID string `query:"tag_id,omitempty" json:"tag_id,omitempty"`
 	// 时间粒度/Period: week or month
-	Period *string `query:"period,omitempty" json:"period,omitempty"`
+	Period string `query:"period,omitempty" json:"period,omitempty"`
 	// 结束日期/End date YYYYMMDD
 	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 }
@@ -7705,7 +7705,7 @@ type DouyinIndexContentConsumerPortraitRequest struct {
 func (r DouyinIndexContentConsumerPortraitRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tag_id", r.TagID)
-	addQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "period", r.Period)
 	addQueryValue(values, "end_date", r.EndDate)
 	return values
 }
@@ -7765,30 +7765,30 @@ type DouyinIndexGetRecommendedInsightReportsResponse = APIResponse
 // DouyinIndexSearchTrendReportsRequest is the request for 搜索趋势报告/Search trend reports.
 type DouyinIndexSearchTrendReportsRequest struct {
 	// 页码/Page number
-	CurrentPage *string `query:"current_page,omitempty" json:"current_page,omitempty"`
+	CurrentPage string `query:"current_page,omitempty" json:"current_page,omitempty"`
 	// 每页数量/Page size
-	PageSize *string `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize string `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 报告类型/Report type: 空=全部, 行业洞察=Industry, 产品洞察=Product, 用户洞察=User, 趋势洞察=Trend
-	TypeValue *string `query:"type,omitempty" json:"type,omitempty"`
+	TypeValue string `query:"type,omitempty" json:"type,omitempty"`
 	// 所属产品列表，逗号分隔/Business list, comma separated. Options: 巨量引擎, 今日头条, 抖音, 西瓜视频, 抖音电商, 仕小禄, 其他
-	Business *string `query:"business,omitempty" json:"business,omitempty"`
+	Business string `query:"business,omitempty" json:"business,omitempty"`
 	// 发布年份列表，逗号分隔/Year list, comma separated. e.g. 2024,2023
-	ReportTime *string `query:"report_time,omitempty" json:"report_time,omitempty"`
+	ReportTime string `query:"report_time,omitempty" json:"report_time,omitempty"`
 	// 报告关键词搜索/Search keyword
-	Search *string `query:"search,omitempty" json:"search,omitempty"`
+	Search string `query:"search,omitempty" json:"search,omitempty"`
 	// 顶层分类ID（默认 6 表示抖音指数趋势报告）/Top category ID (default 6 = Douyin Index trend reports)
-	Category *string `query:"category,omitempty" json:"category,omitempty"`
+	Category string `query:"category,omitempty" json:"category,omitempty"`
 }
 
 func (r DouyinIndexSearchTrendReportsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "current_page", r.CurrentPage)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "type", r.TypeValue)
-	addQueryValue(values, "business", r.Business)
-	addQueryValue(values, "report_time", r.ReportTime)
-	addQueryValue(values, "search", r.Search)
-	addQueryValue(values, "category", r.Category)
+	addOptionalQueryValue(values, "current_page", r.CurrentPage)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "type", r.TypeValue)
+	addOptionalQueryValue(values, "business", r.Business)
+	addOptionalQueryValue(values, "report_time", r.ReportTime)
+	addOptionalQueryValue(values, "search", r.Search)
+	addOptionalQueryValue(values, "category", r.Category)
 	return values
 }
 
@@ -7828,33 +7828,33 @@ type DouyinIndexGetRelatedInsightRecommendationsResponse = APIResponse
 // DouyinSearchFetchGeneralSearchV1Request is the request for 获取综合搜索 V1/Fetch general search V1.
 type DouyinSearchFetchGeneralSearchV1Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchGeneralSearchV1Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -7864,33 +7864,33 @@ type DouyinSearchFetchGeneralSearchV1Response = APIResponse
 // DouyinSearchFetchGeneralSearchV2Request is the request for 获取综合搜索 V2/Fetch general search V2.
 type DouyinSearchFetchGeneralSearchV2Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchGeneralSearchV2Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -7900,12 +7900,12 @@ type DouyinSearchFetchGeneralSearchV2Response = APIResponse
 // DouyinSearchFetchSearchKeywordSuggestionsRequest is the request for 获取搜索关键词推荐/Fetch search keyword suggestions.
 type DouyinSearchFetchSearchKeywordSuggestionsRequest struct {
 	// 需要联想的关键词/The keyword to be suggested
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 }
 
 func (r DouyinSearchFetchSearchKeywordSuggestionsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
 	return body
 }
 
@@ -7915,33 +7915,33 @@ type DouyinSearchFetchSearchKeywordSuggestionsResponse = APIResponse
 // DouyinSearchFetchVideoSearchV1Request is the request for 获取视频搜索 V1/Fetch video search V1.
 type DouyinSearchFetchVideoSearchV1Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchVideoSearchV1Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -7951,33 +7951,33 @@ type DouyinSearchFetchVideoSearchV1Response = APIResponse
 // DouyinSearchFetchVideoSearchV2Request is the request for 获取视频搜索 V2/Fetch video search V2.
 type DouyinSearchFetchVideoSearchV2Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchVideoSearchV2Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -7987,33 +7987,33 @@ type DouyinSearchFetchVideoSearchV2Response = APIResponse
 // DouyinSearchFetchMultiTypeSearchRequest is the request for 获取多重搜索/Fetch multi-type search.
 type DouyinSearchFetchMultiTypeSearchRequest struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchMultiTypeSearchRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8023,24 +8023,24 @@ type DouyinSearchFetchMultiTypeSearchResponse = APIResponse
 // DouyinSearchFetchUserSearchRequest is the request for 获取用户搜索/Fetch user search.
 type DouyinSearchFetchUserSearchRequest struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 粉丝数过滤：空=不限 0_1k=1千以下 1k_5k=1千到5千 5k_10k=5千到1万 10k_100k=1万到10万 100k_1M=10万到100万 1M_=100万以上 / Fans filter: empty=No limit, 0_1k=Under 1k, etc.
-	DouyinUserFans *string `json:"douyin_user_fans,omitempty"`
+	DouyinUserFans string `json:"douyin_user_fans,omitempty"`
 	// 用户类型过滤：空=不限 300=创作者 900=小店 700=音乐人 800=明星 / User type filter: empty=No limit, 300=Creator, 900=Shop, 700=Musician, 800=Celebrity
-	DouyinUserType *string `json:"douyin_user_type,omitempty"`
+	DouyinUserType string `json:"douyin_user_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 }
 
 func (r DouyinSearchFetchUserSearchRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "douyin_user_fans", r.DouyinUserFans)
-	addBodyValue(body, "douyin_user_type", r.DouyinUserType)
-	addBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "douyin_user_fans", r.DouyinUserFans)
+	addOptionalBodyValue(body, "douyin_user_type", r.DouyinUserType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
 	return body
 }
 
@@ -8050,15 +8050,15 @@ type DouyinSearchFetchUserSearchResponse = APIResponse
 // DouyinSearchFetchUserSearchV2Request is the request for 获取用户搜索 V2/Fetch user search V2.
 type DouyinSearchFetchUserSearchV2Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 }
 
 func (r DouyinSearchFetchUserSearchV2Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
 	return body
 }
 
@@ -8068,33 +8068,33 @@ type DouyinSearchFetchUserSearchV2Response = APIResponse
 // DouyinSearchFetchImageSearchRequest is the request for 获取图片搜索/Fetch image search.
 type DouyinSearchFetchImageSearchRequest struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchImageSearchRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8106,16 +8106,16 @@ type DouyinSearchFetchImageTextSearchV3Request struct {
 	// 搜索关键词/Search keyword
 	Keyword string `json:"keyword,omitempty"`
 	// 翻页游标/Pagination cursor
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 搜索ID/Search ID for pagination
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 }
 
 func (r DouyinSearchFetchImageTextSearchV3Request) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
 	return body
 }
 
@@ -8125,33 +8125,33 @@ type DouyinSearchFetchImageTextSearchV3Response = APIResponse
 // DouyinSearchFetchLiveSearchV1Request is the request for 获取直播搜索 V1/Fetch live search V1.
 type DouyinSearchFetchLiveSearchV1Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchLiveSearchV1Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8161,33 +8161,33 @@ type DouyinSearchFetchLiveSearchV1Response = APIResponse
 // DouyinSearchFetchHashtagSearchV1Request is the request for 获取话题搜索 V1/Fetch hashtag search V1.
 type DouyinSearchFetchHashtagSearchV1Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchHashtagSearchV1Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8197,33 +8197,33 @@ type DouyinSearchFetchHashtagSearchV1Response = APIResponse
 // DouyinSearchFetchHashtagSearchV2Request is the request for 获取话题搜索 V2/Fetch hashtag search V2.
 type DouyinSearchFetchHashtagSearchV2Request struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchHashtagSearchV2Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8233,12 +8233,12 @@ type DouyinSearchFetchHashtagSearchV2Response = APIResponse
 // DouyinSearchFetchHashtagSuggestionsRequest is the request for 获取话题推荐搜索/Fetch hashtag suggestions.
 type DouyinSearchFetchHashtagSuggestionsRequest struct {
 	// 关键词，如 '游戏' / Keyword, e.g., 'game'
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 }
 
 func (r DouyinSearchFetchHashtagSuggestionsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
 	return body
 }
 
@@ -8248,33 +8248,33 @@ type DouyinSearchFetchHashtagSuggestionsResponse = APIResponse
 // DouyinSearchFetchExperienceSearchRequest is the request for 获取经验搜索/Fetch experience search.
 type DouyinSearchFetchExperienceSearchRequest struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchExperienceSearchRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8284,33 +8284,33 @@ type DouyinSearchFetchExperienceSearchResponse = APIResponse
 // DouyinSearchFetchMusicSearchRequest is the request for 获取音乐搜索/Fetch music search.
 type DouyinSearchFetchMusicSearchRequest struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchMusicSearchRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8320,33 +8320,33 @@ type DouyinSearchFetchMusicSearchResponse = APIResponse
 // DouyinSearchFetchDiscussionSearchRequest is the request for 获取讨论搜索/Fetch discussion search.
 type DouyinSearchFetchDiscussionSearchRequest struct {
 	// 关键词 / Keyword
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 排序方式：0=综合排序 1=最多点赞 2=最新发布 / Sort type: 0=Comprehensive, 1=Most Likes, 2=Latest
-	SortType *string `json:"sort_type,omitempty"`
+	SortType string `json:"sort_type,omitempty"`
 	// 发布时间筛选：0=不限 1=最近一天 7=最近一周 180=最近半年 / Publish time filter: 0=Unlimited, 1=Last day, 7=Last week, 180=Last half year
-	PublishTime *string `json:"publish_time,omitempty"`
+	PublishTime string `json:"publish_time,omitempty"`
 	// 视频时长过滤：0=不限 0-1=一分钟以内 1-5=一到五分钟 5-10000=五分钟以上 / Video duration filter: 0=Unlimited, 0-1=Within 1 minute, 1-5=1 to 5 minutes, 5-10000=More than 5 minutes
-	FilterDuration *string `json:"filter_duration,omitempty"`
+	FilterDuration string `json:"filter_duration,omitempty"`
 	// 内容类型：0=不限 1=视频 2=图片 3=文章 / Content type: 0=All, 1=Video, 2=Picture, 3=Article
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 翻页回溯标识，用于翻页，从上一次请求返回的响应中获取 / Backtrace for pagination, obtained from the last response
-	Backtrace *string `json:"backtrace,omitempty"`
+	Backtrace string `json:"backtrace,omitempty"`
 }
 
 func (r DouyinSearchFetchDiscussionSearchRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "sort_type", r.SortType)
-	addBodyValue(body, "publish_time", r.PublishTime)
-	addBodyValue(body, "filter_duration", r.FilterDuration)
-	addBodyValue(body, "content_type", r.ContentType)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "backtrace", r.Backtrace)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "sort_type", r.SortType)
+	addOptionalBodyValue(body, "publish_time", r.PublishTime)
+	addOptionalBodyValue(body, "filter_duration", r.FilterDuration)
+	addOptionalBodyValue(body, "content_type", r.ContentType)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "backtrace", r.Backtrace)
 	return body
 }
 
@@ -8356,12 +8356,12 @@ type DouyinSearchFetchDiscussionSearchResponse = APIResponse
 // DouyinSearchFetchSchoolSearchRequest is the request for 获取学校搜索/Fetch school search.
 type DouyinSearchFetchSchoolSearchRequest struct {
 	// 关键词，如学校名称或所在地区 / Keyword, such as school name or location
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 }
 
 func (r DouyinSearchFetchSchoolSearchRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
 	return body
 }
 
@@ -8373,31 +8373,31 @@ type DouyinSearchFetchVisionSearchRequest struct {
 	// 图片URI，从抖音其他接口返回中获取（如视频详情、搜索结果、用户主页等接口的图片uri字段）/ Image URI obtained from other Douyin API responses (e.g., video details, search results, user profile - look for image uri fields)
 	ImageURI string `json:"image_uri,omitempty"`
 	// 偏移游标，用于翻页，从上一次请求返回的响应中获取 / Offset cursor for pagination, obtained from the last response
-	Cursor *int `json:"cursor,omitempty"`
+	Cursor int `json:"cursor,omitempty"`
 	// 搜索ID，用于翻页，从上一次请求返回的响应中获取 / Search ID for pagination, obtained from the last response
-	SearchID *string `json:"search_id,omitempty"`
+	SearchID string `json:"search_id,omitempty"`
 	// 搜索来源：graphic_detail=图片详情页搜索, visual_normal_search=带关键词追加搜索 / Search source: graphic_detail=Image detail page search, visual_normal_search=Search with keyword append
-	SearchSource *string `json:"search_source,omitempty"`
+	SearchSource string `json:"search_source,omitempty"`
 	// 检测区域坐标，格式为 x1,y1,x2,y2 / Detection area coordinates in format x1,y1,x2,y2
-	Detection *string `json:"detection,omitempty"`
+	Detection string `json:"detection,omitempty"`
 	// 检测索引 / Detection index
-	DetectionIndex *int `json:"detection_index,omitempty"`
+	DetectionIndex int `json:"detection_index,omitempty"`
 	// 搜索关键词，仅当search_source=visual_normal_search时使用 / Search keyword, only used when search_source=visual_normal_search
-	UserQuery *string `json:"user_query,omitempty"`
+	UserQuery string `json:"user_query,omitempty"`
 	// 原视频ID，仅当search_source=visual_normal_search时使用 / Original video ID, only used when search_source=visual_normal_search
-	AwemeID *string `json:"aweme_id,omitempty"`
+	AwemeID string `json:"aweme_id,omitempty"`
 }
 
 func (r DouyinSearchFetchVisionSearchRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "image_uri", r.ImageURI)
-	addBodyValue(body, "cursor", r.Cursor)
-	addBodyValue(body, "search_id", r.SearchID)
-	addBodyValue(body, "search_source", r.SearchSource)
-	addBodyValue(body, "detection", r.Detection)
-	addBodyValue(body, "detection_index", r.DetectionIndex)
-	addBodyValue(body, "user_query", r.UserQuery)
-	addBodyValue(body, "aweme_id", r.AwemeID)
+	addOptionalBodyValue(body, "cursor", r.Cursor)
+	addOptionalBodyValue(body, "search_id", r.SearchID)
+	addOptionalBodyValue(body, "search_source", r.SearchSource)
+	addOptionalBodyValue(body, "detection", r.Detection)
+	addOptionalBodyValue(body, "detection_index", r.DetectionIndex)
+	addOptionalBodyValue(body, "user_query", r.UserQuery)
+	addOptionalBodyValue(body, "aweme_id", r.AwemeID)
 	return body
 }
 
@@ -8423,22 +8423,22 @@ type DouyinBillboardFetchHotListCategoryRequest struct {
 	// 榜单类型
 	BillboardType string `query:"billboard_type,omitempty" json:"billboard_type,omitempty"`
 	// 快照时间 格式yyyyMMddHHmmss
-	SnapshotTime *string `query:"snapshot_time,omitempty" json:"snapshot_time,omitempty"`
+	SnapshotTime string `query:"snapshot_time,omitempty" json:"snapshot_time,omitempty"`
 	// 快照开始时间 格式yyyyMMdd
-	StartDate *string `query:"start_date,omitempty" json:"start_date,omitempty"`
+	StartDate string `query:"start_date,omitempty" json:"start_date,omitempty"`
 	// 快照结束时间 格式yyyyMMdd
-	EndDate *string `query:"end_date,omitempty" json:"end_date,omitempty"`
+	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 热点搜索词
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchHotListCategoryRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "billboard_type", r.BillboardType)
-	addQueryValue(values, "snapshot_time", r.SnapshotTime)
-	addQueryValue(values, "start_date", r.StartDate)
-	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "snapshot_time", r.SnapshotTime)
+	addOptionalQueryValue(values, "start_date", r.StartDate)
+	addOptionalQueryValue(values, "end_date", r.EndDate)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -8454,9 +8454,9 @@ type DouyinBillboardFetchRisingHotListRequest struct {
 	// 排序方式
 	Order string `query:"order,omitempty" json:"order,omitempty"`
 	// 热点分类标签，从热点榜分类获取，多个分类用逗号分隔，空为全部
-	SentenceTag *string `query:"sentence_tag,omitempty" json:"sentence_tag,omitempty"`
+	SentenceTag string `query:"sentence_tag,omitempty" json:"sentence_tag,omitempty"`
 	// 热点搜索词
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchRisingHotListRequest) toQuery() url.Values {
@@ -8464,8 +8464,8 @@ func (r DouyinBillboardFetchRisingHotListRequest) toQuery() url.Values {
 	addQueryValue(values, "page", r.Page)
 	addQueryValue(values, "page_size", r.PageSize)
 	addQueryValue(values, "order", r.Order)
-	addQueryValue(values, "sentence_tag", r.SentenceTag)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "sentence_tag", r.SentenceTag)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -8481,11 +8481,11 @@ type DouyinBillboardFetchCityHotListRequest struct {
 	// 排序方式
 	Order string `query:"order,omitempty" json:"order,omitempty"`
 	// 城市编码，从城市列表获取，空为全部
-	CityCode *string `query:"city_code,omitempty" json:"city_code,omitempty"`
+	CityCode string `query:"city_code,omitempty" json:"city_code,omitempty"`
 	// 热点分类标签，从热点榜分类获取，多个分类用逗号分隔，空为全部
-	SentenceTag *string `query:"sentence_tag,omitempty" json:"sentence_tag,omitempty"`
+	SentenceTag string `query:"sentence_tag,omitempty" json:"sentence_tag,omitempty"`
 	// 热点搜索词
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchCityHotListRequest) toQuery() url.Values {
@@ -8493,9 +8493,9 @@ func (r DouyinBillboardFetchCityHotListRequest) toQuery() url.Values {
 	addQueryValue(values, "page", r.Page)
 	addQueryValue(values, "page_size", r.PageSize)
 	addQueryValue(values, "order", r.Order)
-	addQueryValue(values, "city_code", r.CityCode)
-	addQueryValue(values, "sentence_tag", r.SentenceTag)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "city_code", r.CityCode)
+	addOptionalQueryValue(values, "sentence_tag", r.SentenceTag)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -8509,14 +8509,14 @@ type DouyinBillboardFetchHotChallengeListRequest struct {
 	// 每页数量
 	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 热点搜索词
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchHotChallengeListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "page", r.Page)
 	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -8532,15 +8532,15 @@ type DouyinBillboardFetchTotalHotListRequest struct {
 	// 快照类型 snapshot 按时刻查看 range 按时间范围
 	TypeValue string `query:"type,omitempty" json:"type,omitempty"`
 	// 快照时间 格式yyyyMMddHHmmss
-	SnapshotTime *string `query:"snapshot_time,omitempty" json:"snapshot_time,omitempty"`
+	SnapshotTime string `query:"snapshot_time,omitempty" json:"snapshot_time,omitempty"`
 	// 快照开始时间 格式yyyyMMdd
-	StartDate *string `query:"start_date,omitempty" json:"start_date,omitempty"`
+	StartDate string `query:"start_date,omitempty" json:"start_date,omitempty"`
 	// 快照结束时间 格式yyyyMMdd
-	EndDate *string `query:"end_date,omitempty" json:"end_date,omitempty"`
+	EndDate string `query:"end_date,omitempty" json:"end_date,omitempty"`
 	// 热点分类标签，从热点榜分类获取，多个分类用逗号分隔，空为全部
-	SentenceTag *string `query:"sentence_tag,omitempty" json:"sentence_tag,omitempty"`
+	SentenceTag string `query:"sentence_tag,omitempty" json:"sentence_tag,omitempty"`
 	// 热点搜索词
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchTotalHotListRequest) toQuery() url.Values {
@@ -8548,11 +8548,11 @@ func (r DouyinBillboardFetchTotalHotListRequest) toQuery() url.Values {
 	addQueryValue(values, "page", r.Page)
 	addQueryValue(values, "page_size", r.PageSize)
 	addQueryValue(values, "type", r.TypeValue)
-	addQueryValue(values, "snapshot_time", r.SnapshotTime)
-	addQueryValue(values, "start_date", r.StartDate)
-	addQueryValue(values, "end_date", r.EndDate)
-	addQueryValue(values, "sentence_tag", r.SentenceTag)
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "snapshot_time", r.SnapshotTime)
+	addOptionalQueryValue(values, "start_date", r.StartDate)
+	addOptionalQueryValue(values, "end_date", r.EndDate)
+	addOptionalQueryValue(values, "sentence_tag", r.SentenceTag)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -8562,21 +8562,21 @@ type DouyinBillboardFetchTotalHotListResponse = APIResponse
 // DouyinBillboardFetchActivityCalendarRequest is the request for 获取活动日历/Fetch activity calendar.
 type DouyinBillboardFetchActivityCalendarRequest struct {
 	// 城市编码，从城市列表获取，空为全部
-	CityCode *string `json:"city_code,omitempty"`
+	CityCode string `json:"city_code,omitempty"`
 	// 热点榜分类编码，从热点榜分类获取，空为全部
-	CategoryCode *string `json:"category_code,omitempty"`
+	CategoryCode string `json:"category_code,omitempty"`
 	// 快照结束时间 格式10位时间戳
-	EndDate *int `json:"end_date,omitempty"`
+	EndDate int `json:"end_date,omitempty"`
 	// 快照开始时间 格式10位时间戳
-	StartDate *int `json:"start_date,omitempty"`
+	StartDate int `json:"start_date,omitempty"`
 }
 
 func (r DouyinBillboardFetchActivityCalendarRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "city_code", r.CityCode)
-	addBodyValue(body, "category_code", r.CategoryCode)
-	addBodyValue(body, "end_date", r.EndDate)
-	addBodyValue(body, "start_date", r.StartDate)
+	addOptionalBodyValue(body, "city_code", r.CityCode)
+	addOptionalBodyValue(body, "category_code", r.CategoryCode)
+	addOptionalBodyValue(body, "end_date", r.EndDate)
+	addOptionalBodyValue(body, "start_date", r.StartDate)
 	return body
 }
 
@@ -8603,13 +8603,13 @@ type DouyinBillboardFetchWorkLikeAudiencePortraitHotListOnlyRequest struct {
 	// 作品id
 	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 选项，1 手机价格分布 2 性别分布 3 年龄分布 4 地域分布-省份 5 地域分布-城市 6 城市等级 7 手机品牌分布
-	Option *int `query:"option,omitempty" json:"option,omitempty"`
+	Option int `query:"option,omitempty" json:"option,omitempty"`
 }
 
 func (r DouyinBillboardFetchWorkLikeAudiencePortraitHotListOnlyRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "option", r.Option)
+	addOptionalQueryValue(values, "option", r.Option)
 	return values
 }
 
@@ -8634,18 +8634,18 @@ type DouyinBillboardFetchWorkCommentAnalysisWordCloudWeightResponse = APIRespons
 // DouyinBillboardFetchPostDataTrendRequest is the request for 获取作品数据趋势/Fetch post data trend.
 type DouyinBillboardFetchPostDataTrendRequest struct {
 	// 作品id
-	AwemeID *string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
+	AwemeID string `query:"aweme_id,omitempty" json:"aweme_id,omitempty"`
 	// 选项，7 点赞量 8 分享量 9 评论量
-	Option *int `query:"option,omitempty" json:"option,omitempty"`
+	Option int `query:"option,omitempty" json:"option,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `query:"date_window,omitempty" json:"date_window,omitempty"`
+	DateWindow int `query:"date_window,omitempty" json:"date_window,omitempty"`
 }
 
 func (r DouyinBillboardFetchPostDataTrendRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "aweme_id", r.AwemeID)
-	addQueryValue(values, "option", r.Option)
-	addQueryValue(values, "date_window", r.DateWindow)
+	addOptionalQueryValue(values, "aweme_id", r.AwemeID)
+	addOptionalQueryValue(values, "option", r.Option)
+	addOptionalQueryValue(values, "date_window", r.DateWindow)
 	return values
 }
 
@@ -8655,20 +8655,20 @@ type DouyinBillboardFetchPostDataTrendResponse = APIResponse
 // DouyinBillboardFetchHotAccountListRequest is the request for 获取热门账号/Fetch hot account list.
 type DouyinBillboardFetchHotAccountListRequest struct {
 	// 时间窗口，格式 小时，默认24小时
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 页码，默认1
-	PageNum *int `json:"page_num,omitempty"`
+	PageNum int `json:"page_num,omitempty"`
 	// 每页数量，默认10
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	QueryTag map[string]any `json:"query_tag,omitempty"`
 }
 
 func (r DouyinBillboardFetchHotAccountListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "date_window", r.DateWindow)
-	addBodyValue(body, "page_num", r.PageNum)
-	addBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "page_num", r.PageNum)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
 	addBodyValue(body, "query_tag", r.QueryTag)
 	return body
 }
@@ -8699,16 +8699,16 @@ type DouyinBillboardFetchAccountFanDataTrendRequest struct {
 	// 用户sec_id
 	SecUID string `query:"sec_uid,omitempty" json:"sec_uid,omitempty"`
 	// 选项，2 新增点赞量 3 新增作品量 4 新增评论量 5 新增分享量
-	Option *int `query:"option,omitempty" json:"option,omitempty"`
+	Option int `query:"option,omitempty" json:"option,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `query:"date_window,omitempty" json:"date_window,omitempty"`
+	DateWindow int `query:"date_window,omitempty" json:"date_window,omitempty"`
 }
 
 func (r DouyinBillboardFetchAccountFanDataTrendRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_uid", r.SecUID)
-	addQueryValue(values, "option", r.Option)
-	addQueryValue(values, "date_window", r.DateWindow)
+	addOptionalQueryValue(values, "option", r.Option)
+	addOptionalQueryValue(values, "date_window", r.DateWindow)
 	return values
 }
 
@@ -8735,13 +8735,13 @@ type DouyinBillboardFetchFanPortraitRequest struct {
 	// 用户sec_id
 	SecUID string `query:"sec_uid,omitempty" json:"sec_uid,omitempty"`
 	// 选项，1 手机价格分布 2 性别分布 3 年龄分布 4 地域分布-省份 5 地域分布-城市 6 城市等级 7 手机品牌分布 8 兴趣标签分析 百分比
-	Option *int `query:"option,omitempty" json:"option,omitempty"`
+	Option int `query:"option,omitempty" json:"option,omitempty"`
 }
 
 func (r DouyinBillboardFetchFanPortraitRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sec_uid", r.SecUID)
-	addQueryValue(values, "option", r.Option)
+	addOptionalQueryValue(values, "option", r.Option)
 	return values
 }
 
@@ -8796,23 +8796,23 @@ type DouyinBillboardFetchFanInterestSearchTermInTheLast3Days10SearchTermsRespons
 // DouyinBillboardFetchVideoHotListRequest is the request for 获取视频热榜/Fetch video hot list.
 type DouyinBillboardFetchVideoHotListRequest struct {
 	// 页码，默认1
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量，默认10
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 榜单分类，1001 视频总榜 1002 低粉爆款 1003 高完播率 1004 高涨粉率 1005 高点赞率
-	SubType *int `json:"sub_type,omitempty"`
+	SubType int `json:"sub_type,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	Tags []map[string]any `json:"tags,omitempty"`
 }
 
 func (r DouyinBillboardFetchVideoHotListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
-	addBodyValue(body, "sub_type", r.SubType)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "sub_type", r.SubType)
 	addBodyValue(body, "tags", r.Tags)
 	return body
 }
@@ -8823,20 +8823,20 @@ type DouyinBillboardFetchVideoHotListResponse = APIResponse
 // DouyinBillboardFetchLowFanExplosionListRequest is the request for 获取低粉爆款榜/Fetch low fan explosion list.
 type DouyinBillboardFetchLowFanExplosionListRequest struct {
 	// 页码
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	Tags []map[string]any `json:"tags,omitempty"`
 }
 
 func (r DouyinBillboardFetchLowFanExplosionListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
 	addBodyValue(body, "tags", r.Tags)
 	return body
 }
@@ -8847,20 +8847,20 @@ type DouyinBillboardFetchLowFanExplosionListResponse = APIResponse
 // DouyinBillboardFetchHighCompletionRateListRequest is the request for 获取高完播率榜/Fetch high completion rate list.
 type DouyinBillboardFetchHighCompletionRateListRequest struct {
 	// 页码
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	Tags []map[string]any `json:"tags,omitempty"`
 }
 
 func (r DouyinBillboardFetchHighCompletionRateListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
 	addBodyValue(body, "tags", r.Tags)
 	return body
 }
@@ -8871,20 +8871,20 @@ type DouyinBillboardFetchHighCompletionRateListResponse = APIResponse
 // DouyinBillboardFetchHighLikeRateListRequest is the request for 获取高点赞率榜/Fetch high like rate list.
 type DouyinBillboardFetchHighLikeRateListRequest struct {
 	// 页码
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	Tags []map[string]any `json:"tags,omitempty"`
 }
 
 func (r DouyinBillboardFetchHighLikeRateListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
 	addBodyValue(body, "tags", r.Tags)
 	return body
 }
@@ -8895,20 +8895,20 @@ type DouyinBillboardFetchHighLikeRateListResponse = APIResponse
 // DouyinBillboardFetchHighFanRateListRequest is the request for 获取高涨粉率榜/Fetch high fan rate list.
 type DouyinBillboardFetchHighFanRateListRequest struct {
 	// 页码
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	Tags []map[string]any `json:"tags,omitempty"`
 }
 
 func (r DouyinBillboardFetchHighFanRateListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
 	addBodyValue(body, "tags", r.Tags)
 	return body
 }
@@ -8919,20 +8919,20 @@ type DouyinBillboardFetchHighFanRateListResponse = APIResponse
 // DouyinBillboardFetchTopicHotListRequest is the request for 获取话题热榜/Fetch topic hot list.
 type DouyinBillboardFetchTopicHotListRequest struct {
 	// 页码
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	Tags []map[string]any `json:"tags,omitempty"`
 }
 
 func (r DouyinBillboardFetchTopicHotListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
 	addBodyValue(body, "tags", r.Tags)
 	return body
 }
@@ -8943,20 +8943,20 @@ type DouyinBillboardFetchTopicHotListResponse = APIResponse
 // DouyinBillboardFetchTopicListWithRisingPopularityRequest is the request for 获取热度飙升的话题榜/Fetch topic list with rising popularity.
 type DouyinBillboardFetchTopicListWithRisingPopularityRequest struct {
 	// 页码
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 子级垂类标签，空则为全部，多个标签需传入{"value": "{顶级垂类标签id}", "children": [{"value": "{子级垂类标签id}"}, {"value": "{子级垂类标签id}"}]}
 	Tags []map[string]any `json:"tags,omitempty"`
 }
 
 func (r DouyinBillboardFetchTopicListWithRisingPopularityRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
 	addBodyValue(body, "tags", r.Tags)
 	return body
 }
@@ -8967,21 +8967,21 @@ type DouyinBillboardFetchTopicListWithRisingPopularityResponse = APIResponse
 // DouyinBillboardFetchSearchHotListRequest is the request for 获取搜索热榜/Fetch search hot list.
 type DouyinBillboardFetchSearchHotListRequest struct {
 	// 页码
-	PageNum *int `json:"page_num,omitempty"`
+	PageNum int `json:"page_num,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 搜索关键字
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchSearchHotListRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page_num", r.PageNum)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
-	addBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "page_num", r.PageNum)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
 	return body
 }
 
@@ -8991,21 +8991,21 @@ type DouyinBillboardFetchSearchHotListResponse = APIResponse
 // DouyinBillboardFetchSearchListWithRisingPopularityRequest is the request for 获取热度飙升的搜索榜/Fetch search list with rising popularity.
 type DouyinBillboardFetchSearchListWithRisingPopularityRequest struct {
 	// 页码
-	PageNum *int `json:"page_num,omitempty"`
+	PageNum int `json:"page_num,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 搜索关键字
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchSearchListWithRisingPopularityRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page_num", r.PageNum)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
-	addBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "page_num", r.PageNum)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
 	return body
 }
 
@@ -9015,21 +9015,21 @@ type DouyinBillboardFetchSearchListWithRisingPopularityResponse = APIResponse
 // DouyinBillboardFetchAllHotContentWordsRequest is the request for 获取全部热门内容词/Fetch all hot content words.
 type DouyinBillboardFetchAllHotContentWordsRequest struct {
 	// 页码
-	PageNum *int `json:"page_num,omitempty"`
+	PageNum int `json:"page_num,omitempty"`
 	// 每页数量
-	PageSize *int `json:"page_size,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
 	// 时间窗口，1 按小时 2 按天
-	DateWindow *int `json:"date_window,omitempty"`
+	DateWindow int `json:"date_window,omitempty"`
 	// 搜索关键字
-	Keyword *string `json:"keyword,omitempty"`
+	Keyword string `json:"keyword,omitempty"`
 }
 
 func (r DouyinBillboardFetchAllHotContentWordsRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "page_num", r.PageNum)
-	addBodyValue(body, "page_size", r.PageSize)
-	addBodyValue(body, "date_window", r.DateWindow)
-	addBodyValue(body, "keyword", r.Keyword)
+	addOptionalBodyValue(body, "page_num", r.PageNum)
+	addOptionalBodyValue(body, "page_size", r.PageSize)
+	addOptionalBodyValue(body, "date_window", r.DateWindow)
+	addOptionalBodyValue(body, "keyword", r.Keyword)
 	return body
 }
 
@@ -9062,16 +9062,16 @@ type DouyinXingtuGetSignImageRequest struct {
 	// 图片的uri/Image URI
 	URI string `query:"uri,omitempty" json:"uri,omitempty"`
 	// 有效期时长（秒）/Duration in seconds
-	DurationTs *int `query:"durationTS,omitempty" json:"durationTS,omitempty"`
+	DurationTs int `query:"durationTS,omitempty" json:"durationTS,omitempty"`
 	// 图片格式/Image format
-	Format *string `query:"format,omitempty" json:"format,omitempty"`
+	Format string `query:"format,omitempty" json:"format,omitempty"`
 }
 
 func (r DouyinXingtuGetSignImageRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uri", r.URI)
-	addQueryValue(values, "durationTS", r.DurationTs)
-	addQueryValue(values, "format", r.Format)
+	addOptionalQueryValue(values, "durationTS", r.DurationTs)
+	addOptionalQueryValue(values, "format", r.Format)
 	return values
 }
 
@@ -9161,13 +9161,13 @@ type DouyinXingtuGetKolFansPortraitV1Request struct {
 	// 用户的kolId/User kolId
 	KolID string `query:"kolId,omitempty" json:"kolId,omitempty"`
 	// 粉丝类型/Fans Type
-	FansType *string `query:"fansType,omitempty" json:"fansType,omitempty"`
+	FansType string `query:"fansType,omitempty" json:"fansType,omitempty"`
 }
 
 func (r DouyinXingtuGetKolFansPortraitV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "kolId", r.KolID)
-	addQueryValue(values, "fansType", r.FansType)
+	addOptionalQueryValue(values, "fansType", r.FansType)
 	return values
 }
 
@@ -9203,7 +9203,7 @@ type DouyinXingtuGetKolDataOverviewV1Request struct {
 	// 流量类型/Flow Type
 	FlowType int `query:"flowType,omitempty" json:"flowType,omitempty"`
 	// 是否指派/Whether assigned (optional)
-	OnlyAssign *bool `query:"onlyAssign,omitempty" json:"onlyAssign,omitempty"`
+	OnlyAssign bool `query:"onlyAssign,omitempty" json:"onlyAssign,omitempty"`
 }
 
 func (r DouyinXingtuGetKolDataOverviewV1Request) toQuery() url.Values {
@@ -9212,7 +9212,7 @@ func (r DouyinXingtuGetKolDataOverviewV1Request) toQuery() url.Values {
 	addQueryValue(values, "_type", r.TypeValue)
 	addQueryValue(values, "_range", r.RangeValue)
 	addQueryValue(values, "flowType", r.FlowType)
-	addQueryValue(values, "onlyAssign", r.OnlyAssign)
+	addOptionalQueryValue(values, "onlyAssign", r.OnlyAssign)
 	return values
 }
 
@@ -9245,16 +9245,16 @@ type DouyinXingtuSearchKolAdvancedV2Request struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 粉丝范围(可选)/Follower Range (optional), 例如 10-100 表示10万-100万粉丝
-	FollowerRange *string `query:"followerRange,omitempty" json:"followerRange,omitempty"`
+	FollowerRange string `query:"followerRange,omitempty" json:"followerRange,omitempty"`
 	// 内容标签(可选)/Content Tag (optional), 例如 tag-1 或 tag_level_two-7
-	ContentTag *string `query:"contentTag,omitempty" json:"contentTag,omitempty"`
+	ContentTag string `query:"contentTag,omitempty" json:"contentTag,omitempty"`
 }
 
 func (r DouyinXingtuSearchKolAdvancedV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "followerRange", r.FollowerRange)
-	addQueryValue(values, "contentTag", r.ContentTag)
+	addOptionalQueryValue(values, "followerRange", r.FollowerRange)
+	addOptionalQueryValue(values, "contentTag", r.ContentTag)
 	return values
 }
 
@@ -9447,15 +9447,15 @@ type DouyinXingtuGetAuthorContentHotCommentKeywordsV1Response = APIResponse
 // DouyinXingtuV2GetRankingListCatalogRequest is the request for 获取星图热榜分类/Get Ranking List Catalog.
 type DouyinXingtuV2GetRankingListCatalogRequest struct {
 	// 分类代码，默认为空字符串/Classification codes, default is empty string
-	Codes *string `query:"codes,omitempty" json:"codes,omitempty"`
+	Codes string `query:"codes,omitempty" json:"codes,omitempty"`
 	// 业务场景/Business scene
-	BizScene *string `query:"biz_scene,omitempty" json:"biz_scene,omitempty"`
+	BizScene string `query:"biz_scene,omitempty" json:"biz_scene,omitempty"`
 }
 
 func (r DouyinXingtuV2GetRankingListCatalogRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "codes", r.Codes)
-	addQueryValue(values, "biz_scene", r.BizScene)
+	addOptionalQueryValue(values, "codes", r.Codes)
+	addOptionalQueryValue(values, "biz_scene", r.BizScene)
 	return values
 }
 
@@ -9465,27 +9465,27 @@ type DouyinXingtuV2GetRankingListCatalogResponse = APIResponse
 // DouyinXingtuV2GetRankingListDataRequest is the request for 获取星图达人商业榜数据/Get Ranking List Data.
 type DouyinXingtuV2GetRankingListDataRequest struct {
 	// 榜单类型代码/Ranking type code
-	Code *int `query:"code,omitempty" json:"code,omitempty"`
+	Code int `query:"code,omitempty" json:"code,omitempty"`
 	// 榜单分类ID，从get_ranking_list_catalog获取/Category qualifier_id
-	Qualifier *string `query:"qualifier,omitempty" json:"qualifier,omitempty"`
+	Qualifier string `query:"qualifier,omitempty" json:"qualifier,omitempty"`
 	// 版本/Version
-	Version *string `query:"version,omitempty" json:"version,omitempty"`
+	Version string `query:"version,omitempty" json:"version,omitempty"`
 	// 统计周期，7=周榜，30=月榜/Period, 7=weekly, 30=monthly
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 统计日期，格式YYYYMMDD/Date, format YYYYMMDD
-	Date *string `query:"date,omitempty" json:"date,omitempty"`
+	Date string `query:"date,omitempty" json:"date,omitempty"`
 	// 返回数量/Result limit
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r DouyinXingtuV2GetRankingListDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "code", r.Code)
-	addQueryValue(values, "qualifier", r.Qualifier)
-	addQueryValue(values, "version", r.Version)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "date", r.Date)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "code", r.Code)
+	addOptionalQueryValue(values, "qualifier", r.Qualifier)
+	addOptionalQueryValue(values, "version", r.Version)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "date", r.Date)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -9502,27 +9502,27 @@ type DouyinXingtuV2GetPlayletActorRankCatalogResponse = APIResponse
 // DouyinXingtuV2GetPlayletActorRankListRequest is the request for 获取短剧演员热榜/Get Playlet Actor Rank List.
 type DouyinXingtuV2GetPlayletActorRankListRequest struct {
 	// 分类/Category
-	Category *string `query:"category,omitempty" json:"category,omitempty"`
+	Category string `query:"category,omitempty" json:"category,omitempty"`
 	// 榜单名称/Ranking name
-	Name *string `query:"name,omitempty" json:"name,omitempty"`
+	Name string `query:"name,omitempty" json:"name,omitempty"`
 	// 达人类型，空字符串=不限/Actor type, empty=all
-	Qualifier *string `query:"qualifier,omitempty" json:"qualifier,omitempty"`
+	Qualifier string `query:"qualifier,omitempty" json:"qualifier,omitempty"`
 	// 统计周期，7=周榜，30=月榜/Period, 7=weekly, 30=monthly
-	Period *int `query:"period,omitempty" json:"period,omitempty"`
+	Period int `query:"period,omitempty" json:"period,omitempty"`
 	// 统计日期，格式YYYYMMDD/Date, format YYYYMMDD
-	Date *string `query:"date,omitempty" json:"date,omitempty"`
+	Date string `query:"date,omitempty" json:"date,omitempty"`
 	// 返回数量/Result limit
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r DouyinXingtuV2GetPlayletActorRankListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "category", r.Category)
-	addQueryValue(values, "name", r.Name)
-	addQueryValue(values, "qualifier", r.Qualifier)
-	addQueryValue(values, "period", r.Period)
-	addQueryValue(values, "date", r.Date)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "category", r.Category)
+	addOptionalQueryValue(values, "name", r.Name)
+	addOptionalQueryValue(values, "qualifier", r.Qualifier)
+	addOptionalQueryValue(values, "period", r.Period)
+	addOptionalQueryValue(values, "date", r.Date)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -9532,12 +9532,12 @@ type DouyinXingtuV2GetPlayletActorRankListResponse = APIResponse
 // DouyinXingtuV2GetAuthorMarketFieldsRequest is the request for 获取达人广场筛选字段/Get Author Market Fields.
 type DouyinXingtuV2GetAuthorMarketFieldsRequest struct {
 	// 市场场景，1=默认场景/Market scene, 1=default
-	MarketScene *int `query:"market_scene,omitempty" json:"market_scene,omitempty"`
+	MarketScene int `query:"market_scene,omitempty" json:"market_scene,omitempty"`
 }
 
 func (r DouyinXingtuV2GetAuthorMarketFieldsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "market_scene", r.MarketScene)
+	addOptionalQueryValue(values, "market_scene", r.MarketScene)
 	return values
 }
 
@@ -9549,25 +9549,25 @@ type DouyinXingtuV2GetAuthorBaseInfoRequest struct {
 	// 创作者ID/Creator author ID
 	OAuthorID string `query:"o_author_id,omitempty" json:"o_author_id,omitempty"`
 	// 平台来源/Platform source
-	PlatformSource *int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
+	PlatformSource int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
 	// 平台渠道/Platform channel
-	PlatformChannel *int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
+	PlatformChannel int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
 	// 是否返回推荐信息/Whether to return recommendation info
-	Recommend *bool `query:"recommend,omitempty" json:"recommend,omitempty"`
+	Recommend bool `query:"recommend,omitempty" json:"recommend,omitempty"`
 	// 是否返回sec_uid/Whether to return sec_uid
-	NeedSecUID *bool `query:"need_sec_uid,omitempty" json:"need_sec_uid,omitempty"`
+	NeedSecUID bool `query:"need_sec_uid,omitempty" json:"need_sec_uid,omitempty"`
 	// 是否返回联动信息/Whether to return linkage info
-	NeedLinkageInfo *bool `query:"need_linkage_info,omitempty" json:"need_linkage_info,omitempty"`
+	NeedLinkageInfo bool `query:"need_linkage_info,omitempty" json:"need_linkage_info,omitempty"`
 }
 
 func (r DouyinXingtuV2GetAuthorBaseInfoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "o_author_id", r.OAuthorID)
-	addQueryValue(values, "platform_source", r.PlatformSource)
-	addQueryValue(values, "platform_channel", r.PlatformChannel)
-	addQueryValue(values, "recommend", r.Recommend)
-	addQueryValue(values, "need_sec_uid", r.NeedSecUID)
-	addQueryValue(values, "need_linkage_info", r.NeedLinkageInfo)
+	addOptionalQueryValue(values, "platform_source", r.PlatformSource)
+	addOptionalQueryValue(values, "platform_channel", r.PlatformChannel)
+	addOptionalQueryValue(values, "recommend", r.Recommend)
+	addOptionalQueryValue(values, "need_sec_uid", r.NeedSecUID)
+	addOptionalQueryValue(values, "need_linkage_info", r.NeedLinkageInfo)
 	return values
 }
 
@@ -9594,19 +9594,19 @@ type DouyinXingtuV2GetAuthorLocalInfoRequest struct {
 	// 创作者ID/Creator author ID
 	OAuthorID string `query:"o_author_id,omitempty" json:"o_author_id,omitempty"`
 	// 平台来源/Platform source
-	PlatformSource *int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
+	PlatformSource int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
 	// 平台渠道/Platform channel
-	PlatformChannel *int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
+	PlatformChannel int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
 	// 时间范围(天)/Time range in days
-	TimeRange *int `query:"time_range,omitempty" json:"time_range,omitempty"`
+	TimeRange int `query:"time_range,omitempty" json:"time_range,omitempty"`
 }
 
 func (r DouyinXingtuV2GetAuthorLocalInfoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "o_author_id", r.OAuthorID)
-	addQueryValue(values, "platform_source", r.PlatformSource)
-	addQueryValue(values, "platform_channel", r.PlatformChannel)
-	addQueryValue(values, "time_range", r.TimeRange)
+	addOptionalQueryValue(values, "platform_source", r.PlatformSource)
+	addOptionalQueryValue(values, "platform_channel", r.PlatformChannel)
+	addOptionalQueryValue(values, "time_range", r.TimeRange)
 	return values
 }
 
@@ -9618,25 +9618,25 @@ type DouyinXingtuV2GetAuthorShowItemsRequest struct {
 	// 创作者ID/Creator author ID
 	OAuthorID string `query:"o_author_id,omitempty" json:"o_author_id,omitempty"`
 	// 平台来源/Platform source
-	PlatformSource *int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
+	PlatformSource int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
 	// 平台渠道/Platform channel
-	PlatformChannel *int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
+	PlatformChannel int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
 	// 返回数量/Result limit
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 仅看指派视频/Only show assigned videos
-	OnlyAssign *bool `query:"only_assign,omitempty" json:"only_assign,omitempty"`
+	OnlyAssign bool `query:"only_assign,omitempty" json:"only_assign,omitempty"`
 	// 流量类型/Flow type
-	FlowType *int `query:"flow_type,omitempty" json:"flow_type,omitempty"`
+	FlowType int `query:"flow_type,omitempty" json:"flow_type,omitempty"`
 }
 
 func (r DouyinXingtuV2GetAuthorShowItemsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "o_author_id", r.OAuthorID)
-	addQueryValue(values, "platform_source", r.PlatformSource)
-	addQueryValue(values, "platform_channel", r.PlatformChannel)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "only_assign", r.OnlyAssign)
-	addQueryValue(values, "flow_type", r.FlowType)
+	addOptionalQueryValue(values, "platform_source", r.PlatformSource)
+	addOptionalQueryValue(values, "platform_channel", r.PlatformChannel)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "only_assign", r.OnlyAssign)
+	addOptionalQueryValue(values, "flow_type", r.FlowType)
 	return values
 }
 
@@ -9648,16 +9648,16 @@ type DouyinXingtuV2GetAuthorHotCommentTokensRequest struct {
 	// 创作者ID/Creator author ID
 	AuthorID string `query:"author_id,omitempty" json:"author_id,omitempty"`
 	// 返回热词数量/Number of hot tokens
-	Num *int `query:"num,omitempty" json:"num,omitempty"`
+	Num int `query:"num,omitempty" json:"num,omitempty"`
 	// 是否排除emoji/Whether to exclude emoji
-	WithoutEmoji *bool `query:"without_emoji,omitempty" json:"without_emoji,omitempty"`
+	WithoutEmoji bool `query:"without_emoji,omitempty" json:"without_emoji,omitempty"`
 }
 
 func (r DouyinXingtuV2GetAuthorHotCommentTokensRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "author_id", r.AuthorID)
-	addQueryValue(values, "num", r.Num)
-	addQueryValue(values, "without_emoji", r.WithoutEmoji)
+	addOptionalQueryValue(values, "num", r.Num)
+	addOptionalQueryValue(values, "without_emoji", r.WithoutEmoji)
 	return values
 }
 
@@ -9669,13 +9669,13 @@ type DouyinXingtuV2GetAuthorContentHotKeywordsRequest struct {
 	// 创作者ID/Creator author ID
 	AuthorID string `query:"author_id,omitempty" json:"author_id,omitempty"`
 	// 热词类型/Keyword type
-	KeywordType *int `query:"keyword_type,omitempty" json:"keyword_type,omitempty"`
+	KeywordType int `query:"keyword_type,omitempty" json:"keyword_type,omitempty"`
 }
 
 func (r DouyinXingtuV2GetAuthorContentHotKeywordsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "author_id", r.AuthorID)
-	addQueryValue(values, "keyword_type", r.KeywordType)
+	addOptionalQueryValue(values, "keyword_type", r.KeywordType)
 	return values
 }
 
@@ -9687,19 +9687,19 @@ type DouyinXingtuV2GetRecommendSimilarStarAuthorsRequest struct {
 	// 创作者ID列表/List of creator author IDs
 	AuthorIds []string `json:"author_ids,omitempty"`
 	// 相似类型/Similarity type
-	SimilarType *string `json:"similar_type,omitempty"`
+	SimilarType string `json:"similar_type,omitempty"`
 	// 页码/Page number
-	Page *int `json:"page,omitempty"`
+	Page int `json:"page,omitempty"`
 	// 每页数量/Page size
-	Limit *int `json:"limit,omitempty"`
+	Limit int `json:"limit,omitempty"`
 }
 
 func (r DouyinXingtuV2GetRecommendSimilarStarAuthorsRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "author_ids", r.AuthorIds)
-	addBodyValue(body, "similar_type", r.SimilarType)
-	addBodyValue(body, "page", r.Page)
-	addBodyValue(body, "limit", r.Limit)
+	addOptionalBodyValue(body, "similar_type", r.SimilarType)
+	addOptionalBodyValue(body, "page", r.Page)
+	addOptionalBodyValue(body, "limit", r.Limit)
 	return body
 }
 
@@ -9709,12 +9709,12 @@ type DouyinXingtuV2GetRecommendSimilarStarAuthorsResponse = APIResponse
 // DouyinXingtuV2GetExcellentCaseCategoryListRequest is the request for 获取优秀行业分类列表/Get Excellent Case Category List.
 type DouyinXingtuV2GetExcellentCaseCategoryListRequest struct {
 	// 平台来源/Platform source
-	PlatformSource *int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
+	PlatformSource int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
 }
 
 func (r DouyinXingtuV2GetExcellentCaseCategoryListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "platform_source", r.PlatformSource)
+	addOptionalQueryValue(values, "platform_source", r.PlatformSource)
 	return values
 }
 
@@ -9726,28 +9726,28 @@ type DouyinXingtuV2GetAuthorSpreadInfoRequest struct {
 	// 创作者ID/Creator author ID
 	OAuthorID string `query:"o_author_id,omitempty" json:"o_author_id,omitempty"`
 	// 平台来源/Platform source
-	PlatformSource *int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
+	PlatformSource int `query:"platform_source,omitempty" json:"platform_source,omitempty"`
 	// 平台渠道/Platform channel
-	PlatformChannel *int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
+	PlatformChannel int `query:"platform_channel,omitempty" json:"platform_channel,omitempty"`
 	// 视频类型，1=个人视频/Video type, 1=personal video
-	TypeValue *int `query:"type,omitempty" json:"type,omitempty"`
+	TypeValue int `query:"type,omitempty" json:"type,omitempty"`
 	// 流量类型/Flow type
-	FlowType *int `query:"flow_type,omitempty" json:"flow_type,omitempty"`
+	FlowType int `query:"flow_type,omitempty" json:"flow_type,omitempty"`
 	// 仅看指派视频/Only assigned videos
-	OnlyAssign *bool `query:"only_assign,omitempty" json:"only_assign,omitempty"`
+	OnlyAssign bool `query:"only_assign,omitempty" json:"only_assign,omitempty"`
 	// 时间范围，2=近30天，3=近90天/Time range, 2=last 30 days, 3=last 90 days
-	RangeValue *int `query:"range,omitempty" json:"range,omitempty"`
+	RangeValue int `query:"range,omitempty" json:"range,omitempty"`
 }
 
 func (r DouyinXingtuV2GetAuthorSpreadInfoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "o_author_id", r.OAuthorID)
-	addQueryValue(values, "platform_source", r.PlatformSource)
-	addQueryValue(values, "platform_channel", r.PlatformChannel)
-	addQueryValue(values, "type", r.TypeValue)
-	addQueryValue(values, "flow_type", r.FlowType)
-	addQueryValue(values, "only_assign", r.OnlyAssign)
-	addQueryValue(values, "range", r.RangeValue)
+	addOptionalQueryValue(values, "platform_source", r.PlatformSource)
+	addOptionalQueryValue(values, "platform_channel", r.PlatformChannel)
+	addOptionalQueryValue(values, "type", r.TypeValue)
+	addOptionalQueryValue(values, "flow_type", r.FlowType)
+	addOptionalQueryValue(values, "only_assign", r.OnlyAssign)
+	addOptionalQueryValue(values, "range", r.RangeValue)
 	return values
 }
 
@@ -9757,15 +9757,15 @@ type DouyinXingtuV2GetAuthorSpreadInfoResponse = APIResponse
 // DouyinXingtuV2GetUserProfileQRCodeRequest is the request for 获取用户主页二维码/Get User Profile QRCode.
 type DouyinXingtuV2GetUserProfileQRCodeRequest struct {
 	// 用户核心ID(与sec_uid二选一)/User core ID (pick one with sec_uid)
-	CoreUserID *string `query:"core_user_id,omitempty" json:"core_user_id,omitempty"`
+	CoreUserID string `query:"core_user_id,omitempty" json:"core_user_id,omitempty"`
 	// 用户sec_uid(与core_user_id二选一)/User sec_uid (pick one with core_user_id)
-	SecUID *string `query:"sec_uid,omitempty" json:"sec_uid,omitempty"`
+	SecUID string `query:"sec_uid,omitempty" json:"sec_uid,omitempty"`
 }
 
 func (r DouyinXingtuV2GetUserProfileQRCodeRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "core_user_id", r.CoreUserID)
-	addQueryValue(values, "sec_uid", r.SecUID)
+	addOptionalQueryValue(values, "core_user_id", r.CoreUserID)
+	addOptionalQueryValue(values, "sec_uid", r.SecUID)
 	return values
 }
 
@@ -9846,21 +9846,21 @@ type DouyinXingtuV2GetResourceListResponse = APIResponse
 // DouyinXingtuV2GetDemanderMcnListRequest is the request for 搜索MCN机构列表/Get Demander MCN List.
 type DouyinXingtuV2GetDemanderMcnListRequest struct {
 	// MCN机构名称，支持模糊搜索/MCN name, supports fuzzy search
-	McnName *string `query:"mcn_name,omitempty" json:"mcn_name,omitempty"`
+	McnName string `query:"mcn_name,omitempty" json:"mcn_name,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Page size
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排序方式/Sort by
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 }
 
 func (r DouyinXingtuV2GetDemanderMcnListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "mcn_name", r.McnName)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "mcn_name", r.McnName)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
 	return values
 }
 
@@ -9917,16 +9917,16 @@ type XiguaAppV2VideoCommentListRequest struct {
 	// 作品id/Video id
 	ItemID string `query:"item_id,omitempty" json:"item_id,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 数量/Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r XiguaAppV2VideoCommentListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "item_id", r.ItemID)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -9938,22 +9938,22 @@ type XiguaAppV2SearchVideoRequest struct {
 	// 关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 排序方式/Order type
-	OrderType *string `query:"order_type,omitempty" json:"order_type,omitempty"`
+	OrderType string `query:"order_type,omitempty" json:"order_type,omitempty"`
 	// 最小时长/Minimum duration
-	MinDuration *int `query:"min_duration,omitempty" json:"min_duration,omitempty"`
+	MinDuration int `query:"min_duration,omitempty" json:"min_duration,omitempty"`
 	// 最大时长/Maximum duration
-	MaxDuration *int `query:"max_duration,omitempty" json:"max_duration,omitempty"`
+	MaxDuration int `query:"max_duration,omitempty" json:"max_duration,omitempty"`
 }
 
 func (r XiguaAppV2SearchVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "order_type", r.OrderType)
-	addQueryValue(values, "min_duration", r.MinDuration)
-	addQueryValue(values, "max_duration", r.MaxDuration)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "order_type", r.OrderType)
+	addOptionalQueryValue(values, "min_duration", r.MinDuration)
+	addOptionalQueryValue(values, "max_duration", r.MaxDuration)
 	return values
 }
 
@@ -9980,13 +9980,13 @@ type XiguaAppV2GetUserPostListRequest struct {
 	// 用户id/User id
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 最大行为时间/Maximum behavior time
-	MaxBehotTime *string `query:"max_behot_time,omitempty" json:"max_behot_time,omitempty"`
+	MaxBehotTime string `query:"max_behot_time,omitempty" json:"max_behot_time,omitempty"`
 }
 
 func (r XiguaAppV2GetUserPostListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "max_behot_time", r.MaxBehotTime)
+	addOptionalQueryValue(values, "max_behot_time", r.MaxBehotTime)
 	return values
 }
 
@@ -10124,7 +10124,7 @@ type XiaohongshuWebV3FetchNoteCommentsRequest struct {
 	// 笔记ID/Note ID
 	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 安全令牌，可以从小红书的分享链接中获取/Security token, can be obtained from the sharing link of Xiaohongshu
 	XsecToken string `query:"xsec_token,omitempty" json:"xsec_token,omitempty"`
 }
@@ -10132,7 +10132,7 @@ type XiaohongshuWebV3FetchNoteCommentsRequest struct {
 func (r XiaohongshuWebV3FetchNoteCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	addQueryValue(values, "xsec_token", r.XsecToken)
 	return values
 }
@@ -10147,9 +10147,9 @@ type XiaohongshuWebV3FetchSubCommentsRequest struct {
 	// 父评论ID/Root comment ID
 	RootCommentID string `query:"root_comment_id,omitempty" json:"root_comment_id,omitempty"`
 	// 数量/Number
-	Num *int `query:"num,omitempty" json:"num,omitempty"`
+	Num int `query:"num,omitempty" json:"num,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 安全令牌，可以从小红书的分享链接中获取/Security token, can be obtained from the sharing link of Xiaohongshu
 	XsecToken string `query:"xsec_token,omitempty" json:"xsec_token,omitempty"`
 }
@@ -10158,8 +10158,8 @@ func (r XiaohongshuWebV3FetchSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
 	addQueryValue(values, "root_comment_id", r.RootCommentID)
-	addQueryValue(values, "num", r.Num)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "num", r.Num)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	addQueryValue(values, "xsec_token", r.XsecToken)
 	return values
 }
@@ -10172,19 +10172,19 @@ type XiaohongshuWebV3SearchNotesRequest struct {
 	// 搜索关键词/Search keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式/Sort type
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 笔记类型/Note type
-	NoteType *int `query:"note_type,omitempty" json:"note_type,omitempty"`
+	NoteType int `query:"note_type,omitempty" json:"note_type,omitempty"`
 }
 
 func (r XiaohongshuWebV3SearchNotesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "note_type", r.NoteType)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "note_type", r.NoteType)
 	return values
 }
 
@@ -10196,13 +10196,13 @@ type XiaohongshuWebV3SearchUsersRequest struct {
 	// 搜索关键词/Search keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r XiaohongshuWebV3SearchUsersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -10219,12 +10219,12 @@ type XiaohongshuWebV3FetchTrendingKeywordsResponse = APIResponse
 // XiaohongshuWebV3FetchSearchSuggestionsRequest is the request for 获取搜索联想词/Fetch search suggestions.
 type XiaohongshuWebV3FetchSearchSuggestionsRequest struct {
 	// 关键词 (可为空)/Keyword (optional)
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 func (r XiaohongshuWebV3FetchSearchSuggestionsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
 	return values
 }
 
@@ -10234,21 +10234,21 @@ type XiaohongshuWebV3FetchSearchSuggestionsResponse = APIResponse
 // XiaohongshuWebV3FetchHomepageFeedRequest is the request for 获取首页推荐/Fetch homepage feed.
 type XiaohongshuWebV3FetchHomepageFeedRequest struct {
 	// 返回数量，最大40/Number of results, max 40
-	Num *int `query:"num,omitempty" json:"num,omitempty"`
+	Num int `query:"num,omitempty" json:"num,omitempty"`
 	// 翻页游标/Pagination cursor
-	CursorScore *string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
+	CursorScore string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
 	// 分类频道ID/Category channel ID
-	Category *string `query:"category,omitempty" json:"category,omitempty"`
+	Category string `query:"category,omitempty" json:"category,omitempty"`
 	// 仅图文/Image notes only
-	NeedFilterImage *bool `query:"need_filter_image,omitempty" json:"need_filter_image,omitempty"`
+	NeedFilterImage bool `query:"need_filter_image,omitempty" json:"need_filter_image,omitempty"`
 }
 
 func (r XiaohongshuWebV3FetchHomepageFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "num", r.Num)
-	addQueryValue(values, "cursor_score", r.CursorScore)
-	addQueryValue(values, "category", r.Category)
-	addQueryValue(values, "need_filter_image", r.NeedFilterImage)
+	addOptionalQueryValue(values, "num", r.Num)
+	addOptionalQueryValue(values, "cursor_score", r.CursorScore)
+	addOptionalQueryValue(values, "category", r.Category)
+	addOptionalQueryValue(values, "need_filter_image", r.NeedFilterImage)
 	return values
 }
 
@@ -10282,16 +10282,16 @@ type XiaohongshuWebV3FetchUserNotesRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 数量/Number
-	Num *int `query:"num,omitempty" json:"num,omitempty"`
+	Num int `query:"num,omitempty" json:"num,omitempty"`
 }
 
 func (r XiaohongshuWebV3FetchUserNotesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "num", r.Num)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "num", r.Num)
 	return values
 }
 
@@ -10301,15 +10301,15 @@ type XiaohongshuWebV3FetchUserNotesResponse = APIResponse
 // XiaohongshuAppV2GetImageNoteDetailRequest is the request for 获取图文笔记详情/Get image note detail.
 type XiaohongshuAppV2GetImageNoteDetailRequest struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetImageNoteDetailRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -10319,15 +10319,15 @@ type XiaohongshuAppV2GetImageNoteDetailResponse = APIResponse
 // XiaohongshuAppV2GetVideoNoteDetailRequest is the request for 获取视频笔记详情/Get video note detail.
 type XiaohongshuAppV2GetVideoNoteDetailRequest struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetVideoNoteDetailRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -10337,27 +10337,27 @@ type XiaohongshuAppV2GetVideoNoteDetailResponse = APIResponse
 // XiaohongshuAppV2GetNoteCommentsRequest is the request for 获取笔记评论列表/Get note comments.
 type XiaohongshuAppV2GetNoteCommentsRequest struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 	// 分页游标，首次请求留空/Pagination cursor, leave empty for first request
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 评论索引，首次请求传0/Comment index, pass 0 for first request
-	Index *int `query:"index,omitempty" json:"index,omitempty"`
+	Index int `query:"index,omitempty" json:"index,omitempty"`
 	// 折叠状态: UNFOLDED(默认-展开), FOLDED(折叠)
-	PageArea *string `query:"pageArea,omitempty" json:"pageArea,omitempty"`
+	PageArea string `query:"pageArea,omitempty" json:"pageArea,omitempty"`
 	// 排序策略/Sort strategy: default, latest_v2, like_count
-	SortStrategy *string `query:"sort_strategy,omitempty" json:"sort_strategy,omitempty"`
+	SortStrategy string `query:"sort_strategy,omitempty" json:"sort_strategy,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetNoteCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "index", r.Index)
-	addQueryValue(values, "pageArea", r.PageArea)
-	addQueryValue(values, "sort_strategy", r.SortStrategy)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "index", r.Index)
+	addOptionalQueryValue(values, "pageArea", r.PageArea)
+	addOptionalQueryValue(values, "sort_strategy", r.SortStrategy)
 	return values
 }
 
@@ -10367,24 +10367,24 @@ type XiaohongshuAppV2GetNoteCommentsResponse = APIResponse
 // XiaohongshuAppV2GetNoteSubCommentsRequest is the request for 获取笔记二级评论列表/Get note sub comments.
 type XiaohongshuAppV2GetNoteSubCommentsRequest struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 	// 父评论ID/Parent comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 分页游标，首次留空，翻页时从$.data.data.cursor中提取cursor值/Pagination cursor, leave empty for first request, extract cursor from $.data.cursor for next page
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 分页索引，首次传1，翻页时从$.data.data.cursor中提取index值/Pagination index, pass 1 for first request, extract index from $.data.cursor for next page
-	Index *int `query:"index,omitempty" json:"index,omitempty"`
+	Index int `query:"index,omitempty" json:"index,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetNoteSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "index", r.Index)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "index", r.Index)
 	return values
 }
 
@@ -10394,15 +10394,15 @@ type XiaohongshuAppV2GetNoteSubCommentsResponse = APIResponse
 // XiaohongshuAppV2GetUserInfoRequest is the request for 获取用户信息/Get user info.
 type XiaohongshuAppV2GetUserInfoRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetUserInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -10412,18 +10412,18 @@ type XiaohongshuAppV2GetUserInfoResponse = APIResponse
 // XiaohongshuAppV2GetUserPostedNotesRequest is the request for 获取用户笔记列表/Get user posted notes.
 type XiaohongshuAppV2GetUserPostedNotesRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 	// 分页游标，首次请求留空/Pagination cursor, leave empty for first request
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetUserPostedNotesRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "share_text", r.ShareText)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -10433,18 +10433,18 @@ type XiaohongshuAppV2GetUserPostedNotesResponse = APIResponse
 // XiaohongshuAppV2GetUserFavedNotesRequest is the request for 获取用户收藏笔记列表/Get user faved notes.
 type XiaohongshuAppV2GetUserFavedNotesRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 	// 分页游标，首次请求留空，翻页时传入上一页最后一条笔记的note_id/Pagination cursor, leave empty for first request, pass last note_id from previous page for next page
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetUserFavedNotesRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "share_text", r.ShareText)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -10456,34 +10456,34 @@ type XiaohongshuAppV2SearchNotesRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码，从1开始/Page number, start from 1
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式/Sort type
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 笔记类型/Note type: 不限, 视频笔记, 普通笔记, 直播笔记
-	NoteType *string `query:"note_type,omitempty" json:"note_type,omitempty"`
+	NoteType string `query:"note_type,omitempty" json:"note_type,omitempty"`
 	// 发布时间筛选/Time filter: 不限, 一天内, 一周内, 半年内
-	TimeFilter *string `query:"time_filter,omitempty" json:"time_filter,omitempty"`
+	TimeFilter string `query:"time_filter,omitempty" json:"time_filter,omitempty"`
 	// 搜索ID，翻页时传入首次搜索返回的值/Search ID for pagination
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 搜索会话ID，翻页时传入首次搜索返回的值/Search session ID for pagination
-	SearchSessionID *string `query:"search_session_id,omitempty" json:"search_session_id,omitempty"`
+	SearchSessionID string `query:"search_session_id,omitempty" json:"search_session_id,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 	// AI模式：0=关闭, 1=开启/AI mode: 0=off, 1=on
-	AiMode *int `query:"ai_mode,omitempty" json:"ai_mode,omitempty"`
+	AiMode int `query:"ai_mode,omitempty" json:"ai_mode,omitempty"`
 }
 
 func (r XiaohongshuAppV2SearchNotesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "note_type", r.NoteType)
-	addQueryValue(values, "time_filter", r.TimeFilter)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "search_session_id", r.SearchSessionID)
-	addQueryValue(values, "source", r.Source)
-	addQueryValue(values, "ai_mode", r.AiMode)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "note_type", r.NoteType)
+	addOptionalQueryValue(values, "time_filter", r.TimeFilter)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "search_session_id", r.SearchSessionID)
+	addOptionalQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "ai_mode", r.AiMode)
 	return values
 }
 
@@ -10495,19 +10495,19 @@ type XiaohongshuAppV2SearchUsersRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码，从1开始/Page number, start from 1
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 搜索ID，翻页时传入首次搜索返回的值/Search ID for pagination
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 }
 
 func (r XiaohongshuAppV2SearchUsersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "source", r.Source)
 	return values
 }
 
@@ -10519,25 +10519,25 @@ type XiaohongshuAppV2SearchImagesRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码，从1开始/Page number, start from 1
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 搜索ID，翻页时传入首次搜索返回的值/Search ID for pagination
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 搜索会话ID，翻页时传入首次搜索返回的值/Search session ID for pagination
-	SearchSessionID *string `query:"search_session_id,omitempty" json:"search_session_id,omitempty"`
+	SearchSessionID string `query:"search_session_id,omitempty" json:"search_session_id,omitempty"`
 	// 词请求ID，翻页时传入首次搜索返回的值/Word request ID for pagination
-	WordRequestID *string `query:"word_request_id,omitempty" json:"word_request_id,omitempty"`
+	WordRequestID string `query:"word_request_id,omitempty" json:"word_request_id,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 }
 
 func (r XiaohongshuAppV2SearchImagesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "search_session_id", r.SearchSessionID)
-	addQueryValue(values, "word_request_id", r.WordRequestID)
-	addQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "search_session_id", r.SearchSessionID)
+	addOptionalQueryValue(values, "word_request_id", r.WordRequestID)
+	addOptionalQueryValue(values, "source", r.Source)
 	return values
 }
 
@@ -10549,19 +10549,19 @@ type XiaohongshuAppV2SearchProductsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码，从1开始/Page number, start from 1
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 搜索ID，翻页时传入首次搜索返回的值/Search ID for pagination
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 }
 
 func (r XiaohongshuAppV2SearchProductsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "source", r.Source)
 	return values
 }
 
@@ -10573,22 +10573,22 @@ type XiaohongshuAppV2SearchGroupsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码，从0开始/Page number, start from 0
-	PageNo *int `query:"page_no,omitempty" json:"page_no,omitempty"`
+	PageNo int `query:"page_no,omitempty" json:"page_no,omitempty"`
 	// 搜索ID，翻页时传入首次搜索返回的值/Search ID for pagination
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 	// 是否推荐：0=否, 1=是/Is recommend: 0=no, 1=yes
-	IsRecommend *int `query:"is_recommend,omitempty" json:"is_recommend,omitempty"`
+	IsRecommend int `query:"is_recommend,omitempty" json:"is_recommend,omitempty"`
 }
 
 func (r XiaohongshuAppV2SearchGroupsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page_no", r.PageNo)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "source", r.Source)
-	addQueryValue(values, "is_recommend", r.IsRecommend)
+	addOptionalQueryValue(values, "page_no", r.PageNo)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "is_recommend", r.IsRecommend)
 	return values
 }
 
@@ -10600,16 +10600,16 @@ type XiaohongshuAppV2GetProductDetailRequest struct {
 	// 商品SKU ID/Product SKU ID
 	SkuID string `query:"sku_id,omitempty" json:"sku_id,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 	// 前置页面/Previous page
-	PrePage *string `query:"pre_page,omitempty" json:"pre_page,omitempty"`
+	PrePage string `query:"pre_page,omitempty" json:"pre_page,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetProductDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sku_id", r.SkuID)
-	addQueryValue(values, "source", r.Source)
-	addQueryValue(values, "pre_page", r.PrePage)
+	addOptionalQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "pre_page", r.PrePage)
 	return values
 }
 
@@ -10621,13 +10621,13 @@ type XiaohongshuAppV2GetProductReviewOverviewRequest struct {
 	// 商品SKU ID/Product SKU ID
 	SkuID string `query:"sku_id,omitempty" json:"sku_id,omitempty"`
 	// 标签类型/Tab type
-	Tab *int `query:"tab,omitempty" json:"tab,omitempty"`
+	Tab int `query:"tab,omitempty" json:"tab,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetProductReviewOverviewRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sku_id", r.SkuID)
-	addQueryValue(values, "tab", r.Tab)
+	addOptionalQueryValue(values, "tab", r.Tab)
 	return values
 }
 
@@ -10639,22 +10639,22 @@ type XiaohongshuAppV2GetProductReviewsRequest struct {
 	// 商品SKU ID/Product SKU ID
 	SkuID string `query:"sku_id,omitempty" json:"sku_id,omitempty"`
 	// 页码，从0开始/Page number, start from 0
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序策略：0=综合排序, 1=最新排序/Sort strategy: 0=general, 1=latest
-	SortStrategyType *int `query:"sort_strategy_type,omitempty" json:"sort_strategy_type,omitempty"`
+	SortStrategyType int `query:"sort_strategy_type,omitempty" json:"sort_strategy_type,omitempty"`
 	// 仅看有图评论：0=否, 1=是/Show reviews with images only: 0=no, 1=yes
-	SharePicsOnly *int `query:"share_pics_only,omitempty" json:"share_pics_only,omitempty"`
+	SharePicsOnly int `query:"share_pics_only,omitempty" json:"share_pics_only,omitempty"`
 	// 来源页面/From page
-	FromPage *string `query:"from_page,omitempty" json:"from_page,omitempty"`
+	FromPage string `query:"from_page,omitempty" json:"from_page,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetProductReviewsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sku_id", r.SkuID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort_strategy_type", r.SortStrategyType)
-	addQueryValue(values, "share_pics_only", r.SharePicsOnly)
-	addQueryValue(values, "from_page", r.FromPage)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort_strategy_type", r.SortStrategyType)
+	addOptionalQueryValue(values, "share_pics_only", r.SharePicsOnly)
+	addOptionalQueryValue(values, "from_page", r.FromPage)
 	return values
 }
 
@@ -10666,16 +10666,16 @@ type XiaohongshuAppV2GetProductRecommendationsRequest struct {
 	// 商品SKU ID/Product SKU ID
 	SkuID string `query:"sku_id,omitempty" json:"sku_id,omitempty"`
 	// 分页游标，首次请求留空/Pagination cursor, leave empty for first request
-	CursorScore *string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
+	CursorScore string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
 	// 地区/Region
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetProductRecommendationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "sku_id", r.SkuID)
-	addQueryValue(values, "cursor_score", r.CursorScore)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "cursor_score", r.CursorScore)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -10687,16 +10687,16 @@ type XiaohongshuAppV2GetTopicInfoRequest struct {
 	// 话题页面ID/Topic page ID
 	PageID string `query:"page_id,omitempty" json:"page_id,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 	// 来源笔记ID，从笔记跳转到话题时传入/Source note ID, pass when jumping from note to topic
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetTopicInfoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "page_id", r.PageID)
-	addQueryValue(values, "source", r.Source)
-	addQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
 	return values
 }
 
@@ -10708,31 +10708,31 @@ type XiaohongshuAppV2GetTopicFeedRequest struct {
 	// 话题页面ID/Topic page ID
 	PageID string `query:"page_id,omitempty" json:"page_id,omitempty"`
 	// 排序方式/Sort: trend(最热), time(最新)
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 分页游标分数，翻页时传入/Pagination cursor score for next page
-	CursorScore *string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
+	CursorScore string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
 	// 上一页最后一条笔记ID，翻页时传入/Last note ID from previous page
-	LastNoteID *string `query:"last_note_id,omitempty" json:"last_note_id,omitempty"`
+	LastNoteID string `query:"last_note_id,omitempty" json:"last_note_id,omitempty"`
 	// 上一页最后一条笔记创建时间，翻页时传入/Last note create time from previous page
-	LastNoteCt *string `query:"last_note_ct,omitempty" json:"last_note_ct,omitempty"`
+	LastNoteCt string `query:"last_note_ct,omitempty" json:"last_note_ct,omitempty"`
 	// 会话ID，翻页时保持一致/Session ID, keep consistent for pagination
-	SessionID *string `query:"session_id,omitempty" json:"session_id,omitempty"`
+	SessionID string `query:"session_id,omitempty" json:"session_id,omitempty"`
 	// 首次加载时间戳，翻页时保持一致/First load timestamp, keep consistent for pagination
-	FirstLoadTime *string `query:"first_load_time,omitempty" json:"first_load_time,omitempty"`
+	FirstLoadTime string `query:"first_load_time,omitempty" json:"first_load_time,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetTopicFeedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "page_id", r.PageID)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "cursor_score", r.CursorScore)
-	addQueryValue(values, "last_note_id", r.LastNoteID)
-	addQueryValue(values, "last_note_ct", r.LastNoteCt)
-	addQueryValue(values, "session_id", r.SessionID)
-	addQueryValue(values, "first_load_time", r.FirstLoadTime)
-	addQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "cursor_score", r.CursorScore)
+	addOptionalQueryValue(values, "last_note_id", r.LastNoteID)
+	addOptionalQueryValue(values, "last_note_ct", r.LastNoteCt)
+	addOptionalQueryValue(values, "session_id", r.SessionID)
+	addOptionalQueryValue(values, "first_load_time", r.FirstLoadTime)
+	addOptionalQueryValue(values, "source", r.Source)
 	return values
 }
 
@@ -10742,18 +10742,18 @@ type XiaohongshuAppV2GetTopicFeedResponse = APIResponse
 // XiaohongshuAppV2GetCreatorInspirationFeedRequest is the request for 获取创作者推荐灵感列表/Get creator inspiration feed.
 type XiaohongshuAppV2GetCreatorInspirationFeedRequest struct {
 	// 分页游标，首次请求留空/Pagination cursor, leave empty for first request
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 标签类型/Tab type
-	Tab *int `query:"tab,omitempty" json:"tab,omitempty"`
+	Tab int `query:"tab,omitempty" json:"tab,omitempty"`
 	// 来源/Source
-	Source *string `query:"source,omitempty" json:"source,omitempty"`
+	Source string `query:"source,omitempty" json:"source,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetCreatorInspirationFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "tab", r.Tab)
-	addQueryValue(values, "source", r.Source)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "tab", r.Tab)
+	addOptionalQueryValue(values, "source", r.Source)
 	return values
 }
 
@@ -10763,12 +10763,12 @@ type XiaohongshuAppV2GetCreatorInspirationFeedResponse = APIResponse
 // XiaohongshuAppV2GetCreatorHotInspirationFeedRequest is the request for 获取创作者热点灵感列表/Get creator hot inspiration feed.
 type XiaohongshuAppV2GetCreatorHotInspirationFeedRequest struct {
 	// 分页游标，首次请求留空/Pagination cursor, leave empty for first request
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r XiaohongshuAppV2GetCreatorHotInspirationFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -10778,15 +10778,15 @@ type XiaohongshuAppV2GetCreatorHotInspirationFeedResponse = APIResponse
 // XiaohongshuAppGetNoteInfoV1Request is the request for 获取笔记信息 V1/Get note info V1.
 type XiaohongshuAppGetNoteInfoV1Request struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuAppGetNoteInfoV1Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -10796,15 +10796,15 @@ type XiaohongshuAppGetNoteInfoV1Response = APIResponse
 // XiaohongshuAppGetNoteInfoV2Request is the request for 获取笔记信息 V2 (蒲公英商家后台)/Get note info V2 (Pugongying Business Backend).
 type XiaohongshuAppGetNoteInfoV2Request struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuAppGetNoteInfoV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -10816,16 +10816,16 @@ type XiaohongshuAppGetNoteCommentsRequest struct {
 	// 笔记ID/Note ID
 	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 翻页游标/Pagination cursor
-	Start *string `query:"start,omitempty" json:"start,omitempty"`
+	Start string `query:"start,omitempty" json:"start,omitempty"`
 	// 排序策略：1-默认排序，2-最新评论/Sort strategy: 1-default, 2-latest
-	SortStrategy *int `query:"sort_strategy,omitempty" json:"sort_strategy,omitempty"`
+	SortStrategy int `query:"sort_strategy,omitempty" json:"sort_strategy,omitempty"`
 }
 
 func (r XiaohongshuAppGetNoteCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "sort_strategy", r.SortStrategy)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "sort_strategy", r.SortStrategy)
 	return values
 }
 
@@ -10839,14 +10839,14 @@ type XiaohongshuAppGetSubCommentsRequest struct {
 	// 一级评论ID/Parent comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 翻页游标/Pagination cursor
-	Start *string `query:"start,omitempty" json:"start,omitempty"`
+	Start string `query:"start,omitempty" json:"start,omitempty"`
 }
 
 func (r XiaohongshuAppGetSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "start", r.Start)
 	return values
 }
 
@@ -10860,26 +10860,26 @@ type XiaohongshuAppGetNotesByTopicRequest struct {
 	// 首次请求时间戳（毫秒）/First load timestamp (ms)
 	FirstLoadTime string `query:"first_load_time,omitempty" json:"first_load_time,omitempty"`
 	// 排序方式：hot-综合，time-最新，trend-最热/Sort: hot, time, trend
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 最后一条笔记create_time（翻页用）/Last note create_time (pagination)
-	LastNoteCt *string `query:"last_note_ct,omitempty" json:"last_note_ct,omitempty"`
+	LastNoteCt string `query:"last_note_ct,omitempty" json:"last_note_ct,omitempty"`
 	// 最后一条笔记ID（翻页用）/Last note ID (pagination)
-	LastNoteID *string `query:"last_note_id,omitempty" json:"last_note_id,omitempty"`
+	LastNoteID string `query:"last_note_id,omitempty" json:"last_note_id,omitempty"`
 	// 游标分数（翻页用）/Cursor score (pagination)
-	CursorScore *string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
+	CursorScore string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
 	// 会话ID，由服务端生成（翻页用）/Session ID, server-generated (pagination)
-	SessionID *string `query:"session_id,omitempty" json:"session_id,omitempty"`
+	SessionID string `query:"session_id,omitempty" json:"session_id,omitempty"`
 }
 
 func (r XiaohongshuAppGetNotesByTopicRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "page_id", r.PageID)
 	addQueryValue(values, "first_load_time", r.FirstLoadTime)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "last_note_ct", r.LastNoteCt)
-	addQueryValue(values, "last_note_id", r.LastNoteID)
-	addQueryValue(values, "cursor_score", r.CursorScore)
-	addQueryValue(values, "session_id", r.SessionID)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "last_note_ct", r.LastNoteCt)
+	addOptionalQueryValue(values, "last_note_id", r.LastNoteID)
+	addOptionalQueryValue(values, "cursor_score", r.CursorScore)
+	addOptionalQueryValue(values, "session_id", r.SessionID)
 	return values
 }
 
@@ -10893,26 +10893,26 @@ type XiaohongshuAppDeprecatedGetNotesByTopicRequest struct {
 	// 首次请求时间戳（毫秒）/First load timestamp (ms)
 	FirstLoadTime string `query:"first_load_time,omitempty" json:"first_load_time,omitempty"`
 	// 排序方式：hot-综合，time-最新，trend-最热/Sort: hot-comprehensive, time-latest, trend-trending
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 会话ID/Session ID
-	SessionID *string `query:"session_id,omitempty" json:"session_id,omitempty"`
+	SessionID string `query:"session_id,omitempty" json:"session_id,omitempty"`
 	// 最后一条笔记创建时间/Last note create time
-	LastNoteCt *string `query:"last_note_ct,omitempty" json:"last_note_ct,omitempty"`
+	LastNoteCt string `query:"last_note_ct,omitempty" json:"last_note_ct,omitempty"`
 	// 最后一条笔记ID/Last note ID
-	LastNoteID *string `query:"last_note_id,omitempty" json:"last_note_id,omitempty"`
+	LastNoteID string `query:"last_note_id,omitempty" json:"last_note_id,omitempty"`
 	// 游标分数/Cursor score
-	CursorScore *string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
+	CursorScore string `query:"cursor_score,omitempty" json:"cursor_score,omitempty"`
 }
 
 func (r XiaohongshuAppDeprecatedGetNotesByTopicRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "page_id", r.PageID)
 	addQueryValue(values, "first_load_time", r.FirstLoadTime)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "session_id", r.SessionID)
-	addQueryValue(values, "last_note_ct", r.LastNoteCt)
-	addQueryValue(values, "last_note_id", r.LastNoteID)
-	addQueryValue(values, "cursor_score", r.CursorScore)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "session_id", r.SessionID)
+	addOptionalQueryValue(values, "last_note_ct", r.LastNoteCt)
+	addOptionalQueryValue(values, "last_note_id", r.LastNoteID)
+	addOptionalQueryValue(values, "cursor_score", r.CursorScore)
 	return values
 }
 
@@ -10926,26 +10926,26 @@ type XiaohongshuAppSearchNotesRequest struct {
 	// 页码（从1开始）/Page number (start from 1)
 	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 搜索ID，翻页时使用/Search ID for pagination
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 会话ID，翻页时使用/Session ID for pagination
-	SessionID *string `query:"session_id,omitempty" json:"session_id,omitempty"`
+	SessionID string `query:"session_id,omitempty" json:"session_id,omitempty"`
 	// 排序方式/Sort type
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 笔记类型筛选：不限、视频笔记、普通笔记/Note type filter
-	FilterNoteType *string `query:"filter_note_type,omitempty" json:"filter_note_type,omitempty"`
+	FilterNoteType string `query:"filter_note_type,omitempty" json:"filter_note_type,omitempty"`
 	// 发布时间筛选：不限、一天内、一周内、半年内/Time filter
-	FilterNoteTime *string `query:"filter_note_time,omitempty" json:"filter_note_time,omitempty"`
+	FilterNoteTime string `query:"filter_note_time,omitempty" json:"filter_note_time,omitempty"`
 }
 
 func (r XiaohongshuAppSearchNotesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
 	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "session_id", r.SessionID)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "filter_note_type", r.FilterNoteType)
-	addQueryValue(values, "filter_note_time", r.FilterNoteTime)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "session_id", r.SessionID)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "filter_note_type", r.FilterNoteType)
+	addOptionalQueryValue(values, "filter_note_time", r.FilterNoteTime)
 	return values
 }
 
@@ -10972,13 +10972,13 @@ type XiaohongshuAppGetUserNotesRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页游标/Pagination cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r XiaohongshuAppGetUserNotesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -11037,35 +11037,35 @@ type XiaohongshuAppSearchProductsRequest struct {
 	// 页码（从1开始）/Page number (start from 1)
 	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 搜索ID，翻页时使用/Search ID for pagination
-	SearchID *string `query:"search_id,omitempty" json:"search_id,omitempty"`
+	SearchID string `query:"search_id,omitempty" json:"search_id,omitempty"`
 	// 会话ID，翻页时使用/Session ID for pagination
-	SessionID *string `query:"session_id,omitempty" json:"session_id,omitempty"`
+	SessionID string `query:"session_id,omitempty" json:"session_id,omitempty"`
 	// 排序规则：sales_qty-销量、price_asc-价格升序、price_desc-价格降序/Sort: sales_qty, price_asc, price_desc
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 搜索范围：purchased-买过的店、following-关注的店/Scope: purchased, following
-	Scope *string `query:"scope,omitempty" json:"scope,omitempty"`
+	Scope string `query:"scope,omitempty" json:"scope,omitempty"`
 	// 物流权益，多选用英文逗号分割/Service guarantee, comma separated
-	ServiceGuarantee *string `query:"service_guarantee,omitempty" json:"service_guarantee,omitempty"`
+	ServiceGuarantee string `query:"service_guarantee,omitempty" json:"service_guarantee,omitempty"`
 	// 最低价/Min price
-	MinPrice *string `query:"min_price,omitempty" json:"min_price,omitempty"`
+	MinPrice string `query:"min_price,omitempty" json:"min_price,omitempty"`
 	// 最高价/Max price
-	MaxPrice *string `query:"max_price,omitempty" json:"max_price,omitempty"`
+	MaxPrice string `query:"max_price,omitempty" json:"max_price,omitempty"`
 	// 标签ID/Promotion tag ID
-	SuperPromotion *string `query:"super_promotion,omitempty" json:"super_promotion,omitempty"`
+	SuperPromotion string `query:"super_promotion,omitempty" json:"super_promotion,omitempty"`
 }
 
 func (r XiaohongshuAppSearchProductsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
 	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "search_id", r.SearchID)
-	addQueryValue(values, "session_id", r.SessionID)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "scope", r.Scope)
-	addQueryValue(values, "service_guarantee", r.ServiceGuarantee)
-	addQueryValue(values, "min_price", r.MinPrice)
-	addQueryValue(values, "max_price", r.MaxPrice)
-	addQueryValue(values, "super_promotion", r.SuperPromotion)
+	addOptionalQueryValue(values, "search_id", r.SearchID)
+	addOptionalQueryValue(values, "session_id", r.SessionID)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "scope", r.Scope)
+	addOptionalQueryValue(values, "service_guarantee", r.ServiceGuarantee)
+	addOptionalQueryValue(values, "min_price", r.MinPrice)
+	addOptionalQueryValue(values, "max_price", r.MaxPrice)
+	addOptionalQueryValue(values, "super_promotion", r.SuperPromotion)
 	return values
 }
 
@@ -11077,13 +11077,13 @@ type XiaohongshuWebV2GetImageNoteDetailV1Request struct {
 	// 笔记ID/Note ID
 	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuWebV2GetImageNoteDetailV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -11095,13 +11095,13 @@ type XiaohongshuWebV2GetImageNoteDetailV2Request struct {
 	// 笔记ID/Note ID
 	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuWebV2GetImageNoteDetailV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -11113,13 +11113,13 @@ type XiaohongshuWebV2FetchUserNotesRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r XiaohongshuWebV2FetchUserNotesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -11131,13 +11131,13 @@ type XiaohongshuWebV2FetchNoteCommentsRequest struct {
 	// 笔记ID/Note ID
 	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r XiaohongshuWebV2FetchNoteCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -11151,14 +11151,14 @@ type XiaohongshuWebV2FetchSubCommentsRequest struct {
 	// 评论ID/Comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r XiaohongshuWebV2FetchSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -11190,24 +11190,24 @@ type XiaohongshuWebV2FetchXiaohongshuHotListResponse = APIResponse
 // XiaohongshuWebGetHomeRecommendRequest is the request for 获取首页推荐/Get home recommend.
 type XiaohongshuWebGetHomeRecommendRequest struct {
 	// 推荐类型/Feed type
-	FeedType *string `json:"feed_type,omitempty"`
+	FeedType string `json:"feed_type,omitempty"`
 	// 是否只看图文笔记/Whether to view only image notes
-	NeedFilterImage *bool `json:"need_filter_image,omitempty"`
+	NeedFilterImage bool `json:"need_filter_image,omitempty"`
 	// 分页游标/Cursor for pagination
-	CursorScore *string `json:"cursor_score,omitempty"`
+	CursorScore string `json:"cursor_score,omitempty"`
 	// 用户自行提供的已登录的网页Cookie/User provided logged-in web Cookie
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 代理，格式：http://用户名:密码@IP:端口/Proxy, format: http://username:password@IP:port
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r XiaohongshuWebGetHomeRecommendRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "feed_type", r.FeedType)
-	addBodyValue(body, "need_filter_image", r.NeedFilterImage)
-	addBodyValue(body, "cursor_score", r.CursorScore)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "feed_type", r.FeedType)
+	addOptionalBodyValue(body, "need_filter_image", r.NeedFilterImage)
+	addOptionalBodyValue(body, "cursor_score", r.CursorScore)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -11217,15 +11217,15 @@ type XiaohongshuWebGetHomeRecommendResponse = APIResponse
 // XiaohongshuWebGetNoteInfoV4Request is the request for 获取笔记信息 V4/Get note info V4.
 type XiaohongshuWebGetNoteInfoV4Request struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuWebGetNoteInfoV4Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -11235,21 +11235,21 @@ type XiaohongshuWebGetNoteInfoV4Response = APIResponse
 // XiaohongshuWebGetNoteInfoV5Request is the request for 获取笔记信息 V5 (自带Cookie)/Get note info V5 (Self-provided Cookie).
 type XiaohongshuWebGetNoteInfoV5Request struct {
 	// 笔记ID/Note ID
-	NoteID *string `json:"note_id,omitempty"`
+	NoteID string `json:"note_id,omitempty"`
 	// X-Sec-Token，可以从搜索接口中获取/X-Sec-Token, can be obtained from the search interface
-	XsecToken *string `json:"xsec_token,omitempty"`
+	XsecToken string `json:"xsec_token,omitempty"`
 	// 用户自行提供的已登录的网页Cookie/User provided logged-in web Cookie
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 	// 代理，格式：http://用户名:密码@IP:端口/Proxy, format: http://username:password@IP:port
-	Proxy *string `json:"proxy,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
 }
 
 func (r XiaohongshuWebGetNoteInfoV5Request) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "note_id", r.NoteID)
-	addBodyValue(body, "xsec_token", r.XsecToken)
-	addBodyValue(body, "cookie", r.Cookie)
-	addBodyValue(body, "proxy", r.Proxy)
+	addOptionalBodyValue(body, "note_id", r.NoteID)
+	addOptionalBodyValue(body, "xsec_token", r.XsecToken)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "proxy", r.Proxy)
 	return body
 }
 
@@ -11259,15 +11259,15 @@ type XiaohongshuWebGetNoteInfoV5Response = APIResponse
 // XiaohongshuWebGetNoteInfoV7Request is the request for 获取笔记信息 V7/Get note info V7.
 type XiaohongshuWebGetNoteInfoV7Request struct {
 	// 笔记ID/Note ID
-	NoteID *string `query:"note_id,omitempty" json:"note_id,omitempty"`
+	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 }
 
 func (r XiaohongshuWebGetNoteInfoV7Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "note_id", r.NoteID)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
 	return values
 }
 
@@ -11279,13 +11279,13 @@ type XiaohongshuWebGetNoteCommentsV1Request struct {
 	// 笔记ID/Note ID
 	NoteID string `query:"note_id,omitempty" json:"note_id,omitempty"`
 	// 上一页的游标/Last cursor
-	LastCursor *string `query:"lastCursor,omitempty" json:"lastCursor,omitempty"`
+	LastCursor string `query:"lastCursor,omitempty" json:"lastCursor,omitempty"`
 }
 
 func (r XiaohongshuWebGetNoteCommentsV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
-	addQueryValue(values, "lastCursor", r.LastCursor)
+	addOptionalQueryValue(values, "lastCursor", r.LastCursor)
 	return values
 }
 
@@ -11299,14 +11299,14 @@ type XiaohongshuWebGetNoteCommentRepliesV1Request struct {
 	// 评论ID/Comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 上一页的游标/Last cursor
-	LastCursor *string `query:"lastCursor,omitempty" json:"lastCursor,omitempty"`
+	LastCursor string `query:"lastCursor,omitempty" json:"lastCursor,omitempty"`
 }
 
 func (r XiaohongshuWebGetNoteCommentRepliesV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "note_id", r.NoteID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "lastCursor", r.LastCursor)
+	addOptionalQueryValue(values, "lastCursor", r.LastCursor)
 	return values
 }
 
@@ -11333,22 +11333,22 @@ type XiaohongshuWebSearchNotesRequest struct {
 	// 搜索关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式/Sort
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 笔记类型/Note type
-	NoteType *string `query:"noteType,omitempty" json:"noteType,omitempty"`
+	NoteType string `query:"noteType,omitempty" json:"noteType,omitempty"`
 	// 发布时间/Release time
-	NoteTime *string `query:"noteTime,omitempty" json:"noteTime,omitempty"`
+	NoteTime string `query:"noteTime,omitempty" json:"noteTime,omitempty"`
 }
 
 func (r XiaohongshuWebSearchNotesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "noteType", r.NoteType)
-	addQueryValue(values, "noteTime", r.NoteTime)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "noteType", r.NoteType)
+	addOptionalQueryValue(values, "noteTime", r.NoteTime)
 	return values
 }
 
@@ -11360,22 +11360,22 @@ type XiaohongshuWebSearchNotesV3Request struct {
 	// 搜索关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式/Sort
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 笔记类型/Note type
-	NoteType *string `query:"noteType,omitempty" json:"noteType,omitempty"`
+	NoteType string `query:"noteType,omitempty" json:"noteType,omitempty"`
 	// 发布时间/Release time
-	NoteTime *string `query:"noteTime,omitempty" json:"noteTime,omitempty"`
+	NoteTime string `query:"noteTime,omitempty" json:"noteTime,omitempty"`
 }
 
 func (r XiaohongshuWebSearchNotesV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "noteType", r.NoteType)
-	addQueryValue(values, "noteTime", r.NoteTime)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "noteType", r.NoteType)
+	addOptionalQueryValue(values, "noteTime", r.NoteTime)
 	return values
 }
 
@@ -11387,13 +11387,13 @@ type XiaohongshuWebSearchUsersRequest struct {
 	// 搜索关键词/Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r XiaohongshuWebSearchUsersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -11405,13 +11405,13 @@ type XiaohongshuWebGetUserNotesV2Request struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 上一页的游标/Last cursor
-	LastCursor *string `query:"lastCursor,omitempty" json:"lastCursor,omitempty"`
+	LastCursor string `query:"lastCursor,omitempty" json:"lastCursor,omitempty"`
 }
 
 func (r XiaohongshuWebGetUserNotesV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "lastCursor", r.LastCursor)
+	addOptionalQueryValue(values, "lastCursor", r.LastCursor)
 	return values
 }
 
@@ -11421,12 +11421,12 @@ type XiaohongshuWebGetUserNotesV2Response = APIResponse
 // XiaohongshuWebGetVisitorCookieRequest is the request for 获取游客Cookie/Get visitor cookie.
 type XiaohongshuWebGetVisitorCookieRequest struct {
 	// 代理/Proxy
-	Proxy *string `query:"proxy,omitempty" json:"proxy,omitempty"`
+	Proxy string `query:"proxy,omitempty" json:"proxy,omitempty"`
 }
 
 func (r XiaohongshuWebGetVisitorCookieRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "proxy", r.Proxy)
+	addOptionalQueryValue(values, "proxy", r.Proxy)
 	return values
 }
 
@@ -11436,18 +11436,18 @@ type XiaohongshuWebGetVisitorCookieResponse = APIResponse
 // XiaohongshuWebXiaohongshuWebSignRequest is the request for 小红书Web签名/Xiaohongshu Web sign.
 type XiaohongshuWebXiaohongshuWebSignRequest struct {
 	// 请求接口的路径/Request API path
-	Path *string `json:"path,omitempty"`
+	Path string `json:"path,omitempty"`
 	// 请求API的荷载数据/Payload data of request API
 	Data map[string]any `json:"data,omitempty"`
 	// 请求接口的Cookie/Request API cookie
-	Cookie *string `json:"cookie,omitempty"`
+	Cookie string `json:"cookie,omitempty"`
 }
 
 func (r XiaohongshuWebXiaohongshuWebSignRequest) toBody() any {
 	body := map[string]any{}
-	addBodyValue(body, "path", r.Path)
+	addOptionalBodyValue(body, "path", r.Path)
 	addBodyValue(body, "data", r.Data)
-	addBodyValue(body, "cookie", r.Cookie)
+	addOptionalBodyValue(body, "cookie", r.Cookie)
 	return body
 }
 
@@ -11472,18 +11472,18 @@ type XiaohongshuWebGetXiaohongshuNoteIDAndXsecTokenByShareLinkResponse = APIResp
 // XiaohongshuWebGetXiaohongshuProductInfoRequest is the request for 获取小红书商品信息/Get Xiaohongshu product info.
 type XiaohongshuWebGetXiaohongshuProductInfoRequest struct {
 	// 分享链接/Share link
-	ShareText *string `query:"share_text,omitempty" json:"share_text,omitempty"`
+	ShareText string `query:"share_text,omitempty" json:"share_text,omitempty"`
 	// 商品ID/Item ID
-	ItemID *string `query:"item_id,omitempty" json:"item_id,omitempty"`
+	ItemID string `query:"item_id,omitempty" json:"item_id,omitempty"`
 	// X-Sec-Token
-	XsecToken *string `query:"xsec_token,omitempty" json:"xsec_token,omitempty"`
+	XsecToken string `query:"xsec_token,omitempty" json:"xsec_token,omitempty"`
 }
 
 func (r XiaohongshuWebGetXiaohongshuProductInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "share_text", r.ShareText)
-	addQueryValue(values, "item_id", r.ItemID)
-	addQueryValue(values, "xsec_token", r.XsecToken)
+	addOptionalQueryValue(values, "share_text", r.ShareText)
+	addOptionalQueryValue(values, "item_id", r.ItemID)
+	addOptionalQueryValue(values, "xsec_token", r.XsecToken)
 	return values
 }
 
@@ -11525,13 +11525,13 @@ type Lemon8AppGetFansListOfSpecifiedUserRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页参数/Pagination parameter
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Lemon8AppGetFansListOfSpecifiedUserRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -11543,13 +11543,13 @@ type Lemon8AppGetFollowingListOfSpecifiedUserRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页参数/Pagination parameter
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Lemon8AppGetFollowingListOfSpecifiedUserRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -11565,7 +11565,7 @@ type Lemon8AppGetCommentsListOfSpecifiedPostRequest struct {
 	// 作品的media_id/Post's media_id
 	MediaID string `query:"media_id,omitempty" json:"media_id,omitempty"`
 	// 翻页参数/Pagination parameter
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r Lemon8AppGetCommentsListOfSpecifiedPostRequest) toQuery() url.Values {
@@ -11573,7 +11573,7 @@ func (r Lemon8AppGetCommentsListOfSpecifiedPostRequest) toQuery() url.Values {
 	addQueryValue(values, "group_id", r.GroupID)
 	addQueryValue(values, "item_id", r.ItemID)
 	addQueryValue(values, "media_id", r.MediaID)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -11628,22 +11628,22 @@ type Lemon8AppGetTopicPostListRequest struct {
 	// 话题分类 ID/Topic category ID
 	Category string `query:"category,omitempty" json:"category,omitempty"`
 	// 翻页参数/Pagination parameter
-	MaxBehotTime *string `query:"max_behot_time,omitempty" json:"max_behot_time,omitempty"`
+	MaxBehotTime string `query:"max_behot_time,omitempty" json:"max_behot_time,omitempty"`
 	// 分类参数/Category parameter
 	CategoryParameter string `query:"category_parameter,omitempty" json:"category_parameter,omitempty"`
 	// Hashtag名称/Hashtag name
 	HashtagName string `query:"hashtag_name,omitempty" json:"hashtag_name,omitempty"`
 	// 排序方式/Sort type
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r Lemon8AppGetTopicPostListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "category", r.Category)
-	addQueryValue(values, "max_behot_time", r.MaxBehotTime)
+	addOptionalQueryValue(values, "max_behot_time", r.MaxBehotTime)
 	addQueryValue(values, "category_parameter", r.CategoryParameter)
 	addQueryValue(values, "hashtag_name", r.HashtagName)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -11655,22 +11655,22 @@ type Lemon8AppSearchAPIRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 翻页参数/Pagination parameter
-	MaxCursor *string `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
+	MaxCursor string `query:"max_cursor,omitempty" json:"max_cursor,omitempty"`
 	// 搜索过滤类型/Search filter type
-	FilterType *string `query:"filter_type,omitempty" json:"filter_type,omitempty"`
+	FilterType string `query:"filter_type,omitempty" json:"filter_type,omitempty"`
 	// 搜索排序方式/Search sort type
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 搜索类型/Search type
-	SearchTab *string `query:"search_tab,omitempty" json:"search_tab,omitempty"`
+	SearchTab string `query:"search_tab,omitempty" json:"search_tab,omitempty"`
 }
 
 func (r Lemon8AppSearchAPIRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "max_cursor", r.MaxCursor)
-	addQueryValue(values, "filter_type", r.FilterType)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "search_tab", r.SearchTab)
+	addOptionalQueryValue(values, "max_cursor", r.MaxCursor)
+	addOptionalQueryValue(values, "filter_type", r.FilterType)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "search_tab", r.SearchTab)
 	return values
 }
 
@@ -11783,13 +11783,13 @@ type KuaishouWebFetchVideoCommentsRequest struct {
 	// 作品ID/Photo ID
 	PhotoID string `query:"photo_id,omitempty" json:"photo_id,omitempty"`
 	// 评论游标/Comment cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouWebFetchVideoCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "photo_id", r.PhotoID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -11801,7 +11801,7 @@ type KuaishouWebFetchVideoSubCommentsRequest struct {
 	// 作品ID/Photo ID
 	PhotoID string `query:"photo_id,omitempty" json:"photo_id,omitempty"`
 	// 评论游标/Comment cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 	// 根评论ID/Root comment ID
 	RootCommentID string `query:"root_comment_id,omitempty" json:"root_comment_id,omitempty"`
 }
@@ -11809,7 +11809,7 @@ type KuaishouWebFetchVideoSubCommentsRequest struct {
 func (r KuaishouWebFetchVideoSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "photo_id", r.PhotoID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	addQueryValue(values, "root_comment_id", r.RootCommentID)
 	return values
 }
@@ -11852,13 +11852,13 @@ type KuaishouWebFetchUserPostsRequest struct {
 	// 用户 ID (eid)/User ID (eid)
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 作品游标/Post cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouWebFetchUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -11870,13 +11870,13 @@ type KuaishouWebFetchUserLiveReplayRequest struct {
 	// 用户 ID (eid)/User ID (eid)
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 作品游标/Post cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouWebFetchUserLiveReplayRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -11888,13 +11888,13 @@ type KuaishouWebFetchUserCollectRequest struct {
 	// 用户 ID (eid)/User ID (eid)
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 作品游标/Post cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouWebFetchUserCollectRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -11911,12 +11911,12 @@ type KuaishouWebFetchKuaishouHotListV1Response = APIResponse
 // KuaishouWebFetchKuaishouHotListV2Request is the request for 获取快手热榜 V2/Fetch Kuaishou Hot List V2.
 type KuaishouWebFetchKuaishouHotListV2Request struct {
 	// 榜单类型 (board_type)/Board Type
-	BoardType *string `query:"board_type,omitempty" json:"board_type,omitempty"`
+	BoardType string `query:"board_type,omitempty" json:"board_type,omitempty"`
 }
 
 func (r KuaishouWebFetchKuaishouHotListV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "board_type", r.BoardType)
+	addOptionalQueryValue(values, "board_type", r.BoardType)
 	return values
 }
 
@@ -12010,13 +12010,13 @@ type KuaishouAppGetSingleVideoCommentDataRequest struct {
 	// 作品ID/Photo ID
 	PhotoID string `query:"photo_id,omitempty" json:"photo_id,omitempty"`
 	// 评论游标/Comment cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppGetSingleVideoCommentDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "photo_id", r.PhotoID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12030,17 +12030,17 @@ type KuaishouAppVideoSubCommentsRequest struct {
 	// 一级评论ID/Root comment ID
 	RootCommentID string `query:"root_comment_id,omitempty" json:"root_comment_id,omitempty"`
 	// 首页留空，翻页传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 	// 默认 8，范围 1-20
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r KuaishouAppVideoSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "photo_id", r.PhotoID)
 	addQueryValue(values, "root_comment_id", r.RootCommentID)
-	addQueryValue(values, "pcursor", r.Pcursor)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -12067,16 +12067,16 @@ type KuaishouAppUserVideoListV2Request struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 第一次请求留空，后续传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 	// latest(最新, 默认) / hot(热门)
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 }
 
 func (r KuaishouAppUserVideoListV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pcursor", r.Pcursor)
-	addQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "sort", r.Sort)
 	return values
 }
 
@@ -12088,13 +12088,13 @@ type KuaishouAppGetUserHotPostDataRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 作品游标/Post cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppGetUserHotPostDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12121,22 +12121,22 @@ type KuaishouAppComprehensiveSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 分页游标/Pagination cursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 	// 可选值: all(综合排序), newest(最新发布), most_likes(最多点赞)
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 可选值: all(全部), one_day(近一日), one_week(近一周), one_month(近一月)
-	PublishTime *string `query:"publish_time,omitempty" json:"publish_time,omitempty"`
+	PublishTime string `query:"publish_time,omitempty" json:"publish_time,omitempty"`
 	// 可选值: all(全部), under_1_min(1分钟以内), 1_to_5_min(1-5分钟), over_5_min(5分钟以上)
-	Duration *string `query:"duration,omitempty" json:"duration,omitempty"`
+	Duration string `query:"duration,omitempty" json:"duration,omitempty"`
 }
 
 func (r KuaishouAppComprehensiveSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pcursor", r.Pcursor)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "publish_time", r.PublishTime)
-	addQueryValue(values, "duration", r.Duration)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "publish_time", r.PublishTime)
+	addOptionalQueryValue(values, "duration", r.Duration)
 	return values
 }
 
@@ -12148,13 +12148,13 @@ type KuaishouAppSearchVideoV2Request struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor / Empty for first page, pass pcursor from previous response
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppSearchVideoV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12166,22 +12166,22 @@ type KuaishouAppSearchUserV2Request struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor / Empty for first page
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 	// all / same_city / verified / live / following
-	UserRelation *string `query:"user_relation,omitempty" json:"user_relation,omitempty"`
+	UserRelation string `query:"user_relation,omitempty" json:"user_relation,omitempty"`
 	// all / male / female
-	UserGender *string `query:"user_gender,omitempty" json:"user_gender,omitempty"`
+	UserGender string `query:"user_gender,omitempty" json:"user_gender,omitempty"`
 	// default / most_to_least / least_to_most
-	FansSort *string `query:"fans_sort,omitempty" json:"fans_sort,omitempty"`
+	FansSort string `query:"fans_sort,omitempty" json:"fans_sort,omitempty"`
 }
 
 func (r KuaishouAppSearchUserV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pcursor", r.Pcursor)
-	addQueryValue(values, "user_relation", r.UserRelation)
-	addQueryValue(values, "user_gender", r.UserGender)
-	addQueryValue(values, "fans_sort", r.FansSort)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "user_relation", r.UserRelation)
+	addOptionalQueryValue(values, "user_gender", r.UserGender)
+	addOptionalQueryValue(values, "fans_sort", r.FansSort)
 	return values
 }
 
@@ -12193,13 +12193,13 @@ type KuaishouAppSearchImageRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppSearchImageRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12211,13 +12211,13 @@ type KuaishouAppSearchLiveRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppSearchLiveRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12229,13 +12229,13 @@ type KuaishouAppSearchMusicRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppSearchMusicRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12247,13 +12247,13 @@ type KuaishouAppSearchTagRequest struct {
 	// 话题关键词/Tag keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppSearchTagRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12265,28 +12265,28 @@ type KuaishouAppTagFeedRequest struct {
 	// 话题标签传标签名或 search_tag 的数字 id；声音标签传编码串
 	GeneralTagID string `query:"general_tag_id,omitempty" json:"general_tag_id,omitempty"`
 	// hot(最热门) / latest(最新发布) / image(图片) / live(直播)
-	Tab *string `query:"tab,omitempty" json:"tab,omitempty"`
+	Tab string `query:"tab,omitempty" json:"tab,omitempty"`
 	// 话题标签建议传，等于标签名
-	TagName *string `query:"tag_name,omitempty" json:"tag_name,omitempty"`
+	TagName string `query:"tag_name,omitempty" json:"tag_name,omitempty"`
 	// 1=话题标签，29=声音/音乐标签
-	TagType *int `query:"tag_type,omitempty" json:"tag_type,omitempty"`
+	TagType int `query:"tag_type,omitempty" json:"tag_type,omitempty"`
 	// 2=搜索进入话题页，3=作品页声音标签
-	TagSource *int `query:"tag_source,omitempty" json:"tag_source,omitempty"`
+	TagSource int `query:"tag_source,omitempty" json:"tag_source,omitempty"`
 	// 进入标签页的源作品 photoId（可选）
-	FromPhotoID *string `query:"from_photo_id,omitempty" json:"from_photo_id,omitempty"`
+	FromPhotoID string `query:"from_photo_id,omitempty" json:"from_photo_id,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppTagFeedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "general_tag_id", r.GeneralTagID)
-	addQueryValue(values, "tab", r.Tab)
-	addQueryValue(values, "tag_name", r.TagName)
-	addQueryValue(values, "tag_type", r.TagType)
-	addQueryValue(values, "tag_source", r.TagSource)
-	addQueryValue(values, "from_photo_id", r.FromPhotoID)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "tab", r.Tab)
+	addOptionalQueryValue(values, "tag_name", r.TagName)
+	addOptionalQueryValue(values, "tag_type", r.TagType)
+	addOptionalQueryValue(values, "tag_source", r.TagSource)
+	addOptionalQueryValue(values, "from_photo_id", r.FromPhotoID)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12296,15 +12296,15 @@ type KuaishouAppTagFeedResponse = APIResponse
 // KuaishouAppKuaishouLiveTopListRequest is the request for 快手直播榜单/Kuaishou live top list.
 type KuaishouAppKuaishouLiveTopListRequest struct {
 	// 子标签ID/Sub tag ID
-	SubTabID *int `query:"subTabId,omitempty" json:"subTabId,omitempty"`
+	SubTabID int `query:"subTabId,omitempty" json:"subTabId,omitempty"`
 	// 子标签名称/Sub tag name
-	SubTabName *string `query:"subTabName,omitempty" json:"subTabName,omitempty"`
+	SubTabName string `query:"subTabName,omitempty" json:"subTabName,omitempty"`
 }
 
 func (r KuaishouAppKuaishouLiveTopListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "subTabId", r.SubTabID)
-	addQueryValue(values, "subTabName", r.SubTabName)
+	addOptionalQueryValue(values, "subTabId", r.SubTabID)
+	addOptionalQueryValue(values, "subTabName", r.SubTabName)
 	return values
 }
 
@@ -12321,15 +12321,15 @@ type KuaishouAppKuaishouHotCategoriesResponse = APIResponse
 // KuaishouAppKuaishouHotBoardDetailRequest is the request for 快手热榜详情/Kuaishou hot board detail.
 type KuaishouAppKuaishouHotBoardDetailRequest struct {
 	// 榜单类型/Board type
-	BoardType *int `query:"boardType,omitempty" json:"boardType,omitempty"`
+	BoardType int `query:"boardType,omitempty" json:"boardType,omitempty"`
 	// 榜单ID/Board ID
-	BoardID *int `query:"boardId,omitempty" json:"boardId,omitempty"`
+	BoardID int `query:"boardId,omitempty" json:"boardId,omitempty"`
 }
 
 func (r KuaishouAppKuaishouHotBoardDetailRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "boardType", r.BoardType)
-	addQueryValue(values, "boardId", r.BoardID)
+	addOptionalQueryValue(values, "boardType", r.BoardType)
+	addOptionalQueryValue(values, "boardId", r.BoardID)
 	return values
 }
 
@@ -12346,15 +12346,15 @@ type KuaishouAppKuaishouHotSearchPersonBoardResponse = APIResponse
 // KuaishouAppKuaishouShoppingTopListRequest is the request for 快手购物榜单/Kuaishou shopping top list.
 type KuaishouAppKuaishouShoppingTopListRequest struct {
 	// 子标签ID/Sub tag ID
-	SubTabID *int `query:"subTabId,omitempty" json:"subTabId,omitempty"`
+	SubTabID int `query:"subTabId,omitempty" json:"subTabId,omitempty"`
 	// 子标签名称/Sub tag name
-	SubTabName *string `query:"subTabName,omitempty" json:"subTabName,omitempty"`
+	SubTabName string `query:"subTabName,omitempty" json:"subTabName,omitempty"`
 }
 
 func (r KuaishouAppKuaishouShoppingTopListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "subTabId", r.SubTabID)
-	addQueryValue(values, "subTabName", r.SubTabName)
+	addOptionalQueryValue(values, "subTabId", r.SubTabID)
+	addOptionalQueryValue(values, "subTabName", r.SubTabName)
 	return values
 }
 
@@ -12364,15 +12364,15 @@ type KuaishouAppKuaishouShoppingTopListResponse = APIResponse
 // KuaishouAppKuaishouBrandTopListRequest is the request for 快手品牌榜单/Kuaishou brand top list.
 type KuaishouAppKuaishouBrandTopListRequest struct {
 	// 子标签ID/Sub tag ID
-	SubTabID *int `query:"subTabId,omitempty" json:"subTabId,omitempty"`
+	SubTabID int `query:"subTabId,omitempty" json:"subTabId,omitempty"`
 	// 子标签名称/Sub tag name
-	SubTabName *string `query:"subTabName,omitempty" json:"subTabName,omitempty"`
+	SubTabName string `query:"subTabName,omitempty" json:"subTabName,omitempty"`
 }
 
 func (r KuaishouAppKuaishouBrandTopListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "subTabId", r.SubTabID)
-	addQueryValue(values, "subTabName", r.SubTabName)
+	addOptionalQueryValue(values, "subTabId", r.SubTabID)
+	addOptionalQueryValue(values, "subTabName", r.SubTabName)
 	return values
 }
 
@@ -12382,18 +12382,18 @@ type KuaishouAppKuaishouBrandTopListResponse = APIResponse
 // KuaishouAppMusicRankingRequest is the request for 音乐榜单/Music ranking.
 type KuaishouAppMusicRankingRequest struct {
 	// 100002=热歌榜（默认），100063=π计划推荐榜
-	TabID *int `query:"tab_id,omitempty" json:"tab_id,omitempty"`
+	TabID int `query:"tab_id,omitempty" json:"tab_id,omitempty"`
 	// 默认 20，范围 1-50
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 首次留空，翻页传上一页响应的 pcursor
-	Pcursor *string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
+	Pcursor string `query:"pcursor,omitempty" json:"pcursor,omitempty"`
 }
 
 func (r KuaishouAppMusicRankingRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "tab_id", r.TabID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "pcursor", r.Pcursor)
+	addOptionalQueryValue(values, "tab_id", r.TabID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "pcursor", r.Pcursor)
 	return values
 }
 
@@ -12405,16 +12405,16 @@ type ZhihuWebGetZhihuColumnArticlesRequest struct {
 	// 专栏ID/Column ID
 	ColumnID string `query:"column_id,omitempty" json:"column_id,omitempty"`
 	// 每页文章数量/Number of articles per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuColumnArticlesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "column_id", r.ColumnID)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -12441,16 +12441,16 @@ type ZhihuWebGetZhihuSimilarColumnRecommendRequest struct {
 	// 文章ID/Article ID
 	ArticleID string `query:"article_id,omitempty" json:"article_id,omitempty"`
 	// 每页专栏数量/Number of columns per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuSimilarColumnRecommendRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "article_id", r.ArticleID)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -12490,18 +12490,18 @@ type ZhihuWebGetZhihuColumnCommentConfigResponse = APIResponse
 // ZhihuWebGetZhihuHotRecommendRequest is the request for 获取知乎首页推荐/Get Zhihu Hot Recommend.
 type ZhihuWebGetZhihuHotRecommendRequest struct {
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 页码/Page Number
-	PageNumber *string `query:"page_number,omitempty" json:"page_number,omitempty"`
+	PageNumber string `query:"page_number,omitempty" json:"page_number,omitempty"`
 	// 会话令牌/Session Token
-	SessionToken *string `query:"session_token,omitempty" json:"session_token,omitempty"`
+	SessionToken string `query:"session_token,omitempty" json:"session_token,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuHotRecommendRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "page_number", r.PageNumber)
-	addQueryValue(values, "session_token", r.SessionToken)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "page_number", r.PageNumber)
+	addOptionalQueryValue(values, "session_token", r.SessionToken)
 	return values
 }
 
@@ -12511,15 +12511,15 @@ type ZhihuWebGetZhihuHotRecommendResponse = APIResponse
 // ZhihuWebGetZhihuHotListRequest is the request for 获取知乎首页热榜/Get Zhihu Hot List.
 type ZhihuWebGetZhihuHotListRequest struct {
 	// 每页文章数量/Number of articles per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 是否为桌面端/Is it a desktop
-	Desktop *string `query:"desktop,omitempty" json:"desktop,omitempty"`
+	Desktop string `query:"desktop,omitempty" json:"desktop,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuHotListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "desktop", r.Desktop)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "desktop", r.Desktop)
 	return values
 }
 
@@ -12529,15 +12529,15 @@ type ZhihuWebGetZhihuHotListResponse = APIResponse
 // ZhihuWebGetZhihuVideoListRequest is the request for 获取知乎首页视频榜/Get Zhihu Video List.
 type ZhihuWebGetZhihuVideoListRequest struct {
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页视频数量/Number of videos per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuVideoListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12549,37 +12549,37 @@ type ZhihuWebGetZhihuArticleSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页文章数量/Number of articles per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 显示所有主题/Show all topics
-	ShowAllTopics *int `query:"show_all_topics,omitempty" json:"show_all_topics,omitempty"`
+	ShowAllTopics int `query:"show_all_topics,omitempty" json:"show_all_topics,omitempty"`
 	// 搜索来源/Search Source
-	SearchSource *string `query:"search_source,omitempty" json:"search_source,omitempty"`
+	SearchSource string `query:"search_source,omitempty" json:"search_source,omitempty"`
 	// 搜索哈希ID/Search Hash ID
-	SearchHashID *string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
+	SearchHashID string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
 	// 垂类/Vertical Type
-	Vertical *string `query:"vertical,omitempty" json:"vertical,omitempty"`
+	Vertical string `query:"vertical,omitempty" json:"vertical,omitempty"`
 	// 排序/Sort
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 时间间隔/Time Interval
-	TimeInterval *string `query:"time_interval,omitempty" json:"time_interval,omitempty"`
+	TimeInterval string `query:"time_interval,omitempty" json:"time_interval,omitempty"`
 	// 垂类信息/Vertical Info
-	VerticalInfo *string `query:"vertical_info,omitempty" json:"vertical_info,omitempty"`
+	VerticalInfo string `query:"vertical_info,omitempty" json:"vertical_info,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuArticleSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "show_all_topics", r.ShowAllTopics)
-	addQueryValue(values, "search_source", r.SearchSource)
-	addQueryValue(values, "search_hash_id", r.SearchHashID)
-	addQueryValue(values, "vertical", r.Vertical)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "time_interval", r.TimeInterval)
-	addQueryValue(values, "vertical_info", r.VerticalInfo)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "show_all_topics", r.ShowAllTopics)
+	addOptionalQueryValue(values, "search_source", r.SearchSource)
+	addOptionalQueryValue(values, "search_hash_id", r.SearchHashID)
+	addOptionalQueryValue(values, "vertical", r.Vertical)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "time_interval", r.TimeInterval)
+	addOptionalQueryValue(values, "vertical_info", r.VerticalInfo)
 	return values
 }
 
@@ -12591,16 +12591,16 @@ type ZhihuWebGetZhihuUserSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页用户数量/Number of users per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12612,16 +12612,16 @@ type ZhihuWebGetZhihuTopicSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页话题数量/Number of topics per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuTopicSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12633,9 +12633,9 @@ type ZhihuWebGetZhihuScholarSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页论文数量/Number of papers per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 过滤字段/Filter Fields
 	FilterFields map[string]any `json:"body,omitempty"`
 }
@@ -12643,8 +12643,8 @@ type ZhihuWebGetZhihuScholarSearchV3Request struct {
 func (r ZhihuWebGetZhihuScholarSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12690,19 +12690,19 @@ type ZhihuWebGetZhihuVideoSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 每页视频数量/Number of videos per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 搜索哈希ID/Search Hash ID
-	SearchHashID *string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
+	SearchHashID string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuVideoSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "search_hash_id", r.SearchHashID)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "search_hash_id", r.SearchHashID)
 	return values
 }
 
@@ -12714,19 +12714,19 @@ type ZhihuWebGetZhihuColumnSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页专栏数量/Number of columns per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 搜索哈希ID/Search Hash ID
-	SearchHashID *string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
+	SearchHashID string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuColumnSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "search_hash_id", r.SearchHashID)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "search_hash_id", r.SearchHashID)
 	return values
 }
 
@@ -12738,19 +12738,19 @@ type ZhihuWebGetZhihuSaltSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页内容数量/Number of contents per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 搜索哈希ID/Search Hash ID
-	SearchHashID *string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
+	SearchHashID string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuSaltSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "search_hash_id", r.SearchHashID)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "search_hash_id", r.SearchHashID)
 	return values
 }
 
@@ -12762,19 +12762,19 @@ type ZhihuWebGetZhihuEbookSearchV3Request struct {
 	// 搜索关键词/Search Keywords
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页电子书数量/Number of ebooks per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 搜索哈希ID/Search Hash ID
-	SearchHashID *string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
+	SearchHashID string `query:"search_hash_id,omitempty" json:"search_hash_id,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuEbookSearchV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "search_hash_id", r.SearchHashID)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "search_hash_id", r.SearchHashID)
 	return values
 }
 
@@ -12815,19 +12815,19 @@ type ZhihuWebGetZhihuCommentV5Request struct {
 	// 回答ID/Answer ID
 	AnswerID string `query:"answer_id,omitempty" json:"answer_id,omitempty"`
 	// 排序/Sort
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 每页评论数量/Number of comments per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuCommentV5Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "answer_id", r.AnswerID)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -12839,19 +12839,19 @@ type ZhihuWebGetZhihuSubCommentV5Request struct {
 	// 评论ID/Comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 排序/Sort
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 每页评论数量/Number of comments per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuSubCommentV5Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -12878,16 +12878,16 @@ type ZhihuWebGetZhihuUserFollowingRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页用户数量/Number of users per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserFollowingRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12899,16 +12899,16 @@ type ZhihuWebGetZhihuUserFollowersRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页用户数量/Number of users per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserFollowersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12920,19 +12920,19 @@ type ZhihuWebGetZhihuUserArticlesRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页文章数量/Number of articles per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 	// 排序类型/Sort Type
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserArticlesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -12944,16 +12944,16 @@ type ZhihuWebGetZhihuUserIncludedArticlesRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页文章数量/Number of articles per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserIncludedArticlesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12965,16 +12965,16 @@ type ZhihuWebGetZhihuUserColumnsRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页专栏数量/Number of columns per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserColumnsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -12986,16 +12986,16 @@ type ZhihuWebGetZhihuUserFollowQuestionsRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页问题数量/Number of questions per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserFollowQuestionsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -13007,16 +13007,16 @@ type ZhihuWebGetZhihuUserFollowCollectionsRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页收藏数量/Number of collections per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserFollowCollectionsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -13028,16 +13028,16 @@ type ZhihuWebGetZhihuUserFollowTopicsRequest struct {
 	// 用户ID/User ID
 	UserURLToken string `query:"user_url_token,omitempty" json:"user_url_token,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 每页话题数量/Number of topics per page
-	Limit *string `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit string `query:"limit,omitempty" json:"limit,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuUserFollowTopicsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_url_token", r.UserURLToken)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "limit", r.Limit)
 	return values
 }
 
@@ -13056,25 +13056,25 @@ type ZhihuWebGetZhihuQuestionAnswersRequest struct {
 	// 问题ID/Question ID
 	QuestionID string `query:"question_id,omitempty" json:"question_id,omitempty"`
 	// 分页游标/Pagination cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 每页回答数量/Number of answers per page
-	Limit *int `query:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `query:"limit,omitempty" json:"limit,omitempty"`
 	// 偏移量/Offset
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 排序方式：default=默认排序，updated=按时间排序/Sort order: default=default sort, updated=sort by time
-	Order *string `query:"order,omitempty" json:"order,omitempty"`
+	Order string `query:"order,omitempty" json:"order,omitempty"`
 	// 会话ID/Session ID
-	SessionID *string `query:"session_id,omitempty" json:"session_id,omitempty"`
+	SessionID string `query:"session_id,omitempty" json:"session_id,omitempty"`
 }
 
 func (r ZhihuWebGetZhihuQuestionAnswersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "question_id", r.QuestionID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "limit", r.Limit)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "order", r.Order)
-	addQueryValue(values, "session_id", r.SessionID)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "limit", r.Limit)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "order", r.Order)
+	addOptionalQueryValue(values, "session_id", r.SessionID)
 	return values
 }
 
@@ -13086,13 +13086,13 @@ type PiPiXiaAppGetSingleVideoDataRequest struct {
 	// 作品id/Video id
 	CellID string `query:"cell_id,omitempty" json:"cell_id,omitempty"`
 	// 作品类型/Video type
-	CellType *int `query:"cell_type,omitempty" json:"cell_type,omitempty"`
+	CellType int `query:"cell_type,omitempty" json:"cell_type,omitempty"`
 }
 
 func (r PiPiXiaAppGetSingleVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "cell_id", r.CellID)
-	addQueryValue(values, "cell_type", r.CellType)
+	addOptionalQueryValue(values, "cell_type", r.CellType)
 	return values
 }
 
@@ -13104,13 +13104,13 @@ type PiPiXiaAppIncreasePostViewCountRequest struct {
 	// 作品id/Video id
 	CellID string `query:"cell_id,omitempty" json:"cell_id,omitempty"`
 	// 作品类型/Video type
-	CellType *int `query:"cell_type,omitempty" json:"cell_type,omitempty"`
+	CellType int `query:"cell_type,omitempty" json:"cell_type,omitempty"`
 }
 
 func (r PiPiXiaAppIncreasePostViewCountRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "cell_id", r.CellID)
-	addQueryValue(values, "cell_type", r.CellType)
+	addOptionalQueryValue(values, "cell_type", r.CellType)
 	return values
 }
 
@@ -13152,16 +13152,16 @@ type PiPiXiaAppGetUserPostListRequest struct {
 	// 用户id/User id
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 翻页数量/Page count
-	FeedCount *string `query:"feed_count,omitempty" json:"feed_count,omitempty"`
+	FeedCount string `query:"feed_count,omitempty" json:"feed_count,omitempty"`
 }
 
 func (r PiPiXiaAppGetUserPostListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "feed_count", r.FeedCount)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "feed_count", r.FeedCount)
 	return values
 }
 
@@ -13173,13 +13173,13 @@ type PiPiXiaAppGetUserFollowerListRequest struct {
 	// 用户id/User id
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r PiPiXiaAppGetUserFollowerListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -13191,13 +13191,13 @@ type PiPiXiaAppGetUserFollowingListRequest struct {
 	// 用户id/User id
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r PiPiXiaAppGetUserFollowingListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -13209,16 +13209,16 @@ type PiPiXiaAppGetPostCommentListRequest struct {
 	// 作品id/Video id
 	CellID string `query:"cell_id,omitempty" json:"cell_id,omitempty"`
 	// 作品类型/Video type
-	CellType *int `query:"cell_type,omitempty" json:"cell_type,omitempty"`
+	CellType int `query:"cell_type,omitempty" json:"cell_type,omitempty"`
 	// 翻页游标/Page cursor
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r PiPiXiaAppGetPostCommentListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "cell_id", r.CellID)
-	addQueryValue(values, "cell_type", r.CellType)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "cell_type", r.CellType)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -13243,12 +13243,12 @@ type PiPiXiaAppGenerateShortURLResponse = APIResponse
 // PiPiXiaAppGetHomeFeedRequest is the request for 获取首页推荐/Get home feed.
 type PiPiXiaAppGetHomeFeedRequest struct {
 	// 翻页游标/Page cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r PiPiXiaAppGetHomeFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -13289,16 +13289,16 @@ type PiPiXiaAppSearchAPIRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 翻页游标/Page cursor
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 	// 搜索类型/Search type
-	SearchType *string `query:"search_type,omitempty" json:"search_type,omitempty"`
+	SearchType string `query:"search_type,omitempty" json:"search_type,omitempty"`
 }
 
 func (r PiPiXiaAppSearchAPIRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "search_type", r.SearchType)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "search_type", r.SearchType)
 	return values
 }
 
@@ -13325,22 +13325,22 @@ type PiPiXiaAppGetHashtagPostListRequest struct {
 	// 话题id/Hashtag id
 	HashtagID string `query:"hashtag_id,omitempty" json:"hashtag_id,omitempty"`
 	// 翻页游标/Page cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 翻页数量/Page count
-	FeedCount *string `query:"feed_count,omitempty" json:"feed_count,omitempty"`
+	FeedCount string `query:"feed_count,omitempty" json:"feed_count,omitempty"`
 	// 话题请求类型/Hashtag request type
-	HashtagRequestType *string `query:"hashtag_request_type,omitempty" json:"hashtag_request_type,omitempty"`
+	HashtagRequestType string `query:"hashtag_request_type,omitempty" json:"hashtag_request_type,omitempty"`
 	// 话题排序类型/Hashtag sort type
-	HashtagSortType *string `query:"hashtag_sort_type,omitempty" json:"hashtag_sort_type,omitempty"`
+	HashtagSortType string `query:"hashtag_sort_type,omitempty" json:"hashtag_sort_type,omitempty"`
 }
 
 func (r PiPiXiaAppGetHashtagPostListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "hashtag_id", r.HashtagID)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "feed_count", r.FeedCount)
-	addQueryValue(values, "hashtag_request_type", r.HashtagRequestType)
-	addQueryValue(values, "hashtag_sort_type", r.HashtagSortType)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "feed_count", r.FeedCount)
+	addOptionalQueryValue(values, "hashtag_request_type", r.HashtagRequestType)
+	addOptionalQueryValue(values, "hashtag_sort_type", r.HashtagSortType)
 	return values
 }
 
@@ -13350,12 +13350,12 @@ type PiPiXiaAppGetHashtagPostListResponse = APIResponse
 // PiPiXiaAppGetHomeShortDramaFeedRequest is the request for 获取首页短剧推荐/Get home short drama feed.
 type PiPiXiaAppGetHomeShortDramaFeedRequest struct {
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r PiPiXiaAppGetHomeShortDramaFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -13374,13 +13374,13 @@ type WeiboWebGetChannelTrendTopRequest struct {
 	// 频道容器ID/Channel container ID
 	Containerid string `query:"containerid,omitempty" json:"containerid,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebGetChannelTrendTopRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "containerid", r.Containerid)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -13390,15 +13390,15 @@ type WeiboWebGetChannelTrendTopResponse = APIResponse
 // WeiboWebGetChannelFeedByNameRequest is the request for 根据频道名称获取热门内容/Get channel feed by name.
 type WeiboWebGetChannelFeedByNameRequest struct {
 	// 频道名称，不传则使用默认频道/Channel name, use default if not provided
-	ChannelName *string `query:"channel_name,omitempty" json:"channel_name,omitempty"`
+	ChannelName string `query:"channel_name,omitempty" json:"channel_name,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebGetChannelFeedByNameRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "channel_name", r.ChannelName)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "channel_name", r.ChannelName)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -13425,16 +13425,16 @@ type WeiboWebGetUserPostsRequest struct {
 	// 用户ID/User ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 翻页ID，从上一页结果获取/Pagination ID from previous page
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboWebGetUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -13463,17 +13463,17 @@ type WeiboWebGetPostCommentsRequest struct {
 	// 微博MID/Post MID
 	Mid string `query:"mid,omitempty" json:"mid,omitempty"`
 	// 翻页ID/Pagination ID
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 	// 翻页ID类型/Pagination ID type
-	MaxIDType *int `query:"max_id_type,omitempty" json:"max_id_type,omitempty"`
+	MaxIDType int `query:"max_id_type,omitempty" json:"max_id_type,omitempty"`
 }
 
 func (r WeiboWebGetPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
 	addQueryValue(values, "mid", r.Mid)
-	addQueryValue(values, "max_id", r.MaxID)
-	addQueryValue(values, "max_id_type", r.MaxIDType)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "max_id_type", r.MaxIDType)
 	return values
 }
 
@@ -13485,13 +13485,13 @@ type WeiboWebGetCommentRepliesRequest struct {
 	// 根评论ID/Root comment ID
 	Cid string `query:"cid,omitempty" json:"cid,omitempty"`
 	// 翻页ID，默认0为第一页/Pagination ID, default 0 for first page
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r WeiboWebGetCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "cid", r.Cid)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -13503,19 +13503,19 @@ type WeiboWebSearchWeiboRequest struct {
 	// 搜索关键词，支持话题搜索如 #话题名#/Search keyword, supports hashtag like #topic#
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码，从1开始递增(1,2,3...)，每页约10-20条/Page number, starts from 1 (1,2,3...), ~10-20 results per page
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 搜索类型/Search type: 1=综合, 61=实时, 3=用户, 60=热门, 64=视频, 63=图片, 21=文章
-	SearchType *string `query:"search_type,omitempty" json:"search_type,omitempty"`
+	SearchType string `query:"search_type,omitempty" json:"search_type,omitempty"`
 	// 时间范围/Time scope: hour=一小时内, day=一天内, week=一周内, month=一个月内, null=不限
-	TimeScope *string `query:"time_scope,omitempty" json:"time_scope,omitempty"`
+	TimeScope string `query:"time_scope,omitempty" json:"time_scope,omitempty"`
 }
 
 func (r WeiboWebSearchWeiboRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "search_type", r.SearchType)
-	addQueryValue(values, "time_scope", r.TimeScope)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "search_type", r.SearchType)
+	addOptionalQueryValue(values, "time_scope", r.TimeScope)
 	return values
 }
 
@@ -13556,13 +13556,13 @@ type WeiboWebV2GetSinglePostDataRequest struct {
 	// 作品id/Post id
 	ID string `query:"id,omitempty" json:"id,omitempty"`
 	// 是否获取长微博全文/Whether to get the full text of long Weibo posts (true/false)
-	IsGetLongText *string `query:"is_get_long_text,omitempty" json:"is_get_long_text,omitempty"`
+	IsGetLongText string `query:"is_get_long_text,omitempty" json:"is_get_long_text,omitempty"`
 }
 
 func (r WeiboWebV2GetSinglePostDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "id", r.ID)
-	addQueryValue(values, "is_get_long_text", r.IsGetLongText)
+	addOptionalQueryValue(values, "is_get_long_text", r.IsGetLongText)
 	return values
 }
 
@@ -13572,15 +13572,15 @@ type WeiboWebV2GetSinglePostDataResponse = APIResponse
 // WeiboWebV2GetUserInformationRequest is the request for 获取用户信息/Get user information.
 type WeiboWebV2GetUserInformationRequest struct {
 	// 用户id/User id
-	UID *string `query:"uid,omitempty" json:"uid,omitempty"`
+	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 自定义微博用户名/Custom Weibo username
-	Custom *string `query:"custom,omitempty" json:"custom,omitempty"`
+	Custom string `query:"custom,omitempty" json:"custom,omitempty"`
 }
 
 func (r WeiboWebV2GetUserInformationRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "custom", r.Custom)
+	addOptionalQueryValue(values, "uid", r.UID)
+	addOptionalQueryValue(values, "custom", r.Custom)
 	return values
 }
 
@@ -13607,19 +13607,19 @@ type WeiboWebV2GetWeiboUserPostsRequest struct {
 	// 用户id/User id
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页数/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 特征值，控制返回数据的数量和字段：0=返回10条基础数据，1=返回20条扩展数据，2=返回20条图片相关数据，3=返回20条视频相关数据，字段逐级增加/Feature type: 0=10 basic posts, 1=20 extended posts, 2=20 image-related posts, 3=20 video-related posts, fields increase progressively
-	Feature *int `query:"feature,omitempty" json:"feature,omitempty"`
+	Feature int `query:"feature,omitempty" json:"feature,omitempty"`
 	// 翻页标识，用于获取下一页数据/Pagination identifier for getting next page data
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboWebV2GetWeiboUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "feature", r.Feature)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "feature", r.Feature)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -13631,16 +13631,16 @@ type WeiboWebV2GetWeiboUserOriginalPostsRequest struct {
 	// 用户id/User id
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页数/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 翻页标识，用于获取下一页数据/Pagination identifier for getting next page data
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboWebV2GetWeiboUserOriginalPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -13652,16 +13652,16 @@ type WeiboWebV2GetWeiboCommentsRequest struct {
 	// 微博ID/Weibo ID
 	ID string `query:"id,omitempty" json:"id,omitempty"`
 	// 评论数量/Number of comments
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 页码/Page number
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r WeiboWebV2GetWeiboCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "id", r.ID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -13673,16 +13673,16 @@ type WeiboWebV2GetWeiboSubCommentsRequest struct {
 	// 主评论ID/Comment ID
 	ID string `query:"id,omitempty" json:"id,omitempty"`
 	// 子评论数量/Number of sub-comments
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页标识/Page identifier
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r WeiboWebV2GetWeiboSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "id", r.ID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -13694,40 +13694,40 @@ type WeiboWebV2SearchUserPostsRequest struct {
 	// 用户ID/User ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 搜索关键词/Search keyword
-	Q *string `query:"q,omitempty" json:"q,omitempty"`
+	Q string `query:"q,omitempty" json:"q,omitempty"`
 	// 页数/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 开始时间戳/Start timestamp
-	Starttime *int `query:"starttime,omitempty" json:"starttime,omitempty"`
+	Starttime int `query:"starttime,omitempty" json:"starttime,omitempty"`
 	// 结束时间戳/End timestamp
-	Endtime *int `query:"endtime,omitempty" json:"endtime,omitempty"`
+	Endtime int `query:"endtime,omitempty" json:"endtime,omitempty"`
 	// 是否包含原创微博，1=包含，0=不包含/Include original posts, 1=include, 0=exclude
-	Hasori *int `query:"hasori,omitempty" json:"hasori,omitempty"`
+	Hasori int `query:"hasori,omitempty" json:"hasori,omitempty"`
 	// 是否包含转发微博，1=包含，0=不包含/Include retweets, 1=include, 0=exclude
-	Hasret *int `query:"hasret,omitempty" json:"hasret,omitempty"`
+	Hasret int `query:"hasret,omitempty" json:"hasret,omitempty"`
 	// 是否包含文字微博，1=包含，0=不包含/Include text posts, 1=include, 0=exclude
-	Hastext *int `query:"hastext,omitempty" json:"hastext,omitempty"`
+	Hastext int `query:"hastext,omitempty" json:"hastext,omitempty"`
 	// 是否包含图片微博，1=包含，0=不包含/Include image posts, 1=include, 0=exclude
-	Haspic *int `query:"haspic,omitempty" json:"haspic,omitempty"`
+	Haspic int `query:"haspic,omitempty" json:"haspic,omitempty"`
 	// 是否包含视频微博，1=包含，0=不包含/Include video posts, 1=include, 0=exclude
-	Hasvideo *int `query:"hasvideo,omitempty" json:"hasvideo,omitempty"`
+	Hasvideo int `query:"hasvideo,omitempty" json:"hasvideo,omitempty"`
 	// 是否包含音乐微博，1=包含，0=不包含/Include music posts, 1=include, 0=exclude
-	Hasmusic *int `query:"hasmusic,omitempty" json:"hasmusic,omitempty"`
+	Hasmusic int `query:"hasmusic,omitempty" json:"hasmusic,omitempty"`
 }
 
 func (r WeiboWebV2SearchUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "q", r.Q)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "starttime", r.Starttime)
-	addQueryValue(values, "endtime", r.Endtime)
-	addQueryValue(values, "hasori", r.Hasori)
-	addQueryValue(values, "hasret", r.Hasret)
-	addQueryValue(values, "hastext", r.Hastext)
-	addQueryValue(values, "haspic", r.Haspic)
-	addQueryValue(values, "hasvideo", r.Hasvideo)
-	addQueryValue(values, "hasmusic", r.Hasmusic)
+	addOptionalQueryValue(values, "q", r.Q)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "starttime", r.Starttime)
+	addOptionalQueryValue(values, "endtime", r.Endtime)
+	addOptionalQueryValue(values, "hasori", r.Hasori)
+	addOptionalQueryValue(values, "hasret", r.Hasret)
+	addOptionalQueryValue(values, "hastext", r.Hastext)
+	addOptionalQueryValue(values, "haspic", r.Haspic)
+	addOptionalQueryValue(values, "hasvideo", r.Hasvideo)
+	addOptionalQueryValue(values, "hasmusic", r.Hasmusic)
 	return values
 }
 
@@ -13754,16 +13754,16 @@ type WeiboWebV2GetUserVideoCollectionDetailRequest struct {
 	// 收藏夹ID/Collection ID
 	Cid string `query:"cid,omitempty" json:"cid,omitempty"`
 	// 分页游标/Pagination cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 排序方式：0=默认，1=最热，2=最新/Sort type: 0=default, 1=hottest, 2=latest
-	TabCode *int `query:"tab_code,omitempty" json:"tab_code,omitempty"`
+	TabCode int `query:"tab_code,omitempty" json:"tab_code,omitempty"`
 }
 
 func (r WeiboWebV2GetUserVideoCollectionDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "cid", r.Cid)
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "tab_code", r.TabCode)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "tab_code", r.TabCode)
 	return values
 }
 
@@ -13775,13 +13775,13 @@ type WeiboWebV2GetUserAllVideosRequest struct {
 	// 用户ID/User ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 分页游标/Pagination cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r WeiboWebV2GetUserAllVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -13793,13 +13793,13 @@ type WeiboWebV2GetUserFollowingListRequest struct {
 	// 用户ID/User ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebV2GetUserFollowingListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -13811,13 +13811,13 @@ type WeiboWebV2GetUserFansListRequest struct {
 	// 用户ID/User ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebV2GetUserFansListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -13834,27 +13834,27 @@ type WeiboWebV2GetAllGroupsInformationResponse = APIResponse
 // WeiboWebV2GetUserRecommendTimelineRequest is the request for 获取微博主页推荐时间轴/Get user recommend timeline.
 type WeiboWebV2GetUserRecommendTimelineRequest struct {
 	// 刷新类型，0=正常刷新，1=强制刷新/Refresh type, 0=normal refresh, 1=force refresh
-	Refresh *int `query:"refresh,omitempty" json:"refresh,omitempty"`
+	Refresh int `query:"refresh,omitempty" json:"refresh,omitempty"`
 	// 分组ID/Group ID
-	GroupID *string `query:"group_id,omitempty" json:"group_id,omitempty"`
+	GroupID string `query:"group_id,omitempty" json:"group_id,omitempty"`
 	// 容器ID/Container ID
-	Containerid *string `query:"containerid,omitempty" json:"containerid,omitempty"`
+	Containerid string `query:"containerid,omitempty" json:"containerid,omitempty"`
 	// 扩展参数/Extended parameters
-	Extparam *string `query:"extparam,omitempty" json:"extparam,omitempty"`
+	Extparam string `query:"extparam,omitempty" json:"extparam,omitempty"`
 	// 最大ID/Max ID
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 	// 获取数量/Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r WeiboWebV2GetUserRecommendTimelineRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "refresh", r.Refresh)
-	addQueryValue(values, "group_id", r.GroupID)
-	addQueryValue(values, "containerid", r.Containerid)
-	addQueryValue(values, "extparam", r.Extparam)
-	addQueryValue(values, "max_id", r.MaxID)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "refresh", r.Refresh)
+	addOptionalQueryValue(values, "group_id", r.GroupID)
+	addOptionalQueryValue(values, "containerid", r.Containerid)
+	addOptionalQueryValue(values, "extparam", r.Extparam)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -13866,19 +13866,19 @@ type WeiboWebV2GetHotRankingTimelineRequest struct {
 	// 榜单类型：hour=小时榜，yesterday=昨日榜，day_before=前日榜，week=周榜，male=男榜，female=女榜/Ranking type: hour=hourly, yesterday=yesterday, day_before=day before, week=weekly, male=male ranking, female=female ranking
 	RankingType string `query:"ranking_type,omitempty" json:"ranking_type,omitempty"`
 	// 分页标识，默认为0/Pagination identifier, default is 0
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 	// 最大ID，默认为0/Max ID, default is 0
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 	// 获取数量，默认10/Count, default is 10
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r WeiboWebV2GetHotRankingTimelineRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "ranking_type", r.RankingType)
-	addQueryValue(values, "since_id", r.SinceID)
-	addQueryValue(values, "max_id", r.MaxID)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -13977,22 +13977,22 @@ type WeiboWebV2WeiboAdvancedSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Q string `query:"q,omitempty" json:"q,omitempty"`
 	// 搜索类型/Search type: all(全部), hot(热门), original(原创), verified(认证用户), media(媒体), viewpoint(观点)
-	SearchType *string `query:"search_type,omitempty" json:"search_type,omitempty"`
+	SearchType string `query:"search_type,omitempty" json:"search_type,omitempty"`
 	// 包含类型/Include type: all(全部), pic(含图片), video(含视频), music(含音乐), link(含短链)
-	IncludeType *string `query:"include_type,omitempty" json:"include_type,omitempty"`
+	IncludeType string `query:"include_type,omitempty" json:"include_type,omitempty"`
 	// 时间范围/Time scope (custom:start:end)
-	Timescope *string `query:"timescope,omitempty" json:"timescope,omitempty"`
+	Timescope string `query:"timescope,omitempty" json:"timescope,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebV2WeiboAdvancedSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "q", r.Q)
-	addQueryValue(values, "search_type", r.SearchType)
-	addQueryValue(values, "include_type", r.IncludeType)
-	addQueryValue(values, "timescope", r.Timescope)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "search_type", r.SearchType)
+	addOptionalQueryValue(values, "include_type", r.IncludeType)
+	addOptionalQueryValue(values, "timescope", r.Timescope)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14002,12 +14002,12 @@ type WeiboWebV2WeiboAdvancedSearchResponse = APIResponse
 // WeiboWebV2RegionCityListRequest is the request for 地区省市映射/Region City List.
 type WeiboWebV2RegionCityListRequest struct {
 	// 是否返回标准化结构（省份列表+城市数组）/Whether to return normalized structure
-	Normalized *bool `query:"normalized,omitempty" json:"normalized,omitempty"`
+	Normalized bool `query:"normalized,omitempty" json:"normalized,omitempty"`
 }
 
 func (r WeiboWebV2RegionCityListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "normalized", r.Normalized)
+	addOptionalQueryValue(values, "normalized", r.Normalized)
 	return values
 }
 
@@ -14019,13 +14019,13 @@ type WeiboWebV2WeiboRealtimeSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebV2WeiboRealtimeSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14035,39 +14035,39 @@ type WeiboWebV2WeiboRealtimeSearchResponse = APIResponse
 // WeiboWebV2UserSearchRequest is the request for 用户搜索/User search.
 type WeiboWebV2UserSearchRequest struct {
 	// 搜索关键词/Query（提供则视为“全部”搜索；留空则仅应用高级筛选参数）
-	Query *string `query:"query,omitempty" json:"query,omitempty"`
+	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 页码/Page
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 地区编码，从 /city_list 获取/Region code from /city_list
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 	// 认证类型 org_vip(机构)/per_vip(个人)/ord(普通)/Auth type
-	Auth *string `query:"auth,omitempty" json:"auth,omitempty"`
+	Auth string `query:"auth,omitempty" json:"auth,omitempty"`
 	// 性别 man / women / Gender
-	Gender *string `query:"gender,omitempty" json:"gender,omitempty"`
+	Gender string `query:"gender,omitempty" json:"gender,omitempty"`
 	// 年龄段 18y/22y/29y/39y/40y / Age bucket
-	Age *string `query:"age,omitempty" json:"age,omitempty"`
+	Age string `query:"age,omitempty" json:"age,omitempty"`
 	// 昵称筛选/Nickname filter
-	Nickname *string `query:"nickname,omitempty" json:"nickname,omitempty"`
+	Nickname string `query:"nickname,omitempty" json:"nickname,omitempty"`
 	// 标签筛选/Tag filter
-	Tag *string `query:"tag,omitempty" json:"tag,omitempty"`
+	Tag string `query:"tag,omitempty" json:"tag,omitempty"`
 	// 学校筛选/School filter
-	School *string `query:"school,omitempty" json:"school,omitempty"`
+	School string `query:"school,omitempty" json:"school,omitempty"`
 	// 公司筛选/Company filter
-	Work *string `query:"work,omitempty" json:"work,omitempty"`
+	Work string `query:"work,omitempty" json:"work,omitempty"`
 }
 
 func (r WeiboWebV2UserSearchRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "region", r.Region)
-	addQueryValue(values, "auth", r.Auth)
-	addQueryValue(values, "gender", r.Gender)
-	addQueryValue(values, "age", r.Age)
-	addQueryValue(values, "nickname", r.Nickname)
-	addQueryValue(values, "tag", r.Tag)
-	addQueryValue(values, "school", r.School)
-	addQueryValue(values, "work", r.Work)
+	addOptionalQueryValue(values, "query", r.Query)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "auth", r.Auth)
+	addOptionalQueryValue(values, "gender", r.Gender)
+	addOptionalQueryValue(values, "age", r.Age)
+	addOptionalQueryValue(values, "nickname", r.Nickname)
+	addOptionalQueryValue(values, "tag", r.Tag)
+	addOptionalQueryValue(values, "school", r.School)
+	addOptionalQueryValue(values, "work", r.Work)
 	return values
 }
 
@@ -14079,16 +14079,16 @@ type WeiboWebV2WeiboVideoSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 搜索模式：hot=热门 / all=全部
-	Mode *string `query:"mode,omitempty" json:"mode,omitempty"`
+	Mode string `query:"mode,omitempty" json:"mode,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebV2WeiboVideoSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "mode", r.Mode)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "mode", r.Mode)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14100,13 +14100,13 @@ type WeiboWebV2WeiboPictureSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebV2WeiboPictureSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14118,13 +14118,13 @@ type WeiboWebV2WeiboTopicSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboWebV2WeiboTopicSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14166,19 +14166,19 @@ type WeiboAppGetUserTimelineRequest struct {
 	// 用户ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页码
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 筛选类型
-	FilterType *string `query:"filter_type,omitempty" json:"filter_type,omitempty"`
+	FilterType string `query:"filter_type,omitempty" json:"filter_type,omitempty"`
 	// 时间筛选(YYYYMMDD格式)
-	Month *string `query:"month,omitempty" json:"month,omitempty"`
+	Month string `query:"month,omitempty" json:"month,omitempty"`
 }
 
 func (r WeiboAppGetUserTimelineRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "filter_type", r.FilterType)
-	addQueryValue(values, "month", r.Month)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "filter_type", r.FilterType)
+	addOptionalQueryValue(values, "month", r.Month)
 	return values
 }
 
@@ -14190,13 +14190,13 @@ type WeiboAppGetUserVideosRequest struct {
 	// 用户ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 翻页游标
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboAppGetUserVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -14208,13 +14208,13 @@ type WeiboAppGetUserSuperTopicsRequest struct {
 	// 用户ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页码
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboAppGetUserSuperTopicsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14226,13 +14226,13 @@ type WeiboAppGetUserAlbumRequest struct {
 	// 用户ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 翻页游标
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboAppGetUserAlbumRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -14244,13 +14244,13 @@ type WeiboAppGetUserArticlesRequest struct {
 	// 用户ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 翻页游标
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboAppGetUserArticlesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -14262,13 +14262,13 @@ type WeiboAppGetUserAudiosRequest struct {
 	// 用户ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 翻页游标
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboAppGetUserAudiosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -14280,13 +14280,13 @@ type WeiboAppGetUserProfileFeedRequest struct {
 	// 用户ID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 翻页游标
-	SinceID *string `query:"since_id,omitempty" json:"since_id,omitempty"`
+	SinceID string `query:"since_id,omitempty" json:"since_id,omitempty"`
 }
 
 func (r WeiboAppGetUserProfileFeedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "since_id", r.SinceID)
+	addOptionalQueryValue(values, "since_id", r.SinceID)
 	return values
 }
 
@@ -14313,16 +14313,16 @@ type WeiboAppGetPostCommentsRequest struct {
 	// 微博ID
 	StatusID string `query:"status_id,omitempty" json:"status_id,omitempty"`
 	// 翻页游标
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 	// 排序类型: 0=按热度排序, 1=按时间排序
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r WeiboAppGetPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "status_id", r.StatusID)
-	addQueryValue(values, "max_id", r.MaxID)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -14334,13 +14334,13 @@ type WeiboAppGetPostRepostsRequest struct {
 	// 微博ID
 	StatusID string `query:"status_id,omitempty" json:"status_id,omitempty"`
 	// 翻页游标
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r WeiboAppGetPostRepostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "status_id", r.StatusID)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -14352,13 +14352,13 @@ type WeiboAppGetPostLikesRequest struct {
 	// 微博ID
 	StatusID string `query:"status_id,omitempty" json:"status_id,omitempty"`
 	// 点赞类型: 0=全部, 1=点赞, 2=开心, 3=惊讶, 4=伤心, 5=愤怒, 6=打赏, 8=抱抱
-	AttitudeType *string `query:"attitude_type,omitempty" json:"attitude_type,omitempty"`
+	AttitudeType string `query:"attitude_type,omitempty" json:"attitude_type,omitempty"`
 }
 
 func (r WeiboAppGetPostLikesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "status_id", r.StatusID)
-	addQueryValue(values, "attitude_type", r.AttitudeType)
+	addOptionalQueryValue(values, "attitude_type", r.AttitudeType)
 	return values
 }
 
@@ -14383,12 +14383,12 @@ type WeiboAppGetVideoDetailResponse = APIResponse
 // WeiboAppGetVideoFeaturedFeedRequest is the request for 获取短视频精选Feed流/Get video featured feed.
 type WeiboAppGetVideoFeaturedFeedRequest struct {
 	// 页码，首页不传，第二页传2
-	Page *string `query:"page,omitempty" json:"page,omitempty"`
+	Page string `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboAppGetVideoFeaturedFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14400,16 +14400,16 @@ type WeiboAppComprehensiveSearchRequest struct {
 	// 搜索关键词
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 页码
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 搜索类型: 1=综合, 61=实时, 3=用户, 64=视频, 63=图片, 62=关注, 60=热门, 21=全网, 38=话题, 98=超话, 92=地点, 97=商品
-	SearchType *int `query:"search_type,omitempty" json:"search_type,omitempty"`
+	SearchType int `query:"search_type,omitempty" json:"search_type,omitempty"`
 }
 
 func (r WeiboAppComprehensiveSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "search_type", r.SearchType)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "search_type", r.SearchType)
 	return values
 }
 
@@ -14421,13 +14421,13 @@ type WeiboAppAiSmartSearchRequest struct {
 	// 搜索关键词
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 页码
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeiboAppAiSmartSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14437,15 +14437,15 @@ type WeiboAppAiSmartSearchResponse = APIResponse
 // WeiboAppGetHomeRecommendFeedRequest is the request for 获取首页推荐Feed流/Get home recommend feed.
 type WeiboAppGetHomeRecommendFeedRequest struct {
 	// 页码，首页不传，第二页传2
-	Page *string `query:"page,omitempty" json:"page,omitempty"`
+	Page string `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r WeiboAppGetHomeRecommendFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -14455,21 +14455,21 @@ type WeiboAppGetHomeRecommendFeedResponse = APIResponse
 // WeiboAppGetHotSearchRequest is the request for 获取热搜榜/Get hot search.
 type WeiboAppGetHotSearchRequest struct {
 	// 热搜分类: mineband=我的, realtimehot=热搜, social=社会, fun=文娱, technologynav=科技, lifenav=生活, region=同城, sportnav=体育, gamenav=ACG
-	Category *string `query:"category,omitempty" json:"category,omitempty"`
+	Category string `query:"category,omitempty" json:"category,omitempty"`
 	// 页码
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 同城热搜城市名称，仅 category=region 时有效，支持: 北京/上海/广州/深圳/杭州/成都/重庆/武汉/南京/天津/西安/长沙/郑州/苏州/东莞/青岛/沈阳/合肥等，默认北京
-	RegionName *string `query:"region_name,omitempty" json:"region_name,omitempty"`
+	RegionName string `query:"region_name,omitempty" json:"region_name,omitempty"`
 }
 
 func (r WeiboAppGetHotSearchRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "category", r.Category)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "region_name", r.RegionName)
+	addOptionalQueryValue(values, "category", r.Category)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "region_name", r.RegionName)
 	return values
 }
 
@@ -14518,13 +14518,13 @@ type WeChatMediaPlatformWebGetWechatMpArticleListRequest struct {
 	// 公众号ID/MP ID
 	Ghid string `query:"ghid,omitempty" json:"ghid,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r WeChatMediaPlatformWebGetWechatMpArticleListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "ghid", r.Ghid)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -14569,16 +14569,16 @@ type WeChatMediaPlatformWebGetWechatMpArticleCommentListRequest struct {
 	// 文章链接/Article URL
 	URL string `query:"url,omitempty" json:"url,omitempty"`
 	// 评论ID/Comment ID
-	CommentID *string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
+	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 偏移量/Offset
-	Buffer *string `query:"buffer,omitempty" json:"buffer,omitempty"`
+	Buffer string `query:"buffer,omitempty" json:"buffer,omitempty"`
 }
 
 func (r WeChatMediaPlatformWebGetWechatMpArticleCommentListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "url", r.URL)
-	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "buffer", r.Buffer)
+	addOptionalQueryValue(values, "comment_id", r.CommentID)
+	addOptionalQueryValue(values, "buffer", r.Buffer)
 	return values
 }
 
@@ -14588,21 +14588,21 @@ type WeChatMediaPlatformWebGetWechatMpArticleCommentListResponse = APIResponse
 // WeChatMediaPlatformWebGetWechatMpArticleCommentReplyListRequest is the request for 获取微信公众号文章评论回复列表/Get Wechat MP Article Comment Reply List.
 type WeChatMediaPlatformWebGetWechatMpArticleCommentReplyListRequest struct {
 	// 文章链接/Article URL
-	URL *string `query:"url,omitempty" json:"url,omitempty"`
+	URL string `query:"url,omitempty" json:"url,omitempty"`
 	// 评论ID/Comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 内容ID/Content ID
 	ContentID string `query:"content_id,omitempty" json:"content_id,omitempty"`
 	// 偏移量/Offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r WeChatMediaPlatformWebGetWechatMpArticleCommentReplyListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "url", r.URL)
+	addOptionalQueryValue(values, "url", r.URL)
 	addQueryValue(values, "comment_id", r.CommentID)
 	addQueryValue(values, "content_id", r.ContentID)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -14659,16 +14659,16 @@ type WeChatMediaPlatformWebSearchWechatOfficialAccountRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量，从0开始，每页+20/Offset, starts with 0, plus 20 every page
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 排序方式: _0默认 / _2最新 / _4最热 (Sort: _0 default / _2 newest / _4 hottest)
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r WeChatMediaPlatformWebSearchWechatOfficialAccountRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -14680,16 +14680,16 @@ type WeChatMediaPlatformWebSearchWechatMpArticleRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量，从0开始，每页+20/Offset, starts with 0, plus 20 every page
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 排序方式: _0默认 / _2最新 / _4最热 (Sort: _0 default / _2 newest / _4 hottest)
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r WeChatMediaPlatformWebSearchWechatMpArticleRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -14701,13 +14701,13 @@ type WeChatChannelsWeChatChannelsDefaultSearchRequest struct {
 	// 搜索关键词/Search keywords
 	Keywords string `json:"keywords,omitempty"`
 	// 分页参数，首次请求可为空，后续使用响应中的 last_buff 进行分页请求/Pagination parameter, can be empty for first request, use last_buff from response for subsequent requests
-	SessionBuffer *string `json:"session_buffer,omitempty"`
+	SessionBuffer string `json:"session_buffer,omitempty"`
 }
 
 func (r WeChatChannelsWeChatChannelsDefaultSearchRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "keywords", r.Keywords)
-	addBodyValue(body, "session_buffer", r.SessionBuffer)
+	addOptionalBodyValue(body, "session_buffer", r.SessionBuffer)
 	return body
 }
 
@@ -14749,13 +14749,13 @@ type WeChatChannelsWeChatChannelsUserSearchRequest struct {
 	// 搜索关键词/Search keywords
 	Keywords string `query:"keywords,omitempty" json:"keywords,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeChatChannelsWeChatChannelsUserSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keywords", r.Keywords)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14765,15 +14765,15 @@ type WeChatChannelsWeChatChannelsUserSearchResponse = APIResponse
 // WeChatChannelsWeChatChannelsUserSearchV2Request is the request for 微信视频号用户搜索V2/WeChat Channels User Search V2.
 type WeChatChannelsWeChatChannelsUserSearchV2Request struct {
 	// 搜索关键词/Search keywords
-	Keywords *string `query:"keywords,omitempty" json:"keywords,omitempty"`
+	Keywords string `query:"keywords,omitempty" json:"keywords,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r WeChatChannelsWeChatChannelsUserSearchV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keywords", r.Keywords)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "keywords", r.Keywords)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -14783,15 +14783,15 @@ type WeChatChannelsWeChatChannelsUserSearchV2Response = APIResponse
 // WeChatChannelsWeChatChannelsVideoDetailRequest is the request for 微信视频号视频详情/WeChat Channels Video Detail.
 type WeChatChannelsWeChatChannelsVideoDetailRequest struct {
 	// 视频ID/Video ID
-	ID *string `query:"id,omitempty" json:"id,omitempty"`
+	ID string `query:"id,omitempty" json:"id,omitempty"`
 	// 导出ID会过期，优先用视频ID，使用时可不传id/Export ID may expire, prefer to use Video ID, can be used without id
-	ExportID *string `query:"exportId,omitempty" json:"exportId,omitempty"`
+	ExportID string `query:"exportId,omitempty" json:"exportId,omitempty"`
 }
 
 func (r WeChatChannelsWeChatChannelsVideoDetailRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "id", r.ID)
-	addQueryValue(values, "exportId", r.ExportID)
+	addOptionalQueryValue(values, "id", r.ID)
+	addOptionalQueryValue(values, "exportId", r.ExportID)
 	return values
 }
 
@@ -14818,13 +14818,13 @@ type WeChatChannelsWeChatChannelsHomePageRequest struct {
 	// 用户名/Username
 	Username string `json:"username,omitempty"`
 	// 分页参数，首次请求可为空，后续使用 object_list 最后一个 item 的 last_buffer 进行分页请求/Pagination parameter, can be empty for first request
-	LastBuffer *string `json:"last_buffer,omitempty"`
+	LastBuffer string `json:"last_buffer,omitempty"`
 }
 
 func (r WeChatChannelsWeChatChannelsHomePageRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "username", r.Username)
-	addBodyValue(body, "last_buffer", r.LastBuffer)
+	addOptionalBodyValue(body, "last_buffer", r.LastBuffer)
 	return body
 }
 
@@ -14836,16 +14836,16 @@ type WeChatChannelsWeChatChannelsCommentsRequest struct {
 	// 视频ID/Video ID
 	ID string `json:"id,omitempty"`
 	// 分页参数，首次请求可为空/Pagination parameter, can be empty for first request
-	LastBuffer *string `json:"lastBuffer,omitempty"`
+	LastBuffer string `json:"lastBuffer,omitempty"`
 	// 评论ID，默认不传，传入则获取该评论下的子评论/Comment ID, if provided, fetches replies to that comment
-	CommentID *string `json:"comment_id,omitempty"`
+	CommentID string `json:"comment_id,omitempty"`
 }
 
 func (r WeChatChannelsWeChatChannelsCommentsRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "id", r.ID)
-	addBodyValue(body, "lastBuffer", r.LastBuffer)
-	addBodyValue(body, "comment_id", r.CommentID)
+	addOptionalBodyValue(body, "lastBuffer", r.LastBuffer)
+	addOptionalBodyValue(body, "comment_id", r.CommentID)
 	return body
 }
 
@@ -14872,16 +14872,16 @@ type WeChatChannelsSearchWeChatChannelsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 偏移量，从0开始，每页+20/Offset, starts with 0, plus 20 every page
-	Offset *int `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset int `query:"offset,omitempty" json:"offset,omitempty"`
 	// 排序方式: _0默认 / _2最新 / _4最热 (Sort: _0 default / _2 newest / _4 hottest)
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
 
 func (r WeChatChannelsSearchWeChatChannelsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "offset", r.Offset)
-	addQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
 	return values
 }
 
@@ -15035,16 +15035,16 @@ type InstagramV1GetUserPostsListRequest struct {
 	// Instagram用户ID/Instagram user ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 每页数量/Count per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV1GetUserPostsListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -15056,16 +15056,16 @@ type InstagramV1GetUserPostsListV2Request struct {
 	// Instagram用户ID/Instagram user ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 每页数量/Count per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r InstagramV1GetUserPostsListV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -15077,16 +15077,16 @@ type InstagramV1GetUserReelsListRequest struct {
 	// Instagram用户ID/Instagram user ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 每页数量/Count per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV1GetUserReelsListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -15098,13 +15098,13 @@ type InstagramV1GetUserRepostsListRequest struct {
 	// Instagram用户ID/Instagram user ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV1GetUserRepostsListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -15116,16 +15116,16 @@ type InstagramV1GetUserTaggedPostsRequest struct {
 	// Instagram用户ID/Instagram user ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 每页数量/Count per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r InstagramV1GetUserTaggedPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -15152,13 +15152,13 @@ type InstagramV1SearchUsersHashtagsPlacesRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 筛选类型：users/hashtags/places，不传则返回全部/Filter type: users/hashtags/places, omit for all
-	SelectValue *string `query:"select,omitempty" json:"select,omitempty"`
+	SelectValue string `query:"select,omitempty" json:"select,omitempty"`
 }
 
 func (r InstagramV1SearchUsersHashtagsPlacesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "select", r.SelectValue)
+	addOptionalQueryValue(values, "select", r.SelectValue)
 	return values
 }
 
@@ -15215,16 +15215,16 @@ type InstagramV1GetPostCommentsV2Request struct {
 	// 帖子ID（媒体ID）/Post ID (Media ID)
 	MediaID string `query:"media_id,omitempty" json:"media_id,omitempty"`
 	// 排序方式：popular(热门)/recent(最新)/Sorting: popular/recent
-	SortOrder *string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
+	SortOrder string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
 	// 分页游标，从上一次响应的next_min_id获取/Pagination cursor from previous response's next_min_id
-	MinID *string `query:"min_id,omitempty" json:"min_id,omitempty"`
+	MinID string `query:"min_id,omitempty" json:"min_id,omitempty"`
 }
 
 func (r InstagramV1GetPostCommentsV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "media_id", r.MediaID)
-	addQueryValue(values, "sort_order", r.SortOrder)
-	addQueryValue(values, "min_id", r.MinID)
+	addOptionalQueryValue(values, "sort_order", r.SortOrder)
+	addOptionalQueryValue(values, "min_id", r.MinID)
 	return values
 }
 
@@ -15238,14 +15238,14 @@ type InstagramV1GetCommentRepliesRequest struct {
 	// 父评论ID/Parent comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 分页游标，从上一次响应的next_min_id获取/Pagination cursor from previous response's next_min_id
-	MinID *string `query:"min_id,omitempty" json:"min_id,omitempty"`
+	MinID string `query:"min_id,omitempty" json:"min_id,omitempty"`
 }
 
 func (r InstagramV1GetCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "media_id", r.MediaID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "min_id", r.MinID)
+	addOptionalQueryValue(values, "min_id", r.MinID)
 	return values
 }
 
@@ -15255,18 +15255,18 @@ type InstagramV1GetCommentRepliesResponse = APIResponse
 // InstagramV1GetPostsUsingSpecificMusicRequest is the request for 获取使用特定音乐的帖子/Get posts using specific music.
 type InstagramV1GetPostsUsingSpecificMusicRequest struct {
 	// 音乐ID/Music ID
-	MusicID *string `query:"music_id,omitempty" json:"music_id,omitempty"`
+	MusicID string `query:"music_id,omitempty" json:"music_id,omitempty"`
 	// 音乐URL（与music_id二选一）/Music URL (alternative to music_id)
-	MusicURL *string `query:"music_url,omitempty" json:"music_url,omitempty"`
+	MusicURL string `query:"music_url,omitempty" json:"music_url,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV1GetPostsUsingSpecificMusicRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "music_id", r.MusicID)
-	addQueryValue(values, "music_url", r.MusicURL)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "music_id", r.MusicID)
+	addOptionalQueryValue(values, "music_url", r.MusicURL)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -15278,13 +15278,13 @@ type InstagramV1GetPostsByHashtagRequest struct {
 	// 话题标签名称（不含#号）/Hashtag name (without #)
 	Hashtag string `query:"hashtag,omitempty" json:"hashtag,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r InstagramV1GetPostsByHashtagRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "hashtag", r.Hashtag)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -15311,16 +15311,16 @@ type InstagramV1GetPostsByLocationRequest struct {
 	// 地点ID/Location ID
 	LocationID string `query:"location_id,omitempty" json:"location_id,omitempty"`
 	// 排序方式：ranked(热门)/recent(最新)/Sorting: ranked(top)/recent(latest)
-	Tab *string `query:"tab,omitempty" json:"tab,omitempty"`
+	Tab string `query:"tab,omitempty" json:"tab,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r InstagramV1GetPostsByLocationRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "location_id", r.LocationID)
-	addQueryValue(values, "tab", r.Tab)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "tab", r.Tab)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -15332,13 +15332,13 @@ type InstagramV1GetCitiesByCountryRequest struct {
 	// 国家代码（如US、CN、JP）/Country code (e.g. US, CN, JP)
 	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r InstagramV1GetCitiesByCountryRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -15350,13 +15350,13 @@ type InstagramV1GetLocationsByCityRequest struct {
 	// 城市ID（从fetch_cities获取）/City ID (from fetch_cities)
 	CityID string `query:"city_id,omitempty" json:"city_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r InstagramV1GetLocationsByCityRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "city_id", r.CityID)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -15375,16 +15375,16 @@ type InstagramV1GetPostsBySectionRequest struct {
 	// 分类ID（从fetch_explore_sections获取）/Section ID (from fetch_explore_sections)
 	SectionID string `query:"section_id,omitempty" json:"section_id,omitempty"`
 	// 每页数量/Count per page
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页游标，用于获取下一页/Pagination cursor for next page
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV1GetPostsBySectionRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "section_id", r.SectionID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -15439,15 +15439,15 @@ type InstagramV2GetUserInfoByUserIDResponse = APIResponse
 // InstagramV2GetUserInfoRequest is the request for 获取用户信息/Get user info.
 type InstagramV2GetUserInfoRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 }
 
 func (r InstagramV2GetUserInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
 	return values
 }
 
@@ -15457,18 +15457,18 @@ type InstagramV2GetUserInfoResponse = APIResponse
 // InstagramV2GetUserPostsRequest is the request for 获取用户帖子/Get user posts.
 type InstagramV2GetUserPostsRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15478,18 +15478,18 @@ type InstagramV2GetUserPostsResponse = APIResponse
 // InstagramV2GetUserReelsRequest is the request for 获取用户Reels/Get user reels.
 type InstagramV2GetUserReelsRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetUserReelsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15499,18 +15499,18 @@ type InstagramV2GetUserReelsResponse = APIResponse
 // InstagramV2GetUserFollowersRequest is the request for 获取用户粉丝/Get user followers.
 type InstagramV2GetUserFollowersRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetUserFollowersRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15520,18 +15520,18 @@ type InstagramV2GetUserFollowersResponse = APIResponse
 // InstagramV2GetUserFollowingRequest is the request for 获取用户关注/Get user following.
 type InstagramV2GetUserFollowingRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetUserFollowingRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15541,15 +15541,15 @@ type InstagramV2GetUserFollowingResponse = APIResponse
 // InstagramV2GetUserStoriesRequest is the request for 获取用户故事/Get user stories.
 type InstagramV2GetUserStoriesRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 }
 
 func (r InstagramV2GetUserStoriesRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
 	return values
 }
 
@@ -15559,15 +15559,15 @@ type InstagramV2GetUserStoriesResponse = APIResponse
 // InstagramV2GetUserHighlightsRequest is the request for 获取用户精选/Get user highlights.
 type InstagramV2GetUserHighlightsRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 }
 
 func (r InstagramV2GetUserHighlightsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
 	return values
 }
 
@@ -15592,18 +15592,18 @@ type InstagramV2GetHighlightStoriesResponse = APIResponse
 // InstagramV2GetUserTaggedPostsRequest is the request for 获取用户被标记的帖子/Get user tagged posts.
 type InstagramV2GetUserTaggedPostsRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetUserTaggedPostsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15613,15 +15613,15 @@ type InstagramV2GetUserTaggedPostsResponse = APIResponse
 // InstagramV2GetSimilarUsersRequest is the request for 获取相似用户/Get similar users.
 type InstagramV2GetSimilarUsersRequest struct {
 	// 用户名/Username
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 }
 
 func (r InstagramV2GetSimilarUsersRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
 	return values
 }
 
@@ -15648,13 +15648,13 @@ type InstagramV2GeneralSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GeneralSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15666,13 +15666,13 @@ type InstagramV2SearchReelsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2SearchReelsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15762,13 +15762,13 @@ type InstagramV2GetPostLikesRequest struct {
 	// 帖子Shortcode或URL/Post shortcode or URL
 	CodeOrURL string `query:"code_or_url,omitempty" json:"code_or_url,omitempty"`
 	// 分页游标/Pagination cursor
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r InstagramV2GetPostLikesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "code_or_url", r.CodeOrURL)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -15780,16 +15780,16 @@ type InstagramV2GetPostCommentsRequest struct {
 	// 帖子Shortcode或URL/Post shortcode or URL
 	CodeOrURL string `query:"code_or_url,omitempty" json:"code_or_url,omitempty"`
 	// 排序方式: recent(最新) 或 popular(热门)/Sort by: recent or popular
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "code_or_url", r.CodeOrURL)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15803,14 +15803,14 @@ type InstagramV2GetCommentRepliesRequest struct {
 	// 评论ID/Comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "code_or_url", r.CodeOrURL)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15822,13 +15822,13 @@ type InstagramV2GetMusicPostsRequest struct {
 	// 音频ID/Audio ID
 	AudioCanonicalID string `query:"audio_canonical_id,omitempty" json:"audio_canonical_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetMusicPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "audio_canonical_id", r.AudioCanonicalID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15840,13 +15840,13 @@ type InstagramV2GetLocationPostsRequest struct {
 	// 地点ID/Location ID
 	LocationID string `query:"location_id,omitempty" json:"location_id,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetLocationPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "location_id", r.LocationID)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15858,16 +15858,16 @@ type InstagramV2GetHashtagPostsRequest struct {
 	// 话题关键词（不含#号）/Hashtag keyword (without #)
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 帖子类型: top(热门), recent(最新), reels(仅Reels)/Feed type: top, recent, or reels
-	FeedType *string `query:"feed_type,omitempty" json:"feed_type,omitempty"`
+	FeedType string `query:"feed_type,omitempty" json:"feed_type,omitempty"`
 	// 分页token/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r InstagramV2GetHashtagPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "feed_type", r.FeedType)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "feed_type", r.FeedType)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -15879,13 +15879,13 @@ type InstagramV3SearchUsersRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 上一次搜索返回的rank_token，用于翻页/Rank token from previous search response for pagination
-	RankToken *string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
+	RankToken string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
 }
 
 func (r InstagramV3SearchUsersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "rank_token", r.RankToken)
+	addOptionalQueryValue(values, "rank_token", r.RankToken)
 	return values
 }
 
@@ -15897,13 +15897,13 @@ type InstagramV3SearchHashtagsRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 上一次搜索返回的rank_token，用于翻页/Rank token from previous search response for pagination
-	RankToken *string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
+	RankToken string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
 }
 
 func (r InstagramV3SearchHashtagsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "rank_token", r.RankToken)
+	addOptionalQueryValue(values, "rank_token", r.RankToken)
 	return values
 }
 
@@ -15915,13 +15915,13 @@ type InstagramV3SearchPlacesRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 上一次搜索返回的rank_token，用于翻页/Rank token from previous search response for pagination
-	RankToken *string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
+	RankToken string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
 }
 
 func (r InstagramV3SearchPlacesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "rank_token", r.RankToken)
+	addOptionalQueryValue(values, "rank_token", r.RankToken)
 	return values
 }
 
@@ -15933,19 +15933,19 @@ type InstagramV3GeneralSearchRequest struct {
 	// 搜索关键词/Search keyword
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 分页ID，首次请求不传，从上一次响应的next_max_id获取/Pagination ID, omit for first request, get from previous response next_max_id
-	NextMaxID *string `query:"next_max_id,omitempty" json:"next_max_id,omitempty"`
+	NextMaxID string `query:"next_max_id,omitempty" json:"next_max_id,omitempty"`
 	// 排序token，首次请求不传，从上一次响应获取/Rank token, omit for first request, get from previous response
-	RankToken *string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
+	RankToken string `query:"rank_token,omitempty" json:"rank_token,omitempty"`
 	// 是否启用元数据/Enable metadata
-	EnableMetadata *bool `query:"enable_metadata,omitempty" json:"enable_metadata,omitempty"`
+	EnableMetadata bool `query:"enable_metadata,omitempty" json:"enable_metadata,omitempty"`
 }
 
 func (r InstagramV3GeneralSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "next_max_id", r.NextMaxID)
-	addQueryValue(values, "rank_token", r.RankToken)
-	addQueryValue(values, "enable_metadata", r.EnableMetadata)
+	addOptionalQueryValue(values, "next_max_id", r.NextMaxID)
+	addOptionalQueryValue(values, "rank_token", r.RankToken)
+	addOptionalQueryValue(values, "enable_metadata", r.EnableMetadata)
 	return values
 }
 
@@ -15970,15 +15970,15 @@ type InstagramV3GetUserIDByUsernameResponse = APIResponse
 // InstagramV3GetUserProfileRequest is the request for 获取用户信息/Get user profile.
 type InstagramV3GetUserProfileRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 }
 
 func (r InstagramV3GetUserProfileRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
 	return values
 }
 
@@ -16008,25 +16008,25 @@ type InstagramV3GetUserPostsRequest struct {
 	// Instagram 用户名（不含 @）/Instagram username (without @)
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 向后翻页时每页数量/Number of posts per page (forward)
-	First *int `query:"first,omitempty" json:"first,omitempty"`
+	First int `query:"first,omitempty" json:"first,omitempty"`
 	// 向后翻页游标（end_cursor）/Forward pagination cursor (end_cursor)
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 向前翻页游标（start_cursor）/Backward pagination cursor (start_cursor)
-	Before *string `query:"before,omitempty" json:"before,omitempty"`
+	Before string `query:"before,omitempty" json:"before,omitempty"`
 	// 向前翻页时每页数量/Number of posts per page (backward)
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 	// 首次请求数量/Number of posts for first request
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r InstagramV3GetUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "first", r.First)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "before", r.Before)
-	addQueryValue(values, "last", r.Last)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "first", r.First)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "before", r.Before)
+	addOptionalQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -16036,30 +16036,30 @@ type InstagramV3GetUserPostsResponse = APIResponse
 // InstagramV3GetUserTaggedPostsRequest is the request for 获取用户被标记的帖子/Get user tagged posts.
 type InstagramV3GetUserTaggedPostsRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 向后翻页时每页数量/Number of posts per page (forward)
-	First *int `query:"first,omitempty" json:"first,omitempty"`
+	First int `query:"first,omitempty" json:"first,omitempty"`
 	// 向后翻页游标（end_cursor）/Forward pagination cursor (end_cursor)
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 向前翻页游标（start_cursor）/Backward pagination cursor (start_cursor)
-	Before *string `query:"before,omitempty" json:"before,omitempty"`
+	Before string `query:"before,omitempty" json:"before,omitempty"`
 	// 向前翻页时每页数量/Number of posts per page (backward)
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 	// 首次请求数量/Number of posts for first request
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r InstagramV3GetUserTaggedPostsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "first", r.First)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "before", r.Before)
-	addQueryValue(values, "last", r.Last)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "first", r.First)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "before", r.Before)
+	addOptionalQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -16069,30 +16069,30 @@ type InstagramV3GetUserTaggedPostsResponse = APIResponse
 // InstagramV3GetUserReelsRequest is the request for 获取用户Reels列表/Get user reels.
 type InstagramV3GetUserReelsRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 向后翻页时每页数量/Number of reels per page (forward)
-	First *int `query:"first,omitempty" json:"first,omitempty"`
+	First int `query:"first,omitempty" json:"first,omitempty"`
 	// 向后翻页游标（end_cursor）/Forward pagination cursor (end_cursor)
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 向前翻页游标（start_cursor）/Backward pagination cursor (start_cursor)
-	Before *string `query:"before,omitempty" json:"before,omitempty"`
+	Before string `query:"before,omitempty" json:"before,omitempty"`
 	// 向前翻页时每页数量/Number of reels per page (backward)
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 	// 每页视频数量/Videos per page
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 func (r InstagramV3GetUserReelsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "first", r.First)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "before", r.Before)
-	addQueryValue(values, "last", r.Last)
-	addQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "first", r.First)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "before", r.Before)
+	addOptionalQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
 	return values
 }
 
@@ -16102,27 +16102,27 @@ type InstagramV3GetUserReelsResponse = APIResponse
 // InstagramV3GetUserHighlightsRequest is the request for 获取用户精选Highlights列表/Get user highlights.
 type InstagramV3GetUserHighlightsRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 每页数量/Number of highlights per page
-	First *int `query:"first,omitempty" json:"first,omitempty"`
+	First int `query:"first,omitempty" json:"first,omitempty"`
 	// 向后翻页游标/Forward pagination cursor
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 向前翻页游标/Backward pagination cursor
-	Before *string `query:"before,omitempty" json:"before,omitempty"`
+	Before string `query:"before,omitempty" json:"before,omitempty"`
 	// 向前翻页时每页数量/Number of highlights per page (backward)
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 }
 
 func (r InstagramV3GetUserHighlightsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "first", r.First)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "before", r.Before)
-	addQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "first", r.First)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "before", r.Before)
+	addOptionalQueryValue(values, "last", r.Last)
 	return values
 }
 
@@ -16134,19 +16134,19 @@ type InstagramV3GetHighlightStoriesRequest struct {
 	// 精选ID/Highlight ID (格式/format: highlight:xxx)
 	HighlightID string `query:"highlight_id,omitempty" json:"highlight_id,omitempty"`
 	// 精选ID列表，逗号分隔，如不提供则仅查询highlight_id/Highlight ID list, comma separated, if not provided only query highlight_id
-	ReelIds *string `query:"reel_ids,omitempty" json:"reel_ids,omitempty"`
+	ReelIds string `query:"reel_ids,omitempty" json:"reel_ids,omitempty"`
 	// 每页数量/Items per page
-	First *int `query:"first,omitempty" json:"first,omitempty"`
+	First int `query:"first,omitempty" json:"first,omitempty"`
 	// 获取最后N条/Get last N items
-	Last *int `query:"last,omitempty" json:"last,omitempty"`
+	Last int `query:"last,omitempty" json:"last,omitempty"`
 }
 
 func (r InstagramV3GetHighlightStoriesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "highlight_id", r.HighlightID)
-	addQueryValue(values, "reel_ids", r.ReelIds)
-	addQueryValue(values, "first", r.First)
-	addQueryValue(values, "last", r.Last)
+	addOptionalQueryValue(values, "reel_ids", r.ReelIds)
+	addOptionalQueryValue(values, "first", r.First)
+	addOptionalQueryValue(values, "last", r.Last)
 	return values
 }
 
@@ -16156,15 +16156,15 @@ type InstagramV3GetHighlightStoriesResponse = APIResponse
 // InstagramV3GetUserAboutInfoRequest is the request for 获取用户账户简介/Get user about info.
 type InstagramV3GetUserAboutInfoRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 }
 
 func (r InstagramV3GetUserAboutInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
 	return values
 }
 
@@ -16174,15 +16174,15 @@ type InstagramV3GetUserAboutInfoResponse = APIResponse
 // InstagramV3GetUserFormerUsernamesRequest is the request for 获取用户曾用用户名/Get user former usernames.
 type InstagramV3GetUserFormerUsernamesRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 }
 
 func (r InstagramV3GetUserFormerUsernamesRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
 	return values
 }
 
@@ -16192,15 +16192,15 @@ type InstagramV3GetUserFormerUsernamesResponse = APIResponse
 // InstagramV3GetUserStoriesRequest is the request for 获取用户Stories（快拍）/Get user stories.
 type InstagramV3GetUserStoriesRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 }
 
 func (r InstagramV3GetUserStoriesRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
 	return values
 }
 
@@ -16210,15 +16210,15 @@ type InstagramV3GetUserStoriesResponse = APIResponse
 // InstagramV3GetRecommendedReelsFeedRequest is the request for 获取Reels推荐列表/Get recommended Reels feed.
 type InstagramV3GetRecommendedReelsFeedRequest struct {
 	// 获取数量/Number of reels to fetch
-	First *int `query:"first,omitempty" json:"first,omitempty"`
+	First int `query:"first,omitempty" json:"first,omitempty"`
 	// 分页游标，首次请求不传，从上一次响应的 page_info.end_cursor 获取/Pagination cursor, omit for first request, get from previous response page_info.end_cursor
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 }
 
 func (r InstagramV3GetRecommendedReelsFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "first", r.First)
-	addQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "first", r.First)
+	addOptionalQueryValue(values, "after", r.After)
 	return values
 }
 
@@ -16228,15 +16228,15 @@ type InstagramV3GetRecommendedReelsFeedResponse = APIResponse
 // InstagramV3GetPostInfoRequest is the request for 获取帖子详情/Get post info (media_id or URL).
 type InstagramV3GetPostInfoRequest struct {
 	// 帖子媒体ID/Post media ID（与 url 二选一）
-	MediaID *string `query:"media_id,omitempty" json:"media_id,omitempty"`
+	MediaID string `query:"media_id,omitempty" json:"media_id,omitempty"`
 	// 帖子URL/Post URL（与 media_id 二选一；支持 /p/、/reel/、/reels/、/tv/ 形式）
-	URL *string `query:"url,omitempty" json:"url,omitempty"`
+	URL string `query:"url,omitempty" json:"url,omitempty"`
 }
 
 func (r InstagramV3GetPostInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "media_id", r.MediaID)
-	addQueryValue(values, "url", r.URL)
+	addOptionalQueryValue(values, "media_id", r.MediaID)
+	addOptionalQueryValue(values, "url", r.URL)
 	return values
 }
 
@@ -16263,16 +16263,16 @@ type InstagramV3GetPostCommentsRequest struct {
 	// 帖子短代码/Post shortcode (e.g., DUajw4YkorV)
 	Code string `query:"code,omitempty" json:"code,omitempty"`
 	// 分页游标，首次请求不传，从上一次响应的 next_min_id 获取/Pagination cursor, omit for first request, get from previous response next_min_id
-	MinID *string `query:"min_id,omitempty" json:"min_id,omitempty"`
+	MinID string `query:"min_id,omitempty" json:"min_id,omitempty"`
 	// 排序方式/Sort order. 可选值/Options: popular(热门), newest(最新). Example: popular
-	SortOrder *string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
+	SortOrder string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
 }
 
 func (r InstagramV3GetPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "code", r.Code)
-	addQueryValue(values, "min_id", r.MinID)
-	addQueryValue(values, "sort_order", r.SortOrder)
+	addOptionalQueryValue(values, "min_id", r.MinID)
+	addOptionalQueryValue(values, "sort_order", r.SortOrder)
 	return values
 }
 
@@ -16286,14 +16286,14 @@ type InstagramV3GetCommentRepliesRequest struct {
 	// 父评论ID/Parent comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 分页游标，首次请求不传，从上一次响应的 next_min_child_cursor 获取/Pagination cursor, omit for first request, get from previous response next_min_child_cursor
-	MinID *string `query:"min_id,omitempty" json:"min_id,omitempty"`
+	MinID string `query:"min_id,omitempty" json:"min_id,omitempty"`
 }
 
 func (r InstagramV3GetCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "media_id", r.MediaID)
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "min_id", r.MinID)
+	addOptionalQueryValue(values, "min_id", r.MinID)
 	return values
 }
 
@@ -16305,16 +16305,16 @@ type InstagramV3GetPostOEmbedInfoRequest struct {
 	// Instagram帖子的完整URL/Full URL of Instagram post
 	URL string `query:"url,omitempty" json:"url,omitempty"`
 	// 是否隐藏帖子文本/Whether to hide caption
-	Hidecaption *bool `query:"hidecaption,omitempty" json:"hidecaption,omitempty"`
+	Hidecaption bool `query:"hidecaption,omitempty" json:"hidecaption,omitempty"`
 	// 最大宽度（像素）/Max width in pixels
-	Maxwidth *int `query:"maxwidth,omitempty" json:"maxwidth,omitempty"`
+	Maxwidth int `query:"maxwidth,omitempty" json:"maxwidth,omitempty"`
 }
 
 func (r InstagramV3GetPostOEmbedInfoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "url", r.URL)
-	addQueryValue(values, "hidecaption", r.Hidecaption)
-	addQueryValue(values, "maxwidth", r.Maxwidth)
+	addOptionalQueryValue(values, "hidecaption", r.Hidecaption)
+	addOptionalQueryValue(values, "maxwidth", r.Maxwidth)
 	return values
 }
 
@@ -16354,12 +16354,12 @@ type InstagramV3BulkTranslateCommentsResponse = APIResponse
 // InstagramV3GetExploreFeedRequest is the request for 获取探索页推荐帖子/Get explore feed.
 type InstagramV3GetExploreFeedRequest struct {
 	// 分页游标，首次请求不传，从上一次响应的 next_max_id 获取/Pagination cursor, omit for first request, get from previous response next_max_id
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV3GetExploreFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -16369,21 +16369,21 @@ type InstagramV3GetExploreFeedResponse = APIResponse
 // InstagramV3GetUserFollowingListRequest is the request for 获取用户关注列表/Get user following list.
 type InstagramV3GetUserFollowingListRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 每次获取数量/Number of users to fetch per request
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页游标，首次请求不传，从上一次响应的 next_max_id 获取/Pagination cursor, omit for first request, get from previous response next_max_id
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV3GetUserFollowingListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -16393,21 +16393,21 @@ type InstagramV3GetUserFollowingListResponse = APIResponse
 // InstagramV3GetUserFollowersListRequest is the request for 获取用户粉丝列表/Get user followers list.
 type InstagramV3GetUserFollowersListRequest struct {
 	// 用户ID/User ID
-	UserID *string `query:"user_id,omitempty" json:"user_id,omitempty"`
+	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 用户名（与user_id二选一）/Username (alternative to user_id)
-	Username *string `query:"username,omitempty" json:"username,omitempty"`
+	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 每次获取数量/Number of users to fetch per request
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 分页游标，首次请求不传，从上一次响应的 next_max_id 获取/Pagination cursor, omit for first request, get from previous response next_max_id
-	MaxID *string `query:"max_id,omitempty" json:"max_id,omitempty"`
+	MaxID string `query:"max_id,omitempty" json:"max_id,omitempty"`
 }
 
 func (r InstagramV3GetUserFollowersListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "max_id", r.MaxID)
+	addOptionalQueryValue(values, "user_id", r.UserID)
+	addOptionalQueryValue(values, "username", r.Username)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "max_id", r.MaxID)
 	return values
 }
 
@@ -16419,13 +16419,13 @@ type InstagramV3GetLocationInfoRequest struct {
 	// 地点ID/Location ID
 	LocationID string `query:"location_id,omitempty" json:"location_id,omitempty"`
 	// 是否显示附近地点/Whether to show nearby places
-	ShowNearby *bool `query:"show_nearby,omitempty" json:"show_nearby,omitempty"`
+	ShowNearby bool `query:"show_nearby,omitempty" json:"show_nearby,omitempty"`
 }
 
 func (r InstagramV3GetLocationInfoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "location_id", r.LocationID)
-	addQueryValue(values, "show_nearby", r.ShowNearby)
+	addOptionalQueryValue(values, "show_nearby", r.ShowNearby)
 	return values
 }
 
@@ -16437,22 +16437,22 @@ type InstagramV3GetLocationPostsRequest struct {
 	// 地点ID/Location ID
 	LocationID string `query:"location_id,omitempty" json:"location_id,omitempty"`
 	// 帖子类型/Post type. 可选值/Options: ranked(热门/top), recent(最新/latest). Example: ranked
-	Tab *string `query:"tab,omitempty" json:"tab,omitempty"`
+	Tab string `query:"tab,omitempty" json:"tab,omitempty"`
 	// 翻页时每页数量/Posts per page
-	First *int `query:"first,omitempty" json:"first,omitempty"`
+	First int `query:"first,omitempty" json:"first,omitempty"`
 	// 翻页游标，从上一次响应的end_cursor获取/Pagination cursor from previous response end_cursor
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 每页数量/Page size
-	PageSizeOverride *int `query:"page_size_override,omitempty" json:"page_size_override,omitempty"`
+	PageSizeOverride int `query:"page_size_override,omitempty" json:"page_size_override,omitempty"`
 }
 
 func (r InstagramV3GetLocationPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "location_id", r.LocationID)
-	addQueryValue(values, "tab", r.Tab)
-	addQueryValue(values, "first", r.First)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "page_size_override", r.PageSizeOverride)
+	addOptionalQueryValue(values, "tab", r.Tab)
+	addOptionalQueryValue(values, "first", r.First)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "page_size_override", r.PageSizeOverride)
 	return values
 }
 
@@ -16524,28 +16524,28 @@ type YouTubeWebGetVideoInformationV1Request struct {
 	// 视频ID/Video ID
 	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// URL访问模式：normal（包含音视频URL）| blocked（不包含音视频URL） / URL access mode
-	URLAccess *string `query:"url_access,omitempty" json:"url_access,omitempty"`
+	URLAccess string `query:"url_access,omitempty" json:"url_access,omitempty"`
 	// 语言代码（IETF标签），默认en-US / Language code
-	Lang *string `query:"lang,omitempty" json:"lang,omitempty"`
+	Lang string `query:"lang,omitempty" json:"lang,omitempty"`
 	// 视频格式：auto（自动）| true（简化格式）| raw（原始格式）| false（不获取） / Video format selection
-	Videos *string `query:"videos,omitempty" json:"videos,omitempty"`
+	Videos string `query:"videos,omitempty" json:"videos,omitempty"`
 	// 音频格式：auto（自动）| true（简化格式）| raw（原始格式）| false（不获取） / Audio format selection
-	Audios *string `query:"audios,omitempty" json:"audios,omitempty"`
+	Audios string `query:"audios,omitempty" json:"audios,omitempty"`
 	// 是否获取字幕 / Include subtitles
-	Subtitles *bool `query:"subtitles,omitempty" json:"subtitles,omitempty"`
+	Subtitles bool `query:"subtitles,omitempty" json:"subtitles,omitempty"`
 	// 是否获取相关视频 / Include related content
-	Related *bool `query:"related,omitempty" json:"related,omitempty"`
+	Related bool `query:"related,omitempty" json:"related,omitempty"`
 }
 
 func (r YouTubeWebGetVideoInformationV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "url_access", r.URLAccess)
-	addQueryValue(values, "lang", r.Lang)
-	addQueryValue(values, "videos", r.Videos)
-	addQueryValue(values, "audios", r.Audios)
-	addQueryValue(values, "subtitles", r.Subtitles)
-	addQueryValue(values, "related", r.Related)
+	addOptionalQueryValue(values, "url_access", r.URLAccess)
+	addOptionalQueryValue(values, "lang", r.Lang)
+	addOptionalQueryValue(values, "videos", r.Videos)
+	addOptionalQueryValue(values, "audios", r.Audios)
+	addOptionalQueryValue(values, "subtitles", r.Subtitles)
+	addOptionalQueryValue(values, "related", r.Related)
 	return values
 }
 
@@ -16572,13 +16572,13 @@ type YouTubeWebGetVideoInformationV3Request struct {
 	// 视频ID/Video ID
 	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 }
 
 func (r YouTubeWebGetVideoInformationV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
 	return values
 }
 
@@ -16590,19 +16590,19 @@ type YouTubeWebGetVideoSubtitlesRequest struct {
 	// 字幕URL（需先调用获取视频详情接口） / Subtitle URL from video details
 	SubtitleURL string `query:"subtitle_url,omitempty" json:"subtitle_url,omitempty"`
 	// 字幕格式：srt/xml/vtt/txt / Subtitle format
-	Format *string `query:"format,omitempty" json:"format,omitempty"`
+	Format string `query:"format,omitempty" json:"format,omitempty"`
 	// 修复重叠字幕（默认开启） / Fix overlapping subtitles
-	FixOverlap *bool `query:"fix_overlap,omitempty" json:"fix_overlap,omitempty"`
+	FixOverlap bool `query:"fix_overlap,omitempty" json:"fix_overlap,omitempty"`
 	// 目标语言代码（留空保持原语言） / Target language code
-	TargetLang *string `query:"target_lang,omitempty" json:"target_lang,omitempty"`
+	TargetLang string `query:"target_lang,omitempty" json:"target_lang,omitempty"`
 }
 
 func (r YouTubeWebGetVideoSubtitlesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "subtitle_url", r.SubtitleURL)
-	addQueryValue(values, "format", r.Format)
-	addQueryValue(values, "fix_overlap", r.FixOverlap)
-	addQueryValue(values, "target_lang", r.TargetLang)
+	addOptionalQueryValue(values, "format", r.Format)
+	addOptionalQueryValue(values, "fix_overlap", r.FixOverlap)
+	addOptionalQueryValue(values, "target_lang", r.TargetLang)
 	return values
 }
 
@@ -16614,25 +16614,25 @@ type YouTubeWebGetVideoCommentsRequest struct {
 	// 视频ID/Video ID
 	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 排序方式 | Sort by
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebGetVideoCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -16644,19 +16644,19 @@ type YouTubeWebGetVideoSubCommentsRequest struct {
 	// 回复的continuation token（从一级评论的reply_continuation_token字段获取）/Reply continuation token from first-level comment
 	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebGetVideoSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -16666,24 +16666,24 @@ type YouTubeWebGetVideoSubCommentsResponse = APIResponse
 // YouTubeWebGetChannelDescriptionRequest is the request for 获取频道描述信息/Get channel description.
 type YouTubeWebGetChannelDescriptionRequest struct {
 	// 频道ID（格式如：UCeu6U67OzJhV1KwBansH3Dg），可通过get_channel_id_v2接口从频道URL获取/Channel ID, can be obtained from channel URL via get_channel_id_v2 endpoint
-	ChannelID *string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
+	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 翻页标志（用于获取频道注册时间等高级信息）/Continuation token for getting advanced info like channel creation date
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebGetChannelDescriptionRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "channel_id", r.ChannelID)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -16695,13 +16695,13 @@ type YouTubeWebGetRelatedVideosRequest struct {
 	// 视频ID/Video ID
 	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 }
 
 func (r YouTubeWebGetRelatedVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
 	return values
 }
 
@@ -16713,22 +16713,22 @@ type YouTubeWebSearchVideoRequest struct {
 	// 搜索关键字/Search keyword
 	SearchQuery string `query:"search_query,omitempty" json:"search_query,omitempty"`
 	// 语言代码/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 排序方式/Order by
-	OrderBy *string `query:"order_by,omitempty" json:"order_by,omitempty"`
+	OrderBy string `query:"order_by,omitempty" json:"order_by,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 }
 
 func (r YouTubeWebSearchVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_query", r.SearchQuery)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "order_by", r.OrderBy)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "order_by", r.OrderBy)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
 	return values
 }
 
@@ -16740,37 +16740,37 @@ type YouTubeWebGeneralSearchWithFiltersRequest struct {
 	// 搜索关键字/Search keyword
 	SearchQuery string `query:"search_query,omitempty" json:"search_query,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, CN等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 时区（如America/Los_Angeles, Asia/Shanghai等）/Time zone
-	TimeZone *string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
+	TimeZone string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
 	// 上传时间过滤 | Upload time filter
-	UploadTime *string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
+	UploadTime string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
 	// 视频时长过滤 | Duration filter
-	Duration *string `query:"duration,omitempty" json:"duration,omitempty"`
+	Duration string `query:"duration,omitempty" json:"duration,omitempty"`
 	// 内容类型过滤 | Content type filter
-	ContentType *string `query:"content_type,omitempty" json:"content_type,omitempty"`
+	ContentType string `query:"content_type,omitempty" json:"content_type,omitempty"`
 	// 特征过滤 | Feature filter
-	Feature *string `query:"feature,omitempty" json:"feature,omitempty"`
+	Feature string `query:"feature,omitempty" json:"feature,omitempty"`
 	// 排序方式 | Sort by
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 }
 
 func (r YouTubeWebGeneralSearchWithFiltersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_query", r.SearchQuery)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "time_zone", r.TimeZone)
-	addQueryValue(values, "upload_time", r.UploadTime)
-	addQueryValue(values, "duration", r.Duration)
-	addQueryValue(values, "content_type", r.ContentType)
-	addQueryValue(values, "feature", r.Feature)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "time_zone", r.TimeZone)
+	addOptionalQueryValue(values, "upload_time", r.UploadTime)
+	addOptionalQueryValue(values, "duration", r.Duration)
+	addOptionalQueryValue(values, "content_type", r.ContentType)
+	addOptionalQueryValue(values, "feature", r.Feature)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
 	return values
 }
 
@@ -16782,31 +16782,31 @@ type YouTubeWebYouTubeShortsSearchRequest struct {
 	// 搜索关键字/Search keyword
 	SearchQuery string `query:"search_query,omitempty" json:"search_query,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, CN等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 时区（如America/Los_Angeles, Asia/Shanghai等）/Time zone
-	TimeZone *string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
+	TimeZone string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
 	// 上传时间过滤 | Upload time filter for Shorts
-	UploadTime *string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
+	UploadTime string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
 	// 排序方式 | Sort by for Shorts
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否过滤混合内容（长视频），默认True / Filter mixed content (long videos), default True
-	FilterMixedContent *bool `query:"filter_mixed_content,omitempty" json:"filter_mixed_content,omitempty"`
+	FilterMixedContent bool `query:"filter_mixed_content,omitempty" json:"filter_mixed_content,omitempty"`
 }
 
 func (r YouTubeWebYouTubeShortsSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_query", r.SearchQuery)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "time_zone", r.TimeZone)
-	addQueryValue(values, "upload_time", r.UploadTime)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "filter_mixed_content", r.FilterMixedContent)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "time_zone", r.TimeZone)
+	addOptionalQueryValue(values, "upload_time", r.UploadTime)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "filter_mixed_content", r.FilterMixedContent)
 	return values
 }
 
@@ -16878,13 +16878,13 @@ type YouTubeWebGetChannelVideosV1Request struct {
 	// 频道ID/Channel ID
 	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 }
 
 func (r YouTubeWebGetChannelVideosV1Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
 	return values
 }
 
@@ -16896,22 +16896,22 @@ type YouTubeWebGetChannelVideosV2Request struct {
 	// 频道ID/Channel ID
 	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 视频结果语言代码/Video result language code
-	Lang *string `query:"lang,omitempty" json:"lang,omitempty"`
+	Lang string `query:"lang,omitempty" json:"lang,omitempty"`
 	// 排序方式/Sort by
-	SortBy *string `query:"sortBy,omitempty" json:"sortBy,omitempty"`
+	SortBy string `query:"sortBy,omitempty" json:"sortBy,omitempty"`
 	// 内容类型/Content type
-	ContentType *string `query:"contentType,omitempty" json:"contentType,omitempty"`
+	ContentType string `query:"contentType,omitempty" json:"contentType,omitempty"`
 	// 翻页令牌/Pagination token
-	NextToken *string `query:"nextToken,omitempty" json:"nextToken,omitempty"`
+	NextToken string `query:"nextToken,omitempty" json:"nextToken,omitempty"`
 }
 
 func (r YouTubeWebGetChannelVideosV2Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "lang", r.Lang)
-	addQueryValue(values, "sortBy", r.SortBy)
-	addQueryValue(values, "contentType", r.ContentType)
-	addQueryValue(values, "nextToken", r.NextToken)
+	addOptionalQueryValue(values, "lang", r.Lang)
+	addOptionalQueryValue(values, "sortBy", r.SortBy)
+	addOptionalQueryValue(values, "contentType", r.ContentType)
+	addOptionalQueryValue(values, "nextToken", r.NextToken)
 	return values
 }
 
@@ -16923,22 +16923,22 @@ type YouTubeWebGetChannelVideosV3Request struct {
 	// 频道ID/Channel ID
 	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 分页token，用于获取下一页/Pagination token for next page
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebGetChannelVideosV3Request) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -16950,13 +16950,13 @@ type YouTubeWebGetChannelShortVideosRequest struct {
 	// 频道ID/Channel ID
 	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 }
 
 func (r YouTubeWebGetChannelShortVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
 	return values
 }
 
@@ -16970,20 +16970,20 @@ type YouTubeWebSearchChannelRequest struct {
 	// 搜索关键字/Search keyword
 	SearchQuery string `query:"search_query,omitempty" json:"search_query,omitempty"`
 	// 语言代码/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 }
 
 func (r YouTubeWebSearchChannelRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "channel_id", r.ChannelID)
 	addQueryValue(values, "search_query", r.SearchQuery)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
 	return values
 }
 
@@ -16993,18 +16993,18 @@ type YouTubeWebSearchChannelResponse = APIResponse
 // YouTubeWebGetTrendingVideosRequest is the request for 获取趋势视频/Get trending videos.
 type YouTubeWebGetTrendingVideosRequest struct {
 	// 语言代码/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 类型/Section
-	Section *string `query:"section,omitempty" json:"section,omitempty"`
+	Section string `query:"section,omitempty" json:"section,omitempty"`
 }
 
 func (r YouTubeWebGetTrendingVideosRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "section", r.Section)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "section", r.Section)
 	return values
 }
 
@@ -17016,16 +17016,16 @@ type YouTubeWebV2GetVideoInformationRequest struct {
 	// 视频ID/Video ID
 	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoInformationRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17035,18 +17035,18 @@ type YouTubeWebV2GetVideoInformationResponse = APIResponse
 // YouTubeWebV2GetVideoInformationV2Request is the request for 获取视频详情 V2/Get video information V2.
 type YouTubeWebV2GetVideoInformationV2Request struct {
 	// 视频ID/Video ID
-	VideoID *string `query:"video_id,omitempty" json:"video_id,omitempty"`
+	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 视频URL/Video URL (如果提供 video_id 则忽略此参数)
-	VideoURL *string `query:"video_url,omitempty" json:"video_url,omitempty"`
+	VideoURL string `query:"video_url,omitempty" json:"video_url,omitempty"`
 	// 是否需要清洗数据，提取关键字段/Whether to return cleaned payload
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoInformationV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "video_url", r.VideoURL)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "video_id", r.VideoID)
+	addOptionalQueryValue(values, "video_url", r.VideoURL)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17058,25 +17058,25 @@ type YouTubeWebV2GetVideoCommentsRequest struct {
 	// 视频ID/Video ID
 	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 排序方式 | Sort by
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17088,19 +17088,19 @@ type YouTubeWebV2GetVideoSubCommentsRequest struct {
 	// 回复的continuation token（从一级评论的reply_continuation_token字段获取）/Reply continuation token from first-level comment
 	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoSubCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17110,24 +17110,24 @@ type YouTubeWebV2GetVideoSubCommentsResponse = APIResponse
 // YouTubeWebV2GetChannelDescriptionRequest is the request for 获取频道描述信息/Get channel description.
 type YouTubeWebV2GetChannelDescriptionRequest struct {
 	// 频道ID（格式如：UCeu6U67OzJhV1KwBansH3Dg），可通过get_channel_id接口从频道URL获取/Channel ID, can be obtained from channel URL via get_channel_id endpoint
-	ChannelID *string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
+	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 翻页标志（用于获取频道注册时间等高级信息）/Continuation token for getting advanced info like channel creation date
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetChannelDescriptionRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "channel_id", r.ChannelID)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17139,37 +17139,37 @@ type YouTubeWebV2GeneralSearchRequest struct {
 	// 搜索关键字/Search keyword
 	SearchQuery string `query:"search_query,omitempty" json:"search_query,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, CN等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 时区（如America/Los_Angeles, Asia/Shanghai等）/Time zone
-	TimeZone *string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
+	TimeZone string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
 	// 上传时间过滤 | Upload time filter
-	UploadTime *string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
+	UploadTime string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
 	// 视频时长过滤 | Duration filter
-	Duration *string `query:"duration,omitempty" json:"duration,omitempty"`
+	Duration string `query:"duration,omitempty" json:"duration,omitempty"`
 	// 内容类型过滤 | Content type filter
-	ContentType *string `query:"content_type,omitempty" json:"content_type,omitempty"`
+	ContentType string `query:"content_type,omitempty" json:"content_type,omitempty"`
 	// 特征过滤 | Feature filter
-	Feature *string `query:"feature,omitempty" json:"feature,omitempty"`
+	Feature string `query:"feature,omitempty" json:"feature,omitempty"`
 	// 排序方式 | Sort by
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 }
 
 func (r YouTubeWebV2GeneralSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_query", r.SearchQuery)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "time_zone", r.TimeZone)
-	addQueryValue(values, "upload_time", r.UploadTime)
-	addQueryValue(values, "duration", r.Duration)
-	addQueryValue(values, "content_type", r.ContentType)
-	addQueryValue(values, "feature", r.Feature)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "time_zone", r.TimeZone)
+	addOptionalQueryValue(values, "upload_time", r.UploadTime)
+	addOptionalQueryValue(values, "duration", r.Duration)
+	addOptionalQueryValue(values, "content_type", r.ContentType)
+	addOptionalQueryValue(values, "feature", r.Feature)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
 	return values
 }
 
@@ -17179,30 +17179,30 @@ type YouTubeWebV2GeneralSearchResponse = APIResponse
 // YouTubeWebV2GeneralSearchV2Request is the request for 综合搜索V2/General search V2.
 type YouTubeWebV2GeneralSearchV2Request struct {
 	// 搜索关键词（首次请求必填）/Search keyword (required for first request)
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 分页token，用于获取下一页/Continuation token for next page
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 上传时间过滤/Upload date filter
-	UploadDate *string `query:"upload_date,omitempty" json:"upload_date,omitempty"`
+	UploadDate string `query:"upload_date,omitempty" json:"upload_date,omitempty"`
 	// 类型过滤/Type filter
-	TypeValue *string `query:"type,omitempty" json:"type,omitempty"`
+	TypeValue string `query:"type,omitempty" json:"type,omitempty"`
 	// 时长过滤/Duration filter: short (<4min), medium (4-20min), long (>20min)
-	Duration *string `query:"duration,omitempty" json:"duration,omitempty"`
+	Duration string `query:"duration,omitempty" json:"duration,omitempty"`
 	// 特性过滤（逗号分隔）/Feature filter (comma separated): live, 4k, hd, subtitles, creative_commons, 360, vr180, 3d, hdr
-	Features *string `query:"features,omitempty" json:"features,omitempty"`
+	Features string `query:"features,omitempty" json:"features,omitempty"`
 	// 排序方式/Sort by
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 }
 
 func (r YouTubeWebV2GeneralSearchV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "upload_date", r.UploadDate)
-	addQueryValue(values, "type", r.TypeValue)
-	addQueryValue(values, "duration", r.Duration)
-	addQueryValue(values, "features", r.Features)
-	addQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "upload_date", r.UploadDate)
+	addOptionalQueryValue(values, "type", r.TypeValue)
+	addOptionalQueryValue(values, "duration", r.Duration)
+	addOptionalQueryValue(values, "features", r.Features)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
 	return values
 }
 
@@ -17214,31 +17214,31 @@ type YouTubeWebV2ShortsSearchRequest struct {
 	// 搜索关键字/Search keyword
 	SearchQuery string `query:"search_query,omitempty" json:"search_query,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, CN等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 时区（如America/Los_Angeles, Asia/Shanghai等）/Time zone
-	TimeZone *string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
+	TimeZone string `query:"time_zone,omitempty" json:"time_zone,omitempty"`
 	// 上传时间过滤 | Upload time filter for Shorts
-	UploadTime *string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
+	UploadTime string `query:"upload_time,omitempty" json:"upload_time,omitempty"`
 	// 排序方式 | Sort by for Shorts
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 翻页令牌/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否过滤混合内容（长视频），默认True / Filter mixed content (long videos), default True
-	FilterMixedContent *bool `query:"filter_mixed_content,omitempty" json:"filter_mixed_content,omitempty"`
+	FilterMixedContent bool `query:"filter_mixed_content,omitempty" json:"filter_mixed_content,omitempty"`
 }
 
 func (r YouTubeWebV2ShortsSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "search_query", r.SearchQuery)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "time_zone", r.TimeZone)
-	addQueryValue(values, "upload_time", r.UploadTime)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "filter_mixed_content", r.FilterMixedContent)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "time_zone", r.TimeZone)
+	addOptionalQueryValue(values, "upload_time", r.UploadTime)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "filter_mixed_content", r.FilterMixedContent)
 	return values
 }
 
@@ -17248,21 +17248,21 @@ type YouTubeWebV2ShortsSearchResponse = APIResponse
 // YouTubeWebV2ShortsSearchV2Request is the request for Shorts搜索V2/Shorts search V2.
 type YouTubeWebV2ShortsSearchV2Request struct {
 	// 搜索关键词（首次请求必填）/Search keyword (required for first request)
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 分页token，用于获取下一页/Continuation token for next page
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 上传时间过滤/Upload date filter
-	UploadDate *string `query:"upload_date,omitempty" json:"upload_date,omitempty"`
+	UploadDate string `query:"upload_date,omitempty" json:"upload_date,omitempty"`
 	// 排序方式/Sort by
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 }
 
 func (r YouTubeWebV2ShortsSearchV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "upload_date", r.UploadDate)
-	addQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "upload_date", r.UploadDate)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
 	return values
 }
 
@@ -17304,22 +17304,22 @@ type YouTubeWebV2GetChannelVideosRequest struct {
 	// 频道ID/Channel ID
 	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 分页token，用于获取下一页/Pagination token for next page
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetChannelVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17329,15 +17329,15 @@ type YouTubeWebV2GetChannelVideosResponse = APIResponse
 // YouTubeWebV2GetVideoStreamsInfoRequest is the request for 获取视频流信息/Get video streams info.
 type YouTubeWebV2GetVideoStreamsInfoRequest struct {
 	// 视频ID/Video ID
-	VideoID *string `query:"video_id,omitempty" json:"video_id,omitempty"`
+	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 视频URL/Video URL (如果提供video_id则忽略此参数/Ignored if video_id is provided)
-	VideoURL *string `query:"video_url,omitempty" json:"video_url,omitempty"`
+	VideoURL string `query:"video_url,omitempty" json:"video_url,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoStreamsInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "video_url", r.VideoURL)
+	addOptionalQueryValue(values, "video_id", r.VideoID)
+	addOptionalQueryValue(values, "video_url", r.VideoURL)
 	return values
 }
 
@@ -17347,15 +17347,15 @@ type YouTubeWebV2GetVideoStreamsInfoResponse = APIResponse
 // YouTubeWebV2GetVideoStreamsInfoV2Request is the request for 获取视频流信息 V2/Get video streams info V2.
 type YouTubeWebV2GetVideoStreamsInfoV2Request struct {
 	// 视频ID/Video ID
-	VideoID *string `query:"video_id,omitempty" json:"video_id,omitempty"`
+	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 视频URL/Video URL (如果提供video_id则忽略此参数/Ignored if video_id is provided)
-	VideoURL *string `query:"video_url,omitempty" json:"video_url,omitempty"`
+	VideoURL string `query:"video_url,omitempty" json:"video_url,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoStreamsInfoV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "video_url", r.VideoURL)
+	addOptionalQueryValue(values, "video_id", r.VideoID)
+	addOptionalQueryValue(values, "video_url", r.VideoURL)
 	return values
 }
 
@@ -17365,17 +17365,17 @@ type YouTubeWebV2GetVideoStreamsInfoV2Response = APIResponse
 // YouTubeWebV2GetSignedVideoStreamURLRequest is the request for 获取已签名的视频流URL/Get signed video stream URL.
 type YouTubeWebV2GetSignedVideoStreamURLRequest struct {
 	// 视频ID/Video ID
-	VideoID *string `query:"video_id,omitempty" json:"video_id,omitempty"`
+	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 视频URL/Video URL (如果提供video_id则忽略此参数/Ignored if video_id is provided)
-	VideoURL *string `query:"video_url,omitempty" json:"video_url,omitempty"`
+	VideoURL string `query:"video_url,omitempty" json:"video_url,omitempty"`
 	// 格式标识符 itag (从 get_video_streams 接口获取)/Format identifier itag (obtained from get_video_streams endpoint)
 	Itag int `query:"itag,omitempty" json:"itag,omitempty"`
 }
 
 func (r YouTubeWebV2GetSignedVideoStreamURLRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "video_url", r.VideoURL)
+	addOptionalQueryValue(values, "video_id", r.VideoID)
+	addOptionalQueryValue(values, "video_url", r.VideoURL)
 	addQueryValue(values, "itag", r.Itag)
 	return values
 }
@@ -17386,21 +17386,21 @@ type YouTubeWebV2GetSignedVideoStreamURLResponse = APIResponse
 // YouTubeWebV2GetVideoCaptionsRequest is the request for 获取视频字幕/Get video captions.
 type YouTubeWebV2GetVideoCaptionsRequest struct {
 	// 视频ID/Video ID
-	VideoID *string `query:"video_id,omitempty" json:"video_id,omitempty"`
+	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 视频URL/Video URL
-	VideoURL *string `query:"video_url,omitempty" json:"video_url,omitempty"`
+	VideoURL string `query:"video_url,omitempty" json:"video_url,omitempty"`
 	// 语言代码，为空时返回可用字幕列表/Language code, returns available caption list if empty
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 字幕格式/Caption format
-	Format *string `query:"format,omitempty" json:"format,omitempty"`
+	Format string `query:"format,omitempty" json:"format,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoCaptionsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "video_url", r.VideoURL)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "format", r.Format)
+	addOptionalQueryValue(values, "video_id", r.VideoID)
+	addOptionalQueryValue(values, "video_url", r.VideoURL)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "format", r.Format)
 	return values
 }
 
@@ -17410,21 +17410,21 @@ type YouTubeWebV2GetVideoCaptionsResponse = APIResponse
 // YouTubeWebV2GetVideoCaptionsV2Request is the request for 获取视频字幕 V2/Get video captions V2.
 type YouTubeWebV2GetVideoCaptionsV2Request struct {
 	// 视频ID/Video ID
-	VideoID *string `query:"video_id,omitempty" json:"video_id,omitempty"`
+	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 视频URL/Video URL
-	VideoURL *string `query:"video_url,omitempty" json:"video_url,omitempty"`
+	VideoURL string `query:"video_url,omitempty" json:"video_url,omitempty"`
 	// 语言代码，为空时返回可用字幕列表/Language code, returns available caption list if empty
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 字幕格式/Caption format
-	Format *string `query:"format,omitempty" json:"format,omitempty"`
+	Format string `query:"format,omitempty" json:"format,omitempty"`
 }
 
 func (r YouTubeWebV2GetVideoCaptionsV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "video_url", r.VideoURL)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "format", r.Format)
+	addOptionalQueryValue(values, "video_id", r.VideoID)
+	addOptionalQueryValue(values, "video_url", r.VideoURL)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "format", r.Format)
 	return values
 }
 
@@ -17434,18 +17434,18 @@ type YouTubeWebV2GetVideoCaptionsV2Response = APIResponse
 // YouTubeWebV2GetRelatedVideosRequest is the request for 获取视频相似内容/Get related videos.
 type YouTubeWebV2GetRelatedVideosRequest struct {
 	// 视频ID/Video ID
-	VideoID *string `query:"video_id,omitempty" json:"video_id,omitempty"`
+	VideoID string `query:"video_id,omitempty" json:"video_id,omitempty"`
 	// 视频URL/Video URL (如果提供video_id则忽略此参数/Ignored if video_id is provided)
-	VideoURL *string `query:"video_url,omitempty" json:"video_url,omitempty"`
+	VideoURL string `query:"video_url,omitempty" json:"video_url,omitempty"`
 	// 是否格式化数据。true: 返回格式化的结构化数据，false: 返回原始API结构/Whether to format data. true: return formatted structured data, false: return raw API structure
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetRelatedVideosRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "video_id", r.VideoID)
-	addQueryValue(values, "video_url", r.VideoURL)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "video_id", r.VideoID)
+	addOptionalQueryValue(values, "video_url", r.VideoURL)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17455,21 +17455,21 @@ type YouTubeWebV2GetRelatedVideosResponse = APIResponse
 // YouTubeWebV2GetChannelShortsRequest is the request for 获取频道短视频列表/Get channel shorts.
 type YouTubeWebV2GetChannelShortsRequest struct {
 	// 频道ID/Channel ID (e.g., UCuAXFkgsw1L7xaCfnd5JJOw)
-	ChannelID *string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
+	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 频道URL/Channel URL (如果提供channel_id则忽略/Ignored if channel_id is provided)
-	ChannelURL *string `query:"channel_url,omitempty" json:"channel_url,omitempty"`
+	ChannelURL string `query:"channel_url,omitempty" json:"channel_url,omitempty"`
 	// 分页token/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否格式化数据/Whether to format data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetChannelShortsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "channel_url", r.ChannelURL)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "channel_id", r.ChannelID)
+	addOptionalQueryValue(values, "channel_url", r.ChannelURL)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17481,16 +17481,16 @@ type YouTubeWebV2GetSearchSuggestionsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 语言代码/Language code (e.g., en, zh-cn, ja)
-	Language *string `query:"language,omitempty" json:"language,omitempty"`
+	Language string `query:"language,omitempty" json:"language,omitempty"`
 	// 地区代码/Region code (e.g., US, SG, CN, JP)
-	Region *string `query:"region,omitempty" json:"region,omitempty"`
+	Region string `query:"region,omitempty" json:"region,omitempty"`
 }
 
 func (r YouTubeWebV2GetSearchSuggestionsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "language", r.Language)
-	addQueryValue(values, "region", r.Region)
+	addOptionalQueryValue(values, "language", r.Language)
+	addOptionalQueryValue(values, "region", r.Region)
 	return values
 }
 
@@ -17500,18 +17500,18 @@ type YouTubeWebV2GetSearchSuggestionsResponse = APIResponse
 // YouTubeWebV2SearchChannelsRequest is the request for 搜索频道/Search channels.
 type YouTubeWebV2SearchChannelsRequest struct {
 	// 搜索关键词/Search keyword
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 分页token/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否格式化数据/Whether to format data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2SearchChannelsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17523,22 +17523,22 @@ type YouTubeWebV2GetChannelCommunityPostsRequest struct {
 	// 频道ID/Channel ID
 	ChannelID string `query:"channel_id,omitempty" json:"channel_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 分页token，用于获取下一页/Pagination token for next page
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetChannelCommunityPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "channel_id", r.ChannelID)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17550,19 +17550,19 @@ type YouTubeWebV2GetPostDetailRequest struct {
 	// 帖子ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetPostDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17572,24 +17572,24 @@ type YouTubeWebV2GetPostDetailResponse = APIResponse
 // YouTubeWebV2GetPostCommentsRequest is the request for 获取帖子评论/Get post comments.
 type YouTubeWebV2GetPostCommentsRequest struct {
 	// 帖子ID（首次请求时必填）/Post ID (required for first request)
-	PostID *string `query:"post_id,omitempty" json:"post_id,omitempty"`
+	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 分页token（分页时必填，也可用 get_post_detail 返回的 comments_continuation_token）/Pagination token
-	ContinuationToken *string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "post_id", r.PostID)
+	addOptionalQueryValue(values, "continuation_token", r.ContinuationToken)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17601,19 +17601,19 @@ type YouTubeWebV2GetPostCommentRepliesRequest struct {
 	// 回复的continuation token（从帖子评论的 reply_continuation_token 字段获取）/Reply continuation token from post comment
 	ContinuationToken string `query:"continuation_token,omitempty" json:"continuation_token,omitempty"`
 	// 语言代码（如zh-CN, en-US等）/Language code
-	LanguageCode *string `query:"language_code,omitempty" json:"language_code,omitempty"`
+	LanguageCode string `query:"language_code,omitempty" json:"language_code,omitempty"`
 	// 国家代码（如US, JP等）/Country code
-	CountryCode *string `query:"country_code,omitempty" json:"country_code,omitempty"`
+	CountryCode string `query:"country_code,omitempty" json:"country_code,omitempty"`
 	// 是否需要清洗数据，提取关键内容，移除冗余数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r YouTubeWebV2GetPostCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "continuation_token", r.ContinuationToken)
-	addQueryValue(values, "language_code", r.LanguageCode)
-	addQueryValue(values, "country_code", r.CountryCode)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "language_code", r.LanguageCode)
+	addOptionalQueryValue(values, "country_code", r.CountryCode)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -17625,40 +17625,40 @@ type LinkedInWebGetUserProfileRequest struct {
 	// LinkedIn用户名/LinkedIn username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 包含粉丝和连接数（额外消耗1次请求）/Include follower and connection count (+1 request)
-	IncludeFollowerAndConnection *bool `query:"include_follower_and_connection,omitempty" json:"include_follower_and_connection,omitempty"`
+	IncludeFollowerAndConnection bool `query:"include_follower_and_connection,omitempty" json:"include_follower_and_connection,omitempty"`
 	// 包含工作经历（额外消耗1次请求）/Include work experiences (+1 request)
-	IncludeExperiences *bool `query:"include_experiences,omitempty" json:"include_experiences,omitempty"`
+	IncludeExperiences bool `query:"include_experiences,omitempty" json:"include_experiences,omitempty"`
 	// 包含技能（额外消耗1次请求）/Include skills (+1 request)
-	IncludeSkills *bool `query:"include_skills,omitempty" json:"include_skills,omitempty"`
+	IncludeSkills bool `query:"include_skills,omitempty" json:"include_skills,omitempty"`
 	// 包含认证（额外消耗1次请求）/Include certifications (+1 request)
-	IncludeCertifications *bool `query:"include_certifications,omitempty" json:"include_certifications,omitempty"`
+	IncludeCertifications bool `query:"include_certifications,omitempty" json:"include_certifications,omitempty"`
 	// 包含出版物（额外消耗1次请求）/Include publications (+1 request)
-	IncludePublications *bool `query:"include_publications,omitempty" json:"include_publications,omitempty"`
+	IncludePublications bool `query:"include_publications,omitempty" json:"include_publications,omitempty"`
 	// 包含教育背景（额外消耗1次请求）/Include educational background (+1 request)
-	IncludeEducations *bool `query:"include_educations,omitempty" json:"include_educations,omitempty"`
+	IncludeEducations bool `query:"include_educations,omitempty" json:"include_educations,omitempty"`
 	// 包含志愿者经历（额外消耗1次请求）/Include volunteer experiences (+1 request)
-	IncludeVolunteers *bool `query:"include_volunteers,omitempty" json:"include_volunteers,omitempty"`
+	IncludeVolunteers bool `query:"include_volunteers,omitempty" json:"include_volunteers,omitempty"`
 	// 包含荣誉奖项（额外消耗1次请求）/Include honors and awards (+1 request)
-	IncludeHonors *bool `query:"include_honors,omitempty" json:"include_honors,omitempty"`
+	IncludeHonors bool `query:"include_honors,omitempty" json:"include_honors,omitempty"`
 	// 包含兴趣（额外消耗1次请求）/Include interests (+1 request)
-	IncludeInterests *bool `query:"include_interests,omitempty" json:"include_interests,omitempty"`
+	IncludeInterests bool `query:"include_interests,omitempty" json:"include_interests,omitempty"`
 	// 包含个人简介（额外消耗1次请求）/Include bio/about (+1 request)
-	IncludeBio *bool `query:"include_bio,omitempty" json:"include_bio,omitempty"`
+	IncludeBio bool `query:"include_bio,omitempty" json:"include_bio,omitempty"`
 }
 
 func (r LinkedInWebGetUserProfileRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "include_follower_and_connection", r.IncludeFollowerAndConnection)
-	addQueryValue(values, "include_experiences", r.IncludeExperiences)
-	addQueryValue(values, "include_skills", r.IncludeSkills)
-	addQueryValue(values, "include_certifications", r.IncludeCertifications)
-	addQueryValue(values, "include_publications", r.IncludePublications)
-	addQueryValue(values, "include_educations", r.IncludeEducations)
-	addQueryValue(values, "include_volunteers", r.IncludeVolunteers)
-	addQueryValue(values, "include_honors", r.IncludeHonors)
-	addQueryValue(values, "include_interests", r.IncludeInterests)
-	addQueryValue(values, "include_bio", r.IncludeBio)
+	addOptionalQueryValue(values, "include_follower_and_connection", r.IncludeFollowerAndConnection)
+	addOptionalQueryValue(values, "include_experiences", r.IncludeExperiences)
+	addOptionalQueryValue(values, "include_skills", r.IncludeSkills)
+	addOptionalQueryValue(values, "include_certifications", r.IncludeCertifications)
+	addOptionalQueryValue(values, "include_publications", r.IncludePublications)
+	addOptionalQueryValue(values, "include_educations", r.IncludeEducations)
+	addOptionalQueryValue(values, "include_volunteers", r.IncludeVolunteers)
+	addOptionalQueryValue(values, "include_honors", r.IncludeHonors)
+	addOptionalQueryValue(values, "include_interests", r.IncludeInterests)
+	addOptionalQueryValue(values, "include_bio", r.IncludeBio)
 	return values
 }
 
@@ -17670,16 +17670,16 @@ type LinkedInWebGetUserPostsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebGetUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -17691,16 +17691,16 @@ type LinkedInWebGetUserCommentsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebGetUserCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -17727,19 +17727,19 @@ type LinkedInWebGetUserRecommendationsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 推荐类型：received(收到的)或given(给出的)/Type: received or given
-	TypeValue *string `query:"type,omitempty" json:"type,omitempty"`
+	TypeValue string `query:"type,omitempty" json:"type,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebGetUserRecommendationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "type", r.TypeValue)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "type", r.TypeValue)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -17751,16 +17751,16 @@ type LinkedInWebGetUserVideosRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebGetUserVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -17772,16 +17772,16 @@ type LinkedInWebGetUserImagesRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebGetUserImagesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -17791,15 +17791,15 @@ type LinkedInWebGetUserImagesResponse = APIResponse
 // LinkedInWebGetCompanyProfileRequest is the request for 获取公司资料/Get company profile.
 type LinkedInWebGetCompanyProfileRequest struct {
 	// 公司名称/Company name
-	Company *string `query:"company,omitempty" json:"company,omitempty"`
+	Company string `query:"company,omitempty" json:"company,omitempty"`
 	// 公司ID（额外消耗1次请求）/Company ID (+1 request)
-	CompanyID *string `query:"company_id,omitempty" json:"company_id,omitempty"`
+	CompanyID string `query:"company_id,omitempty" json:"company_id,omitempty"`
 }
 
 func (r LinkedInWebGetCompanyProfileRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "company", r.Company)
-	addQueryValue(values, "company_id", r.CompanyID)
+	addOptionalQueryValue(values, "company", r.Company)
+	addOptionalQueryValue(values, "company_id", r.CompanyID)
 	return values
 }
 
@@ -17811,13 +17811,13 @@ type LinkedInWebGetCompanyPeopleRequest struct {
 	// 公司ID/Company ID
 	CompanyID string `query:"company_id,omitempty" json:"company_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetCompanyPeopleRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "company_id", r.CompanyID)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -17829,16 +17829,16 @@ type LinkedInWebGetCompanyPostsRequest struct {
 	// 公司ID/Company ID
 	CompanyID string `query:"company_id,omitempty" json:"company_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式：top(热门)或recent(最新)/Sort by: top or recent
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 }
 
 func (r LinkedInWebGetCompanyPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "company_id", r.CompanyID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
 	return values
 }
 
@@ -17850,37 +17850,37 @@ type LinkedInWebGetCompanyJobsRequest struct {
 	// 公司ID/Company ID
 	CompanyID string `query:"company_id,omitempty" json:"company_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式：recent(最新)或relevant(相关)/Sort by: recent or relevant
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 发布时间过滤：anytime, past_month, past_week, past_24_hours
-	DatePosted *string `query:"date_posted,omitempty" json:"date_posted,omitempty"`
+	DatePosted string `query:"date_posted,omitempty" json:"date_posted,omitempty"`
 	// 经验级别：internship, entry_level, associate, mid_senior, director, executive
-	ExperienceLevel *string `query:"experience_level,omitempty" json:"experience_level,omitempty"`
+	ExperienceLevel string `query:"experience_level,omitempty" json:"experience_level,omitempty"`
 	// 工作地点类型：onsite, remote, hybrid
-	Remote *string `query:"remote,omitempty" json:"remote,omitempty"`
+	Remote string `query:"remote,omitempty" json:"remote,omitempty"`
 	// 工作类型：full_time, part_time, contract, temporary, volunteer, internship, other
-	JobType *string `query:"job_type,omitempty" json:"job_type,omitempty"`
+	JobType string `query:"job_type,omitempty" json:"job_type,omitempty"`
 	// 是否易申请/Filter easy apply jobs
-	EasyApply *bool `query:"easy_apply,omitempty" json:"easy_apply,omitempty"`
+	EasyApply bool `query:"easy_apply,omitempty" json:"easy_apply,omitempty"`
 	// 是否少于10个申请者/Filter jobs with under 10 applicants
-	Under10Applicants *bool `query:"under_10_applicants,omitempty" json:"under_10_applicants,omitempty"`
+	Under10Applicants bool `query:"under_10_applicants,omitempty" json:"under_10_applicants,omitempty"`
 	// 是否公平机会雇主/Filter fair chance employer jobs
-	FairChanceEmployer *bool `query:"fair_chance_employer,omitempty" json:"fair_chance_employer,omitempty"`
+	FairChanceEmployer bool `query:"fair_chance_employer,omitempty" json:"fair_chance_employer,omitempty"`
 }
 
 func (r LinkedInWebGetCompanyJobsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "company_id", r.CompanyID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "date_posted", r.DatePosted)
-	addQueryValue(values, "experience_level", r.ExperienceLevel)
-	addQueryValue(values, "remote", r.Remote)
-	addQueryValue(values, "job_type", r.JobType)
-	addQueryValue(values, "easy_apply", r.EasyApply)
-	addQueryValue(values, "under_10_applicants", r.Under10Applicants)
-	addQueryValue(values, "fair_chance_employer", r.FairChanceEmployer)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "date_posted", r.DatePosted)
+	addOptionalQueryValue(values, "experience_level", r.ExperienceLevel)
+	addOptionalQueryValue(values, "remote", r.Remote)
+	addOptionalQueryValue(values, "job_type", r.JobType)
+	addOptionalQueryValue(values, "easy_apply", r.EasyApply)
+	addOptionalQueryValue(values, "under_10_applicants", r.Under10Applicants)
+	addOptionalQueryValue(values, "fair_chance_employer", r.FairChanceEmployer)
 	return values
 }
 
@@ -17937,13 +17937,13 @@ type LinkedInWebGetUserExperienceRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserExperienceRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -17955,13 +17955,13 @@ type LinkedInWebGetUserSkillsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserSkillsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -17973,13 +17973,13 @@ type LinkedInWebGetUserEducationsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserEducationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -17991,13 +17991,13 @@ type LinkedInWebGetUserPublicationsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserPublicationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18009,13 +18009,13 @@ type LinkedInWebGetUserCertificationsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserCertificationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18027,13 +18027,13 @@ type LinkedInWebGetUserHonorsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserHonorsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18045,13 +18045,13 @@ type LinkedInWebGetUserInterestsGroupsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserInterestsGroupsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18063,13 +18063,13 @@ type LinkedInWebGetUserInterestsCompaniesRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserInterestsCompaniesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18081,13 +18081,13 @@ type LinkedInWebGetJobDetailRequest struct {
 	// 职位ID/Job ID
 	JobID string `query:"job_id,omitempty" json:"job_id,omitempty"`
 	// 包含职位技能要求（额外消耗1次请求）/Include job skills (+1 request)
-	IncludeSkills *bool `query:"include_skills,omitempty" json:"include_skills,omitempty"`
+	IncludeSkills bool `query:"include_skills,omitempty" json:"include_skills,omitempty"`
 }
 
 func (r LinkedInWebGetJobDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "job_id", r.JobID)
-	addQueryValue(values, "include_skills", r.IncludeSkills)
+	addOptionalQueryValue(values, "include_skills", r.IncludeSkills)
 	return values
 }
 
@@ -18099,46 +18099,46 @@ type LinkedInWebSearchJobsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式：recent(最新)或relevant(相关)/Sort by: recent or relevant
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 发布时间过滤：anytime, past_month, past_week, past_24_hours
-	DatePosted *string `query:"date_posted,omitempty" json:"date_posted,omitempty"`
+	DatePosted string `query:"date_posted,omitempty" json:"date_posted,omitempty"`
 	// 地理位置代码，可通过Search Geocode Location获取/Geocode for location
-	Geocode *string `query:"geocode,omitempty" json:"geocode,omitempty"`
+	Geocode string `query:"geocode,omitempty" json:"geocode,omitempty"`
 	// 公司ID过滤/Company ID filter (e.g., 1441 for Google)
-	Company *string `query:"company,omitempty" json:"company,omitempty"`
+	Company string `query:"company,omitempty" json:"company,omitempty"`
 	// 经验级别：internship, entry_level, associate, mid_senior, director, executive
-	ExperienceLevel *string `query:"experience_level,omitempty" json:"experience_level,omitempty"`
+	ExperienceLevel string `query:"experience_level,omitempty" json:"experience_level,omitempty"`
 	// 工作地点类型：onsite, remote, hybrid
-	Remote *string `query:"remote,omitempty" json:"remote,omitempty"`
+	Remote string `query:"remote,omitempty" json:"remote,omitempty"`
 	// 工作类型：full_time, part_time, contract, temporary, volunteer, internship, other
-	JobType *string `query:"job_type,omitempty" json:"job_type,omitempty"`
+	JobType string `query:"job_type,omitempty" json:"job_type,omitempty"`
 	// 是否易申请/Filter easy apply jobs
-	EasyApply *bool `query:"easy_apply,omitempty" json:"easy_apply,omitempty"`
+	EasyApply bool `query:"easy_apply,omitempty" json:"easy_apply,omitempty"`
 	// 是否有公司认证/Filter jobs with company verifications
-	HasVerifications *bool `query:"has_verifications,omitempty" json:"has_verifications,omitempty"`
+	HasVerifications bool `query:"has_verifications,omitempty" json:"has_verifications,omitempty"`
 	// 是否少于10个申请者/Filter jobs with under 10 applicants
-	Under10Applicants *bool `query:"under_10_applicants,omitempty" json:"under_10_applicants,omitempty"`
+	Under10Applicants bool `query:"under_10_applicants,omitempty" json:"under_10_applicants,omitempty"`
 	// 是否公平机会雇主/Filter fair chance employer jobs
-	FairChanceEmployer *bool `query:"fair_chance_employer,omitempty" json:"fair_chance_employer,omitempty"`
+	FairChanceEmployer bool `query:"fair_chance_employer,omitempty" json:"fair_chance_employer,omitempty"`
 }
 
 func (r LinkedInWebSearchJobsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "date_posted", r.DatePosted)
-	addQueryValue(values, "geocode", r.Geocode)
-	addQueryValue(values, "company", r.Company)
-	addQueryValue(values, "experience_level", r.ExperienceLevel)
-	addQueryValue(values, "remote", r.Remote)
-	addQueryValue(values, "job_type", r.JobType)
-	addQueryValue(values, "easy_apply", r.EasyApply)
-	addQueryValue(values, "has_verifications", r.HasVerifications)
-	addQueryValue(values, "under_10_applicants", r.Under10Applicants)
-	addQueryValue(values, "fair_chance_employer", r.FairChanceEmployer)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "date_posted", r.DatePosted)
+	addOptionalQueryValue(values, "geocode", r.Geocode)
+	addOptionalQueryValue(values, "company", r.Company)
+	addOptionalQueryValue(values, "experience_level", r.ExperienceLevel)
+	addOptionalQueryValue(values, "remote", r.Remote)
+	addOptionalQueryValue(values, "job_type", r.JobType)
+	addOptionalQueryValue(values, "easy_apply", r.EasyApply)
+	addOptionalQueryValue(values, "has_verifications", r.HasVerifications)
+	addOptionalQueryValue(values, "under_10_applicants", r.Under10Applicants)
+	addOptionalQueryValue(values, "fair_chance_employer", r.FairChanceEmployer)
 	return values
 }
 
@@ -18148,45 +18148,45 @@ type LinkedInWebSearchJobsResponse = APIResponse
 // LinkedInWebSearchPeopleRequest is the request for 搜索用户/Search people.
 type LinkedInWebSearchPeopleRequest struct {
 	// 搜索关键词/Search keyword for people
-	Name *string `query:"name,omitempty" json:"name,omitempty"`
+	Name string `query:"name,omitempty" json:"name,omitempty"`
 	// 名/First name
-	FirstName *string `query:"first_name,omitempty" json:"first_name,omitempty"`
+	FirstName string `query:"first_name,omitempty" json:"first_name,omitempty"`
 	// 姓/Last name
-	LastName *string `query:"last_name,omitempty" json:"last_name,omitempty"`
+	LastName string `query:"last_name,omitempty" json:"last_name,omitempty"`
 	// 职位/Title
-	Title *string `query:"title,omitempty" json:"title,omitempty"`
+	Title string `query:"title,omitempty" json:"title,omitempty"`
 	// 公司/Company
-	Company *string `query:"company,omitempty" json:"company,omitempty"`
+	Company string `query:"company,omitempty" json:"company,omitempty"`
 	// 学校/School
-	School *string `query:"school,omitempty" json:"school,omitempty"`
+	School string `query:"school,omitempty" json:"school,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 地理位置代码/Geocode for location (e.g., 103644278 for United States)
-	GeocodeLocation *string `query:"geocode_location,omitempty" json:"geocode_location,omitempty"`
+	GeocodeLocation string `query:"geocode_location,omitempty" json:"geocode_location,omitempty"`
 	// 当前公司ID/Current company ID
-	CurrentCompany *string `query:"current_company,omitempty" json:"current_company,omitempty"`
+	CurrentCompany string `query:"current_company,omitempty" json:"current_company,omitempty"`
 	// 个人资料语言/Profile language
-	ProfileLanguage *string `query:"profile_language,omitempty" json:"profile_language,omitempty"`
+	ProfileLanguage string `query:"profile_language,omitempty" json:"profile_language,omitempty"`
 	// 行业ID/Industry ID
-	Industry *string `query:"industry,omitempty" json:"industry,omitempty"`
+	Industry string `query:"industry,omitempty" json:"industry,omitempty"`
 	// 服务类别ID/Service category ID
-	ServiceCategory *string `query:"service_category,omitempty" json:"service_category,omitempty"`
+	ServiceCategory string `query:"service_category,omitempty" json:"service_category,omitempty"`
 }
 
 func (r LinkedInWebSearchPeopleRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "name", r.Name)
-	addQueryValue(values, "first_name", r.FirstName)
-	addQueryValue(values, "last_name", r.LastName)
-	addQueryValue(values, "title", r.Title)
-	addQueryValue(values, "company", r.Company)
-	addQueryValue(values, "school", r.School)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "geocode_location", r.GeocodeLocation)
-	addQueryValue(values, "current_company", r.CurrentCompany)
-	addQueryValue(values, "profile_language", r.ProfileLanguage)
-	addQueryValue(values, "industry", r.Industry)
-	addQueryValue(values, "service_category", r.ServiceCategory)
+	addOptionalQueryValue(values, "name", r.Name)
+	addOptionalQueryValue(values, "first_name", r.FirstName)
+	addOptionalQueryValue(values, "last_name", r.LastName)
+	addOptionalQueryValue(values, "title", r.Title)
+	addOptionalQueryValue(values, "company", r.Company)
+	addOptionalQueryValue(values, "school", r.School)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "geocode_location", r.GeocodeLocation)
+	addOptionalQueryValue(values, "current_company", r.CurrentCompany)
+	addOptionalQueryValue(values, "profile_language", r.ProfileLanguage)
+	addOptionalQueryValue(values, "industry", r.Industry)
+	addOptionalQueryValue(values, "service_category", r.ServiceCategory)
 	return values
 }
 
@@ -18198,16 +18198,16 @@ type LinkedInWebGetUserReactionsRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebGetUserReactionsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -18219,13 +18219,13 @@ type LinkedInWebGetUserVolunteersRequest struct {
 	// 用户URN，可通过get_user_profile接口获取/User URN, can be obtained from get_user_profile endpoint
 	Urn string `query:"urn,omitempty" json:"urn,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetUserVolunteersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "urn", r.Urn)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18282,19 +18282,19 @@ type LinkedInWebGetPostCommentsRequest struct {
 	// 帖子ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 排序方式 (relevance, recent)，默认relevance/Sort order: relevance or recent, default relevance
-	SortOrder *string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
+	SortOrder string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
 	// 帖子类型 (activity, ugc)，默认activity/Post type: activity or ugc, default activity
-	PostType *string `query:"post_type,omitempty" json:"post_type,omitempty"`
+	PostType string `query:"post_type,omitempty" json:"post_type,omitempty"`
 }
 
 func (r LinkedInWebGetPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "sort_order", r.SortOrder)
-	addQueryValue(values, "post_type", r.PostType)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "sort_order", r.SortOrder)
+	addOptionalQueryValue(values, "post_type", r.PostType)
 	return values
 }
 
@@ -18306,16 +18306,16 @@ type LinkedInWebGetPostReactionsRequest struct {
 	// 帖子ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 反应类型 (all, like, praise, empathy, appreciation, interest)，默认all/Reaction type, default all
-	TypeValue *string `query:"type,omitempty" json:"type,omitempty"`
+	TypeValue string `query:"type,omitempty" json:"type,omitempty"`
 }
 
 func (r LinkedInWebGetPostReactionsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "type", r.TypeValue)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "type", r.TypeValue)
 	return values
 }
 
@@ -18327,16 +18327,16 @@ type LinkedInWebGetPostRepostsRequest struct {
 	// 帖子ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebGetPostRepostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -18369,28 +18369,28 @@ type LinkedInWebSearchPostsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 发布时间过滤 (past_month, past_week, past_24h)/Filter post by the date they were posted
-	DatePosted *string `query:"date_posted,omitempty" json:"date_posted,omitempty"`
+	DatePosted string `query:"date_posted,omitempty" json:"date_posted,omitempty"`
 	// 排序方式 (date_posted, relevance)/Sort by date_posted or relevance
-	SortBy *string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy string `query:"sort_by,omitempty" json:"sort_by,omitempty"`
 	// 按成员过滤，逗号分隔/Filter by member, separate by comma
-	FromMember *string `query:"from_member,omitempty" json:"from_member,omitempty"`
+	FromMember string `query:"from_member,omitempty" json:"from_member,omitempty"`
 	// 按公司过滤，逗号分隔/Filter by company, separate by comma
-	FromCompany *string `query:"from_company,omitempty" json:"from_company,omitempty"`
+	FromCompany string `query:"from_company,omitempty" json:"from_company,omitempty"`
 	// 内容类型 (videos, photos, jobs, live_videos, documents, collaborative_articles)/Filter post by content type
-	ContentType *string `query:"content_type,omitempty" json:"content_type,omitempty"`
+	ContentType string `query:"content_type,omitempty" json:"content_type,omitempty"`
 }
 
 func (r LinkedInWebSearchPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "date_posted", r.DatePosted)
-	addQueryValue(values, "sort_by", r.SortBy)
-	addQueryValue(values, "from_member", r.FromMember)
-	addQueryValue(values, "from_company", r.FromCompany)
-	addQueryValue(values, "content_type", r.ContentType)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "date_posted", r.DatePosted)
+	addOptionalQueryValue(values, "sort_by", r.SortBy)
+	addOptionalQueryValue(values, "from_member", r.FromMember)
+	addOptionalQueryValue(values, "from_company", r.FromCompany)
+	addOptionalQueryValue(values, "content_type", r.ContentType)
 	return values
 }
 
@@ -18417,13 +18417,13 @@ type LinkedInWebSearchSchoolsRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebSearchSchoolsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18465,13 +18465,13 @@ type LinkedInWebGetGroupPostsRequest struct {
 	// 群组ID/Group ID
 	GroupID string `query:"group_id,omitempty" json:"group_id,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 }
 
 func (r LinkedInWebGetGroupPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "group_id", r.GroupID)
-	addQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page", r.Page)
 	return values
 }
 
@@ -18481,24 +18481,24 @@ type LinkedInWebGetGroupPostsResponse = APIResponse
 // LinkedInWebSearchAdsRequest is the request for 搜索广告/Search ads (Ad Library).
 type LinkedInWebSearchAdsRequest struct {
 	// 搜索关键词（keyword 和 advertiser_name 至少提供一个）/Search keyword (either keyword or advertiser_name required)
-	Keyword *string `query:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 广告主名称/Advertiser name
-	AdvertiserName *string `query:"advertiser_name,omitempty" json:"advertiser_name,omitempty"`
+	AdvertiserName string `query:"advertiser_name,omitempty" json:"advertiser_name,omitempty"`
 	// 国家代码过滤/Country code filter
-	Country *string `query:"country,omitempty" json:"country,omitempty"`
+	Country string `query:"country,omitempty" json:"country,omitempty"`
 	// 日期过滤 (last-30-days, current-month, current-year, last-year)/Date filter
-	Date *string `query:"date,omitempty" json:"date,omitempty"`
+	Date string `query:"date,omitempty" json:"date,omitempty"`
 	// 分页令牌/Pagination token
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebSearchAdsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "advertiser_name", r.AdvertiserName)
-	addQueryValue(values, "country", r.Country)
-	addQueryValue(values, "date", r.Date)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "keyword", r.Keyword)
+	addOptionalQueryValue(values, "advertiser_name", r.AdvertiserName)
+	addOptionalQueryValue(values, "country", r.Country)
+	addOptionalQueryValue(values, "date", r.Date)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -18525,40 +18525,40 @@ type LinkedInWebV2GetUserProfileRequest struct {
 	// LinkedIn用户名/LinkedIn username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 附带粉丝/连接数 (+1 request)/Include follower & connection count
-	IncludeFollowerAndConnection *bool `query:"include_follower_and_connection,omitempty" json:"include_follower_and_connection,omitempty"`
+	IncludeFollowerAndConnection bool `query:"include_follower_and_connection,omitempty" json:"include_follower_and_connection,omitempty"`
 	// 附带工作经历/Include work experiences
-	IncludeExperiences *bool `query:"include_experiences,omitempty" json:"include_experiences,omitempty"`
+	IncludeExperiences bool `query:"include_experiences,omitempty" json:"include_experiences,omitempty"`
 	// 附带技能/Include skills
-	IncludeSkills *bool `query:"include_skills,omitempty" json:"include_skills,omitempty"`
+	IncludeSkills bool `query:"include_skills,omitempty" json:"include_skills,omitempty"`
 	// 附带认证/Include certifications
-	IncludeCertifications *bool `query:"include_certifications,omitempty" json:"include_certifications,omitempty"`
+	IncludeCertifications bool `query:"include_certifications,omitempty" json:"include_certifications,omitempty"`
 	// 附带出版物/Include publications
-	IncludePublications *bool `query:"include_publications,omitempty" json:"include_publications,omitempty"`
+	IncludePublications bool `query:"include_publications,omitempty" json:"include_publications,omitempty"`
 	// 附带教育背景/Include educations
-	IncludeEducations *bool `query:"include_educations,omitempty" json:"include_educations,omitempty"`
+	IncludeEducations bool `query:"include_educations,omitempty" json:"include_educations,omitempty"`
 	// 附带志愿者经历/Include volunteer exp
-	IncludeVolunteers *bool `query:"include_volunteers,omitempty" json:"include_volunteers,omitempty"`
+	IncludeVolunteers bool `query:"include_volunteers,omitempty" json:"include_volunteers,omitempty"`
 	// 附带荣誉奖项/Include honors
-	IncludeHonors *bool `query:"include_honors,omitempty" json:"include_honors,omitempty"`
+	IncludeHonors bool `query:"include_honors,omitempty" json:"include_honors,omitempty"`
 	// 附带感兴趣的公司+群组/Include interests
-	IncludeInterests *bool `query:"include_interests,omitempty" json:"include_interests,omitempty"`
+	IncludeInterests bool `query:"include_interests,omitempty" json:"include_interests,omitempty"`
 	// 附带简介/Include bio
-	IncludeBio *bool `query:"include_bio,omitempty" json:"include_bio,omitempty"`
+	IncludeBio bool `query:"include_bio,omitempty" json:"include_bio,omitempty"`
 }
 
 func (r LinkedInWebV2GetUserProfileRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "include_follower_and_connection", r.IncludeFollowerAndConnection)
-	addQueryValue(values, "include_experiences", r.IncludeExperiences)
-	addQueryValue(values, "include_skills", r.IncludeSkills)
-	addQueryValue(values, "include_certifications", r.IncludeCertifications)
-	addQueryValue(values, "include_publications", r.IncludePublications)
-	addQueryValue(values, "include_educations", r.IncludeEducations)
-	addQueryValue(values, "include_volunteers", r.IncludeVolunteers)
-	addQueryValue(values, "include_honors", r.IncludeHonors)
-	addQueryValue(values, "include_interests", r.IncludeInterests)
-	addQueryValue(values, "include_bio", r.IncludeBio)
+	addOptionalQueryValue(values, "include_follower_and_connection", r.IncludeFollowerAndConnection)
+	addOptionalQueryValue(values, "include_experiences", r.IncludeExperiences)
+	addOptionalQueryValue(values, "include_skills", r.IncludeSkills)
+	addOptionalQueryValue(values, "include_certifications", r.IncludeCertifications)
+	addOptionalQueryValue(values, "include_publications", r.IncludePublications)
+	addOptionalQueryValue(values, "include_educations", r.IncludeEducations)
+	addOptionalQueryValue(values, "include_volunteers", r.IncludeVolunteers)
+	addOptionalQueryValue(values, "include_honors", r.IncludeHonors)
+	addOptionalQueryValue(values, "include_interests", r.IncludeInterests)
+	addOptionalQueryValue(values, "include_bio", r.IncludeBio)
 	return values
 }
 
@@ -18570,16 +18570,16 @@ type LinkedInWebV2GetUserPostsRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 分页起始偏移/Start offset
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// 每页数量（最大50）/Page size (max 50)
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -18591,16 +18591,16 @@ type LinkedInWebV2GetUserCommentsRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetUserCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -18627,13 +18627,13 @@ type LinkedInWebV2GetRecommendationsRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// received(收到的) / given(写出的)
-	Direction *string `query:"direction,omitempty" json:"direction,omitempty"`
+	Direction string `query:"direction,omitempty" json:"direction,omitempty"`
 }
 
 func (r LinkedInWebV2GetRecommendationsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "direction", r.Direction)
+	addOptionalQueryValue(values, "direction", r.Direction)
 	return values
 }
 
@@ -18645,16 +18645,16 @@ type LinkedInWebV2GetUserVideosRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetUserVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -18666,16 +18666,16 @@ type LinkedInWebV2GetUserImagesRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetUserImagesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -18822,16 +18822,16 @@ type LinkedInWebV2GetFollowedGroupsRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetFollowedGroupsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -18843,16 +18843,16 @@ type LinkedInWebV2GetFollowedCompaniesRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetFollowedCompaniesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -18909,19 +18909,19 @@ type LinkedInWebV2DiscoveryRelevantToCompanyRequest struct {
 	// 公司URL slug/Company URL slug
 	UniversalName string `query:"universal_name,omitempty" json:"universal_name,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// 保留兼容字段（当前不分页）/Reserved for future use
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebV2DiscoveryRelevantToCompanyRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "universal_name", r.UniversalName)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -18933,19 +18933,19 @@ type LinkedInWebV2DiscoveryRelevantToUserRequest struct {
 	// LinkedIn用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// 保留兼容字段（当前不分页）/Reserved for future use
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebV2DiscoveryRelevantToUserRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -18972,16 +18972,16 @@ type LinkedInWebV2GetEmployeesRequest struct {
 	// 公司URL slug/Company slug
 	UniversalName string `query:"universal_name,omitempty" json:"universal_name,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetEmployeesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "universal_name", r.UniversalName)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -18993,16 +18993,16 @@ type LinkedInWebV2GetCompanyPostsRequest struct {
 	// 公司URL slug/Company slug
 	UniversalName string `query:"universal_name,omitempty" json:"universal_name,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetCompanyPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "universal_name", r.UniversalName)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -19014,16 +19014,16 @@ type LinkedInWebV2GetCompanyJobsRequest struct {
 	// 公司URL slug/Company slug
 	UniversalName string `query:"universal_name,omitempty" json:"universal_name,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetCompanyJobsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "universal_name", r.UniversalName)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -19170,19 +19170,19 @@ type LinkedInWebV2GetPostTopLevelCommentsRequest struct {
 	// 帖子URN/Post URN
 	PostUrn string `query:"post_urn,omitempty" json:"post_urn,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 评论排序：RELEVANCE / CHRON / REVERSE_CHRON / MEMBER_SETTING
-	SortOrder *string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
+	SortOrder string `query:"sort_order,omitempty" json:"sort_order,omitempty"`
 }
 
 func (r LinkedInWebV2GetPostTopLevelCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_urn", r.PostUrn)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "sort_order", r.SortOrder)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "sort_order", r.SortOrder)
 	return values
 }
 
@@ -19194,19 +19194,19 @@ type LinkedInWebV2GetCommentRepliesRequest struct {
 	// 父评论URN/Parent comment URN
 	CommentUrn string `query:"comment_urn,omitempty" json:"comment_urn,omitempty"`
 	// 帖子URN（仅当 comment_urn 不完整时必填）/Post URN (required if comment_urn lacks activity)
-	PostUrn *string `query:"post_urn,omitempty" json:"post_urn,omitempty"`
+	PostUrn string `query:"post_urn,omitempty" json:"post_urn,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 上一页响应里的 paginationToken
-	PaginationToken *string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
+	PaginationToken string `query:"pagination_token,omitempty" json:"pagination_token,omitempty"`
 }
 
 func (r LinkedInWebV2GetCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "comment_urn", r.CommentUrn)
-	addQueryValue(values, "post_urn", r.PostUrn)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "pagination_token", r.PaginationToken)
+	addOptionalQueryValue(values, "post_urn", r.PostUrn)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "pagination_token", r.PaginationToken)
 	return values
 }
 
@@ -19218,19 +19218,19 @@ type LinkedInWebV2GetPostReactionsRequest struct {
 	// 帖子URN/Post URN
 	PostUrn string `query:"post_urn,omitempty" json:"post_urn,omitempty"`
 	// 反应类型：LIKE / PRAISE / EMPATHY / INTEREST / APPRECIATION / MAYBE / ENTERTAINMENT，留空默认 LIKE
-	ReactionType *string `query:"reaction_type,omitempty" json:"reaction_type,omitempty"`
+	ReactionType string `query:"reaction_type,omitempty" json:"reaction_type,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetPostReactionsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_urn", r.PostUrn)
-	addQueryValue(values, "reaction_type", r.ReactionType)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "reaction_type", r.ReactionType)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -19242,16 +19242,16 @@ type LinkedInWebV2GetHashtagFeedRequest struct {
 	// 话题文本，不带#/Hashtag text without #
 	Hashtag string `query:"hashtag,omitempty" json:"hashtag,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2GetHashtagFeedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "hashtag", r.Hashtag)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -19278,25 +19278,25 @@ type LinkedInWebV2SearchUsersRequest struct {
 	// 搜索关键词/Search keyword
 	Keywords string `query:"keywords,omitempty" json:"keywords,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 地理位置URN/Geo URN
-	GeoUrn *string `query:"geo_urn,omitempty" json:"geo_urn,omitempty"`
+	GeoUrn string `query:"geo_urn,omitempty" json:"geo_urn,omitempty"`
 	// 行业URN/Industry URN
-	IndustryUrn *string `query:"industry_urn,omitempty" json:"industry_urn,omitempty"`
+	IndustryUrn string `query:"industry_urn,omitempty" json:"industry_urn,omitempty"`
 	// 当前公司URN/Current company URN
-	CurrentCompanyUrn *string `query:"current_company_urn,omitempty" json:"current_company_urn,omitempty"`
+	CurrentCompanyUrn string `query:"current_company_urn,omitempty" json:"current_company_urn,omitempty"`
 }
 
 func (r LinkedInWebV2SearchUsersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keywords", r.Keywords)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "geo_urn", r.GeoUrn)
-	addQueryValue(values, "industry_urn", r.IndustryUrn)
-	addQueryValue(values, "current_company_urn", r.CurrentCompanyUrn)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "geo_urn", r.GeoUrn)
+	addOptionalQueryValue(values, "industry_urn", r.IndustryUrn)
+	addOptionalQueryValue(values, "current_company_urn", r.CurrentCompanyUrn)
 	return values
 }
 
@@ -19308,19 +19308,19 @@ type LinkedInWebV2SearchJobsRequest struct {
 	// 搜索关键词/Search keyword
 	Keywords string `query:"keywords,omitempty" json:"keywords,omitempty"`
 	// 地点（自由文本）/Location (free text)
-	Location *string `query:"location,omitempty" json:"location,omitempty"`
+	Location string `query:"location,omitempty" json:"location,omitempty"`
 	// Start
-	Start *int `query:"start,omitempty" json:"start,omitempty"`
+	Start int `query:"start,omitempty" json:"start,omitempty"`
 	// Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 }
 
 func (r LinkedInWebV2SearchJobsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keywords", r.Keywords)
-	addQueryValue(values, "location", r.Location)
-	addQueryValue(values, "start", r.Start)
-	addQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "location", r.Location)
+	addOptionalQueryValue(values, "start", r.Start)
+	addOptionalQueryValue(values, "count", r.Count)
 	return values
 }
 
@@ -19449,11 +19449,11 @@ type BilibiliWebGetGeneralSearchDataRequest struct {
 	// 每页数量/Number per page
 	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 时长筛选/Duration filter
-	Duration *int `query:"duration,omitempty" json:"duration,omitempty"`
+	Duration int `query:"duration,omitempty" json:"duration,omitempty"`
 	// 开始日期/Start date (10-digit timestamp)
-	PubtimeBeginS *int `query:"pubtime_begin_s,omitempty" json:"pubtime_begin_s,omitempty"`
+	PubtimeBeginS int `query:"pubtime_begin_s,omitempty" json:"pubtime_begin_s,omitempty"`
 	// 结束日期/End date (10-digit timestamp)
-	PubtimeEndS *int `query:"pubtime_end_s,omitempty" json:"pubtime_end_s,omitempty"`
+	PubtimeEndS int `query:"pubtime_end_s,omitempty" json:"pubtime_end_s,omitempty"`
 }
 
 func (r BilibiliWebGetGeneralSearchDataRequest) toQuery() url.Values {
@@ -19462,9 +19462,9 @@ func (r BilibiliWebGetGeneralSearchDataRequest) toQuery() url.Values {
 	addQueryValue(values, "order", r.Order)
 	addQueryValue(values, "page", r.Page)
 	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "duration", r.Duration)
-	addQueryValue(values, "pubtime_begin_s", r.PubtimeBeginS)
-	addQueryValue(values, "pubtime_end_s", r.PubtimeEndS)
+	addOptionalQueryValue(values, "duration", r.Duration)
+	addOptionalQueryValue(values, "pubtime_begin_s", r.PubtimeBeginS)
+	addOptionalQueryValue(values, "pubtime_end_s", r.PubtimeEndS)
 	return values
 }
 
@@ -19515,16 +19515,16 @@ type BilibiliWebGetUserHomepageVideoDataRequest struct {
 	// 用户UID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 页码/Page number
-	Pn *int `query:"pn,omitempty" json:"pn,omitempty"`
+	Pn int `query:"pn,omitempty" json:"pn,omitempty"`
 	// 排序方式/Order method
-	Order *string `query:"order,omitempty" json:"order,omitempty"`
+	Order string `query:"order,omitempty" json:"order,omitempty"`
 }
 
 func (r BilibiliWebGetUserHomepageVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "pn", r.Pn)
-	addQueryValue(values, "order", r.Order)
+	addOptionalQueryValue(values, "pn", r.Pn)
+	addOptionalQueryValue(values, "order", r.Order)
 	return values
 }
 
@@ -19551,13 +19551,13 @@ type BilibiliWebGetsVideoDataFromACollectionFolderRequest struct {
 	// 收藏夹id/collection folder id
 	FolderID string `query:"folder_id,omitempty" json:"folder_id,omitempty"`
 	// 页码/Page number
-	Pn *int `query:"pn,omitempty" json:"pn,omitempty"`
+	Pn int `query:"pn,omitempty" json:"pn,omitempty"`
 }
 
 func (r BilibiliWebGetsVideoDataFromACollectionFolderRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "folder_id", r.FolderID)
-	addQueryValue(values, "pn", r.Pn)
+	addOptionalQueryValue(values, "pn", r.Pn)
 	return values
 }
 
@@ -19612,12 +19612,12 @@ type BilibiliWebGetUserRelationStatResponse = APIResponse
 // BilibiliWebGetComprehensivePopularVideoInformationRequest is the request for 获取综合热门视频信息/Get comprehensive popular video information.
 type BilibiliWebGetComprehensivePopularVideoInformationRequest struct {
 	// 页码/Page number
-	Pn *int `query:"pn,omitempty" json:"pn,omitempty"`
+	Pn int `query:"pn,omitempty" json:"pn,omitempty"`
 }
 
 func (r BilibiliWebGetComprehensivePopularVideoInformationRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "pn", r.Pn)
+	addOptionalQueryValue(values, "pn", r.Pn)
 	return values
 }
 
@@ -19629,13 +19629,13 @@ type BilibiliWebGetCommentsOnTheSpecifiedVideoRequest struct {
 	// 作品id/Video id
 	BVID string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
 	// 页码/Page number
-	Pn *int `query:"pn,omitempty" json:"pn,omitempty"`
+	Pn int `query:"pn,omitempty" json:"pn,omitempty"`
 }
 
 func (r BilibiliWebGetCommentsOnTheSpecifiedVideoRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "bv_id", r.BVID)
-	addQueryValue(values, "pn", r.Pn)
+	addOptionalQueryValue(values, "pn", r.Pn)
 	return values
 }
 
@@ -19647,7 +19647,7 @@ type BilibiliWebGetReplyToTheSpecifiedCommentRequest struct {
 	// 作品id/Video id
 	BVID string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
 	// 页码/Page number
-	Pn *int `query:"pn,omitempty" json:"pn,omitempty"`
+	Pn int `query:"pn,omitempty" json:"pn,omitempty"`
 	// 回复id/Reply id
 	Rpid string `query:"rpid,omitempty" json:"rpid,omitempty"`
 }
@@ -19655,7 +19655,7 @@ type BilibiliWebGetReplyToTheSpecifiedCommentRequest struct {
 func (r BilibiliWebGetReplyToTheSpecifiedCommentRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "bv_id", r.BVID)
-	addQueryValue(values, "pn", r.Pn)
+	addOptionalQueryValue(values, "pn", r.Pn)
 	addQueryValue(values, "rpid", r.Rpid)
 	return values
 }
@@ -19668,13 +19668,13 @@ type BilibiliWebGetDynamicInformationOfSpecifiedUserRequest struct {
 	// 用户UID
 	UID string `query:"uid,omitempty" json:"uid,omitempty"`
 	// 开始索引/offset
-	Offset *string `query:"offset,omitempty" json:"offset,omitempty"`
+	Offset string `query:"offset,omitempty" json:"offset,omitempty"`
 }
 
 func (r BilibiliWebGetDynamicInformationOfSpecifiedUserRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "uid", r.UID)
-	addQueryValue(values, "offset", r.Offset)
+	addOptionalQueryValue(values, "offset", r.Offset)
 	return values
 }
 
@@ -19761,13 +19761,13 @@ type BilibiliWebGetLiveStreamersOfSpecifiedLiveAreaRequest struct {
 	// 直播分区id/Live area ID
 	AreaID string `query:"area_id,omitempty" json:"area_id,omitempty"`
 	// 页码/Page number
-	Pn *int `query:"pn,omitempty" json:"pn,omitempty"`
+	Pn int `query:"pn,omitempty" json:"pn,omitempty"`
 }
 
 func (r BilibiliWebGetLiveStreamersOfSpecifiedLiveAreaRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "area_id", r.AreaID)
-	addQueryValue(values, "pn", r.Pn)
+	addOptionalQueryValue(values, "pn", r.Pn)
 	return values
 }
 
@@ -19829,15 +19829,15 @@ type BilibiliWebExtractUserIDResponse = APIResponse
 // BilibiliAppGetSingleVideoDataRequest is the request for 获取单个视频详情信息/Get single video data.
 type BilibiliAppGetSingleVideoDataRequest struct {
 	// AV号/AV ID
-	AVID *string `query:"av_id,omitempty" json:"av_id,omitempty"`
+	AVID string `query:"av_id,omitempty" json:"av_id,omitempty"`
 	// BV号/BV ID
-	BVID *string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
+	BVID string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
 }
 
 func (r BilibiliAppGetSingleVideoDataRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "av_id", r.AVID)
-	addQueryValue(values, "bv_id", r.BVID)
+	addOptionalQueryValue(values, "av_id", r.AVID)
+	addOptionalQueryValue(values, "bv_id", r.BVID)
 	return values
 }
 
@@ -19847,21 +19847,21 @@ type BilibiliAppGetSingleVideoDataResponse = APIResponse
 // BilibiliAppGetVideoCommentsRequest is the request for 获取视频评论列表/Get video comments.
 type BilibiliAppGetVideoCommentsRequest struct {
 	// AV号/AV ID
-	AVID *string `query:"av_id,omitempty" json:"av_id,omitempty"`
+	AVID string `query:"av_id,omitempty" json:"av_id,omitempty"`
 	// BV号/BV ID
-	BVID *string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
+	BVID string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
 	// 排序模式/Sort mode (3=热门/hot, 2=时间/time)
-	Mode *int `query:"mode,omitempty" json:"mode,omitempty"`
+	Mode int `query:"mode,omitempty" json:"mode,omitempty"`
 	// 分页游标/Pagination cursor
-	NextOffset *int `query:"next_offset,omitempty" json:"next_offset,omitempty"`
+	NextOffset int `query:"next_offset,omitempty" json:"next_offset,omitempty"`
 }
 
 func (r BilibiliAppGetVideoCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "av_id", r.AVID)
-	addQueryValue(values, "bv_id", r.BVID)
-	addQueryValue(values, "mode", r.Mode)
-	addQueryValue(values, "next_offset", r.NextOffset)
+	addOptionalQueryValue(values, "av_id", r.AVID)
+	addOptionalQueryValue(values, "bv_id", r.BVID)
+	addOptionalQueryValue(values, "mode", r.Mode)
+	addOptionalQueryValue(values, "next_offset", r.NextOffset)
 	return values
 }
 
@@ -19873,22 +19873,22 @@ type BilibiliAppGetReplyDetailRequest struct {
 	// 一级评论ID/Root comment ID
 	Root string `query:"root,omitempty" json:"root,omitempty"`
 	// AV号/AV ID
-	AVID *string `query:"av_id,omitempty" json:"av_id,omitempty"`
+	AVID string `query:"av_id,omitempty" json:"av_id,omitempty"`
 	// BV号/BV ID
-	BVID *string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
+	BVID string `query:"bv_id,omitempty" json:"bv_id,omitempty"`
 	// 下一页游标/Next page cursor
-	NextOffset *int `query:"next_offset,omitempty" json:"next_offset,omitempty"`
+	NextOffset int `query:"next_offset,omitempty" json:"next_offset,omitempty"`
 	// 每页数量/Page size
-	Ps *int `query:"ps,omitempty" json:"ps,omitempty"`
+	Ps int `query:"ps,omitempty" json:"ps,omitempty"`
 }
 
 func (r BilibiliAppGetReplyDetailRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "root", r.Root)
-	addQueryValue(values, "av_id", r.AVID)
-	addQueryValue(values, "bv_id", r.BVID)
-	addQueryValue(values, "next_offset", r.NextOffset)
-	addQueryValue(values, "ps", r.Ps)
+	addOptionalQueryValue(values, "av_id", r.AVID)
+	addOptionalQueryValue(values, "bv_id", r.BVID)
+	addOptionalQueryValue(values, "next_offset", r.NextOffset)
+	addOptionalQueryValue(values, "ps", r.Ps)
 	return values
 }
 
@@ -19900,19 +19900,19 @@ type BilibiliAppGetUserVideosRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 过滤类型/Filter type (archive/season/contribute)
-	PostFilter *string `query:"post_filter,omitempty" json:"post_filter,omitempty"`
+	PostFilter string `query:"post_filter,omitempty" json:"post_filter,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Page size
-	Ps *int `query:"ps,omitempty" json:"ps,omitempty"`
+	Ps int `query:"ps,omitempty" json:"ps,omitempty"`
 }
 
 func (r BilibiliAppGetUserVideosRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "post_filter", r.PostFilter)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "ps", r.Ps)
+	addOptionalQueryValue(values, "post_filter", r.PostFilter)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "ps", r.Ps)
 	return values
 }
 
@@ -19937,18 +19937,18 @@ type BilibiliAppGetUserInfoResponse = APIResponse
 // BilibiliAppGetHomeFeedRequest is the request for 获取主页推荐视频流/Get home feed.
 type BilibiliAppGetHomeFeedRequest struct {
 	// 页面索引/Page index
-	Idx *int `query:"idx,omitempty" json:"idx,omitempty"`
+	Idx int `query:"idx,omitempty" json:"idx,omitempty"`
 	// 刷新标记/Flush flag (0=普通加载, 1=刷新)
-	Flush *int `query:"flush,omitempty" json:"flush,omitempty"`
+	Flush int `query:"flush,omitempty" json:"flush,omitempty"`
 	// 是否下拉刷新/Pull to refresh
-	Pull *bool `query:"pull,omitempty" json:"pull,omitempty"`
+	Pull bool `query:"pull,omitempty" json:"pull,omitempty"`
 }
 
 func (r BilibiliAppGetHomeFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "idx", r.Idx)
-	addQueryValue(values, "flush", r.Flush)
-	addQueryValue(values, "pull", r.Pull)
+	addOptionalQueryValue(values, "idx", r.Idx)
+	addOptionalQueryValue(values, "flush", r.Flush)
+	addOptionalQueryValue(values, "pull", r.Pull)
 	return values
 }
 
@@ -19958,15 +19958,15 @@ type BilibiliAppGetHomeFeedResponse = APIResponse
 // BilibiliAppGetPopularFeedRequest is the request for 获取热门推荐/Get popular feed.
 type BilibiliAppGetPopularFeedRequest struct {
 	// 页面索引/Page index
-	Idx *int `query:"idx,omitempty" json:"idx,omitempty"`
+	Idx int `query:"idx,omitempty" json:"idx,omitempty"`
 	// 上一页最后一个视频ID/Last video ID
-	LastParam *string `query:"last_param,omitempty" json:"last_param,omitempty"`
+	LastParam string `query:"last_param,omitempty" json:"last_param,omitempty"`
 }
 
 func (r BilibiliAppGetPopularFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "idx", r.Idx)
-	addQueryValue(values, "last_param", r.LastParam)
+	addOptionalQueryValue(values, "idx", r.Idx)
+	addOptionalQueryValue(values, "last_param", r.LastParam)
 	return values
 }
 
@@ -19978,19 +19978,19 @@ type BilibiliAppSearchAllRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Page size
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 排序方式/Sort order (0=综合排序)
-	Order *int `query:"order,omitempty" json:"order,omitempty"`
+	Order int `query:"order,omitempty" json:"order,omitempty"`
 }
 
 func (r BilibiliAppSearchAllRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "order", r.Order)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "order", r.Order)
 	return values
 }
 
@@ -20002,22 +20002,22 @@ type BilibiliAppSearchByTypeRequest struct {
 	// 搜索关键词/Search keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 搜索类型/Search type (video/bangumi/pgc/live/article/user)
-	SearchType *string `query:"search_type,omitempty" json:"search_type,omitempty"`
+	SearchType string `query:"search_type,omitempty" json:"search_type,omitempty"`
 	// 页码/Page number
-	Page *int `query:"page,omitempty" json:"page,omitempty"`
+	Page int `query:"page,omitempty" json:"page,omitempty"`
 	// 每页数量/Page size
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 排序方式/Sort order (0=综合, 1=最新, 2=播放量, 3=弹幕数)
-	Order *int `query:"order,omitempty" json:"order,omitempty"`
+	Order int `query:"order,omitempty" json:"order,omitempty"`
 }
 
 func (r BilibiliAppSearchByTypeRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "search_type", r.SearchType)
-	addQueryValue(values, "page", r.Page)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "order", r.Order)
+	addOptionalQueryValue(values, "search_type", r.SearchType)
+	addOptionalQueryValue(values, "page", r.Page)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "order", r.Order)
 	return values
 }
 
@@ -20041,15 +20041,15 @@ type BilibiliAppGetBangumiTabResponse = APIResponse
 // Sora2FetchSinglePostDetailRequest is the request for 获取单一作品详情/Fetch single post detail.
 type Sora2FetchSinglePostDetailRequest struct {
 	// 作品ID（可选）/Post ID (optional)
-	PostID *string `query:"post_id,omitempty" json:"post_id,omitempty"`
+	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 作品链接（可选）/Post URL (optional)
-	PostURL *string `query:"post_url,omitempty" json:"post_url,omitempty"`
+	PostURL string `query:"post_url,omitempty" json:"post_url,omitempty"`
 }
 
 func (r Sora2FetchSinglePostDetailRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "post_url", r.PostURL)
+	addOptionalQueryValue(values, "post_id", r.PostID)
+	addOptionalQueryValue(values, "post_url", r.PostURL)
 	return values
 }
 
@@ -20059,18 +20059,18 @@ type Sora2FetchSinglePostDetailResponse = APIResponse
 // Sora2FetchPostRemixListRequest is the request for 获取作品的 Remix 列表/Fetch post remix list.
 type Sora2FetchPostRemixListRequest struct {
 	// 作品ID（可选）/Post ID (optional)
-	PostID *string `query:"post_id,omitempty" json:"post_id,omitempty"`
+	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 作品链接（可选）/Post URL (optional)
-	PostURL *string `query:"post_url,omitempty" json:"post_url,omitempty"`
+	PostURL string `query:"post_url,omitempty" json:"post_url,omitempty"`
 	// 翻页参数（可选）/Cursor for pagination (optional)
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchPostRemixListRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "post_url", r.PostURL)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "post_id", r.PostID)
+	addOptionalQueryValue(values, "post_url", r.PostURL)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20080,15 +20080,15 @@ type Sora2FetchPostRemixListResponse = APIResponse
 // Sora2FetchNoneWatermarkVideoDownloadInfoRequest is the request for 获取无水印视频下载信息/Fetch none watermark video download info.
 type Sora2FetchNoneWatermarkVideoDownloadInfoRequest struct {
 	// 作品ID（可选）/Post ID (optional)
-	PostID *string `query:"post_id,omitempty" json:"post_id,omitempty"`
+	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 作品链接（可选）/Post URL (optional)
-	PostURL *string `query:"post_url,omitempty" json:"post_url,omitempty"`
+	PostURL string `query:"post_url,omitempty" json:"post_url,omitempty"`
 }
 
 func (r Sora2FetchNoneWatermarkVideoDownloadInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "post_url", r.PostURL)
+	addOptionalQueryValue(values, "post_id", r.PostID)
+	addOptionalQueryValue(values, "post_url", r.PostURL)
 	return values
 }
 
@@ -20100,13 +20100,13 @@ type Sora2FetchPostCommentsRequest struct {
 	// 作品ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 翻页参数，从上一次响应中获取/Pagination cursor from previous response
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20118,13 +20118,13 @@ type Sora2FetchCommentRepliesRequest struct {
 	// 一级评论ID/First-level comment ID
 	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 翻页参数，从上一次响应中获取/Pagination cursor from previous response
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20151,13 +20151,13 @@ type Sora2FetchUserPostsRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页参数，从上一次响应中获取/Pagination cursor from previous response
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20167,12 +20167,12 @@ type Sora2FetchUserPostsResponse = APIResponse
 // Sora2FetchCameoLeaderboardRequest is the request for 获取 Cameo 出镜秀达人排行榜/Fetch Cameo leaderboard.
 type Sora2FetchCameoLeaderboardRequest struct {
 	// 翻页参数（可选）/Cursor for pagination (optional)
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchCameoLeaderboardRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20184,13 +20184,13 @@ type Sora2FetchUserCameoAppearancesRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页参数，从上一次响应中获取/Pagination cursor from previous response
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchUserCameoAppearancesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20202,13 +20202,13 @@ type Sora2FetchUserFollowersRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页参数，从上一次响应中获取/Pagination cursor from previous response
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchUserFollowersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20220,13 +20220,13 @@ type Sora2FetchUserFollowingRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 翻页参数，从上一次响应中获取/Pagination cursor from previous response
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r Sora2FetchUserFollowingRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20236,15 +20236,15 @@ type Sora2FetchUserFollowingResponse = APIResponse
 // Sora2FetchFeedRequest is the request for 获取Feed流（热门/推荐视频）/Fetch feed.
 type Sora2FetchFeedRequest struct {
 	// 翻页参数，从上一次响应中获取/Pagination cursor from previous response
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 观看记录JSON字符串（可选），用于个性化推荐/Watch history JSON string (optional), for personalized recommendations
-	EagerViews *string `query:"eager_views,omitempty" json:"eager_views,omitempty"`
+	EagerViews string `query:"eager_views,omitempty" json:"eager_views,omitempty"`
 }
 
 func (r Sora2FetchFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "eager_views", r.EagerViews)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "eager_views", r.EagerViews)
 	return values
 }
 
@@ -20278,16 +20278,16 @@ type Sora2DeprecatedCreateVideoFromTextOrImageRequest struct {
 	// 视频描述文本（最多2000字符）/Video description text (max 2000 chars)
 	Prompt string `json:"prompt,omitempty"`
 	// 视频方向：portrait(竖屏9:16) 或 landscape(横屏16:9)/Video orientation: portrait(9:16) or landscape(16:9)
-	Orientation *string `json:"orientation,omitempty"`
+	Orientation string `json:"orientation,omitempty"`
 	// 图片 media_id（可选），从 upload_image 接口获取，用于图生视频/Image media_id (optional) from upload_image endpoint for image-to-video generation
-	MediaID *string `json:"media_id,omitempty"`
+	MediaID string `json:"media_id,omitempty"`
 }
 
 func (r Sora2DeprecatedCreateVideoFromTextOrImageRequest) toBody() any {
 	body := map[string]any{}
 	addBodyValue(body, "prompt", r.Prompt)
-	addBodyValue(body, "orientation", r.Orientation)
-	addBodyValue(body, "media_id", r.MediaID)
+	addOptionalBodyValue(body, "orientation", r.Orientation)
+	addOptionalBodyValue(body, "media_id", r.MediaID)
 	return body
 }
 
@@ -20312,15 +20312,15 @@ type Sora2DeprecatedGetTaskStatusResponse = APIResponse
 // Sora2DeprecatedGetTaskGeneratedPostDetailRequest is the request for [已弃用/Deprecated] 获取任务生成的作品详情（无水印版本）/Get task-generated post detail (watermark-free).
 type Sora2DeprecatedGetTaskGeneratedPostDetailRequest struct {
 	// 任务ID（可选，与generation_id二选一）/Task ID (optional, choose one with generation_id)
-	TaskID *string `query:"task_id,omitempty" json:"task_id,omitempty"`
+	TaskID string `query:"task_id,omitempty" json:"task_id,omitempty"`
 	// 生成ID（可选，与task_id二选一）/Generation ID (optional, choose one with task_id)
-	GenerationID *string `query:"generation_id,omitempty" json:"generation_id,omitempty"`
+	GenerationID string `query:"generation_id,omitempty" json:"generation_id,omitempty"`
 }
 
 func (r Sora2DeprecatedGetTaskGeneratedPostDetailRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "task_id", r.TaskID)
-	addQueryValue(values, "generation_id", r.GenerationID)
+	addOptionalQueryValue(values, "task_id", r.TaskID)
+	addOptionalQueryValue(values, "generation_id", r.GenerationID)
 	return values
 }
 
@@ -20385,15 +20385,15 @@ type TwitterWebGetSingleTweetDataResponse = APIResponse
 // TwitterWebGetUserProfileRequest is the request for 获取用户资料/Get user profile.
 type TwitterWebGetUserProfileRequest struct {
 	// 用户名/Screen Name
-	ScreenName *string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
+	ScreenName string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
 	// 用户ID（如果使用用户ID则会忽略用户名）/User ID (If the user ID is used, the user name will be ignored)
-	RestID *int `query:"rest_id,omitempty" json:"rest_id,omitempty"`
+	RestID int `query:"rest_id,omitempty" json:"rest_id,omitempty"`
 }
 
 func (r TwitterWebGetUserProfileRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "screen_name", r.ScreenName)
-	addQueryValue(values, "rest_id", r.RestID)
+	addOptionalQueryValue(values, "screen_name", r.ScreenName)
+	addOptionalQueryValue(values, "rest_id", r.RestID)
 	return values
 }
 
@@ -20403,18 +20403,18 @@ type TwitterWebGetUserProfileResponse = APIResponse
 // TwitterWebGetUserPostRequest is the request for 获取用户发帖/Get user post.
 type TwitterWebGetUserPostRequest struct {
 	// 用户名/Screen Name
-	ScreenName *string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
+	ScreenName string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
 	// 用户ID/User ID
-	RestID *int `query:"rest_id,omitempty" json:"rest_id,omitempty"`
+	RestID int `query:"rest_id,omitempty" json:"rest_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebGetUserPostRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "screen_name", r.ScreenName)
-	addQueryValue(values, "rest_id", r.RestID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "screen_name", r.ScreenName)
+	addOptionalQueryValue(values, "rest_id", r.RestID)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20426,16 +20426,16 @@ type TwitterWebSearchRequest struct {
 	// 搜索关键字/Search Keyword
 	Keyword string `query:"keyword,omitempty" json:"keyword,omitempty"`
 	// 搜索类型/Search Type
-	SearchType *string `query:"search_type,omitempty" json:"search_type,omitempty"`
+	SearchType string `query:"search_type,omitempty" json:"search_type,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebSearchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "keyword", r.Keyword)
-	addQueryValue(values, "search_type", r.SearchType)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "search_type", r.SearchType)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20447,13 +20447,13 @@ type TwitterWebGetCommentsRequest struct {
 	// 推文ID/Tweet ID
 	TweetID string `query:"tweet_id,omitempty" json:"tweet_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebGetCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tweet_id", r.TweetID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20465,13 +20465,13 @@ type TwitterWebGetTheLatestTweetCommentsRequest struct {
 	// 推文ID/Tweet ID
 	TweetID string `query:"tweet_id,omitempty" json:"tweet_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebGetTheLatestTweetCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tweet_id", r.TweetID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20483,13 +20483,13 @@ type TwitterWebGetUserTweetRepliesRequest struct {
 	// 用户名/Screen Name
 	ScreenName string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebGetUserTweetRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "screen_name", r.ScreenName)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20501,16 +20501,16 @@ type TwitterWebGetUserHighlightsTweetsRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"userId,omitempty" json:"userId,omitempty"`
 	// 数量/Count
-	Count *int `query:"count,omitempty" json:"count,omitempty"`
+	Count int `query:"count,omitempty" json:"count,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebGetUserHighlightsTweetsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "userId", r.UserID)
-	addQueryValue(values, "count", r.Count)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "count", r.Count)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20522,16 +20522,16 @@ type TwitterWebGetUserMediaRequest struct {
 	// 用户名/Screen Name
 	ScreenName string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
 	// 用户ID/User ID
-	RestID *int `query:"rest_id,omitempty" json:"rest_id,omitempty"`
+	RestID int `query:"rest_id,omitempty" json:"rest_id,omitempty"`
 	// 翻页游标/Page Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebGetUserMediaRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "screen_name", r.ScreenName)
-	addQueryValue(values, "rest_id", r.RestID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "rest_id", r.RestID)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20543,13 +20543,13 @@ type TwitterWebReTweetUserListRequest struct {
 	// 推文ID/Tweet ID
 	TweetID string `query:"tweet_id,omitempty" json:"tweet_id,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebReTweetUserListRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "tweet_id", r.TweetID)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20559,12 +20559,12 @@ type TwitterWebReTweetUserListResponse = APIResponse
 // TwitterWebTrendingRequest is the request for 趋势/Trending.
 type TwitterWebTrendingRequest struct {
 	// 国家/Country
-	Country *string `query:"country,omitempty" json:"country,omitempty"`
+	Country string `query:"country,omitempty" json:"country,omitempty"`
 }
 
 func (r TwitterWebTrendingRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "country", r.Country)
+	addOptionalQueryValue(values, "country", r.Country)
 	return values
 }
 
@@ -20576,13 +20576,13 @@ type TwitterWebUserFollowingsRequest struct {
 	// 用户名/Screen Name
 	ScreenName string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebUserFollowingsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "screen_name", r.ScreenName)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20594,13 +20594,13 @@ type TwitterWebUserFollowersRequest struct {
 	// 用户名/Screen Name
 	ScreenName string `query:"screen_name,omitempty" json:"screen_name,omitempty"`
 	// 游标/Cursor
-	Cursor *string `query:"cursor,omitempty" json:"cursor,omitempty"`
+	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 }
 
 func (r TwitterWebUserFollowersRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "screen_name", r.ScreenName)
-	addQueryValue(values, "cursor", r.Cursor)
+	addOptionalQueryValue(values, "cursor", r.Cursor)
 	return values
 }
 
@@ -20642,13 +20642,13 @@ type ThreadsWebGetUserPostsRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页游标/Pagination cursor (optional)
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r ThreadsWebGetUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -20660,13 +20660,13 @@ type ThreadsWebGetUserRepostsRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页游标/Pagination cursor (optional)
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r ThreadsWebGetUserRepostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -20678,13 +20678,13 @@ type ThreadsWebGetUserRepliesRequest struct {
 	// 用户ID/User ID
 	UserID string `query:"user_id,omitempty" json:"user_id,omitempty"`
 	// 分页游标/Pagination cursor (optional)
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r ThreadsWebGetUserRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "user_id", r.UserID)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -20709,15 +20709,15 @@ type ThreadsWebGetPostDetailResponse = APIResponse
 // ThreadsWebGetPostDetailV2Request is the request for 获取帖子详情 V2(支持链接)/Get post detail V2(supports URL).
 type ThreadsWebGetPostDetailV2Request struct {
 	// 帖子短代码/Post short code
-	PostID *string `query:"post_id,omitempty" json:"post_id,omitempty"`
+	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 完整帖子URL/Full post URL
-	URL *string `query:"url,omitempty" json:"url,omitempty"`
+	URL string `query:"url,omitempty" json:"url,omitempty"`
 }
 
 func (r ThreadsWebGetPostDetailV2Request) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "url", r.URL)
+	addOptionalQueryValue(values, "post_id", r.PostID)
+	addOptionalQueryValue(values, "url", r.URL)
 	return values
 }
 
@@ -20729,13 +20729,13 @@ type ThreadsWebGetPostCommentsRequest struct {
 	// 帖子ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 分页游标/Pagination cursor (optional)
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r ThreadsWebGetPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -20747,13 +20747,13 @@ type ThreadsWebSearchTopContentRequest struct {
 	// 搜索关键词/Search query
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 分页游标/Pagination cursor (optional)
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r ThreadsWebSearchTopContentRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -20765,13 +20765,13 @@ type ThreadsWebSearchRecentContentRequest struct {
 	// 搜索关键词/Search query
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 分页游标/Pagination cursor (optional)
-	EndCursor *string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
+	EndCursor string `query:"end_cursor,omitempty" json:"end_cursor,omitempty"`
 }
 
 func (r ThreadsWebSearchRecentContentRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "end_cursor", r.EndCursor)
+	addOptionalQueryValue(values, "end_cursor", r.EndCursor)
 	return values
 }
 
@@ -20796,21 +20796,21 @@ type ThreadsWebSearchProfilesResponse = APIResponse
 // RedditAppFetchRedditAppHomeFeedRequest is the request for 获取Reddit APP首页推荐内容/Fetch Reddit APP Home Feed.
 type RedditAppFetchRedditAppHomeFeedRequest struct {
 	// 排序方式/Sort method: HOT, NEW, TOP, BEST, CONTROVERSIAL
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 过滤掉指定的帖子ID列表/Filter out specified post IDs
 	FilterPosts []any `query:"filter_posts,omitempty" json:"filter_posts,omitempty"`
 	// 分页参数/Pagination parameter for fetching next page
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppHomeFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "sort", r.Sort)
 	addQueryValue(values, "filter_posts", r.FilterPosts)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20820,24 +20820,24 @@ type RedditAppFetchRedditAppHomeFeedResponse = APIResponse
 // RedditAppFetchRedditAppPopularFeedRequest is the request for 获取Reddit APP流行推荐内容/Fetch Reddit APP Popular Feed.
 type RedditAppFetchRedditAppPopularFeedRequest struct {
 	// 排序方式/Sort method: BEST, HOT, NEW, TOP, CONTROVERSIAL, RISING
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 时间范围/Time range: ALL, HOUR, DAY, WEEK, MONTH, YEAR
-	Time *string `query:"time,omitempty" json:"time,omitempty"`
+	Time string `query:"time,omitempty" json:"time,omitempty"`
 	// 过滤帖子ID列表/Filter post IDs
 	FilterPosts []any `query:"filter_posts,omitempty" json:"filter_posts,omitempty"`
 	// 分页参数/Pagination parameter
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppPopularFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "time", r.Time)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "time", r.Time)
 	addQueryValue(values, "filter_posts", r.FilterPosts)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20847,21 +20847,21 @@ type RedditAppFetchRedditAppPopularFeedResponse = APIResponse
 // RedditAppFetchRedditAppGamesFeedRequest is the request for 获取Reddit APP游戏推荐内容/Fetch Reddit APP Games Feed.
 type RedditAppFetchRedditAppGamesFeedRequest struct {
 	// 排序方式/Sort method: NEW, HOT, TOP, RISING
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 时间范围/Time range: ALL, HOUR, DAY, WEEK, MONTH, YEAR
-	Time *string `query:"time,omitempty" json:"time,omitempty"`
+	Time string `query:"time,omitempty" json:"time,omitempty"`
 	// 分页参数/Pagination parameter
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppGamesFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "time", r.Time)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "time", r.Time)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20873,16 +20873,16 @@ type RedditAppFetchRedditAppNewsFeedRequest struct {
 	// 子话题ID列表/Subtopic IDs list
 	SubtopicIds []any `query:"subtopic_ids,omitempty" json:"subtopic_ids,omitempty"`
 	// 分页参数/Pagination parameter
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppNewsFeedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "subtopic_ids", r.SubtopicIds)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20892,18 +20892,18 @@ type RedditAppFetchRedditAppNewsFeedResponse = APIResponse
 // RedditAppFetchRedditAppExploreFeedRequest is the request for 获取Reddit APP发现页(社区分类+推荐社区)/Fetch Reddit APP Explore Feed.
 type RedditAppFetchRedditAppExploreFeedRequest struct {
 	// 排序方式/Sort method: BEST, HOT, NEW, TOP, CONTROVERSIAL
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 时间范围/Time range: ALL, HOUR, DAY, WEEK, MONTH, YEAR
-	Time *string `query:"time,omitempty" json:"time,omitempty"`
+	Time string `query:"time,omitempty" json:"time,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppExploreFeedRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "time", r.Time)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "time", r.Time)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20915,22 +20915,22 @@ type RedditAppFetchRedditAppTopicFeedRequest struct {
 	// 分类ID/Topic ID (从 /fetch_explore_feed 的 topics 拿)
 	TopicID string `query:"topic_id,omitempty" json:"topic_id,omitempty"`
 	// 分类 scheme/Topic scheme name (默认 App 用 communities_tab_taxonomy_topics_default)
-	SchemeName *string `query:"scheme_name,omitempty" json:"scheme_name,omitempty"`
+	SchemeName string `query:"scheme_name,omitempty" json:"scheme_name,omitempty"`
 	// 排序方式/Sort method: BEST, HOT, NEW, TOP, CONTROVERSIAL
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 时间范围/Time range: ALL, HOUR, DAY, WEEK, MONTH, YEAR
-	Time *string `query:"time,omitempty" json:"time,omitempty"`
+	Time string `query:"time,omitempty" json:"time,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppTopicFeedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "topic_id", r.TopicID)
-	addQueryValue(values, "scheme_name", r.SchemeName)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "time", r.Time)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "scheme_name", r.SchemeName)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "time", r.Time)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20942,19 +20942,19 @@ type RedditAppFetchSingleRedditPostDetailsRequest struct {
 	// 帖子ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 是否包含特定评论ID/Include specific comment ID
-	IncludeCommentID *bool `query:"include_comment_id,omitempty" json:"include_comment_id,omitempty"`
+	IncludeCommentID bool `query:"include_comment_id,omitempty" json:"include_comment_id,omitempty"`
 	// 评论ID/Comment ID (when include_comment_id is True)
-	CommentID *string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
+	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchSingleRedditPostDetailsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "include_comment_id", r.IncludeCommentID)
-	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "include_comment_id", r.IncludeCommentID)
+	addOptionalQueryValue(values, "comment_id", r.CommentID)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20966,19 +20966,19 @@ type RedditAppFetchRedditPostDetailsInBatchRequest struct {
 	// 帖子ID列表，逗号分隔，最多5条/Post IDs comma-separated, max 5
 	PostIds string `query:"post_ids,omitempty" json:"post_ids,omitempty"`
 	// 是否包含特定评论ID/Include specific comment ID
-	IncludeCommentID *bool `query:"include_comment_id,omitempty" json:"include_comment_id,omitempty"`
+	IncludeCommentID bool `query:"include_comment_id,omitempty" json:"include_comment_id,omitempty"`
 	// 评论ID/Comment ID (when include_comment_id is True)
-	CommentID *string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
+	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditPostDetailsInBatchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_ids", r.PostIds)
-	addQueryValue(values, "include_comment_id", r.IncludeCommentID)
-	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "include_comment_id", r.IncludeCommentID)
+	addOptionalQueryValue(values, "comment_id", r.CommentID)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -20990,19 +20990,19 @@ type RedditAppFetchRedditPostDetailsInLargeBatchRequest struct {
 	// 帖子ID列表，逗号分隔，最多30条/Post IDs comma-separated, max 30
 	PostIds string `query:"post_ids,omitempty" json:"post_ids,omitempty"`
 	// 是否包含特定评论ID/Include specific comment ID
-	IncludeCommentID *bool `query:"include_comment_id,omitempty" json:"include_comment_id,omitempty"`
+	IncludeCommentID bool `query:"include_comment_id,omitempty" json:"include_comment_id,omitempty"`
 	// 评论ID/Comment ID (when include_comment_id is True)
-	CommentID *string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
+	CommentID string `query:"comment_id,omitempty" json:"comment_id,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditPostDetailsInLargeBatchRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_ids", r.PostIds)
-	addQueryValue(values, "include_comment_id", r.IncludeCommentID)
-	addQueryValue(values, "comment_id", r.CommentID)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "include_comment_id", r.IncludeCommentID)
+	addOptionalQueryValue(values, "comment_id", r.CommentID)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21014,19 +21014,19 @@ type RedditAppFetchRedditAppPostCommentsRequest struct {
 	// 帖子ID/Post ID
 	PostID string `query:"post_id,omitempty" json:"post_id,omitempty"`
 	// 排序方式/Sort method: CONFIDENCE, NEW, TOP, HOT, CONTROVERSIAL, OLD, RANDOM
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 分页参数/Pagination parameter for fetching next page
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppPostCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21040,17 +21040,17 @@ type RedditAppFetchRedditAppCommentRepliesRequest struct {
 	// 评论游标/Comment cursor from more.cursor field
 	Cursor string `query:"cursor,omitempty" json:"cursor,omitempty"`
 	// 排序方式/Sort method: CONFIDENCE, NEW, TOP, HOT, CONTROVERSIAL, OLD, RANDOM
-	SortType *string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType string `query:"sort_type,omitempty" json:"sort_type,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppCommentRepliesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_id", r.PostID)
 	addQueryValue(values, "cursor", r.Cursor)
-	addQueryValue(values, "sort_type", r.SortType)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "sort_type", r.SortType)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21060,15 +21060,15 @@ type RedditAppFetchRedditAppCommentRepliesResponse = APIResponse
 // RedditAppFetchRedditAppSubredditRulesAndStyleInfoRequest is the request for 获取Reddit APP版块规则样式信息/Fetch Reddit APP Subreddit Rules and Style Info.
 type RedditAppFetchRedditAppSubredditRulesAndStyleInfoRequest struct {
 	// 版块名称/Subreddit name
-	SubredditName *string `query:"subreddit_name,omitempty" json:"subreddit_name,omitempty"`
+	SubredditName string `query:"subreddit_name,omitempty" json:"subreddit_name,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppSubredditRulesAndStyleInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "subreddit_name", r.SubredditName)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "subreddit_name", r.SubredditName)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21078,21 +21078,21 @@ type RedditAppFetchRedditAppSubredditRulesAndStyleInfoResponse = APIResponse
 // RedditAppFetchRedditAppSubredditPostChannelsRequest is the request for 获取Reddit APP版块帖子频道信息/Fetch Reddit APP Subreddit Post Channels.
 type RedditAppFetchRedditAppSubredditPostChannelsRequest struct {
 	// 版块名称/Subreddit name
-	SubredditName *string `query:"subreddit_name,omitempty" json:"subreddit_name,omitempty"`
+	SubredditName string `query:"subreddit_name,omitempty" json:"subreddit_name,omitempty"`
 	// 排序方式/Sort method: HOT, NEW, TOP, CONTROVERSIAL, RISING
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 时间范围/Time range: HOUR, DAY, WEEK, MONTH, YEAR, ALL
-	RangeValue *string `query:"range,omitempty" json:"range,omitempty"`
+	RangeValue string `query:"range,omitempty" json:"range,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppSubredditPostChannelsRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "subreddit_name", r.SubredditName)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "range", r.RangeValue)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "subreddit_name", r.SubredditName)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "range", r.RangeValue)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21102,15 +21102,15 @@ type RedditAppFetchRedditAppSubredditPostChannelsResponse = APIResponse
 // RedditAppFetchRedditAppSubredditInfoRequest is the request for 获取Reddit APP版块信息/Fetch Reddit APP Subreddit Info.
 type RedditAppFetchRedditAppSubredditInfoRequest struct {
 	// 版块名称/Subreddit name
-	SubredditName *string `query:"subreddit_name,omitempty" json:"subreddit_name,omitempty"`
+	SubredditName string `query:"subreddit_name,omitempty" json:"subreddit_name,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppSubredditInfoRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "subreddit_name", r.SubredditName)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "subreddit_name", r.SubredditName)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21122,13 +21122,13 @@ type RedditAppFetchRedditAppSubredditSettingsRequest struct {
 	// 版块ID/Subreddit ID
 	SubredditID string `query:"subreddit_id,omitempty" json:"subreddit_id,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppSubredditSettingsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "subreddit_id", r.SubredditID)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21140,19 +21140,19 @@ type RedditAppFetchRedditAppSearchTypeaheadSuggestionsRequest struct {
 	// 搜索关键词/Search query
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 安全搜索设置/Safe search setting: unset, strict
-	SafeSearch *string `query:"safe_search,omitempty" json:"safe_search,omitempty"`
+	SafeSearch string `query:"safe_search,omitempty" json:"safe_search,omitempty"`
 	// 是否允许NSFW内容/Allow NSFW content: 0 or 1
-	AllowNsfw *string `query:"allow_nsfw,omitempty" json:"allow_nsfw,omitempty"`
+	AllowNsfw string `query:"allow_nsfw,omitempty" json:"allow_nsfw,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppSearchTypeaheadSuggestionsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "safe_search", r.SafeSearch)
-	addQueryValue(values, "allow_nsfw", r.AllowNsfw)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "safe_search", r.SafeSearch)
+	addOptionalQueryValue(values, "allow_nsfw", r.AllowNsfw)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21164,31 +21164,31 @@ type RedditAppFetchRedditAppDynamicSearchResultsRequest struct {
 	// 搜索关键词/Search query
 	Query string `query:"query,omitempty" json:"query,omitempty"`
 	// 搜索类型/Search type: post(帖子), community(社区), comment(评论), media(媒体), people(用户)
-	SearchType *string `query:"search_type,omitempty" json:"search_type,omitempty"`
+	SearchType string `query:"search_type,omitempty" json:"search_type,omitempty"`
 	// 排序方式(仅适用于post/comment/media)/Sort method (only for post/comment/media): RELEVANCE(相关性), HOT(热门), TOP(最受欢迎), NEW(最新), COMMENTS(评论数,仅post)
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 时间范围(仅适用于post/media)/Time range (only for post/media): all(所有时间), year(去年), month(上月), week(上周), day(今天), hour(过去1小时)
-	TimeRange *string `query:"time_range,omitempty" json:"time_range,omitempty"`
+	TimeRange string `query:"time_range,omitempty" json:"time_range,omitempty"`
 	// 安全搜索设置/Safe search setting: unset, strict
-	SafeSearch *string `query:"safe_search,omitempty" json:"safe_search,omitempty"`
+	SafeSearch string `query:"safe_search,omitempty" json:"safe_search,omitempty"`
 	// 是否允许NSFW内容/Allow NSFW content: 0, 1
-	AllowNsfw *string `query:"allow_nsfw,omitempty" json:"allow_nsfw,omitempty"`
+	AllowNsfw string `query:"allow_nsfw,omitempty" json:"allow_nsfw,omitempty"`
 	// 分页参数/Pagination parameter
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppDynamicSearchResultsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "query", r.Query)
-	addQueryValue(values, "search_type", r.SearchType)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "time_range", r.TimeRange)
-	addQueryValue(values, "safe_search", r.SafeSearch)
-	addQueryValue(values, "allow_nsfw", r.AllowNsfw)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "search_type", r.SearchType)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "time_range", r.TimeRange)
+	addOptionalQueryValue(values, "safe_search", r.SafeSearch)
+	addOptionalQueryValue(values, "allow_nsfw", r.AllowNsfw)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21200,13 +21200,13 @@ type RedditAppFetchRedditAppCommunityHighlightsRequest struct {
 	// 版块ID/Subreddit ID
 	SubredditID string `query:"subreddit_id,omitempty" json:"subreddit_id,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppCommunityHighlightsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "subreddit_id", r.SubredditID)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21216,12 +21216,12 @@ type RedditAppFetchRedditAppCommunityHighlightsResponse = APIResponse
 // RedditAppFetchRedditAppTrendingSearchesRequest is the request for 获取Reddit APP今日热门搜索/Fetch Reddit APP Trending Searches.
 type RedditAppFetchRedditAppTrendingSearchesRequest struct {
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppTrendingSearchesRequest) toQuery() url.Values {
 	values := url.Values{}
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21233,13 +21233,13 @@ type RedditAppFetchRedditAnswersGeneratedPostsRequest struct {
 	// 帖子ID列表,逗号分隔/Post IDs comma-separated
 	PostIds string `query:"post_ids,omitempty" json:"post_ids,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAnswersGeneratedPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "post_ids", r.PostIds)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21251,13 +21251,13 @@ type RedditAppFetchRedditAnswersGeneratedCommentsRequest struct {
 	// 评论ID列表,逗号分隔/Comment IDs comma-separated
 	CommentIds string `query:"comment_ids,omitempty" json:"comment_ids,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAnswersGeneratedCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "comment_ids", r.CommentIds)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21269,13 +21269,13 @@ type RedditAppFetchRedditAppUserProfileRequest struct {
 	// 用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppUserProfileRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21287,13 +21287,13 @@ type RedditAppFetchUserSActiveSubredditsRequest struct {
 	// 用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchUserSActiveSubredditsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21305,22 +21305,22 @@ type RedditAppFetchUserCommentsRequest struct {
 	// 用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 排序方式/Sort method: NEW, TOP, HOT, CONTROVERSIAL
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 每页数量/Page size (default: 25)
-	PageSize *int `query:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize int `query:"page_size,omitempty" json:"page_size,omitempty"`
 	// 分页参数/Pagination parameter
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchUserCommentsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "page_size", r.PageSize)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "page_size", r.PageSize)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21332,19 +21332,19 @@ type RedditAppFetchUserPostsRequest struct {
 	// 用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 排序方式/Sort method: NEW, TOP, HOT, CONTROVERSIAL
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 分页参数/Pagination parameter
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchUserPostsRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "sort", r.Sort)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21356,22 +21356,22 @@ type RedditAppFetchRedditAppSubredditFeedRequest struct {
 	// 版块名称/Subreddit name
 	SubredditName string `query:"subreddit_name,omitempty" json:"subreddit_name,omitempty"`
 	// 排序方式/Sort method: BEST, HOT, NEW, TOP, CONTROVERSIAL, RISING
-	Sort *string `query:"sort,omitempty" json:"sort,omitempty"`
+	Sort string `query:"sort,omitempty" json:"sort,omitempty"`
 	// 过滤帖子ID列表/Filter post IDs
 	FilterPosts []any `query:"filter_posts,omitempty" json:"filter_posts,omitempty"`
 	// 分页参数/Pagination parameter
-	After *string `query:"after,omitempty" json:"after,omitempty"`
+	After string `query:"after,omitempty" json:"after,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchRedditAppSubredditFeedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "subreddit_name", r.SubredditName)
-	addQueryValue(values, "sort", r.Sort)
+	addOptionalQueryValue(values, "sort", r.Sort)
 	addQueryValue(values, "filter_posts", r.FilterPosts)
-	addQueryValue(values, "after", r.After)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "after", r.After)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21383,13 +21383,13 @@ type RedditAppCheckIfSubredditIsMutedRequest struct {
 	// 版块ID/Subreddit ID
 	SubredditID string `query:"subreddit_id,omitempty" json:"subreddit_id,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppCheckIfSubredditIsMutedRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "subreddit_id", r.SubredditID)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21401,13 +21401,13 @@ type RedditAppFetchUserPublicTrophiesRequest struct {
 	// 用户名/Username
 	Username string `query:"username,omitempty" json:"username,omitempty"`
 	// 是否需要清洗数据/Whether to clean and format the data
-	NeedFormat *bool `query:"need_format,omitempty" json:"need_format,omitempty"`
+	NeedFormat bool `query:"need_format,omitempty" json:"need_format,omitempty"`
 }
 
 func (r RedditAppFetchUserPublicTrophiesRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "username", r.Username)
-	addQueryValue(values, "need_format", r.NeedFormat)
+	addOptionalQueryValue(values, "need_format", r.NeedFormat)
 	return values
 }
 
@@ -21419,16 +21419,16 @@ type HybridParsingHybridParsingSingleVideoEndpointRequest struct {
 	// Url
 	URL string `query:"url,omitempty" json:"url,omitempty"`
 	// 是否返回最小数据/Whether to return minimal data
-	Minimal *bool `query:"minimal,omitempty" json:"minimal,omitempty"`
+	Minimal bool `query:"minimal,omitempty" json:"minimal,omitempty"`
 	// 是否Base64编码提交URL/Base64 encoding URL
-	Base64URL *bool `query:"base64_url,omitempty" json:"base64_url,omitempty"`
+	Base64URL bool `query:"base64_url,omitempty" json:"base64_url,omitempty"`
 }
 
 func (r HybridParsingHybridParsingSingleVideoEndpointRequest) toQuery() url.Values {
 	values := url.Values{}
 	addQueryValue(values, "url", r.URL)
-	addQueryValue(values, "minimal", r.Minimal)
-	addQueryValue(values, "base64_url", r.Base64URL)
+	addOptionalQueryValue(values, "minimal", r.Minimal)
+	addOptionalQueryValue(values, "base64_url", r.Base64URL)
 	return values
 }
 

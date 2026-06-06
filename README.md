@@ -10,13 +10,33 @@ go get github.com/jwwsjlm/Tikhub
 
 ## 基本用法
 
-方法名按文档标题生成，结构是：
+推荐使用和官方 Python SDK 接近的资源分组写法：
 
 ```go
-client.分类 + 文档标题(ctx, tikhub.分类 + 文档标题Request{})
+client.资源.接口(ctx, tikhub.资源接口Request{})
 ```
 
-比如文档里的 `TikTok Web / 获取单个作品数据/Get single video data`，对应：
+规则和官方 Python SDK 基本一致：
+
+- 资源名来自 OpenAPI tag：`TikTok-Web-API` -> `client.TikTokWeb`
+- 方法名来自接口 path 最后一段：`fetch_post_detail` -> `FetchPostDetail`
+- 参数使用 Go struct：`TikTokWebFetchPostDetailRequest`
+
+比如官方 Python SDK 是：
+
+```python
+client.tiktok_web.fetch_post_detail(itemId="7218694761253735723")
+```
+
+Go 里对应：
+
+```go
+resp, err := client.TikTokWeb.FetchPostDetail(ctx, tikhub.TikTokWebFetchPostDetailRequest{
+	ItemID: "7218694761253735723",
+})
+```
+
+旧的文档标题式方法也保留：
 
 ```go
 client.TikTokWebGetSingleVideoData(ctx, tikhub.TikTokWebGetSingleVideoDataRequest{})
@@ -52,7 +72,7 @@ func main() {
 		}),
 	)
 
-	resp, err := client.TikTokWebGetSingleVideoData(context.Background(), tikhub.TikTokWebGetSingleVideoDataRequest{
+	resp, err := client.TikTokWeb.FetchPostDetail(context.Background(), tikhub.TikTokWebFetchPostDetailRequest{
 		ItemID: "7218694761253735723",
 	})
 	if err != nil {
@@ -67,7 +87,7 @@ func main() {
 ### 1. TikTok 获取单个作品
 
 ```go
-resp, err := client.TikTokWebGetSingleVideoData(context.Background(), tikhub.TikTokWebGetSingleVideoDataRequest{
+resp, err := client.TikTokWeb.FetchPostDetail(context.Background(), tikhub.TikTokWebFetchPostDetailRequest{
 	ItemID: "7218694761253735723",
 })
 if err != nil {
@@ -81,7 +101,7 @@ log.Println(string(resp.Data))
 只想拿 `data`，可以直接解包成 `map`：
 
 ```go
-data, err := tikhub.DecodeData[map[string]any](client.TikTokWebGetSingleVideoData(context.Background(), tikhub.TikTokWebGetSingleVideoDataRequest{
+data, err := tikhub.DecodeData[map[string]any](client.TikTokWeb.FetchPostDetail(context.Background(), tikhub.TikTokWebFetchPostDetailRequest{
 	ItemID: "7218694761253735723",
 }))
 if err != nil {
@@ -94,9 +114,9 @@ log.Printf("%#v\n", data)
 ### 2. Douyin 获取单个作品
 
 ```go
-resp, err := client.DouyinWebGetSingleVideoData(context.Background(), tikhub.DouyinWebGetSingleVideoDataRequest{
+resp, err := client.DouyinWeb.FetchOneVideo(context.Background(), tikhub.DouyinWebFetchOneVideoRequest{
 	AwemeID:        "7369956465575087400",
-	NeedAnchorInfo: tikhub.Ptr(true),
+	NeedAnchorInfo: true,
 })
 if err != nil {
 	log.Fatal(err)
@@ -107,12 +127,12 @@ log.Println(string(resp.Data))
 
 ### 3. 可选参数怎么传
 
-生成的 `Request` 里，带 `*` 的字段都是可选参数。传 `nil` 就不会放到 query/body 里，想传值就用 `tikhub.Ptr`。
+生成的 `Request` 里，文档标记为可选的 `string`、`int`、`bool` 字段可以直接传普通值。零值会被当作不传，比如 `0`、`false`、空字符串不会放到 query/body 里。
 
 ```go
-resp, err := client.TikTokWebGetExploreVideoData(context.Background(), tikhub.TikTokWebGetExploreVideoDataRequest{
-	Count:        tikhub.Ptr(20),
-	CategoryType: nil,
+resp, err := client.TikTokWeb.FetchExplorePost(context.Background(), tikhub.TikTokWebFetchExplorePostRequest{
+	Count:        20,
+	CategoryType: "120",
 })
 if err != nil {
 	log.Fatal(err)
@@ -126,7 +146,7 @@ log.Println(string(resp.Data))
 没有参数的接口只传 `ctx`，不需要传空 `Request`。
 
 ```go
-resp, err := client.TikTokWebGetDailyTrendingVideoData(context.Background())
+resp, err := client.TikTokWeb.FetchTrendingPost(context.Background())
 if err != nil {
 	log.Fatal(err)
 }
@@ -139,7 +159,7 @@ log.Println(string(resp.Data))
 POST 接口也是传对应的 `Request`，SDK 会自动作为 JSON body 发送。
 
 ```go
-resp, err := client.TikTokWebGenerateXBogus(context.Background(), tikhub.TikTokWebGenerateXBogusRequest{
+resp, err := client.TikTokWeb.GenerateXBogus(context.Background(), tikhub.TikTokWebGenerateXBogusRequest{
 	URL:       "https://www.tiktok.com/api/item/detail/?itemId=7218694761253735723",
 	UserAgent: "Mozilla/5.0 ...",
 })
@@ -159,7 +179,7 @@ type VideoData struct {
 	ItemInfo map[string]any `json:"itemInfo"`
 }
 
-data, err := tikhub.DecodeData[VideoData](client.TikTokWebGetSingleVideoData(context.Background(), tikhub.TikTokWebGetSingleVideoDataRequest{
+data, err := tikhub.DecodeData[VideoData](client.TikTokWeb.FetchPostDetail(context.Background(), tikhub.TikTokWebFetchPostDetailRequest{
 	ItemID: "7218694761253735723",
 }))
 if err != nil {

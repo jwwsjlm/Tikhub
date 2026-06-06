@@ -59,6 +59,66 @@ func TestClientGeneratedEndpoint(t *testing.T) {
 	}
 }
 
+func TestClientOfficialStyleResourceEndpoint(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/api/v1/tiktok/web/fetch_post_detail" {
+			t.Fatalf("unexpected path: %s", r.URL.Path)
+		}
+		if got := r.URL.Query().Get("itemId"); got != "456" {
+			t.Fatalf("unexpected itemId: %s", got)
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"code":200,"data":{"ok":true}}`))
+	}))
+	defer server.Close()
+
+	client := NewClient("test-key", WithBaseURL(server.URL))
+	resp, err := client.TikTokWeb.FetchPostDetail(context.Background(), TikTokWebFetchPostDetailRequest{
+		ItemID: "456",
+	})
+	if err != nil {
+		t.Fatalf("request failed: %v", err)
+	}
+	if resp.Code != 200 {
+		t.Fatalf("unexpected code: %d", resp.Code)
+	}
+}
+
+func TestClientOptionalPrimitiveFieldsUsePlainValues(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/api/v1/tiktok/web/fetch_explore_post" {
+			t.Fatalf("unexpected path: %s", r.URL.Path)
+		}
+		if got := r.URL.Query().Get("count"); got != "20" {
+			t.Fatalf("unexpected count: %s", got)
+		}
+		if got := r.URL.Query().Get("categoryType"); got != "120" {
+			t.Fatalf("unexpected categoryType: %s", got)
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"code":200,"data":{"ok":true}}`))
+	}))
+	defer server.Close()
+
+	client := NewClient("test-key", WithBaseURL(server.URL))
+	resp, err := client.TikTokWeb.FetchExplorePost(context.Background(), TikTokWebFetchExplorePostRequest{
+		Count:        20,
+		CategoryType: "120",
+	})
+	if err != nil {
+		t.Fatalf("request failed: %v", err)
+	}
+	if resp.Code != 200 {
+		t.Fatalf("unexpected code: %d", resp.Code)
+	}
+}
+
 func TestClientPostBody(t *testing.T) {
 	t.Parallel()
 
