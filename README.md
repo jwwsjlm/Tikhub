@@ -10,6 +10,15 @@ client.TikTokWeb.FetchPostDetail(ctx, tikhub.TikTokWebFetchPostDetailRequest{
 })
 ```
 
+## 相关链接
+
+- TikHub 官网：[https://tikhub.io](https://tikhub.io)
+- 在线文档：[https://docs.tikhub.io](https://docs.tikhub.io)
+- API Base URL：[https://api.tikhub.io](https://api.tikhub.io)
+- Swagger UI：[https://api.tikhub.io](https://api.tikhub.io)
+- OpenAPI JSON：[https://api.tikhub.io/openapi.json](https://api.tikhub.io/openapi.json)
+- 用户后台/API Key：[https://user.tikhub.io/login](https://user.tikhub.io/login)
+
 ## 安装
 
 ```bash
@@ -19,7 +28,7 @@ go get github.com/jwwsjlm/Tikhub
 指定版本：
 
 ```bash
-go get github.com/jwwsjlm/Tikhub@v0.2.1
+go get github.com/jwwsjlm/Tikhub@v0.2.2
 ```
 
 ## 快速开始
