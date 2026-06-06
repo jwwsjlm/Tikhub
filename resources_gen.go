@@ -328,6 +328,8 @@ type TikTokWebFetchTrendingPostResponse = TikTokWebGetDailyTrendingVideoDataResp
 
 // FetchTrendingPost 获取每日热门内容作品数据/Get daily trending video data
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/tiktok/web/fetch_trending_post
 func (r TikTokWebResource) FetchTrendingPost(ctx context.Context) (*TikTokWebFetchTrendingPostResponse, error) {
 	return r.client.TikTokWebGetDailyTrendingVideoData(ctx)
@@ -920,6 +922,8 @@ type TikTokWebFetchSsoLoginQrcodeResponse = TikTokWebGetSSOLoginQRCodeResponse
 
 // FetchSsoLoginQrcode 获取SSO登录二维码/Get SSO login QR code
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/tiktok/web/fetch_sso_login_qrcode
 func (r TikTokWebResource) FetchSsoLoginQrcode(ctx context.Context, request TikTokWebFetchSsoLoginQrcodeRequest) (*TikTokWebFetchSsoLoginQrcodeResponse, error) {
 	return r.client.TikTokWebGetSSOLoginQRCode(ctx, request)
@@ -933,6 +937,8 @@ type TikTokWebFetchSsoLoginStatusResponse = TikTokWebGetSSOLoginStatusResponse
 
 // FetchSsoLoginStatus 获取SSO登录状态/Get SSO login status
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/tiktok/web/fetch_sso_login_status
 func (r TikTokWebResource) FetchSsoLoginStatus(ctx context.Context, request TikTokWebFetchSsoLoginStatusRequest) (*TikTokWebFetchSsoLoginStatusResponse, error) {
 	return r.client.TikTokWebGetSSOLoginStatus(ctx, request)
@@ -945,6 +951,8 @@ type TikTokWebFetchSsoLoginAuthRequest = TikTokWebAuthenticateSSOLoginRequest
 type TikTokWebFetchSsoLoginAuthResponse = TikTokWebAuthenticateSSOLoginResponse
 
 // FetchSsoLoginAuth 认证SSO登录/Authenticate SSO login
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/tiktok/web/fetch_sso_login_auth
 func (r TikTokWebResource) FetchSsoLoginAuth(ctx context.Context, request TikTokWebFetchSsoLoginAuthRequest) (*TikTokWebFetchSsoLoginAuthResponse, error) {
@@ -2568,6 +2576,8 @@ type TikTokShopWebFetchSearchWordSuggestionResponse = TikTokShopWebGetSearchKeyw
 
 // FetchSearchWordSuggestion 获取搜索关键词建议V1/Get search keyword suggestions V1
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/tiktok/shop/web/fetch_search_word_suggestion
 func (r TikTokShopWebResource) FetchSearchWordSuggestion(ctx context.Context, request TikTokShopWebFetchSearchWordSuggestionRequest) (*TikTokShopWebFetchSearchWordSuggestionResponse, error) {
 	return r.client.TikTokShopWebGetSearchKeywordSuggestionsV1(ctx, request)
@@ -2664,12 +2674,16 @@ type TikTokInteractionApplyResponse = TikTokInteractionApplyForTikTokInteraction
 
 // Apply 申请使用TikTok交互API权限（Scope）/Apply for TikTok Interaction API permission (Scope)
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/tiktok/interaction/apply
 func (r TikTokInteractionResource) Apply(ctx context.Context, request TikTokInteractionApplyRequest) (*TikTokInteractionApplyResponse, error) {
 	return r.client.TikTokInteractionApplyForTikTokInteractionAPIPermission(ctx, request)
 }
 
 // PostComment 发送评论/Post comment
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // POST /api/v1/tiktok/interaction/post_comment
 func (r TikTokInteractionResource) PostComment(ctx context.Context, request TikTokInteractionPostCommentRequest) (*TikTokInteractionPostCommentResponse, error) {
@@ -2684,12 +2698,16 @@ type TikTokInteractionReplyCommentResponse = TikTokInteractionReplyToCommentResp
 
 // ReplyComment 回复评论/Reply to comment
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // POST /api/v1/tiktok/interaction/reply_comment
 func (r TikTokInteractionResource) ReplyComment(ctx context.Context, request TikTokInteractionReplyCommentRequest) (*TikTokInteractionReplyCommentResponse, error) {
 	return r.client.TikTokInteractionReplyToComment(ctx, request)
 }
 
 // Like 点赞/Like
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // POST /api/v1/tiktok/interaction/like
 func (r TikTokInteractionResource) Like(ctx context.Context, request TikTokInteractionLikeRequest) (*TikTokInteractionLikeResponse, error) {
@@ -2698,6 +2716,8 @@ func (r TikTokInteractionResource) Like(ctx context.Context, request TikTokInter
 
 // Follow 关注/Follow
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // POST /api/v1/tiktok/interaction/follow
 func (r TikTokInteractionResource) Follow(ctx context.Context, request TikTokInteractionFollowRequest) (*TikTokInteractionFollowResponse, error) {
 	return r.client.TikTokInteractionFollow(ctx, request)
@@ -2705,12 +2725,16 @@ func (r TikTokInteractionResource) Follow(ctx context.Context, request TikTokInt
 
 // Collect 收藏/Collect
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // POST /api/v1/tiktok/interaction/collect
 func (r TikTokInteractionResource) Collect(ctx context.Context, request TikTokInteractionCollectRequest) (*TikTokInteractionCollectResponse, error) {
 	return r.client.TikTokInteractionCollect(ctx, request)
 }
 
 // Forward 转发/Forward
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // POST /api/v1/tiktok/interaction/forward
 func (r TikTokInteractionResource) Forward(ctx context.Context, request TikTokInteractionForwardRequest) (*TikTokInteractionForwardResponse, error) {
@@ -2950,6 +2974,8 @@ type DouyinWebFetchUserLiveVideosByRoomIDRequest = DouyinWebGetLiveVideoDataOfSp
 type DouyinWebFetchUserLiveVideosByRoomIDResponse = DouyinWebGetLiveVideoDataOfSpecifiedUserByRoomIDV1Response
 
 // FetchUserLiveVideosByRoomID 通过room_id获取指定用户的直播流数据 V1/Get live video data of specified user by room_id V1
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/douyin/web/fetch_user_live_videos_by_room_id
 func (r DouyinWebResource) FetchUserLiveVideosByRoomID(ctx context.Context, request DouyinWebFetchUserLiveVideosByRoomIDRequest) (*DouyinWebFetchUserLiveVideosByRoomIDResponse, error) {
@@ -3249,6 +3275,8 @@ type DouyinWebFetchUserSearchResultV3Request = DouyinWebGetUserSearchResultsOfSp
 type DouyinWebFetchUserSearchResultV3Response = DouyinWebGetUserSearchResultsOfSpecifiedKeywordsV3Response
 
 // FetchUserSearchResultV3 获取指定关键词的用户搜索结果 V3 (已弃用，替代接口请参考下方文档)/Get user search results of specified keywords V3 (deprecated, please refer to the following document for replacement interface)
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/douyin/web/fetch_user_search_result_v3
 func (r DouyinWebResource) FetchUserSearchResultV3(ctx context.Context, request DouyinWebFetchUserSearchResultV3Request) (*DouyinWebFetchUserSearchResultV3Response, error) {
@@ -3774,6 +3802,8 @@ type DouyinAppV3FetchUserFollowingListResponse = DouyinAppV3APIV1DouyinWebFetchU
 
 // FetchUserFollowingList 获取用户关注列表 (弃用，使用 /api/v1/douyin/web/fetch_user_following_list 替代)/Get user following list (Deprecated, use /api/v1/douyin/web/fetch_user_following_list instead)
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/douyin/app/v3/fetch_user_following_list
 func (r DouyinAppV3Resource) FetchUserFollowingList(ctx context.Context, request DouyinAppV3FetchUserFollowingListRequest) (*DouyinAppV3FetchUserFollowingListResponse, error) {
 	return r.client.DouyinAppV3APIV1DouyinWebFetchUserFollowingListGetUserFollowingList(ctx, request)
@@ -3904,6 +3934,8 @@ type DouyinAppV3FetchGeneralSearchResultResponse = DouyinAppV3GetComprehensiveSe
 
 // FetchGeneralSearchResult 获取指定关键词的综合搜索结果（弃用，替代接口见下方文档说明）/Get comprehensive search results of specified keywords (deprecated, see the documentation below for alternative interfaces)
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/douyin/app/v3/fetch_general_search_result
 func (r DouyinAppV3Resource) FetchGeneralSearchResult(ctx context.Context, request DouyinAppV3FetchGeneralSearchResultRequest) (*DouyinAppV3FetchGeneralSearchResultResponse, error) {
 	return r.client.DouyinAppV3GetComprehensiveSearchResultsOfSpecifiedKeywords(ctx, request)
@@ -3916,6 +3948,8 @@ type DouyinAppV3FetchVideoSearchResultRequest = DouyinAppV3GetVideoSearchResults
 type DouyinAppV3FetchVideoSearchResultResponse = DouyinAppV3GetVideoSearchResultsOfSpecifiedKeywordsResponse
 
 // FetchVideoSearchResult 获取指定关键词的视频搜索结果（弃用，替代接口见下方文档说明）/Get video search results of specified keywords (deprecated, see the documentation below for alternative interfaces)
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/douyin/app/v3/fetch_video_search_result
 func (r DouyinAppV3Resource) FetchVideoSearchResult(ctx context.Context, request DouyinAppV3FetchVideoSearchResultRequest) (*DouyinAppV3FetchVideoSearchResultResponse, error) {
@@ -3930,6 +3964,8 @@ type DouyinAppV3FetchUserSearchResultResponse = DouyinAppV3GetUserSearchResultsO
 
 // FetchUserSearchResult 获取指定关键词的用户搜索结果（弃用，替代接口见下方文档说明）/Get user search results of specified keywords (deprecated, see the documentation below for alternative interfaces)
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/douyin/app/v3/fetch_user_search_result
 func (r DouyinAppV3Resource) FetchUserSearchResult(ctx context.Context, request DouyinAppV3FetchUserSearchResultRequest) (*DouyinAppV3FetchUserSearchResultResponse, error) {
 	return r.client.DouyinAppV3GetUserSearchResultsOfSpecifiedKeywords(ctx, request)
@@ -3942,6 +3978,8 @@ type DouyinAppV3FetchLiveSearchResultRequest = DouyinAppV3GetLiveSearchResultsOf
 type DouyinAppV3FetchLiveSearchResultResponse = DouyinAppV3GetLiveSearchResultsOfSpecifiedKeywordsResponse
 
 // FetchLiveSearchResult 获取指定关键词的直播搜索结果（弃用，替代接口见下方文档说明）/Get live search results of specified keywords (deprecated, see the documentation below for alternative interfaces)
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/douyin/app/v3/fetch_live_search_result
 func (r DouyinAppV3Resource) FetchLiveSearchResult(ctx context.Context, request DouyinAppV3FetchLiveSearchResultRequest) (*DouyinAppV3FetchLiveSearchResultResponse, error) {
@@ -3956,6 +3994,8 @@ type DouyinAppV3FetchMusicSearchResultResponse = DouyinAppV3GetMusicSearchResult
 
 // FetchMusicSearchResult 获取指定关键词的音乐搜索结果（弃用，替代接口见下方文档说明）/Get music search results of specified keywords (deprecated, see the documentation below for alternative interfaces)
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/douyin/app/v3/fetch_music_search_result
 func (r DouyinAppV3Resource) FetchMusicSearchResult(ctx context.Context, request DouyinAppV3FetchMusicSearchResultRequest) (*DouyinAppV3FetchMusicSearchResultResponse, error) {
 	return r.client.DouyinAppV3GetMusicSearchResultsOfSpecifiedKeywords(ctx, request)
@@ -3968,6 +4008,8 @@ type DouyinAppV3FetchHashtagSearchResultRequest = DouyinAppV3GetHashtagSearchRes
 type DouyinAppV3FetchHashtagSearchResultResponse = DouyinAppV3GetHashtagSearchResultsOfSpecifiedKeywordsResponse
 
 // FetchHashtagSearchResult 获取指定关键词的话题搜索结果（弃用，替代接口见下方文档说明）/Get hashtag search results of specified keywords (deprecated, see the documentation below for alternative interfaces)
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/douyin/app/v3/fetch_hashtag_search_result
 func (r DouyinAppV3Resource) FetchHashtagSearchResult(ctx context.Context, request DouyinAppV3FetchHashtagSearchResultRequest) (*DouyinAppV3FetchHashtagSearchResultResponse, error) {
@@ -6609,6 +6651,8 @@ func (r XiaohongshuAppResource) GetTopicNotes(ctx context.Context, request Xiaoh
 
 // GetNotesByTopic [已弃用/Deprecated] 根据话题标签获取作品/Get notes by topic
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/xiaohongshu/app/get_notes_by_topic
 func (r XiaohongshuAppResource) GetNotesByTopic(ctx context.Context, request XiaohongshuAppDeprecatedGetNotesByTopicRequest) (*XiaohongshuAppDeprecatedGetNotesByTopicResponse, error) {
 	return r.client.XiaohongshuAppDeprecatedGetNotesByTopic(ctx, request)
@@ -6789,32 +6833,6 @@ func (r XiaohongshuWebResource) GetNoteInfoV7(ctx context.Context, request Xiaoh
 	return r.client.XiaohongshuWebGetNoteInfoV7(ctx, request)
 }
 
-// XiaohongshuWebGetNoteCommentsRequest is the request for GET /api/v1/xiaohongshu/web/get_note_comments.
-type XiaohongshuWebGetNoteCommentsRequest = XiaohongshuWebGetNoteCommentsV1Request
-
-// XiaohongshuWebGetNoteCommentsResponse is the response for GET /api/v1/xiaohongshu/web/get_note_comments.
-type XiaohongshuWebGetNoteCommentsResponse = XiaohongshuWebGetNoteCommentsV1Response
-
-// GetNoteComments 获取笔记评论 V1/Get note comments V1
-//
-// GET /api/v1/xiaohongshu/web/get_note_comments
-func (r XiaohongshuWebResource) GetNoteComments(ctx context.Context, request XiaohongshuWebGetNoteCommentsRequest) (*XiaohongshuWebGetNoteCommentsResponse, error) {
-	return r.client.XiaohongshuWebGetNoteCommentsV1(ctx, request)
-}
-
-// XiaohongshuWebGetNoteCommentRepliesRequest is the request for GET /api/v1/xiaohongshu/web/get_note_comment_replies.
-type XiaohongshuWebGetNoteCommentRepliesRequest = XiaohongshuWebGetNoteCommentRepliesV1Request
-
-// XiaohongshuWebGetNoteCommentRepliesResponse is the response for GET /api/v1/xiaohongshu/web/get_note_comment_replies.
-type XiaohongshuWebGetNoteCommentRepliesResponse = XiaohongshuWebGetNoteCommentRepliesV1Response
-
-// GetNoteCommentReplies 获取笔记评论回复 V1/Get note comment replies V1
-//
-// GET /api/v1/xiaohongshu/web/get_note_comment_replies
-func (r XiaohongshuWebResource) GetNoteCommentReplies(ctx context.Context, request XiaohongshuWebGetNoteCommentRepliesRequest) (*XiaohongshuWebGetNoteCommentRepliesResponse, error) {
-	return r.client.XiaohongshuWebGetNoteCommentRepliesV1(ctx, request)
-}
-
 // XiaohongshuWebGetUserInfoRequest is the request for GET /api/v1/xiaohongshu/web/get_user_info.
 type XiaohongshuWebGetUserInfoRequest = XiaohongshuWebGetUserInfoV1Request
 
@@ -6826,34 +6844,6 @@ type XiaohongshuWebGetUserInfoResponse = XiaohongshuWebGetUserInfoV1Response
 // GET /api/v1/xiaohongshu/web/get_user_info
 func (r XiaohongshuWebResource) GetUserInfo(ctx context.Context, request XiaohongshuWebGetUserInfoRequest) (*XiaohongshuWebGetUserInfoResponse, error) {
 	return r.client.XiaohongshuWebGetUserInfoV1(ctx, request)
-}
-
-// SearchNotes 搜索笔记/Search notes
-//
-// GET /api/v1/xiaohongshu/web/search_notes
-func (r XiaohongshuWebResource) SearchNotes(ctx context.Context, request XiaohongshuWebSearchNotesRequest) (*XiaohongshuWebSearchNotesResponse, error) {
-	return r.client.XiaohongshuWebSearchNotes(ctx, request)
-}
-
-// SearchNotesV3 搜索笔记 V3/Search notes V3
-//
-// GET /api/v1/xiaohongshu/web/search_notes_v3
-func (r XiaohongshuWebResource) SearchNotesV3(ctx context.Context, request XiaohongshuWebSearchNotesV3Request) (*XiaohongshuWebSearchNotesV3Response, error) {
-	return r.client.XiaohongshuWebSearchNotesV3(ctx, request)
-}
-
-// SearchUsers 搜索用户/Search users
-//
-// GET /api/v1/xiaohongshu/web/search_users
-func (r XiaohongshuWebResource) SearchUsers(ctx context.Context, request XiaohongshuWebSearchUsersRequest) (*XiaohongshuWebSearchUsersResponse, error) {
-	return r.client.XiaohongshuWebSearchUsers(ctx, request)
-}
-
-// GetUserNotesV2 获取用户的笔记 V2/Get user notes V2
-//
-// GET /api/v1/xiaohongshu/web/get_user_notes_v2
-func (r XiaohongshuWebResource) GetUserNotesV2(ctx context.Context, request XiaohongshuWebGetUserNotesV2Request) (*XiaohongshuWebGetUserNotesV2Response, error) {
-	return r.client.XiaohongshuWebGetUserNotesV2(ctx, request)
 }
 
 // GetVisitorCookie 获取游客Cookie/Get visitor cookie
@@ -10038,6 +10028,8 @@ func (r InstagramV3Resource) SearchHashtags(ctx context.Context, request Instagr
 
 // SearchPlaces 搜索地点/Search places
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/instagram/v3/search_places
 func (r InstagramV3Resource) SearchPlaces(ctx context.Context, request InstagramV3SearchPlacesRequest) (*InstagramV3SearchPlacesResponse, error) {
 	return r.client.InstagramV3SearchPlaces(ctx, request)
@@ -10363,6 +10355,8 @@ type YouTubeWebGetVideoInfoV3Response = YouTubeWebGetVideoInformationV3Response
 
 // GetVideoInfoV3 获取视频详情 V3/Get video information V3
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/youtube/web/get_video_info_v3
 func (r YouTubeWebResource) GetVideoInfoV3(ctx context.Context, request YouTubeWebGetVideoInfoV3Request) (*YouTubeWebGetVideoInfoV3Response, error) {
 	return r.client.YouTubeWebGetVideoInformationV3(ctx, request)
@@ -10377,6 +10371,8 @@ func (r YouTubeWebResource) GetVideoSubtitles(ctx context.Context, request YouTu
 
 // GetVideoComments 获取视频评论/Get video comments
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/youtube/web/get_video_comments
 func (r YouTubeWebResource) GetVideoComments(ctx context.Context, request YouTubeWebGetVideoCommentsRequest) (*YouTubeWebGetVideoCommentsResponse, error) {
 	return r.client.YouTubeWebGetVideoComments(ctx, request)
@@ -10390,12 +10386,16 @@ type YouTubeWebGetVideoCommentRepliesResponse = YouTubeWebGetVideoSubCommentsRes
 
 // GetVideoCommentReplies 获取视频二级评论/Get video sub comments
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/youtube/web/get_video_comment_replies
 func (r YouTubeWebResource) GetVideoCommentReplies(ctx context.Context, request YouTubeWebGetVideoCommentRepliesRequest) (*YouTubeWebGetVideoCommentRepliesResponse, error) {
 	return r.client.YouTubeWebGetVideoSubComments(ctx, request)
 }
 
 // GetChannelDescription 获取频道描述信息/Get channel description
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/youtube/web/get_channel_description
 func (r YouTubeWebResource) GetChannelDescription(ctx context.Context, request YouTubeWebGetChannelDescriptionRequest) (*YouTubeWebGetChannelDescriptionResponse, error) {
@@ -10430,6 +10430,8 @@ type YouTubeWebGetGeneralSearchResponse = YouTubeWebGeneralSearchWithFiltersResp
 
 // GetGeneralSearch 综合搜索（支持过滤条件）/General search with filters
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/youtube/web/get_general_search
 func (r YouTubeWebResource) GetGeneralSearch(ctx context.Context, request YouTubeWebGetGeneralSearchRequest) (*YouTubeWebGetGeneralSearchResponse, error) {
 	return r.client.YouTubeWebGeneralSearchWithFilters(ctx, request)
@@ -10442,6 +10444,8 @@ type YouTubeWebGetShortsSearchRequest = YouTubeWebYouTubeShortsSearchRequest
 type YouTubeWebGetShortsSearchResponse = YouTubeWebYouTubeShortsSearchResponse
 
 // GetShortsSearch YouTube Shorts短视频搜索/YouTube Shorts search
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/youtube/web/get_shorts_search
 func (r YouTubeWebResource) GetShortsSearch(ctx context.Context, request YouTubeWebGetShortsSearchRequest) (*YouTubeWebGetShortsSearchResponse, error) {
@@ -10502,6 +10506,8 @@ type YouTubeWebGetChannelVideosResponse = YouTubeWebGetChannelVideosV1Response
 
 // GetChannelVideos 获取频道视频 V1（即将过时，优先使用 V2）/Get channel videos V1 (deprecated soon, use V2 first)
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/youtube/web/get_channel_videos
 func (r YouTubeWebResource) GetChannelVideos(ctx context.Context, request YouTubeWebGetChannelVideosRequest) (*YouTubeWebGetChannelVideosResponse, error) {
 	return r.client.YouTubeWebGetChannelVideosV1(ctx, request)
@@ -10515,6 +10521,8 @@ func (r YouTubeWebResource) GetChannelVideosV2(ctx context.Context, request YouT
 }
 
 // GetChannelVideosV3 获取频道视频 V3/Get channel videos V3
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/youtube/web/get_channel_videos_v3
 func (r YouTubeWebResource) GetChannelVideosV3(ctx context.Context, request YouTubeWebGetChannelVideosV3Request) (*YouTubeWebGetChannelVideosV3Response, error) {
@@ -12305,6 +12313,8 @@ type Sora2CreateVideoResponse = Sora2DeprecatedCreateVideoFromTextOrImageRespons
 
 // CreateVideo [已弃用/Deprecated] 文本/图片生成视频/Create video from text or image
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // POST /api/v1/sora2/create_video
 func (r Sora2Resource) CreateVideo(ctx context.Context, request Sora2CreateVideoRequest) (*Sora2CreateVideoResponse, error) {
 	return r.client.Sora2DeprecatedCreateVideoFromTextOrImage(ctx, request)
@@ -12318,6 +12328,8 @@ type Sora2GetTaskStatusResponse = Sora2DeprecatedGetTaskStatusResponse
 
 // GetTaskStatus [已弃用/Deprecated] 查询任务状态/Get task status
 //
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
+//
 // GET /api/v1/sora2/get_task_status
 func (r Sora2Resource) GetTaskStatus(ctx context.Context, request Sora2GetTaskStatusRequest) (*Sora2GetTaskStatusResponse, error) {
 	return r.client.Sora2DeprecatedGetTaskStatus(ctx, request)
@@ -12330,6 +12342,8 @@ type Sora2GetTaskDetailRequest = Sora2DeprecatedGetTaskGeneratedPostDetailReques
 type Sora2GetTaskDetailResponse = Sora2DeprecatedGetTaskGeneratedPostDetailResponse
 
 // GetTaskDetail [已弃用/Deprecated] 获取任务生成的作品详情（无水印版本）/Get task-generated post detail (watermark-free)
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/sora2/get_task_detail
 func (r Sora2Resource) GetTaskDetail(ctx context.Context, request Sora2GetTaskDetailRequest) (*Sora2GetTaskDetailResponse, error) {
@@ -12474,6 +12488,8 @@ type TwitterWebFetchUserHighlightsTweetsRequest = TwitterWebGetUserHighlightsTwe
 type TwitterWebFetchUserHighlightsTweetsResponse = TwitterWebGetUserHighlightsTweetsResponse
 
 // FetchUserHighlightsTweets 获取用户高光推文/Get user highlights tweets
+//
+// Deprecated: 已弃用 / Deprecated. 此接口已在 TikHub OpenAPI 标记为弃用；请查看在线文档获取替代接口。 This endpoint is marked deprecated in TikHub OpenAPI; check the online docs for a replacement.
 //
 // GET /api/v1/twitter/web/fetch_user_highlights_tweets
 func (r TwitterWebResource) FetchUserHighlightsTweets(ctx context.Context, request TwitterWebFetchUserHighlightsTweetsRequest) (*TwitterWebFetchUserHighlightsTweetsResponse, error) {

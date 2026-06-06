@@ -28,7 +28,7 @@ go get github.com/jwwsjlm/Tikhub
 指定版本：
 
 ```bash
-go get github.com/jwwsjlm/Tikhub@v0.2.2
+go get github.com/jwwsjlm/Tikhub@v0.2.3
 ```
 
 ## 快速开始
@@ -259,7 +259,7 @@ resp, err := tikhub.ParseResponse(rawResp)
 
 ## 覆盖范围
 
-SDK 覆盖 TikHub OpenAPI 中的资源分组和 GET/POST 接口，并额外保留旧版本中仍可用的少量兼容接口。当前生成了两套入口：
+SDK 按当前 TikHub OpenAPI 覆盖资源分组和 GET/POST 接口；已弃用接口会在方法注释里标记 `Deprecated`。当前生成了两套入口：
 
 - 官方风格资源入口：`client.TikTokWeb.FetchPostDetail(...)`
 - 兼容的标题式入口：`client.TikTokWebGetSingleVideoData(...)`
